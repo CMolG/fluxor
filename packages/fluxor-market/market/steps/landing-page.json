@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "landing-page",
+  "kind": "step",
+  "version": "1.0.0",
+  "icon": "MdWebAsset",
+  "iconLibrary": "react-icons/md",
+  "description": "Builds a single conversion-focused landing page (hero, value props, social proof, CTA) as one artifact, matching the project's design system.",
+  "tags": [
+    "landing",
+    "marketing",
+    "ui",
+    "atomic"
+  ]
+}

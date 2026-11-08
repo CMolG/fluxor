@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "full-stack-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdAllInclusive",
+  "iconLibrary": "react-icons/md",
+  "description": "Pragmatic end-to-end engineer who ships complete vertical slices: UI, API, and data model as one coherent feature.",
+  "tags": [
+    "full-stack",
+    "frontend",
+    "backend",
+    "api",
+    "integration",
+    "pragmatic"
+  ],
+  "domains": [
+    "frontend",
+    "backend",
+    "web"
+  ],
+  "color": "8338EC",
+  "palette": {
+    "background": "8338EC",
+    "text": "FFFFFF",
+    "accents": "E0FF4F",
+    "hover": "6C2BC4"
+  },
+  "toolTier": "write"
+}

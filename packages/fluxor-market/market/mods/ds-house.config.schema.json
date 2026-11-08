@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ds-house.config.schema.json",
+  "title": "ds-house: .harness/config/ds-house.json",
+  "description": "Where the project's in-house design system lives, for the ds-house mod. The agent reads this file; every key is optional, and a fact left out is discovered from the code (the workspace package every app imports its primitives from, the token file they read, design-system documents in the harness). `$`-prefixed keys are comments.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^\\$": {
+      "description": "A comment (for example `$comment`) or `$schema`; ignored."
+    }
+  },
+  "properties": {
+    "uiPackage": {
+      "description": "The shared UI package or directory primitives come from (e.g. \"@acme/ui\" or \"packages/ui\"). Default: discovered, the workspace package every app imports its button/card/dialog from.",
+      "type": "string",
+      "minLength": 1
+    },
+    "brandColorSource": {
+      "description": "The one function, token or file brand color is read from (e.g. \"packages/ui/src/theme/brand.ts\"). Default: discovered from the token file the house primitives read.",
+      "type": "string",
+      "minLength": 1
+    },
+    "tokenPrefix": {
+      "description": "Prefix of the house's CSS custom properties / design tokens (e.g. \"--acme-\"). Default: discovered from the house token file.",
+      "type": "string",
+      "minLength": 1
+    },
+    "contracts": {
+      "description": "Paths relative to the project root, or URIs the harness can resolve (a `doc://` page read through the project's docs tool), of the documents that define the system: typically the art-direction contract, the token reference and the admission test. Default: discovered in the harness (contracts/, rules/) or the UI package's README.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  }
+}

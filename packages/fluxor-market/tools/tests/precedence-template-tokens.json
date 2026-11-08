@@ -1,0 +1,17 @@
+{
+  "$comment": "JAVA-1692: the placeholder grammar of a precedence template. Python (marketplace.value_tokens) and Java (PrecedenceTemplates.tokens) both read this file; `tokens: null` means the value is malformed.",
+  "cases": [
+    { "value": "release", "tokens": [] },
+    { "value": "{{EPIC}}", "tokens": ["EPIC"] },
+    { "value": "client-{{CLIENT_ID}}", "tokens": ["CLIENT_ID"] },
+    { "value": "{{A}}-{{B2}}", "tokens": ["A", "B2"] },
+    { "value": "{{epic}}", "tokens": null },
+    { "value": "{{1X}}", "tokens": null },
+    { "value": "{{}}", "tokens": null },
+    { "value": "{{EPIC", "tokens": null },
+    { "value": "EPIC}}", "tokens": null },
+    { "value": "{EPIC}", "tokens": null },
+    { "value": "{{ EPIC }}", "tokens": null },
+    { "value": "{{ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456}}", "tokens": null }
+  ]
+}

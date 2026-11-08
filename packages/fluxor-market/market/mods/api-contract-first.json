@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "api-contract-first",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdApi",
+  "iconLibrary": "react-icons/md",
+  "description": "The API contract (OpenAPI/schema) is written and validated before implementation; types, clients, and validation derive from it.",
+  "tags": [
+    "api",
+    "openapi",
+    "contract",
+    "schema-first"
+  ],
+  "domains": [
+    "backend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

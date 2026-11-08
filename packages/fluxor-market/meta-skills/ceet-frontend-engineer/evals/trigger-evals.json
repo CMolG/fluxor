@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I build React components so Claude writes UI the way I do", "should_trigger": true},
+  {"query": "I'm the lead frontend engineer on our design system. Build me an AI setup that reviews components like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my frontend style into something I can load in Cursor and Copilot", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a Svelte developer? I own the checkout flow", "should_trigger": true},
+  {"query": "our staff frontend engineer is leaving next month and agreed to be interviewed so an assistant keeps her accessibility and component standards", "should_trigger": true},
+  {"query": "capture how I think about UI state, hydration and Web Vitals so any AI tool works my way on our Next.js app", "should_trigger": true},
+  {"query": "run the CEET frontend interview with me, I have an hour now and can do the rest tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my frontend judgment — state, rendering, a11y, CSS — for ChatGPT and Claude", "should_trigger": true},
+  {"query": "turn my answers about component APIs and form validation into agents and rules for my coding assistant", "should_trigger": true},
+  {"query": "re-run my frontend cognitive profile, I changed how I handle loading states and memoization since last year", "should_trigger": true},
+  {"query": "refactor this 600-line React component into smaller pieces", "should_trigger": false},
+  {"query": "interview me about how I design APIs and database migrations so the AI codes like me", "should_trigger": false},
+  {"query": "capture my visual design taste — typography, spacing, color — into an AI profile for Figma work", "should_trigger": false},
+  {"query": "build a simulated frontend profile of how the Vercel team thinks, from their blog posts", "should_trigger": false},
+  {"query": "audit this page for WCAG 2.2 accessibility problems", "should_trigger": false},
+  {"query": "write a job description for a senior frontend engineer and a rubric to score candidates", "should_trigger": false},
+  {"query": "which CEET role should I use for a full-stack developer who mostly writes UI?", "should_trigger": false},
+  {"query": "set up a CLAUDE.md with our team's React and Tailwind conventions", "should_trigger": false},
+  {"query": "score my frontend engineers' pull requests this quarter by quality", "should_trigger": false},
+  {"query": "interview our UX researcher about usability testing for an AI clone", "should_trigger": false}
+]

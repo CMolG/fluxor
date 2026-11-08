@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "backlog.config.schema.json",
+  "title": "backlog: .harness/config/backlog.json",
+  "description": "Where the project's backlog lives and how the session protocol names things. The agent reads this file (the skill has no script); every key is optional and falls back to the adapter's defaults or to discovery through the MCP server. `$`-prefixed keys are comments.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^\\$": {
+      "description": "A comment (for example `$comment`) or `$schema`; ignored."
+    }
+  },
+  "properties": {
+    "provider": {
+      "description": "Adapter to use: references/adapter-<provider>.md in the skill. Default: autodetected (a connected MCP server matching a shipped adapter; `officium` is the one shipped today).",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "mcpServer": {
+      "description": "Name the MCP server is registered under in the client. Default: the adapter's default server name (`officium` for the Officium adapter).",
+      "type": "string",
+      "minLength": 1
+    },
+    "mcpUrl": {
+      "description": "MCP endpoint; the `claude mcp add` / `codex mcp add` setup commands are derived from it. Default: none (the setup commands cannot be built without it).",
+      "type": "string",
+      "pattern": "^https?://\\S+$"
+    },
+    "boardUrl": {
+      "description": "Where people see the board; given to the user when a card needs their eyes. Default: none.",
+      "type": "string",
+      "pattern": "^https?://\\S+$"
+    },
+    "project": {
+      "description": "The tracker's project. Default: discovered through the MCP server (the user is asked when there is more than one).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "The tracker's project identifier. Default: discovered.",
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "description": "Human name of the project. Default: discovered.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "keyPrefix": {
+      "description": "Prefix of new card keys (`PROJ` for `PROJ-12`); lets the agent recognize this project's keys in commits and chat. Default: whatever the tracker assigns.",
+      "type": "string",
+      "minLength": 1
+    },
+    "legacyKeyPrefixes": {
+      "description": "Older prefixes still valid on imported cards. Default: [].",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "statuses": {
+      "description": "The tracker's names for the protocol's statuses. A tracker without a `deploy` stage maps it to the same value as `done`. Default: {\"backlog\": \"backlog\", \"doing\": \"doing\", \"review\": \"review\", \"deploy\": \"deploy\", \"done\": \"done\"}.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "backlog": {
+          "description": "Default: \"backlog\".",
+          "type": "string",
+          "minLength": 1,
+          "default": "backlog"
+        },
+        "doing": {
+          "description": "Default: \"doing\".",
+          "type": "string",
+          "minLength": 1,
+          "default": "doing"
+        },
+        "review": {
+          "description": "Default: \"review\".",
+          "type": "string",
+          "minLength": 1,
+          "default": "review"
+        },
+        "deploy": {
+          "description": "Default: \"deploy\".",
+          "type": "string",
+          "minLength": 1,
+          "default": "deploy"
+        },
+        "done": {
+          "description": "Default: \"done\".",
+          "type": "string",
+          "minLength": 1,
+          "default": "done"
+        }
+      },
+      "default": {
+        "backlog": "backlog",
+        "doing": "doing",
+        "review": "review",
+        "deploy": "deploy",
+        "done": "done"
+      }
+    },
+    "sprints": {
+      "description": "\"auto\" uses sprints when the tracker has them and one is active; true requires them; false ignores them (step 4 skips the pull into the sprint). Default: \"auto\".",
+      "enum": [
+        "auto",
+        true,
+        false
+      ],
+      "default": "auto"
+    },
+    "machineName": {
+      "description": "Where the `machine` value reported on runs comes from: \"hostname\" (the `hostname` command), \"env:VAR\" (an environment variable, for launchers that set one), or any other string, used literally. Default: \"hostname\".",
+      "type": "string",
+      "minLength": 1,
+      "default": "hostname"
+    },
+    "statusReportMinutes": {
+      "description": "Longest silence between `reportStatus` calls. Keep it under the tracker's run lapse (10 minutes on Officium). Default: 10.",
+      "type": "integer",
+      "minimum": 1,
+      "default": 10
+    },
+    "doneEvidence": {
+      "description": "When a card in `deploy` is done: \"running\" (verified in what production runs) or \"merged\" (in `mainBranch`, where merging is the project's deploy decision). Default: \"running\".",
+      "enum": [
+        "running",
+        "merged"
+      ],
+      "default": "running"
+    },
+    "mainBranch": {
+      "description": "The branch `doneEvidence: \"merged\"` reads. Default: \"main\".",
+      "type": "string",
+      "minLength": 1,
+      "default": "main"
+    },
+    "decisionPolicy": {
+      "description": "Path, relative to the harness directory, of the project rule that says which decisions still need a person. When set, a business decision it does not reserve for a person is the agent's (step 5), not a wall. Default: none, and every missing business decision is a wall.",
+      "type": "string",
+      "minLength": 1
+    },
+    "codeReferences": {
+      "description": "How code, tests and commits reference cards, Apple Radar style (`card://PROJ-123`). Default: {\"scheme\": \"card\"}.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "description": "URI scheme of a reference: `<scheme>://<KEY>`. Default: \"card\".",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9+.-]*$",
+          "default": "card"
+        },
+        "urlTemplate": {
+          "description": "Link to a card with a `{key}` placeholder, printed next to each reference by scripts/card_refs.py. Default: none.",
+          "type": "string",
+          "pattern": "^https?://\\S*\\{key\\}\\S*$"
+        },
+        "commitKey": {
+          "description": "How a commit names its card: \"trailer\" (a `Card: card://PROJ-123` line) or \"subject\" (the bare key at the end of the subject, `fix(ui): ... (PROJ-123)`). Default: \"trailer\".",
+          "enum": [
+            "trailer",
+            "subject"
+          ],
+          "default": "trailer"
+        },
+        "ignore": {
+          "description": "Globs (relative to the project root; `*` stays in one folder, `**` crosses them) of tracked paths scripts/card_refs.py skips: vendored code, or a catalog whose examples use other projects' keys. Default: [].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        }
+      }
+    }
+  }
+}

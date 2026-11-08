@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-saas-cost-reducer",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "infinite",
+  "destructive": true,
+  "icon": "MdSavings",
+  "iconLibrary": "react-icons/md",
+  "description": "Continuously audits infrastructure-as-code, paid API usage, and deployment configs to reduce cloud/SaaS spend without degrading the user experience.",
+  "tags": [
+    "finops",
+    "cost",
+    "infrastructure",
+    "optimization",
+    "cloud",
+    "loop",
+    "infinite"
+  ],
+  "steps": [
+    {
+      "id": "analyze-cost-surface",
+      "prompt": "Analyze IaC, deployment configs, and paid API usage"
+    },
+    {
+      "id": "generate-finops-backlog",
+      "prompt": "Inventory expensive operations and generate a prioritized FinOps backlog"
+    },
+    {
+      "id": "implement-reduction",
+      "prompt": "Implement the highest-impact cost reduction without degrading UX"
+    },
+    {
+      "id": "validate-savings",
+      "prompt": "Validate savings and log to finops_results.tsv"
+    },
+    {
+      "id": "commit-and-loop",
+      "stepRef": "commit-changes",
+      "prompt": "Commit changes and loop to the next cost-saving target",
+      "loopBackTo": {
+        "stepId": "analyze-cost-surface",
+        "maxIterations": 3
+      }
+    }
+  ]
+}

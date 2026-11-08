@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "write-failing-tests",
+  "kind": "step",
+  "version": "1.0.0",
+  "icon": "MdScience",
+  "iconLibrary": "react-icons/md",
+  "description": "Specifies desired behavior as executable tests that fail before any implementation exists (TDD red).",
+  "tags": [
+    "tdd",
+    "tests",
+    "red",
+    "atomic"
+  ]
+}

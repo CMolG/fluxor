@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "semantic-deduplicator",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdFilterAlt",
+  "iconLibrary": "react-icons/md",
+  "description": "Merges or rejects any two items that solve the same problem or rest on the same value proposition, and strips the jargon that hides the difference between them.",
+  "tags": [
+    "deduplication",
+    "semantics",
+    "clarity",
+    "quality",
+    "flow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

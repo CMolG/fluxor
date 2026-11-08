@@ -1,0 +1,436 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-100",
+  "status": "WAITING_BUSINESS_INPUT",
+  "summary": "To prepare an AI base branch without product assumptions, business decisions are required for scope, behavior, compatibility, operations, and acceptance.",
+  "questions": [
+    {
+      "template_id": "BO-1",
+      "priority": "P0",
+      "category": "Business Objective",
+      "question": "What specific business outcome should improve after this change?",
+      "whyItMatters": "Aligns implementation with a measurable business goal.",
+      "suggestedAnswers": [
+        "Reduce operational risk",
+        "Improve conversion",
+        "Reduce support workload",
+        "Meet compliance requirements",
+        "Improve user experience",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": true,
+      "defaultIfUnanswered": null,
+      "businessImpact": "product",
+      "affectedActors": [
+        "business",
+        "product",
+        "engineering"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q1"
+    },
+    {
+      "template_id": "BR-1",
+      "priority": "P0",
+      "category": "Business Rules",
+      "question": "What exact business rules, limits, thresholds, deadlines, or conditions must apply?",
+      "whyItMatters": "Defines the core behavior and avoids hidden product assumptions.",
+      "suggestedAnswers": [
+        "No special limits",
+        "Use fixed limits",
+        "Use limits by segment",
+        "Use limits by country/channel",
+        "Requires business definition"
+      ],
+      "required": true,
+      "blocksImplementation": true,
+      "defaultIfUnanswered": null,
+      "businessImpact": "business_rule",
+      "affectedActors": [
+        "user",
+        "support",
+        "operations"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q2"
+    },
+    {
+      "template_id": "FS-1",
+      "priority": "P0",
+      "category": "Functional Scope",
+      "question": "Which users, countries, channels, plans, products, or partners are in scope?",
+      "whyItMatters": "Defines where behavior changes and where it must stay unchanged.",
+      "suggestedAnswers": [
+        "All users",
+        "Selected user segments",
+        "Specific countries",
+        "Specific channels",
+        "Specific partners",
+        "Specific plans/products",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": true,
+      "defaultIfUnanswered": null,
+      "businessImpact": "scope",
+      "affectedActors": [
+        "user",
+        "support",
+        "partner"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q3"
+    },
+    {
+      "template_id": "SL-1",
+      "priority": "P0",
+      "category": "State Lifecycle",
+      "question": "What should happen when the operation succeeds, fails, is cancelled, expires, or remains pending?",
+      "whyItMatters": "Defines the full lifecycle of the business operation.",
+      "suggestedAnswers": [
+        "Define all states in this ticket",
+        "Use existing lifecycle",
+        "Only success/error required",
+        "Requires product decision"
+      ],
+      "required": true,
+      "blocksImplementation": true,
+      "defaultIfUnanswered": null,
+      "businessImpact": "workflow",
+      "affectedActors": [
+        "user",
+        "support",
+        "operations"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q4"
+    },
+    {
+      "template_id": "AC-1",
+      "priority": "P0",
+      "category": "Acceptance Criteria",
+      "question": "What minimum success, error, permission, compatibility, and edge cases must QA validate to accept this ticket?",
+      "whyItMatters": "Defines done criteria and prevents hidden assumptions.",
+      "suggestedAnswers": [
+        "List minimum QA cases",
+        "Link existing criteria",
+        "Pending QA definition",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": true,
+      "defaultIfUnanswered": null,
+      "businessImpact": "quality",
+      "affectedActors": [
+        "qa",
+        "product",
+        "engineering"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q5"
+    },
+    {
+      "template_id": "CP-1",
+      "priority": "P0",
+      "category": "Compatibility & Backward Compatibility",
+      "question": "What should happen for old clients, old app versions, existing integrations, or consumers that do not support the new behavior?",
+      "whyItMatters": "Defines compatibility expectations and rollout safety.",
+      "suggestedAnswers": [
+        "Keep previous behavior",
+        "Require client update",
+        "Use fallback behavior",
+        "Block unsupported clients",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": true,
+      "defaultIfUnanswered": null,
+      "businessImpact": "compatibility",
+      "affectedActors": [
+        "user",
+        "partner",
+        "support"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q6"
+    },
+    {
+      "template_id": "CM-1",
+      "priority": "P1",
+      "category": "Messages & Communications",
+      "question": "Which communication channels must be used, when should they be triggered, and what happens if communication fails?",
+      "whyItMatters": "Defines customer communication obligations and fallback behavior.",
+      "suggestedAnswers": [
+        "No communication required",
+        "Email only",
+        "SMS only",
+        "Push/in-app only",
+        "Multiple channels with fallback",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": null,
+      "businessImpact": "communication",
+      "affectedActors": [
+        "user",
+        "support"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q7"
+    },
+    {
+      "template_id": "DR-1",
+      "priority": "P1",
+      "category": "Data & Functional Reporting",
+      "question": "Which business events, statuses, metrics, or reports must be tracked?",
+      "whyItMatters": "Defines reporting, support, and audit expectations before implementation.",
+      "suggestedAnswers": [
+        "No reporting change",
+        "Track success/error only",
+        "Track full lifecycle",
+        "Add support dimensions",
+        "Add compliance dimensions",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": null,
+      "businessImpact": "reporting",
+      "affectedActors": [
+        "business",
+        "support",
+        "compliance"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q8"
+    },
+    {
+      "template_id": "LC-1",
+      "priority": "P1",
+      "category": "Legal, Compliance & Privacy",
+      "question": "Are there legal, compliance, privacy, consent, retention, or audit obligations for this flow?",
+      "whyItMatters": "Prevents release with missing legal or privacy requirements.",
+      "suggestedAnswers": [
+        "No additional obligations",
+        "Consent required",
+        "Retention rule required",
+        "Audit trail required",
+        "Legal review required",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": null,
+      "businessImpact": "compliance",
+      "affectedActors": [
+        "legal",
+        "support",
+        "user"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q9"
+    },
+    {
+      "template_id": "RL-1",
+      "priority": "P1",
+      "category": "Rollout & Transition",
+      "question": "Should rollout be immediate or progressive, and what business condition should trigger rollback?",
+      "whyItMatters": "Defines launch strategy and limits blast radius.",
+      "suggestedAnswers": [
+        "Immediate rollout",
+        "Progressive rollout",
+        "Rollout by country/channel",
+        "Internal beta first",
+        "Other"
+      ],
+      "required": true,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": null,
+      "businessImpact": "rollout",
+      "affectedActors": [
+        "product",
+        "operations",
+        "support"
+      ],
+      "relatedAcceptanceCriteria": true,
+      "id": "Q10"
+    }
+  ],
+  "optionalFutureDecisions": [
+    {
+      "template_id": "AF-1",
+      "priority": "P2",
+      "category": "Activation & Functional Configuration",
+      "question": "Is the behavior always on or configurable, by whom, and what is the default when no configuration exists?",
+      "whyItMatters": "Defines who controls activation and the safe default.",
+      "suggestedAnswers": [
+        "Always on",
+        "Configurable per segment",
+        "Configurable per country or channel",
+        "Off by default",
+        "Other"
+      ],
+      "required": false,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": "Off by default until explicitly enabled",
+      "businessImpact": "configuration",
+      "affectedActors": [
+        "product",
+        "operations"
+      ],
+      "relatedAcceptanceCriteria": false,
+      "id": "O1"
+    },
+    {
+      "template_id": "AP-1",
+      "priority": "P2",
+      "category": "Actors & Permissions",
+      "question": "Who can trigger, view, override, or cancel this operation, and does it differ for users, support, admins, and partners?",
+      "whyItMatters": "Avoids guessing permission boundaries that are visible to users and support.",
+      "suggestedAnswers": [
+        "Same as today",
+        "Only the owner",
+        "Owner and support",
+        "Role-based by admin",
+        "Other"
+      ],
+      "required": false,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": "Keep the permissions of the closest existing operation",
+      "businessImpact": "permissions",
+      "affectedActors": [
+        "user",
+        "support",
+        "admin"
+      ],
+      "relatedAcceptanceCriteria": false,
+      "id": "O2"
+    },
+    {
+      "template_id": "AT-1",
+      "priority": "P2",
+      "category": "Auditability & Traceability",
+      "question": "Who did what, when, and why: which part of the sequence must be reconstructable later, and for how long?",
+      "whyItMatters": "Makes the audit expectation explicit instead of implied.",
+      "suggestedAnswers": [
+        "No audit requirement",
+        "Who and when only",
+        "Full sequence with reasons",
+        "Regulated retention",
+        "Other"
+      ],
+      "required": false,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": "Record who and when for every state change",
+      "businessImpact": "auditability",
+      "affectedActors": [
+        "support",
+        "compliance"
+      ],
+      "relatedAcceptanceCriteria": false,
+      "id": "O3"
+    },
+    {
+      "template_id": "ED-1",
+      "priority": "P2",
+      "category": "Business External Dependencies",
+      "question": "Does this depend on a provider, partner, or another team, and what happens while that dependency is unavailable?",
+      "whyItMatters": "Defines the business fallback when something outside the team fails.",
+      "suggestedAnswers": [
+        "No external dependency",
+        "Wait and retry",
+        "Continue with a fallback",
+        "Block the operation",
+        "Other"
+      ],
+      "required": false,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": "Block the operation and tell the user to retry later",
+      "businessImpact": "dependency",
+      "affectedActors": [
+        "user",
+        "operations",
+        "partner"
+      ],
+      "relatedAcceptanceCriteria": false,
+      "id": "O4"
+    },
+    {
+      "template_id": "FE-1",
+      "priority": "P2",
+      "category": "Functional Error Handling",
+      "question": "Which errors can the user recover from alone, which need support, and what should each one say?",
+      "whyItMatters": "Separates recoverable from blocking errors in the user's terms.",
+      "suggestedAnswers": [
+        "All recoverable by the user",
+        "Some require support",
+        "Generic error is acceptable",
+        "Other"
+      ],
+      "required": false,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": "Show a generic error and let the user retry",
+      "businessImpact": "ux",
+      "affectedActors": [
+        "user",
+        "support"
+      ],
+      "relatedAcceptanceCriteria": false,
+      "id": "O5"
+    },
+    {
+      "template_id": "IL-1",
+      "priority": "P2",
+      "category": "Internationalization & Localization",
+      "question": "Do texts, formats, currencies, or time zones vary by country or language, and who validates translations?",
+      "whyItMatters": "Avoids shipping one locale's assumptions to every market.",
+      "suggestedAnswers": [
+        "Single language",
+        "Existing locales only",
+        "New locale required",
+        "Temporary texts allowed",
+        "Other"
+      ],
+      "required": false,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": "Use the product's existing locales and formats",
+      "businessImpact": "localization",
+      "affectedActors": [
+        "user",
+        "product"
+      ],
+      "relatedAcceptanceCriteria": false,
+      "id": "O6"
+    },
+    {
+      "template_id": "PZ-1",
+      "priority": "P3",
+      "category": "Out of Scope",
+      "question": "What is explicitly out of scope for this ticket and postponed to a future phase?",
+      "whyItMatters": "Prevents scope creep and oversized base branches.",
+      "suggestedAnswers": [
+        "List exclusions",
+        "No exclusions",
+        "Future phase list"
+      ],
+      "required": false,
+      "blocksImplementation": false,
+      "defaultIfUnanswered": "No explicit out-of-scope list provided",
+      "businessImpact": "scope",
+      "affectedActors": [
+        "product",
+        "engineering"
+      ],
+      "relatedAcceptanceCriteria": false,
+      "id": "O7"
+    }
+  ],
+  "questionCount": 10,
+  "budgets": {
+    "baseline": 4,
+    "signal": 6
+  },
+  "generatedAt": "<timestamp>"
+}

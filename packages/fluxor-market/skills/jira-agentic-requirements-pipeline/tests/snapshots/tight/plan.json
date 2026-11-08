@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-100",
+  "confidence": 0.9,
+  "proposedBranchName": "ai/demo-100-base",
+  "implementationScope": [
+    "businessObjective: Decision for Business Objective",
+    "functionalScope: Decision for Functional Scope",
+    "businessRules: Decision for Business Rules",
+    "stateLifecycle: Decision for State Lifecycle",
+    "compatibility: Decision for Compatibility & Backward Compatibility",
+    "rollout: Decision for Rollout & Transition",
+    "communications: Decision for Messages & Communications",
+    "legalCompliancePrivacy: Decision for Legal, Compliance & Privacy",
+    "reporting: Decision for Data & Functional Reporting",
+    "acceptanceCriteria: Decision for Acceptance Criteria"
+  ],
+  "excludedScope": [],
+  "detectedEntities": [
+    "approval",
+    "audit",
+    "content",
+    "operator",
+    "partner",
+    "report",
+    "request",
+    "review",
+    "support",
+    "user"
+  ],
+  "detectedFlows": [
+    "auditability flow",
+    "communication flow",
+    "compatibility flow",
+    "operation cancellation or rejection",
+    "operation creation",
+    "operation review or confirmation",
+    "retry or repetition flow",
+    "support operations"
+  ],
+  "requiresHumanReview": true,
+  "functionalContractUsed": {
+    "businessObjective": "Decision for Business Objective",
+    "functionalScope": "Decision for Functional Scope",
+    "businessRules": [
+      "Decision for Business Rules"
+    ],
+    "stateLifecycle": [
+      "Decision for State Lifecycle"
+    ],
+    "userExperience": [],
+    "compatibility": [
+      "Decision for Compatibility & Backward Compatibility"
+    ],
+    "rollout": [
+      "Decision for Rollout & Transition"
+    ],
+    "supportAndBackoffice": [],
+    "communications": [
+      "Decision for Messages & Communications"
+    ],
+    "riskAndAbuse": [],
+    "legalCompliancePrivacy": [
+      "Decision for Legal, Compliance & Privacy"
+    ],
+    "reporting": [
+      "Decision for Data & Functional Reporting"
+    ],
+    "acceptanceCriteria": [
+      "Decision for Acceptance Criteria"
+    ],
+    "outOfScope": [],
+    "actorsAndPermissions": [],
+    "edgeCases": [],
+    "pricingAndBilling": [],
+    "activationAndConfiguration": [],
+    "auditability": [],
+    "errorHandling": [],
+    "externalDependencies": [],
+    "localization": [],
+    "accessibility": [],
+    "perceivedPerformance": [],
+    "functionalSecurity": [],
+    "dataQuality": [],
+    "criticality": [],
+    "reversibility": [],
+    "migration": [],
+    "rapidDecisions": []
+  },
+  "generatedAt": "<timestamp>",
+  "status": "READY_FOR_BASE_BRANCH"
+}

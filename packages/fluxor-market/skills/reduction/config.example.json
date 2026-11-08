@@ -1,0 +1,23 @@
+{
+  "$comment": "Project facts for the reduction skill. Every key is optional.",
+  "analysisDir": ".harness/analysis",
+  "sources": {
+    "java": ["server"],
+    "react": ["web/landing", "web/dashboard", "packages/ui"]
+  },
+  "uiPackage": "@acme/ui",
+  "exclude": [
+    "**/node_modules/**", "**/target/**", "**/dist/**", "**/.next/**",
+    "**/generated/**", "**/generated-sources/**", "**/vendor/**", "**/*.d.ts"
+  ],
+  "tests": ["**/src/test/**", "**/__tests__/**", "**/*.test.*", "**/*.spec.*"],
+  "decided": {
+    "J3": "DISCARD: persistence is JDBC over DataSource; every ORM is FORBIDDEN (ADR 0004)",
+    "J7": "PARTIAL: the mapping generator is FORBIDDEN; only deleting 1:1 mappers survives"
+  },
+  "verify": {
+    "java": "cd server && ./mvnw -q -pl <module> -am test",
+    "react": "pnpm -r test",
+    "architecture": "cd server && ./mvnw -q -pl app -Parchitecture test"
+  }
+}

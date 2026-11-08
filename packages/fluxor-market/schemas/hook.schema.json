@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hook.schema.json",
+  "title": "Hook manifest",
+  "description": "ONE harness hook for ONE event: scripts `<id>.sh` and/or `<id>.ps1` next to this manifest, run by the client on that event once the user consented to them, and the fallback `<id>.md`, the directive a client that runs no hooks reads instead. A script that reacts to several events ships as several hooks, so each wiring has its own consent hash.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "version",
+    "description",
+    "event",
+    "sends"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "kind": {
+      "const": "hook"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "stability": {
+      "$ref": "common.schema.json#/$defs/stability"
+    },
+    "aliases": {
+      "$ref": "common.schema.json#/$defs/aliases"
+    },
+    "description": {
+      "$ref": "common.schema.json#/$defs/description"
+    },
+    "tags": {
+      "$ref": "common.schema.json#/$defs/tags"
+    },
+    "domains": {
+      "$ref": "common.schema.json#/$defs/domains"
+    },
+    "requires": {
+      "$ref": "common.schema.json#/$defs/requires"
+    },
+    "event": {
+      "description": "The neutral event the hook runs on, mapped to each client's own name by fluxor-sync (`EVENTS` in tools/fluxor_sync.py): sessionStart, promptSubmit, preTool, postTool, postToolFailure (a tool call that failed or was interrupted: Claude Code only), stop, notification; or statusLine, which Claude Code draws from the script's output.",
+      "type": "string",
+      "pattern": "^[A-Za-z]+$"
+    },
+    "tools": {
+      "description": "preTool, postTool and postToolFailure only: the tools the hook runs for. `any` (the default) or the neutral families, which fluxor-sync maps to each client's tool names.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "any",
+          "shell",
+          "edit"
+        ]
+      }
+    },
+    "notifications": {
+      "description": "notification only: the notifications the hook runs for. None listed means every one.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "permission",
+          "question",
+          "idle"
+        ]
+      }
+    },
+    "timeoutMs": {
+      "description": "How long the client lets the script run before it stops it.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "sends": {
+      "description": "What the hook sends off the machine and where, shown to the user before they consent; null when it sends nothing. Required, so a hook that sends data cannot leave it unsaid.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "to",
+        "what"
+      ],
+      "properties": {
+        "to": {
+          "description": "The host or base URL it sends to; it may be a `{{PARAM}}` the project sets.",
+          "type": "string",
+          "minLength": 1
+        },
+        "what": {
+          "description": "Each piece of data that leaves the machine, in plain words.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "issueKey": "DEMO-400",
+  "title": "Reviewers should approve premium publishing",
+  "description": "We should add an approval flow for premium publishing. TBD which content categories are included. Maybe we keep the previous behaviour active. Alternatively, route everything through the new flow. Not sure if reviewers need read access. The exact threshold is pending. Communication channel is unknown for now. Audit trail to be defined. Pricing impact unknown. Rollout strategy TBD. Maybe an automated path will work.",
+  "labels": ["draft"],
+  "epic": null,
+  "status": "Open",
+  "comments": [
+    {"author": "pm", "body": "We should decide between blocking content or showing a fallback. Maybe both. Pending product confirmation.", "created": "2026-04-10T10:00:00Z"}
+  ],
+  "acceptanceCriteria": [],
+  "fetchedAt": "2026-04-10T10:00:00Z"
+}

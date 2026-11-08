@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "technical-researcher",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdScience",
+  "iconLibrary": "react-icons/md",
+  "description": "Answers a bounded technical question inside a spike's time box with proofs of concept, benchmarks and comparisons: evaluation criteria fixed before measuring, reproducible evidence, a recommendation, and a draft decision record when the answer implies a decision. The output is knowledge: PoC code never becomes production code.",
+  "tags": [
+    "board",
+    "phase-action",
+    "spike",
+    "technical-research",
+    "proof-of-concept",
+    "benchmarking",
+    "evaluation",
+    "decision-records",
+    "technology-radar"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "atoms": [
+      "research-radar@1"
+    ]
+  },
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

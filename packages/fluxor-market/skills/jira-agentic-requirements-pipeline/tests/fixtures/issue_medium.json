@@ -1,0 +1,11 @@
+{
+  "issueKey": "DEMO-200",
+  "title": "Add an approval gate to subscription upgrades",
+  "description": "Add an approval gate before subscription upgrades become effective for selected user segments. Limit upgrades to confirmed accounts. Errors during validation should mark the upgrade as failed. Legacy customers keep the previous behaviour. Operators can intervene from the support team. Compliance requires that decisions are traceable. Pending product confirmation on the remaining edge cases.",
+  "labels": ["subscription", "approval"],
+  "epic": null,
+  "status": "Open",
+  "comments": [],
+  "acceptanceCriteria": [],
+  "fetchedAt": "2026-04-10T10:00:00Z"
+}

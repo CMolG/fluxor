@@ -1,0 +1,832 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-customer-success",
+  "title": "Customer Success",
+  "nameSlot": "csm_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "onboarding",
+      "retention",
+      "expansion",
+      "churn",
+      "customer success",
+      "csm",
+      "qbr",
+      "health score",
+      "renewal",
+      "nrr",
+      "account management",
+      "upsell",
+      "customer health"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about customer success: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What's your book — ACV range, segment, account count?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What's the CS model (high-touch, pooled, digital, hybrid)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "What tools are you in daily (CS platform, ticketing, CRM, product analytics)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "How are you measured (NRR, GRR, CSAT, adoption, expansion)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Onboarding",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "Walk me through your onboarding playbook.",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.onboarding.playbook",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "What's your definition of \"first value\"?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.onboarding.first_value_definition"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "What kickoff question do you always ask that most CSMs don't?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.onboarding.kickoff_questions"
+              ]
+            },
+            {
+              "id": "Q8",
+              "prompt": "What's a mistake onboarding-wise you've seen kill accounts later?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.onboarding.mistakes"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Adoption & rollout",
+          "questions": [
+            {
+              "id": "Q9",
+              "prompt": "How do you think about rollout across a customer's org?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.adoption.rollout_strategy"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "Who inside the customer do you care most about aligning with — power user, exec sponsor, admin, end user?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.adoption.alignment_care"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "What's a rollout tactic you always use? One you've retired?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.adoption.always_tactic",
+                "directives.adoption.retired_tactic"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Health scoring",
+          "questions": [
+            {
+              "id": "Q12",
+              "prompt": "What signals do you trust beyond the dashboard?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.health_scoring.trusted_signals"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "What \"green\" account has fooled you? What was the missed signal?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.health_scoring.green_account_fooling"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "How do you re-score a customer after a big event (exec change, price increase, outage)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.health_scoring.rescore_triggers"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "QBRs",
+          "questions": [
+            {
+              "id": "Q15",
+              "prompt": "What's your QBR format? Sections, length, attendees?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.qbr.format_sections"
+              ]
+            },
+            {
+              "id": "Q16",
+              "prompt": "What do you refuse to put in a QBR?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.qbr.refuse_to_include",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "What section almost always gets cut last minute?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.qbr.format_sections"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What makes a QBR land vs. flop?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.qbr.land_vs_flop",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "title": "At-risk playbook",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "What's a clear \"red\" signal that others miss?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.at_risk.red_signals"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "Walk me through your escalation ladder — CSM, CS leader, exec, product.",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.at_risk.escalation_ladder",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "What trade do you pitch when a customer threatens to churn?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.at_risk.trade_pitch"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "When do you write an account off?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.at_risk.write_off_point",
+                "identity.decision_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Renewal",
+          "questions": [
+            {
+              "id": "Q23",
+              "prompt": "When do you start renewal conversations?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.renewal.start_timing"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "Discount posture — where's your line?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.renewal.discount_line",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "Multi-year — when do you push, when do you avoid?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.renewal.multi_year_stance"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "How do you handle a renewal that's quietly shrinking?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.renewal.shrinking_renewal"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q42",
+              "prompt": "Words you use (\"outcome\", \"value\", \"adoption\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Words you avoid (\"leverage\", \"align\", \"circle back\", \"touch base\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q46",
+              "prompt": "Walk me through your last saved churn.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.at_risk.trade_pitch",
+                "directives.at_risk.escalation_ladder",
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "Walk me through your last expansion win.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.expansion.when_upsell",
+                "directives.expansion.who_upsell"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "Think of an account a colleague reports as green this quarter. What would a capable, less experienced CSM miss in it that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.health_scoring.trusted_signals",
+                "directives.health_scoring.green_account_fooling",
+                "directives.at_risk.red_signals"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "Take the deck or agenda of a QBR you ran recently and rework it with me now for the same customer. Narrate each change as you make it.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you cut that?",
+                "What would have made you keep it?"
+              ],
+              "feeds": [
+                "directives.qbr.format_sections",
+                "directives.qbr.refuse_to_include",
+                "directives.qbr.land_vs_flop"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "Think of two accounts that renewed with the same health score, one you pushed to expand and one you left alone (or build the pair now from your book). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.expansion.who_upsell",
+                "directives.expansion.avoid_poisoning"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "Here is all you get: 60 days to renewal, the champion just left, usage is flat, and the new VP asks for 30% off to renew. What do you do first, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you concede the discount without knowing more?"
+              ],
+              "feeds": [
+                "directives.renewal.shrinking_renewal",
+                "directives.renewal.discount_line",
+                "directives.at_risk.trade_pitch"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-accounts",
+      "title": "Depth: expansion, escalations and advocacy",
+      "optional": true,
+      "purpose": "Expansion, angry customers, the hand-offs with sales, support and product, and references.",
+      "sections": [
+        {
+          "id": "H",
+          "title": "Expansion",
+          "questions": [
+            {
+              "id": "Q27",
+              "prompt": "What's your expansion trigger — usage, outcome, stakeholder, timing?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.expansion.when_upsell"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "Who do you refuse to upsell and why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.expansion.who_upsell",
+                "directives.expansion.avoid_poisoning",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "What expansion motion do you do that others don't?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.expansion.when_upsell"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Escalation & angry customers",
+          "questions": [
+            {
+              "id": "Q30",
+              "prompt": "When a customer is furious, what's your first move? Second?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.meta_cognition.crisis_personality",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q31",
+              "prompt": "When do you bring in an exec sponsor on your side? When do you refuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.at_risk.escalation_ladder",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "What words do you use to absorb heat? What words do you never use (\"I understand\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Handoff",
+          "questions": [
+            {
+              "id": "Q33",
+              "prompt": "From sales: what do you wish sales would stop promising?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.onboarding.mistakes"
+              ]
+            },
+            {
+              "id": "Q34",
+              "prompt": "To support: where's the line between CS and support in your shop?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "To product: how do you translate customer pain into product-usable signal?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Advocacy",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "How do you spot a reference-able account early?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.advocacy.spot_advocates"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "What do you ask for vs. offer in exchange?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.advocacy.cultivate_references"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "What's a customer-marketing move you swear by?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.advocacy.case_study_approach"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-judgment",
+      "title": "Depth: heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "The person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "L",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "\"If a customer hasn't {X} in {Y} days, I {Z}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.health_scoring.rescore_triggers",
+                "directives.at_risk.red_signals"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "\"When a champion leaves, I {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.health_scoring.rescore_triggers"
+              ]
+            },
+            {
+              "id": "Q41",
+              "prompt": "\"I know an account is saved when {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.at_risk.write_off_point"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q44",
+              "prompt": "A CS pattern you outgrew.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "A trend you distrust (e.g. excessive QBRs, NPS worship).",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q52",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "An incident hits your whole book: an outage during a customer's launch, a data leak, a price change announced without warning. What do you do in the first hour, and how do you talk to customers while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q54",
+              "prompt": "What customer success belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q55",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q56",
+              "prompt": "What reliably frustrates you in how a company runs or measures customer success?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

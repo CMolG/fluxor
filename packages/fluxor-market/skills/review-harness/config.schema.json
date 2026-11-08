@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "review-harness.config.schema.json",
+  "title": "review-harness: .harness/config/review-harness.json",
+  "description": "Allowances for review-harness. Optional: without it every check runs with the defaults and providers are autodetected. review.py reports an unknown key (top level or inside links, strayDocs, hookBench, codex) as a WARN and ignores it; this schema rejects it. `$`-prefixed keys are comments at every level. Paths and globs are relative to the project root; in globs `*` and `**` both cross `/`, a leading `**/` also matches at the root, and a trailing `/**` also matches the folder itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^\\$": {
+      "$ref": "#/$defs/comment"
+    }
+  },
+  "properties": {
+    "providers": {
+      "description": "Bridges to check. Listing a provider makes its missing bridge a failure instead of a warning; an unknown provider is warned and skipped. null or [] means autodetect: `claude` if .claude/ or CLAUDE.md exists, `codex` if .codex/ or .agents/ exists. Default: autodetect.",
+      "type": ["array", "null"],
+      "items": {
+        "enum": ["claude", "codex"]
+      },
+      "uniqueItems": true,
+      "default": null
+    },
+    "requiredHooks": {
+      "description": "Hook file names (in .harness/hooks/) that must be wired by some provider. Default: [].",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "requireHookSplit": {
+      "description": "true turns a missing half of the hook split (UserPromptSubmit, PreToolUse, PostToolUse/Stop) into a failure. Default: false.",
+      "type": "boolean",
+      "default": false
+    },
+    "pointerMaxLines": {
+      "description": "Maximum non-blank lines in an AGENTS.md / CLAUDE.md pointer. Default: 12.",
+      "type": "integer",
+      "minimum": 1,
+      "default": 12
+    },
+    "ignore": {
+      "description": "Globs excluded from every file scan (pointers, links, stray docs). Generated folders are always skipped. Default: [].",
+      "$ref": "#/$defs/globs",
+      "default": []
+    },
+    "links": {
+      "description": "Check 5, broken backticked links into the harness. Each key left out keeps its default.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "$ref": "#/$defs/comment"
+        }
+      },
+      "properties": {
+        "exclude": {
+          "description": "Markdown files whose links are not checked. Replaces the default list. Default: [\".harness/plans/**\", \".harness/reports/**\", \".harness/audits/**\"] (with the real harness directory when $HARNESS_DIR moves it).",
+          "$ref": "#/$defs/globs",
+          "default": [".harness/plans/**", ".harness/reports/**", ".harness/audits/**"]
+        },
+        "allowMissing": {
+          "description": "Exact paths allowed not to exist (a file an ADR retired on purpose, still named by history). Default: [].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "placeholders": {
+          "description": "Substrings that mark a template path. Replaces the default list. Default: [\"XX\", \"000X\", \"...\"].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": ["XX", "000X", "..."]
+        }
+      }
+    },
+    "strayDocs": {
+      "description": "Check 6, AI documentation outside the harness. Each key left out keeps its default.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "$ref": "#/$defs/comment"
+        }
+      },
+      "properties": {
+        "patterns": {
+          "description": "Markdown outside the harness matching these is stray AI documentation. Replaces the default list. Default: [\"**/plans/**\", \"**/specs/**\", \"**/adr/**\", \"**/superpowers/**\", \"**/.tech_proposals/**\"].",
+          "$ref": "#/$defs/globs",
+          "default": ["**/plans/**", "**/specs/**", "**/adr/**", "**/superpowers/**", "**/.tech_proposals/**"]
+        },
+        "subprojectDocs": {
+          "description": "Also flag <dir>/docs/** for every directory that has its own AGENTS.md. Default: false.",
+          "type": "boolean",
+          "default": false
+        },
+        "allow": {
+          "description": "Globs exempted from the stray-docs check. Default: [].",
+          "$ref": "#/$defs/globs",
+          "default": []
+        },
+        "fail": {
+          "description": "true makes stray docs failures instead of warnings. Default: false.",
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "hookBench": {
+      "description": "Check 7, hook test benches. Each key left out keeps its default.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "$ref": "#/$defs/comment"
+        }
+      },
+      "properties": {
+        "casePatterns": {
+          "description": "Case files (globs in .harness/hooks/) that count as a bench; {stem} is the hook name without extension, {name} with it. Default: [\"{stem}.cases*.tsv\"].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": ["{stem}.cases*.tsv"]
+        },
+        "testPatterns": {
+          "description": "Test files (globs relative to the project root) that count as a bench, for a hook whose behavior is a script rather than a decision; {stem} and {name} as in casePatterns, e.g. \"scripts/test/{stem}.test.mjs\". Default: [].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "runner": {
+          "description": "Bench runner in .harness/hooks/; a hook it names counts as covered. null or \"\" means there is no runner. Default: \"test-hooks.sh\".",
+          "type": ["string", "null"],
+          "default": "test-hooks.sh"
+        },
+        "require": {
+          "description": "Which hooks fail without a bench: \"blocking\" (PreToolUse), \"all\" or \"none\". The rest warn. Default: \"blocking\".",
+          "enum": ["blocking", "all", "none"],
+          "default": "blocking"
+        },
+        "exempt": {
+          "description": "Hook names that need no bench (say why in the harness). Default: [].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": []
+        }
+      }
+    },
+    "codex": {
+      "description": "Where Codex looks for the bridge. Each key left out keeps its default.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "$ref": "#/$defs/comment"
+        }
+      },
+      "properties": {
+        "skillsDir": {
+          "description": "Where Codex discovers repository skills. Default: \".agents/skills\".",
+          "type": "string",
+          "minLength": 1,
+          "default": ".agents/skills"
+        },
+        "hooksFile": {
+          "description": "Where Codex hooks are wired. Default: \".codex/hooks.json\".",
+          "type": "string",
+          "minLength": 1,
+          "default": ".codex/hooks.json"
+        }
+      }
+    },
+    "frictionLog": {
+      "description": "Path of the blocks log written by the project's hooks (date<TAB>hook<TAB>reason; $VARS and ~ expand), e.g. \"$TMPDIR/<project>-harness-friction.tsv\". null or absent: check 10 is skipped. Default: unset.",
+      "type": ["string", "null"],
+      "default": null
+    },
+    "installCheck": {
+      "description": "Check 9b: the argv (no shell) of a READ-ONLY command that exits non-zero when a copy installed from a catalog drifted from its source, run from the project root, e.g. [\"python3\", \"<catalog>/tools/marketplace.py\", \"install\", \"--check\"]. null or absent: check 9b is skipped. Default: unset.",
+      "type": ["array", "null"],
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "default": null
+    }
+  },
+  "$defs": {
+    "comment": {
+      "description": "A comment (for example `$comment`); ignored by review.py."
+    },
+    "globs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-visual-fixer-finite",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "medium",
+  "cost": "medium",
+  "icon": "MdFormatShapes",
+  "iconLibrary": "react-icons/md",
+  "description": "Executes a single UI/UX accessibility or layout fix from the backlog and terminates.",
+  "tags": [
+    "ui",
+    "ux",
+    "a11y",
+    "accessibility",
+    "css",
+    "styling",
+    "layout",
+    "task",
+    "single-shot",
+    "finite"
+  ],
+  "usableBy": [
+    "agentic-task"
+  ],
+  "steps": [
+    {
+      "id": "read-backlog-task",
+      "stepRef": "read-card",
+      "prompt": "Read the assigned UI/UX fix from the backlog"
+    },
+    {
+      "id": "inspect-component",
+      "prompt": "Inspect the affected component for layout and accessibility issues"
+    },
+    {
+      "id": "apply-fix",
+      "prompt": "Apply the targeted fix preserving design consistency"
+    },
+    {
+      "id": "validate-fix",
+      "prompt": "Validate the fix with visual and a11y checks"
+    },
+    {
+      "id": "mark-complete",
+      "stepRef": "set-card-status",
+      "prompt": "Mark the backlog item as complete and terminate"
+    }
+  ]
+}

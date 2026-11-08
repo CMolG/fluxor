@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "read-card",
+  "kind": "step",
+  "version": "1.1.0",
+  "icon": "MdAssignment",
+  "iconLibrary": "react-icons/md",
+  "description": "Reads one task from the task source the flow was started from and extracts its id, status, target, directive and acceptance criteria; changes nothing.",
+  "tags": [
+    "task",
+    "backlog",
+    "intake",
+    "atomic",
+    "flow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read"
+    ]
+  }
+}

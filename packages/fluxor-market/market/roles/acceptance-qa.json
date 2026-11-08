@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "acceptance-qa",
+  "kind": "role",
+  "version": "1.4.0",
+  "icon": "MdTaskAlt",
+  "iconLibrary": "react-icons/md",
+  "description": "Verifies delivered work against its acceptance criteria end to end: a pass, fail or blocked verdict per criterion with evidence, the edge and failure cases around each one, chartered exploratory testing around the change, and a regression sweep of what the diff reaches. For an epic, the objective as a whole. Never passes a criterion without evidence.",
+  "tags": [
+    "board",
+    "phase-review",
+    "qa",
+    "acceptance-testing",
+    "exploratory-testing",
+    "edge-cases",
+    "regression",
+    "bdd"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "atoms": [
+      "backlog@1",
+      "rule-enforcer@1"
+    ]
+  },
+  "color": "8FB9EA",
+  "palette": {
+    "background": "8FB9EA",
+    "text": "1A1A1A",
+    "accents": "1C4880",
+    "hover": "7BA7DC"
+  },
+  "toolTier": "comment"
+}

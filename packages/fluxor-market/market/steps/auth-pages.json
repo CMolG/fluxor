@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "auth-pages",
+  "kind": "step",
+  "version": "1.0.0",
+  "icon": "MdLogin",
+  "iconLibrary": "react-icons/md",
+  "description": "Builds the authentication UI surface (login, signup, and password-reset screens) wired to the project's auth provider.",
+  "tags": [
+    "auth",
+    "ui",
+    "forms",
+    "atomic"
+  ]
+}

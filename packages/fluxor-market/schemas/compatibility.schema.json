@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "compatibility.schema.json",
+  "title": "Mod compatibility and atom dependencies",
+  "description": "The `compatibility.json` that `tools/marketplace.py build` writes next to `index.json`. Consumers use it instead of deriving conflicts from manifests themselves.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "precedenceOrder", "mods", "pairs", "groups", "dependencies"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "precedenceOrder": {
+      "description": "Conflict classes from strongest to weakest. Constraints the user declared outrank every mod.",
+      "type": "array",
+      "items": { "enum": ["security", "correctness", "scope", "style"] }
+    },
+    "mods": {
+      "description": "Per mod: its precedence, enforcement, exclusive group and every mod it cannot stack with (symmetric).",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["precedence", "enforcement", "incompatibleWith"],
+        "properties": {
+          "precedence": { "enum": ["security", "correctness", "scope", "style"] },
+          "enforcement": { "enum": ["prompt", "runtime", "hook"] },
+          "exclusiveGroup": { "type": "string" },
+          "incompatibleWith": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/atomId" } }
+        }
+      }
+    },
+    "pairs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["a", "b", "reasons"],
+        "properties": {
+          "a": { "$ref": "common.schema.json#/$defs/atomId" },
+          "b": { "$ref": "common.schema.json#/$defs/atomId" },
+          "reasons": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        }
+      }
+    },
+    "groups": {
+      "type": "object",
+      "additionalProperties": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/atomId" } }
+    },
+    "dependencies": {
+      "description": "`requires.atoms` of every atom that has any, as references (`id` or `id@range`).",
+      "type": "object",
+      "additionalProperties": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/atomRef" } }
+    }
+  }
+}

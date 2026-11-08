@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "security-researcher",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdSecurity",
+  "iconLibrary": "react-icons/md",
+  "description": "Paranoid focus on AppSec, cryptography, vulnerability auditing, and prevention of injections.",
+  "tags": [
+    "security",
+    "audit",
+    "owasp",
+    "crypto",
+    "appsec"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "betterOn": "anthropic/claude-opus-4.6",
+  "color": "D05353",
+  "palette": {
+    "background": "D05353",
+    "text": "FFFFFF",
+    "accents": "FFE66D",
+    "hover": "A64242"
+  },
+  "toolTier": "comment"
+}

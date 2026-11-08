@@ -1,0 +1,41 @@
+quarkus:
+  application:
+    name: fluxor-local
+  http:
+    # Loopback by default: with no FLUXOR_LOCAL_TOKEN the server has no authentication. The
+    # container image sets FLUXOR_LOCAL_HOST=0.0.0.0 and docker-compose publishes the port on
+    # 127.0.0.1 only.
+    host: ${FLUXOR_LOCAL_HOST:127.0.0.1}
+    port: ${FLUXOR_LOCAL_PORT:18191}
+    limits:
+      # Packs and published skill folders travel as one JSON body.
+      max-body-size: ${FLUXOR_LOCAL_MAX_BODY_SIZE:40M}
+  # The API lives under /api, as it does in Fluxor Cloud (https://fluxor.example/api), so the one
+  # `--server http://127.0.0.1:18191/api` works for both editions.
+  rest:
+    path: /api
+  devservices:
+    enabled: false
+  datasource:
+    db-kind: postgresql
+    username: ${FLUXOR_DB_USER:fluxor}
+    password: ${FLUXOR_DB_PASSWORD:fluxor}
+    jdbc:
+      url: ${FLUXOR_DB_URL:jdbc:postgresql://127.0.0.1:15434/fluxor}
+  liquibase:
+    migrate-at-start: true
+    change-log: db/changelog/changelog-master.yaml
+    contexts: default
+
+fluxor:
+  local:
+    # The one owner account every request acts as.
+    account-id: ${FLUXOR_LOCAL_ACCOUNT_ID:00000000-0000-4000-8000-00000000f10c}
+    # Set it and every /fluxor/mcp request needs `Authorization: Bearer <token>`; it is also the
+    # enrollment code `fluxor-sync init --enroll` accepts. Empty means no authentication.
+    token: ${FLUXOR_LOCAL_TOKEN:}
+    # The enrollment code `fluxor-sync init --enroll` accepts. Empty means the token, or "local"
+    # when there is no token.
+    enrollment-code: ${FLUXOR_LOCAL_ENROLLMENT_CODE:}
+    # The URL machines reach this server at: what harness.bootstrap hands out as `--server`.
+    public-url: ${FLUXOR_LOCAL_PUBLIC_URL:http://127.0.0.1:18191/api}

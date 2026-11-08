@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-200",
+  "confidence": 0.78,
+  "proposedBranchName": "ai/demo-200-base",
+  "implementationScope": [
+    "businessObjective: Decision for Business Objective",
+    "functionalScope: Decision for Functional Scope",
+    "businessRules: Decision for Business Rules",
+    "stateLifecycle: Decision for State Lifecycle",
+    "compatibility: Decision for Compatibility & Backward Compatibility",
+    "rollout: Decision for Rollout & Transition",
+    "communications: Decision for Messages & Communications",
+    "legalCompliancePrivacy: Decision for Legal, Compliance & Privacy",
+    "reporting: Decision for Data & Functional Reporting",
+    "acceptanceCriteria: Decision for Acceptance Criteria"
+  ],
+  "excludedScope": [],
+  "detectedEntities": [
+    "account",
+    "approval",
+    "customer",
+    "operator",
+    "subscription",
+    "support",
+    "user"
+  ],
+  "detectedFlows": [
+    "auditability flow",
+    "commercial access flow",
+    "compatibility flow",
+    "operation review or confirmation",
+    "support operations"
+  ],
+  "requiresHumanReview": true,
+  "functionalContractUsed": {
+    "businessObjective": "Decision for Business Objective",
+    "functionalScope": "Decision for Functional Scope",
+    "businessRules": [
+      "Decision for Business Rules"
+    ],
+    "stateLifecycle": [
+      "Decision for State Lifecycle"
+    ],
+    "userExperience": [],
+    "compatibility": [
+      "Decision for Compatibility & Backward Compatibility"
+    ],
+    "rollout": [
+      "Decision for Rollout & Transition"
+    ],
+    "supportAndBackoffice": [],
+    "communications": [
+      "Decision for Messages & Communications"
+    ],
+    "riskAndAbuse": [],
+    "legalCompliancePrivacy": [
+      "Decision for Legal, Compliance & Privacy"
+    ],
+    "reporting": [
+      "Decision for Data & Functional Reporting"
+    ],
+    "acceptanceCriteria": [
+      "Decision for Acceptance Criteria"
+    ],
+    "outOfScope": [],
+    "actorsAndPermissions": [],
+    "edgeCases": [],
+    "pricingAndBilling": [],
+    "activationAndConfiguration": [],
+    "auditability": [],
+    "errorHandling": [],
+    "externalDependencies": [],
+    "localization": [],
+    "accessibility": [],
+    "perceivedPerformance": [],
+    "functionalSecurity": [],
+    "dataQuality": [],
+    "criticality": [],
+    "reversibility": [],
+    "migration": [],
+    "rapidDecisions": []
+  },
+  "generatedAt": "<timestamp>",
+  "status": "PLAN_ONLY",
+  "note": "Medium confidence. Generate technical plan but avoid autonomous coding."
+}

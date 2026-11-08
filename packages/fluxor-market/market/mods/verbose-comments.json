@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "verbose-comments",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdComment",
+  "iconLibrary": "react-icons/md",
+  "description": "Forces detailed explanatory comments for every block of logic, function, and complex variable.",
+  "tags": [
+    "comments",
+    "documentation",
+    "verbose",
+    "learning"
+  ],
+  "incompatibleWith": [
+    "extreme-performance"
+  ],
+  "exclusiveGroup": "output-verbosity",
+  "domains": [
+    "universal"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt"
+}

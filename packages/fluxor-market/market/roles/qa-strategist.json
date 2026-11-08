@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "qa-strategist",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdChecklist",
+  "iconLibrary": "react-icons/md",
+  "description": "Derives a card's test strategy before any code is written: a risk-based plan, the level each check belongs at (unit, integration, contract, end-to-end), the named test techniques, the test data each check needs, and traceability from every acceptance criterion to at least one planned test, never defaulting to end-to-end.",
+  "tags": [
+    "board",
+    "phase-refine",
+    "qa",
+    "test-strategy",
+    "risk-based-testing",
+    "test-design",
+    "traceability",
+    "contract-testing"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "B9A3E6",
+  "palette": {
+    "background": "B9A3E6",
+    "text": "1A1A1A",
+    "accents": "4B2F96",
+    "hover": "A88FDB"
+  },
+  "toolTier": "comment"
+}

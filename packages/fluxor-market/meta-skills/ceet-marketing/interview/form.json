@@ -1,0 +1,780 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-marketing",
+  "title": "Marketing",
+  "nameSlot": "marketer_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "marketing",
+      "campaign",
+      "growth",
+      "funnel",
+      "channel",
+      "positioning",
+      "conversion",
+      "icp",
+      "messaging",
+      "go-to-market",
+      "gtm",
+      "attribution",
+      "demand gen",
+      "brand"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about marketing: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What's your scope — brand, demand, growth, PMM, all of it?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What stage and shape is your company / product?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "What's your reporting structure and budget authority?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "What channels are you actually running right now?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.channels.channel_mix"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Positioning",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "Describe your product's positioning in one sentence. Now again, as if you were explaining to a skeptical analyst.",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "feeds": [
+                "directives.positioning.one_sentence"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "What category are you in, and what alternatives do you position against (without naming competitors if that's your style)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.positioning.category",
+                "directives.positioning.alternative_positioning"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "What positioning frame do you use (April Dunford-ish, Crossing the Chasm, Kim & Mauborgne, or something else)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.positioning.framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "ICP",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "Who's your ideal customer — specific company shape, role, trigger event?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.icp.ideal_customer"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "Who's a bad-fit customer that you push away? Why?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.icp.bad_fit_pushaway"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Messaging",
+          "questions": [
+            {
+              "id": "Q11",
+              "prompt": "What's your one-liner, three messaging pillars, and key proof points?",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "feeds": [
+                "directives.messaging.one_liner",
+                "directives.messaging.three_pillars",
+                "directives.messaging.proof_points"
+              ]
+            },
+            {
+              "id": "Q12",
+              "prompt": "How does messaging cascade from positioning to headline to ad?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.messaging.three_pillars",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "What phrase or framing do you refuse to use even when it tests well?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.messaging.refused_phrases",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Channels",
+          "questions": [
+            {
+              "id": "Q14",
+              "prompt": "What's your channel mix today? What % of attention and budget?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.channels.channel_mix"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "What channel is underperforming that people expect to work?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.channels.underperforming"
+              ]
+            },
+            {
+              "id": "Q16",
+              "prompt": "What channel surprises you by working?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.channels.surprising_wins"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "What channel have you deliberately killed, and why?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.channels.deliberately_killed",
+                "identity.decision_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "title": "Funnel / growth loops",
+          "questions": [
+            {
+              "id": "Q18",
+              "prompt": "How do you model your funnel — AARRR, bowtie, jobs funnel, custom?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.funnel.funnel_model"
+              ]
+            },
+            {
+              "id": "Q19",
+              "prompt": "Do you think primarily in funnels, loops, or both?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.funnel.loops_vs_funnels"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "What's the biggest leak in your funnel right now, and what's your hypothesis?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.funnel.biggest_leak"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "title": "Brand vs. demand",
+          "questions": [
+            {
+              "id": "Q25",
+              "prompt": "How do you split brand and demand — budget, time, measurement?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.brand_vs_demand.budget_split",
+                "directives.brand_vs_demand.measurement"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "What's something you refuse to measure by ROI?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.brand_vs_demand.refuse_to_measure_by_roi"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "When pressured for \"why'd you spend on that?\", what's your standard answer?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.brand_vs_demand.refuse_to_measure_by_roi",
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Attribution & honesty",
+          "questions": [
+            {
+              "id": "Q28",
+              "prompt": "What attribution model do you use, and how much do you trust it?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.attribution.actually_believe"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "What do you tell the board vs. what you actually believe?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.attribution.report_to_board",
+                "directives.attribution.actually_believe"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "How do you handle dark-social / unmeasured influence?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.brand_vs_demand.measurement"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "Words you use repeatedly (e.g. \"category\", \"wedge\", \"POV\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "Words you ban (\"disruptive\", \"world-class\", \"cutting-edge\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice",
+                "directives.messaging.refused_phrases"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q44",
+              "prompt": "Pick a hard marketing decision from the last few months, one where reasonable marketers would have disagreed: a positioning change, a channel bet, a budget shift, a campaign you stopped. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.brand_vs_demand.budget_split"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "What's an ICP mistake you made in the past?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.icp.past_mistake",
+                "directives.icp.ideal_customer"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Think of a campaign plan or messaging document a capable, less experienced marketer hands you. What would they miss that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.messaging.proof_points",
+                "directives.icp.bad_fit_pushaway"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Walk me through the last full campaign you owned — insight, positioning, creative, channels, measurement, result.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why that channel and not another?",
+                "What result would have made you stop it earlier?"
+              ],
+              "feeds": [
+                "directives.creative.great_campaign",
+                "directives.attribution.actually_believe"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "Think of two channels or campaigns with similar numbers, one you doubled down on and one you cut (or build the pair now from your current mix). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which number would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.channels.underperforming",
+                "directives.channels.surprising_wins"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "Here is all you get: paid social's cost per lead doubled this quarter, pipeline from it is flat, last-touch attribution credits it with 40% of revenue, and the CFO asks whether to cut it. What do you answer, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you cut it without knowing more?"
+              ],
+              "feeds": [
+                "directives.attribution.actually_believe",
+                "directives.attribution.report_to_board"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-craft",
+      "title": "Depth: creative, launches and competition",
+      "optional": true,
+      "purpose": "Creative standards, the launch playbook and positioning against competitors.",
+      "sections": [
+        {
+          "id": "G",
+          "title": "Creative & craft",
+          "questions": [
+            {
+              "id": "Q21",
+              "prompt": "What makes a great campaign in your view?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.creative.great_campaign"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "What makes a great piece of content?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.creative.great_content"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "How do you brief creative — tight brief, loose brief, co-create?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.creative.brief_style"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "What's a campaign you're proud of? One you'd re-do?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.creative.great_campaign",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Launches & PMM",
+          "questions": [
+            {
+              "id": "Q31",
+              "prompt": "What's your launch playbook skeleton?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "Tier-1 vs tier-2 vs tier-3 launches — your criteria?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "How do you handle a launch that lands flat?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Competitive",
+          "questions": [
+            {
+              "id": "Q34",
+              "prompt": "Do you name competitors or not? Why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.positioning.alternative_positioning"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "How do you position against a category leader? Against a cheaper alternative?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.positioning.alternative_positioning",
+                "directives.positioning.category"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-judgment",
+      "title": "Depth: heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "The person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "L",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "\"A good headline earns {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.creative.great_content"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "\"If we can't pick a single target customer, we {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.icp.ideal_customer"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "\"I kill a campaign when {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.channels.deliberately_killed"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q41",
+              "prompt": "Marketing patterns you outgrew.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q42",
+              "prompt": "Trends you distrust right now.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "Q",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q48",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "A campaign blows up in public: a claim you cannot back, an ad that offends, a promo code that leaks. What do you do in the first hour, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "What marketing belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "What reliably frustrates you in how a company plans, funds or judges marketing?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

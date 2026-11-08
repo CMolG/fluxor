@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "2.0.0",
+  "task": "engineering-pr-review",
+  "minWords": 200,
+  "maxWords": 1500,
+  "requiredSections": [
+    "summary",
+    "risk",
+    "rollback"
+  ],
+  "requiredPhrases": [
+    "expand",
+    "contract",
+    "dual-write",
+    "feature flag",
+    "blast radius",
+    "unique index",
+    "lock",
+    "rollback",
+    "backfill",
+    "rename"
+  ],
+  "seededDefects": [
+    {
+      "id": "non-concurrent-index",
+      "description": "CREATE UNIQUE INDEX without CONCURRENTLY inside a transaction blocks writes on a 50M-row table.",
+      "detect": [
+        "concurrently",
+        "table lock",
+        "locks the table",
+        "write lock",
+        "lock contention"
+      ]
+    },
+    {
+      "id": "lowercase-collisions",
+      "description": "Lower-casing before a unique index can merge two accounts' emails and fail the migration mid-deploy.",
+      "detect": [
+        "duplicate",
+        "duplicates",
+        "collision",
+        "collisions",
+        "collide",
+        "conflict"
+      ]
+    },
+    {
+      "id": "breaking-rename",
+      "description": "Renaming the column in place breaks 4 services and about 120 call sites during a rolling deploy.",
+      "detect": [
+        "expand",
+        "dual-write",
+        "backward compatible",
+        "backwards compatible",
+        "old column",
+        "view alias",
+        "call sites"
+      ]
+    }
+  ]
+}

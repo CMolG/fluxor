@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "locale-es",
+  "kind": "mod",
+  "version": "1.2.0",
+  "icon": "MdTranslate",
+  "iconLibrary": "react-icons/md",
+  "description": "Guarantees the Spanish catalog fully translates every key the English source defines.",
+  "tags": [
+    "i18n",
+    "l10n",
+    "catalog",
+    "spanish",
+    "translation"
+  ],
+  "incompatibleWith": [
+    "dry-run"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "runtime": {
+    "contract": {
+      "forbidStubMarkers": true,
+      "localeCoverage": [
+        {
+          "description": "Spanish catalog (src/i18n/es.ts) covers + translates every used key",
+          "catalogPathPattern": "src/i18n/es\\.(ts|tsx)$",
+          "sourcePathPattern": "src/i18n/en\\.(ts|tsx)$",
+          "requireTranslated": true
+        }
+      ]
+    }
+  },
+  "precedence": "correctness",
+  "enforcement": "runtime"
+}

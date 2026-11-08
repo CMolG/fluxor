@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I write landing pages so Claude drafts copy in my voice", "should_trigger": true},
+  {"query": "I'm the only writer at our startup. Build me an AI setup that edits like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my copy voice into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a UX writer? I own all the microcopy in our app", "should_trigger": true},
+  {"query": "our senior copywriter is leaving and agreed to be interviewed so an assistant keeps her banned-words list and her editing habits", "should_trigger": true},
+  {"query": "capture how I open emails, write CTAs and cut drafts, so any AI tool writes my way", "should_trigger": true},
+  {"query": "run the CEET copywriter interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my brand voice — rhythm, punctuation, the words I refuse — for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about headlines and persuasion into agents and rules for my writing assistant", "should_trigger": true},
+  {"query": "re-run my copywriter cognitive profile, I changed how I handle urgency and social proof since last year", "should_trigger": true},
+  {"query": "rewrite this landing page headline so it converts better", "should_trigger": false},
+  {"query": "interview me about positioning, ICP and channel mix so an AI plans campaigns like I do", "should_trigger": false},
+  {"query": "clone our head of growth's campaign playbook and budget split into an AI profile", "should_trigger": false},
+  {"query": "capture how I decide which channels to kill and how I read attribution, for my AI assistant", "should_trigger": false},
+  {"query": "build a simulated copywriter profile of how Apple's ad team writes, from their public campaigns", "should_trigger": false},
+  {"query": "lint this marketing page for hype words and weak CTAs", "should_trigger": false},
+  {"query": "write a job description for a senior copywriter and a rubric to score their test pieces", "should_trigger": false},
+  {"query": "which CEET role should I use for someone who writes copy and also runs paid ads?", "should_trigger": false},
+  {"query": "score our writers' blog posts this quarter by quality and rank them", "should_trigger": false},
+  {"query": "interview our UI designer about typography and spacing for an AI clone", "should_trigger": false}
+]

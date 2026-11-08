@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "structured-data",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdDataObject",
+  "iconLibrary": "react-icons/md",
+  "description": "Emits valid Schema.org JSON-LD structured data for every page type (Article, Product, FAQ, Breadcrumb, Organization).",
+  "tags": [
+    "seo",
+    "schema",
+    "json-ld",
+    "structured-data"
+  ],
+  "domains": [
+    "web"
+  ],
+  "runtime": {
+    "attachTools": [
+      "web-browser"
+    ]
+  },
+  "precedence": "correctness",
+  "enforcement": "runtime"
+}

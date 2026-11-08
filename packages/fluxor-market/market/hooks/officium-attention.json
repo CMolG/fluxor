@@ -1,0 +1,26 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "officium-attention",
+  "kind": "hook",
+  "version": "1.0.1",
+  "description": "Marks the agent window as waiting on its person on Officium's board when it stops at a permission prompt or an MCP question.",
+  "tags": [
+    "officium",
+    "monitoring",
+    "agents"
+  ],
+  "event": "notification",
+  "notifications": [
+    "permission",
+    "question"
+  ],
+  "timeoutMs": 5000,
+  "sends": {
+    "to": "{{OFFICIUM_API}}",
+    "what": [
+      "the session id",
+      "that the window is blocked, and why (a permission prompt or a question)",
+      "the account's Officium heartbeat token, to authenticate"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/006-harness-item-market-version.yaml
+  - changeSet:
+      id: 006-harness-item-market-version
+      author: javadaba
+      context: default
+      comment: >
+        JAVA-272: a catalog item seeded from Fluxor's market (packages/fluxor-market) records the
+        atom it came from: its semantic version in the market and the market's content hash (sha256
+        over the manifest and every installed file, the one marketplace.lock.json pins). The seed
+        adds a catalog version only when that hash changes. Both stay null on items no market atom
+        backs (a preset, a hook, the rows seeded from .harness/market before this).
+      changes:
+        - sql:
+            sql: |
+              alter table fluxor_harness_item add column if not exists market_version text;
+              alter table fluxor_harness_item add column if not exists content_hash text
+                check (content_hash ~ '^[0-9a-f]{64}$');

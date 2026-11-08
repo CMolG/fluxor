@@ -1,0 +1,1115 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-backend-engineer",
+  "title": "Backend Engineer",
+  "nameSlot": "engineer_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "api",
+      "backend",
+      "database",
+      "migration",
+      "service",
+      "rest",
+      "graphql",
+      "schema",
+      "queue",
+      "worker",
+      "endpoint",
+      "sql",
+      "postgres",
+      "idempotency",
+      "microservice"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "Walk me through what you own end-to-end. What systems or services?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.architecture.decomposition_philosophy"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What's your primary stack (language, DB, queue, cache, hosting)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "How big is your team, and what's your seniority position inside it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 1,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.code_review.mentoring_voice"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "What scale are you operating at (rps, rows, events/day, p99 SLO)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.performance.latency_standards"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Mental models",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "When you sit down to design a new service, what's the first thing you sketch — data model, API, sequence diagram, or something else? Why that first?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.decision_framework",
+                "directives.architecture.decomposition_philosophy"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "Do you think of your services more as \"state machines,\" \"pipelines,\" \"event streams,\" or something else? Any analogy you'd use to explain your system to a new hire?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.architecture.state_management_rules"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "What's a concept you use to reason about backend work that you don't think most engineers use?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "identity.cognitive_signature",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Data integrity & correctness",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "Give me an example where you explicitly designed for *partial failure*. What did you do differently than the \"happy path\" version?",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "feeds": [
+                "directives.resilience.graceful_degradation",
+                "directives.resilience.retry_strategy"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "How do you think about idempotency — do you retrofit it or design it in upfront? When is it overkill?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.resilience.idempotency_approach"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "When you see a new write path, what invariants do you immediately look for?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.code_review.blocking_criteria",
+                "directives.database.consistency_philosophy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Code review & quality",
+          "questions": [
+            {
+              "id": "Q24",
+              "prompt": "When you open a teammate's PR, what are the first three things your eye goes to?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.code_review.philosophy"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "What makes you say \"this needs a refactor\" — what's the trigger?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.code_review.refactoring_stance"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "What's something you consistently flag in reviews that most engineers don't?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.code_review.blocking_criteria",
+                "directives.code_review.nitpick_policy"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "What's the difference between code you'd ship to prod vs. code you'd ship to a hackathon demo?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Heuristics & principles",
+          "questions": [
+            {
+              "id": "Q31",
+              "prompt": "What's a rule of thumb you apply that's *not* in a textbook?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "Finish the sentence: \"Most backend engineers get X wrong, and the fix is Y.\"",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values",
+                "directives.personality.primary_frustration"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "What's the shortest-worded piece of advice you'd give to a mid-level engineer joining your team?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.code_review.mentoring_voice",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Vocabulary & voice",
+          "questions": [
+            {
+              "id": "Q34",
+              "prompt": "Are there words or phrases you deliberately avoid when writing docs or PR descriptions?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "Are there terms you insist on (your team's local vocabulary for something standard)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q36",
+              "prompt": "When you write a postmortem, what's the tone — clinical, narrative, blameless?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.debugging.rca_process",
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "What's the thing you refuse to do, no matter the pressure? (And what's the story behind the line?)",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.core_values",
+                "directives.code_review.blocking_criteria"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "What's a pattern that looks clever but you've learned to distrust?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.coding_style.paradigm_rules",
+                "directives.personality.novelty_stance"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "M",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q41",
+              "prompt": "Pick a hard technical decision from the last few months, one where reasonable engineers would have disagreed. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "Tell me about an incident that permanently changed how you code.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.debugging.rca_process",
+                "directives.meta_cognition.crisis_personality"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q42",
+              "prompt": "Think of a change to a write path in your system: a new field, a new consumer, a new retry. What would a capable mid-level engineer miss when reviewing it that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.code_review.blocking_criteria",
+                "directives.resilience.idempotency_approach"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Bring a real pull request or design document you reviewed recently. Walk through it the way you did: where you slowed down, what you flagged, what you let go, and what you wrote.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you let that one go?",
+                "What would have made you block it?"
+              ],
+              "feeds": [
+                "directives.code_review.philosophy",
+                "directives.code_review.nitpick_policy",
+                "directives.code_review.pr_size_policy",
+                "directives.code_review.mentoring_voice"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q44",
+              "prompt": "Think of two proposals for the same kind of problem, one you approved and one you pushed back on (or build the pair now from your stack). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Here is all you get: p99 latency doubled twenty minutes after a deploy, the error rate is unchanged, and no alert fired. What do you do first, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you roll back without knowing more?"
+              ],
+              "feeds": [
+                "directives.debugging.silent_failure_protocol",
+                "directives.performance.latency_standards",
+                "directives.infrastructure.deployment_philosophy"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-data",
+      "title": "Depth: storage, APIs and performance",
+      "optional": true,
+      "purpose": "Data modeling, API shape, performance and data at scale.",
+      "sections": [
+        {
+          "id": "D",
+          "title": "Storage & API choice",
+          "questions": [
+            {
+              "id": "Q11",
+              "prompt": "Where do you prefer to enforce constraints: database, application, message broker, or the UI? Why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.database.consistency_philosophy",
+                "directives.security.validation_philosophy"
+              ]
+            },
+            {
+              "id": "Q12",
+              "prompt": "Walk me through your decision tree for Postgres vs. something else (DynamoDB, Mongo, Redis, Kafka, S3, etc.).",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.architecture.persistence_philosophy",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "REST vs. RPC vs. event-driven — what's your default, and what pushes you off the default?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.architecture.decomposition_philosophy",
+                "directives.architecture.api_design_rules"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "How do you version APIs? What's your stance on breaking changes?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.architecture.api_design_rules"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "What's your default approach to pagination, filtering, and search? What smell makes you reject a proposed API shape?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.architecture.api_design_rules"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Performance & scale",
+          "questions": [
+            {
+              "id": "Q16",
+              "prompt": "When a service is slow, what's the first thing you check? Second?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.performance.latency_standards"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "Describe a time you picked *latency* over *consistency* (or vice versa) — what made the call?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.database.consistency_philosophy",
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What's your instinct around caching — where do you reach for it, where do you refuse to?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.performance.caching_rules"
+              ]
+            },
+            {
+              "id": "Q19",
+              "prompt": "How do you decide when a query needs an index vs. a rewrite vs. a denormalization?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.database.indexing_instincts",
+                "directives.performance.n_plus_one_prevention"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Data at scale",
+          "questions": [
+            {
+              "id": "Q46",
+              "prompt": "Walk me through the last schema migration you ran on a table that could not go down. Which steps, in what order, and what would have made you stop?",
+              "kind": "incident",
+              "required": false,
+              "minutes": 5,
+              "feeds": [
+                "directives.database.migration_playbook"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "How do you store and compute time and money? Give the rule you learned the hard way.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.database.time_and_money_rules"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "When do you drop the ORM and write SQL by hand? When did you last do it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.database.orm_threshold"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "A table outgrows one node or one index. What is your sequence (archive, partition, shard, rethink), and what number triggers each step?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.database.partitioning_rules"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "Tell me about a memory problem you chased: a leak, garbage-collection pauses, an out-of-memory kill. What did you look at, in what order?",
+              "kind": "incident",
+              "required": false,
+              "minutes": 5,
+              "feeds": [
+                "directives.performance.memory_leak_playbook",
+                "directives.performance.gc_philosophy"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-ops",
+      "title": "Depth: operations and resilience",
+      "optional": true,
+      "purpose": "Observability, delivery, failure handling and debugging.",
+      "sections": [
+        {
+          "id": "F",
+          "title": "Observability & ops",
+          "questions": [
+            {
+              "id": "Q20",
+              "prompt": "What do you instrument *before* shipping a new endpoint?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.debugging.logging_philosophy",
+                "directives.infrastructure.alerting_rules"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "What metric or dashboard do you watch after a deploy?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.infrastructure.deployment_philosophy"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "What's your stance on log levels, structured logging, and what belongs in traces?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.debugging.logging_philosophy"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "What alert would you never page on? What alert do you think everyone under-uses?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.infrastructure.alerting_rules"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "title": "Failure & scar tissue",
+          "questions": [
+            {
+              "id": "Q29",
+              "prompt": "What's a bug you've shipped that you still think about?",
+              "kind": "incident",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.debugging.rca_process"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "What's a class of bug you've become allergic to, and how do you prevent it now?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.code_review.blocking_criteria",
+                "directives.coding_style.error_handling_rules"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "O",
+          "title": "Delivery & resilience",
+          "questions": [
+            {
+              "id": "Q51",
+              "prompt": "Describe your ideal path from merge to production: what runs, what gates it, how you roll out, and how you roll back.",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.infrastructure.ideal_pipeline",
+                "directives.infrastructure.deployment_philosophy"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "Infrastructure as code and preview environments: what do you insist on, and what do you consider overkill?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.infrastructure.iac_stance",
+                "directives.infrastructure.ephemeral_env_policy"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "A downstream dependency starts timing out or rate-limiting you. What does your code do: retries, backoff, circuit breaking, dead letters, degrading? Which numbers do you pick?",
+              "kind": "open",
+              "required": false,
+              "minutes": 5,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.resilience.retry_strategy",
+                "directives.resilience.dlq_handling",
+                "directives.resilience.rate_limit_adaptation",
+                "directives.resilience.graceful_degradation"
+              ]
+            },
+            {
+              "id": "Q54",
+              "prompt": "Tell me about a concurrency problem you designed around: two writers, a race, an ordering bug. What did you reach for: locks, queues, optimistic concurrency, something else?",
+              "kind": "incident",
+              "required": false,
+              "minutes": 5,
+              "feeds": [
+                "directives.architecture.concurrency_rules"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q55",
+              "prompt": "Tell me about a bug you could not reproduce, or a failure that raised no error at all. How did you find it?",
+              "kind": "incident",
+              "required": false,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?"
+              ],
+              "feeds": [
+                "directives.debugging.ghost_bug_methodology",
+                "directives.debugging.silent_failure_protocol"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q56",
+              "prompt": "A dependency upgrade, or a CVE in one, breaks or threatens production. What is your sequence?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.debugging.dependency_resolution",
+                "directives.security.cve_response_plan"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-security",
+      "title": "Depth: security",
+      "optional": true,
+      "purpose": "Trust boundaries, secrets, defaults and validation.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Security",
+          "questions": [
+            {
+              "id": "Q57",
+              "prompt": "A call from another service inside your own network reaches your API. What do you require before you trust it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.security.zero_trust_stance"
+              ]
+            },
+            {
+              "id": "Q58",
+              "prompt": "Where do secrets live in your systems, and what do you do in the first hour after one leaks into a commit or a log?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.security.secret_management_rules"
+              ]
+            },
+            {
+              "id": "Q59",
+              "prompt": "What security defaults do you set on every new web-facing service without being asked (headers, sessions, CORS, password hashing, encryption in transit and at rest)? Name the settings.",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.security.web_security_defaults",
+                "directives.security.cryptography_defaults"
+              ]
+            },
+            {
+              "id": "Q60",
+              "prompt": "Where does input get validated in your services, and what happens to input that fails?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.security.validation_philosophy"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-craft",
+      "title": "Depth: code, tests and tools",
+      "optional": true,
+      "purpose": "Code style, testing, local setup and git habits.",
+      "sections": [
+        {
+          "id": "K",
+          "title": "Taste",
+          "questions": [
+            {
+              "id": "Q37",
+              "prompt": "What does a \"beautiful\" backend codebase look like to you? Name a real example if you have one.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.coding_style.file_organization_rules",
+                "directives.coding_style.naming_rules"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "What's something you do purely out of taste that you can't fully justify, but you'd fight to keep?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.coding_style.paradigm_rules",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Q",
+          "title": "Code, tests & tools",
+          "questions": [
+            {
+              "id": "Q61",
+              "prompt": "Show me how you handle an error from a downstream call in your code, and tell me how strict you are with types. What would you block in a pull request on either?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.coding_style.error_handling_rules",
+                "directives.coding_style.typing_rules"
+              ]
+            },
+            {
+              "id": "Q62",
+              "prompt": "Open a file you are proud of. How is it organized, how are things named, where do comments go and where do they never go? Objects, functions, or a mix, and why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 5,
+              "feeds": [
+                "directives.coding_style.file_organization_rules",
+                "directives.coding_style.naming_rules",
+                "directives.coding_style.commenting_rules",
+                "directives.coding_style.paradigm_rules"
+              ]
+            },
+            {
+              "id": "Q63",
+              "prompt": "Take the last feature you shipped. Which tests did you write first, which did you skip, and why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.testing.tdd_reality",
+                "directives.testing.test_priority_rationale"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q64",
+              "prompt": "When do you mock, and when do you insist on a real database or service in tests? What coverage, if any, do you hold people to?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.testing.mocking_philosophy",
+                "directives.testing.coverage_expectations",
+                "directives.tooling.mocking_vs_staging"
+              ]
+            },
+            {
+              "id": "Q65",
+              "prompt": "How is your local setup for a service: what runs locally, what is faked, what goes to a shared environment? What have you automated that others still do by hand?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.tooling.local_environment",
+                "directives.tooling.automation_instincts",
+                "directives.tooling.mocking_vs_staging"
+              ]
+            },
+            {
+              "id": "Q66",
+              "prompt": "How do you branch, and how do you write commit messages? Paste a real commit message of yours that you would call a good one.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.git_workflow.branching_strategy",
+                "directives.git_workflow.commit_message_format",
+                "directives.git_workflow.commit_message_example"
+              ]
+            },
+            {
+              "id": "Q67",
+              "prompt": "How big is too big for a pull request, and what do you do with style nitpicks, yours and other people's?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.code_review.pr_size_policy",
+                "directives.code_review.nitpick_policy"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Pushback, handover, uncertainty, focus and how the person has changed.",
+      "sections": [
+        {
+          "id": "R",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q68",
+              "prompt": "A product manager asks you to ship by Friday something you think is unsafe. What do you say, in your own words?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.stress_responses.pm_pushback_style"
+              ]
+            },
+            {
+              "id": "Q69",
+              "prompt": "You leave for two weeks tomorrow. What do you hand over, to whom, and how?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.stress_responses.handover_plan"
+              ]
+            },
+            {
+              "id": "Q70",
+              "prompt": "When you are unsure or stuck, how do you say so, and at what point do you escalate or ask for help? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q71",
+              "prompt": "What engineering belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q72",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q73",
+              "prompt": "What reliably frustrates you in a codebase or in a team's habits?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            },
+            {
+              "id": "Q74",
+              "prompt": "You inherit a ten-year-old service nobody understands. How do you treat the code, and the people who wrote it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.personality.legacy_code_empathy",
+                "directives.code_review.refactoring_stance"
+              ]
+            },
+            {
+              "id": "Q75",
+              "prompt": "The last time you chose between building something and adopting a library or service, or between a proven and a new technology: what tipped it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.architecture.build_vs_buy_rules",
+                "directives.personality.novelty_stance"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

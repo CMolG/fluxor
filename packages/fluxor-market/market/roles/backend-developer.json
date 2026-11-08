@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "backend-developer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdApi",
+  "iconLibrary": "react-icons/md",
+  "description": "Implements a planned card's server-side changes: services, APIs and domain logic, with tests at the levels the plan names, the public contract in OpenAPI or AsyncAPI, errors as Problem Details and telemetry on every new path. Stays inside the card's scope and its category's behaviour rules, and leaves the schema, the architecture and the UI to their owners.",
+  "tags": [
+    "board",
+    "phase-action",
+    "backend",
+    "api",
+    "implementation",
+    "openapi",
+    "problem-details",
+    "observability"
+  ],
+  "domains": [
+    "backend"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

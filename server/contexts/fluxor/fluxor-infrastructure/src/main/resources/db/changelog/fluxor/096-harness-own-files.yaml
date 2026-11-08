@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 096-harness-own-files
+      author: javadaba
+      context: default
+      comment: >
+        card://JAVA-2007: a person publishes their own skills, hooks and files from local folders, and a
+        `files` item writes each of its files at its own path in the project (under .harness/ or
+        .claude/rules/). Expand only: the kind check admits one more value.
+      changes:
+        - sql:
+            splitStatements: true
+            sql: |
+              alter table fluxor_harness_item drop constraint if exists fluxor_harness_item_kind_check;
+              alter table fluxor_harness_item add constraint fluxor_harness_item_kind_check
+                check (kind in ('directive', 'skill', 'hook', 'preset', 'files'));
+      rollback:
+        - sql:
+            splitStatements: true
+            sql: |
+              delete from fluxor_harness_project_item where item_key in
+                (select key from fluxor_harness_item where kind = 'files');
+              delete from fluxor_harness_item where kind = 'files';
+              alter table fluxor_harness_item drop constraint if exists fluxor_harness_item_kind_check;
+              alter table fluxor_harness_item add constraint fluxor_harness_item_kind_check
+                check (kind in ('directive', 'skill', 'hook', 'preset'));

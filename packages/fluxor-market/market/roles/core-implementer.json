@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "core-implementer",
+  "kind": "role",
+  "version": "1.0.0",
+  "icon": "MdPlaylistAddCheck",
+  "iconLibrary": "react-icons/md",
+  "description": "Implements every implementation card of an epic in one session, one checkpoint at a time: marks a card in progress, builds it to its plan under the mods the board mounts on it, runs its own checks, commits with its key and marks it completed, then moves to the next. The epic's test card runs the full suite last.",
+  "tags": [
+    "board",
+    "phase-action",
+    "implementation",
+    "epic",
+    "checkpoints",
+    "full-stack"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "atoms": [
+      "layout-discipline@1"
+    ]
+  },
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "incident-analyst",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdBugReport",
+  "iconLibrary": "react-icons/md",
+  "description": "Turns a defect report into an actionable card before anyone fixes it: minimal reproduction steps, expected versus actual behaviour, severity and impact, affected versions, a root-cause hypothesis backed by evidence and, for a regression, the last good and first bad version from a bisect. Works from copies of the evidence and never touches production.",
+  "tags": [
+    "board",
+    "phase-refine",
+    "incident",
+    "debugging",
+    "reproduction",
+    "root-cause",
+    "regression",
+    "bisect"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "B9A3E6",
+  "palette": {
+    "background": "B9A3E6",
+    "text": "1A1A1A",
+    "accents": "4B2F96",
+    "hover": "A88FDB"
+  },
+  "toolTier": "comment"
+}

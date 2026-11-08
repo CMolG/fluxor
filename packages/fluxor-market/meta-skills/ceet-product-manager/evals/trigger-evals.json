@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I prioritize so Claude triages feature requests the way I do", "should_trigger": true},
+  {"query": "I'm the head of product at a fintech. Build me an AI setup that writes PRDs like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my PM thinking into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a product manager? I own onboarding and billing", "should_trigger": true},
+  {"query": "our founding PM is leaving and agreed to be interviewed so an assistant keeps his discovery habits and kill criteria", "should_trigger": true},
+  {"query": "capture how I say no to sales asks and exec drop-ins, so any AI tool handles stakeholders my way", "should_trigger": true},
+  {"query": "run the CEET product manager interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my product judgment — roadmap, specs, success metrics — for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about roadmaps and guardrail metrics into agents and rules for my AI assistant", "should_trigger": true},
+  {"query": "re-run my PM cognitive profile, I changed how I set kill criteria since last year", "should_trigger": true},
+  {"query": "write a PRD for a referral program", "should_trigger": false},
+  {"query": "interview me about how I run usability tests and synthesize interviews so an AI does research like me", "should_trigger": false},
+  {"query": "capture how our founder-CEO decides strategy and fundraising into an AI profile", "should_trigger": false},
+  {"query": "clone our head of growth's positioning and channel playbook for an AI assistant", "should_trigger": false},
+  {"query": "build a simulated product manager profile of how Marty Cagan thinks, from his books", "should_trigger": false},
+  {"query": "prioritize this backlog with RICE and give me the top ten", "should_trigger": false},
+  {"query": "write a job description for a senior PM and a rubric to score the case study", "should_trigger": false},
+  {"query": "which CEET role should I use for a technical PM who also leads engineering?", "should_trigger": false},
+  {"query": "rank our product managers by how many features they shipped this quarter", "should_trigger": false},
+  {"query": "interview our data analyst about experiment design for an AI clone", "should_trigger": false}
+]

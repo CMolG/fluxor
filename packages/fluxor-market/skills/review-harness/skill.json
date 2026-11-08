@@ -1,0 +1,41 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "review-harness",
+  "kind": "skill",
+  "version": "1.4.0",
+  "packaging": "traditional",
+  "description": "Verifies a project harness that follows the harness convention: provider bridges, versioned wiring, load chain, pointer-only agent files, broken links, hook test benches, skill front matter and market integrity.",
+  "tags": [
+    "harness",
+    "verification",
+    "hooks",
+    "agents"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "git"
+    ],
+    "runtimes": [
+      "python>=3.8"
+    ]
+  },
+  "config": {
+    "file": "review-harness.json",
+    "schema": "config.schema.json",
+    "example": "config.example.json"
+  },
+  "tools": [
+    {
+      "name": "review_harness",
+      "command": [
+        "sh",
+        "review.sh"
+      ],
+      "description": "Checks that a harness is wired; exits 1 only on real breakage."
+    }
+  ]
+}

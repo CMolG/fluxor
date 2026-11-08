@@ -1,0 +1,857 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-devops-sre",
+  "title": "DevOps / SRE",
+  "nameSlot": "engineer_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "infra",
+      "infrastructure",
+      "ci",
+      "cd",
+      "kubernetes",
+      "k8s",
+      "docker",
+      "incident",
+      "rollback",
+      "observability",
+      "metrics",
+      "alert",
+      "deploy",
+      "pipeline",
+      "sre",
+      "terraform",
+      "slo",
+      "on-call",
+      "postmortem",
+      "error budget"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about reliability and change: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What do you own — cloud accounts, clusters, pipelines, platform abstractions? Describe the surface area.",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What's your stack (cloud, orchestrator, IaC tool, CI, observability)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.iac.tool_choice"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "What's your team shape (embedded SRE, platform team, solo)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "What scale & reliability targets are you operating against (SLOs, uptime, MTTR)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.slo_management.slo_selection"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Mental models",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "How do you mentally represent your system — as a topology, a dependency graph, a flow of requests, a set of control loops? Why that one?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.decision_framework",
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "What's the analogy you use to explain reliability to non-engineers?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "What do you believe about reliability that most teams get wrong?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "SLOs & error budgets",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "Do you run on SLOs? If so, how do you pick them? If not, what do you use instead?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.slo_management.slo_selection"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "When an error budget burns, what changes in your week?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.slo_management.error_budget_policy",
+                "directives.slo_management.burn_rate_response"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "How do you negotiate reliability vs. feature velocity with product?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.slo_management.error_budget_policy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Observability",
+          "questions": [
+            {
+              "id": "Q11",
+              "prompt": "Logs / metrics / traces / profiles / events — what do you instrument first on a new service?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.observability.instrumentation_first"
+              ]
+            },
+            {
+              "id": "Q12",
+              "prompt": "What's the one dashboard you open during an incident? What's on it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.observability.dashboard_philosophy"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "What alert rule have you found most false-positive-prone, and how did you fix it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.observability.false_positive_policy"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What's the difference between a page, a ticket, and a log-only event in your world?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.observability.page_vs_ticket"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Change & release",
+          "questions": [
+            {
+              "id": "Q15",
+              "prompt": "Canary / blue-green / feature flags / progressive rollout — which is your default and when do you deviate?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.change_management.deployment_default",
+                "directives.change_management.canary_rules",
+                "directives.change_management.feature_flag_policy"
+              ]
+            },
+            {
+              "id": "Q16",
+              "prompt": "How do you think about deploy risk, and what's your pre-deploy checklist?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.change_management.deployment_default"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "What change do you require a second reviewer for, no exceptions?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.change_management.deployment_default",
+                "directives.security.refused_shortcuts"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What's your rollback philosophy — always possible, practiced, or last resort?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.change_management.rollback_philosophy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q42",
+              "prompt": "\"If a service doesn't have X, I don't let it go to prod.\"",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.observability.instrumentation_first"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "\"When my pager goes off for Y, I immediately check Z.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.incident_response.first_five_minutes"
+              ]
+            },
+            {
+              "id": "Q44",
+              "prompt": "\"When someone says 'we just need to add more instances', my first question is…\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.cost.cost_traps",
+                "identity.decision_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q45",
+              "prompt": "What pattern do you see shops do that makes you wince?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.core_values",
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "What's something that looked like best practice 5 years ago that you now avoid?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q47",
+              "prompt": "Pick a hard infrastructure or reliability decision from the last few months, one where reasonable engineers would have disagreed: a migration, a platform choice, an SLO, a change freeze. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "Name one incident that permanently changed how you think. What's the story?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.meta_cognition.crisis_personality",
+                "directives.incident_response.war_room_rules"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "Think of a change to your pipeline or your infrastructure code: a new service account, a Terraform module bump, a new deploy stage. What would a capable mid-level engineer miss when reviewing it that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.change_management.canary_rules",
+                "directives.iac.versioning_policy",
+                "directives.security.least_privilege"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "Bring a real postmortem or runbook you wrote or reviewed recently. Walk through it the way you did: what you kept, what you rewrote, what you sent back, and why.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you change in it, and why?",
+                "What would you never let through in one?"
+              ],
+              "feeds": [
+                "directives.postmortem.mandatory_sections",
+                "directives.postmortem.blameless_definition",
+                "directives.postmortem.action_tracking"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "Think of two changes that were ready to go out on a Friday afternoon, one you let ship and one you held (or build the pair now from your systems). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.change_management.deployment_default",
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "Here is all you get: since 03:10, 2% of requests get a 502 from the load balancer, the service's own error metric is flat, and the last deploy was yesterday afternoon. What do you do first, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you roll back without knowing more?"
+              ],
+              "feeds": [
+                "directives.incident_response.first_five_minutes",
+                "directives.observability.dashboard_philosophy",
+                "directives.change_management.rollback_philosophy"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-incidents",
+      "title": "Depth: incidents and postmortems",
+      "optional": true,
+      "purpose": "Running an incident, classifying it, and writing it up.",
+      "sections": [
+        {
+          "id": "F",
+          "title": "Incident response",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "Walk me through the first 5 minutes of a sev-1 in your system.",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.incident_response.first_five_minutes"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "Who owns the comms vs. the fix? How do you run the incident channel?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.incident_response.comms_ownership",
+                "directives.incident_response.war_room_rules"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "What's a rule you apply in incidents that junior engineers routinely violate?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.incident_response.war_room_rules"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "How do you decide an incident's severity? Give the thresholds you use, and a case you classified wrong.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.incident_response.severity_classification"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Postmortems",
+          "questions": [
+            {
+              "id": "Q23",
+              "prompt": "Blameless — what does that actually mean in your writing?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.postmortem.blameless_definition"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "Mandatory sections in your postmortems? Forbidden phrases?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.postmortem.mandatory_sections",
+                "directives.postmortem.forbidden_phrases"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "How do you track action items after they're written — and what % actually get done?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.postmortem.action_tracking"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-platform",
+      "title": "Depth: toil, platform, security and cost",
+      "optional": true,
+      "purpose": "Automation, infrastructure as code, git habits, security defaults and cost.",
+      "sections": [
+        {
+          "id": "H",
+          "title": "Toil & automation",
+          "questions": [
+            {
+              "id": "Q26",
+              "prompt": "What do you consider toil, and what's your team's policy on it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.toil.toil_definition",
+                "directives.toil.automation_policy"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "What's a task you deliberately haven't automated, and why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.toil.deliberate_non_automation"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "What's a manual workaround you've done 3+ times that you *should* have automated sooner?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.toil.automation_policy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "IaC & platform taste",
+          "questions": [
+            {
+              "id": "Q29",
+              "prompt": "Terraform / Pulumi / Crossplane / CDK — what's your stack and honest opinions?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.iac.tool_choice"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "How do you structure modules / workspaces / state? What's your versioning story?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.iac.module_structure",
+                "directives.iac.versioning_policy"
+              ]
+            },
+            {
+              "id": "Q31",
+              "prompt": "Where do you allow \"click-ops,\" and where do you refuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.iac.click_ops_stance"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "What's your stance on internal developer platforms (Backstage, Humanitec, etc.) — golden path vs. paved road vs. optional?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q55",
+              "prompt": "How do you branch and write commit messages for infrastructure and pipeline changes? Paste a real commit message of yours that you would call a good one.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.git_workflow.branching_strategy",
+                "directives.git_workflow.commit_message_format",
+                "directives.git_workflow.commit_message_example"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Security",
+          "questions": [
+            {
+              "id": "Q33",
+              "prompt": "Secret management — vault, sops, cloud native? Why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.security.secret_management"
+              ]
+            },
+            {
+              "id": "Q34",
+              "prompt": "What least-privilege pattern do you insist on?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.security.least_privilege"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "What's a security shortcut you see often and always reject?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.security.refused_shortcuts"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Cost",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "How much does cost enter your daily thinking?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.cost.daily_cost_awareness"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "What's a cost optimization that's worth it, and one that's a trap?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.cost.optimization_wins",
+                "directives.cost.cost_traps"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "How do you explain a surprise bill to finance?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice",
+                "directives.cost.daily_cost_awareness"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: voice and working with others",
+      "optional": true,
+      "purpose": "Vocabulary, uncertainty, quality bar, focus and frustration.",
+      "sections": [
+        {
+          "id": "L",
+          "title": "Vocabulary & voice",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "Any local words your team uses for services, environments, or deploy stages?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "What tone do you write runbooks in — imperative, narrative, checklist?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q41",
+              "prompt": "What postmortem phrase do you ban (\"human error\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.postmortem.forbidden_phrases"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q53",
+              "prompt": "When you are unsure or stuck, in an incident or outside one, how do you say so, and at what point do you escalate or pull someone in? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q54",
+              "prompt": "What is the difference between a script you would run once by hand and one you would hand to the on-call rotation? Show me the last one you promoted.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.personality.quality_calibration"
+              ]
+            },
+            {
+              "id": "Q56",
+              "prompt": "When do you do your best work, and how do you protect it from interrupts and on-call? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q57",
+              "prompt": "What reliably frustrates you in a platform or in a team's habits?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

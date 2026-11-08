@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-people-ops",
+  "kind": "skill",
+  "version": "2.0.0",
+  "packaging": "meta",
+  "description": "Interviews a People Ops lead about hiring, performance, culture and policy design, and renders the answers into their cognitive clone and a pack of agents, skills, commands and rules that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "people-ops",
+    "hiring"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}

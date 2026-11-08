@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "test-automation-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdIntegrationInstructions",
+  "iconLibrary": "react-icons/md",
+  "description": "Writes deterministic automated tests that reproduce a card's defect or lock in its behaviour, at the lowest level that gives confidence, and keeps them green in the project's gate. On a bug or regression the test fails before the fix and passes after it; on a testing card no production code changes. Never masks a flaky test with retries.",
+  "tags": [
+    "board",
+    "phase-action",
+    "testing",
+    "test-automation",
+    "regression-tests",
+    "flaky-tests",
+    "contract-testing",
+    "property-based-testing"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "asymmetric-product-architect",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdAccountTree",
+  "iconLibrary": "react-icons/md",
+  "description": "Turns idea notes and rival gaps into defensible product capabilities, each tied to a concrete user outcome and to whether the product already has it.",
+  "tags": [
+    "flow",
+    "market",
+    "product-strategy",
+    "capabilities",
+    "differentiation"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "betterOn": "anthropic/claude-opus-4.6",
+  "color": "A9DFBF",
+  "palette": {
+    "background": "A9DFBF",
+    "text": "111111",
+    "accents": "1C4880",
+    "hover": "8CC9A6"
+  },
+  "toolTier": "comment"
+}

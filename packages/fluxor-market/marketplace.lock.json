@@ -1,0 +1,885 @@
+{
+  "schemaVersion": 1,
+  "atoms": {
+    "a11y-enforcer": {
+      "kind": "mod",
+      "version": "2.0.0",
+      "hash": "c6889dd2303a77a22c358c6d1748ec3380294b0df7f307dc8cf83fdf7e03d550"
+    },
+    "acceptance-qa": {
+      "kind": "role",
+      "version": "1.4.0",
+      "hash": "6059347be0578bc6640c86a50b77369916b554beeb91e578b96f0f396f515764"
+    },
+    "ai-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "2773760de6d91fca6251d61794bca660c4049ff467b17f2c7ec64d1a115272a4"
+    },
+    "api-contract-first": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "475b69fd6b711546ef7c76ffe6d1f6837d18d3ddf2d880aaa66ca219b230e7a9"
+    },
+    "architecture-reviewer": {
+      "kind": "role",
+      "version": "1.3.0",
+      "hash": "6637aa1f2f401e61d3fb94c586a48ad080350562151653468def408a0f72ff00"
+    },
+    "asymmetric-product-architect": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "a5ccc86dcaa8975f96d5831820b1bcae39ea050bf0bc6962bb476f32dc69b744"
+    },
+    "atoms": {
+      "kind": "skill",
+      "version": "1.2.0",
+      "hash": "d0255e3bf5617617bb345e5ef63e8d10062ffd64fa30f0ca7fdf33cba1365a5b"
+    },
+    "atoms-engine": {
+      "kind": "engine",
+      "version": "1.3.2",
+      "hash": "9fd9c5c45a4205289f8560ff64866ba81fb92be758eabe63fdff0a52fed411ae"
+    },
+    "auth-guarded": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "8f265db821cd5315cd43c15a1931128c994b7740b26831e72ab9fe9772a5131e"
+    },
+    "auth-pages": {
+      "kind": "step",
+      "version": "1.0.0",
+      "hash": "2b9f0101b55b7f41ea46b678a2d95b36360009825c0592e16a51816a56d625b2"
+    },
+    "auto-architect": {
+      "kind": "flow",
+      "version": "2.0.0",
+      "hash": "9f2566358239b1423b8d668ff56f6c28f6558a3d5091d54638057d8bae016579"
+    },
+    "auto-feature-engineer": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "a9f21f19d7802ef7428a1af226909df383aafdf3e6c6106da1aa29917e3b542f"
+    },
+    "auto-feature-engineer-finite": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "11c04e729d5b8e3eb1979bf5085fe5bbb4190c905739e3760d4d384e014ea1e4"
+    },
+    "auto-optimizer": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "1b4d96e7a2f55e0f41ff6213752ad270b98ee089ad506f087596196d8857eef6"
+    },
+    "auto-optimizer-finite": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "f47fbc6c17d96d40379f8cbd992dec1f4ae87c2ce666cdb464fa396bba5e0f46"
+    },
+    "auto-reducer": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "d1dfd6081ee62224eaadbd50de739f4dd47ca78e9f0777338050487acdfb3e64"
+    },
+    "auto-reducer-finite": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "cd00da580e92892184ed33467068346e4ec38b626024a85495480cce29b0000c"
+    },
+    "auto-refiner": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "39db258a32c123bb381ea0c97cdc0aa4af79964a9558d8d76fed22c0ba5659d0"
+    },
+    "auto-saas-cost-reducer": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "f46ab09cdeaf82ecc4607768f83992df75af727f61517341ead5bb5c96d76b43"
+    },
+    "auto-visual-fixer": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "71e92ebff4eb342dd7110cd9aa764de443fa0fb717e9a07c80ee3b01cd76e808"
+    },
+    "auto-visual-fixer-finite": {
+      "kind": "flow",
+      "version": "2.1.0",
+      "hash": "67c7c0443c55006f7a4a98c3110457a2f42b48d41c269d5f3fe3f3257c597d26"
+    },
+    "autoloop": {
+      "kind": "skill",
+      "version": "1.18.0",
+      "hash": "cda268ece73b2381c406e45e3e32e69ac662ca44e26c66b85495a3f0b2bd93b8"
+    },
+    "backend-developer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "92aa13cfd28d4d3cb55fc0347b4818114fcd9f0d66d93e49e50b034cf3e41861"
+    },
+    "backend-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "d1e8f0af255bd89e6d2684b20c7f32ebd55852d206fb10aca1e7c8315a63aafc"
+    },
+    "backlog": {
+      "kind": "skill",
+      "version": "1.41.0",
+      "hash": "9d915ba043e42cb9a909b747404b9f2db66d45e2ca107fb10a50214507264180"
+    },
+    "backlog-session-start": {
+      "kind": "hook",
+      "version": "1.0.0",
+      "hash": "191fc563908000f76ac68c3666e4ffcb80c9c12039270e91596ffce87f5a62a8"
+    },
+    "brainstorm-cards": {
+      "kind": "flow",
+      "version": "1.0.1",
+      "hash": "ec18a7f426bd1293ee7b9e94ddcd04bfa23502a9840f5102122e8ae38c3b31b9"
+    },
+    "ceet-autodiscover": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "0877b839f29a9a86b9157fbf1abf6b2d1d412dbc8be694d7cc160a26835eed1a"
+    },
+    "ceet-backend-engineer": {
+      "kind": "skill",
+      "version": "2.0.0",
+      "hash": "837468e2615844820fdafb5d4c25db654db5698801e01f1af646b65abf7a17fe"
+    },
+    "ceet-copywriter": {
+      "kind": "skill",
+      "version": "2.0.0",
+      "hash": "7fed43a994b13630d7351ff447d2d1127f4b56e7ec8bda9c7d378e69cbd0842d"
+    },
+    "ceet-core": {
+      "kind": "skill",
+      "version": "2.3.0",
+      "hash": "f7060e14748c6f0bfc5d689a12ded00a1a875366968638a1cf1cd7e3bfca43f0"
+    },
+    "ceet-customer-success": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "f6c6af58f5c70e096c3e924ab345e64b358616cb0e8deef4f6bc7784ee0e54ae"
+    },
+    "ceet-data-analytics": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "c83201a0627fe3fa3bdb070ee25d0156673f85aa70a8724aab9949c2bc2701ca"
+    },
+    "ceet-devops-sre": {
+      "kind": "skill",
+      "version": "2.0.0",
+      "hash": "ffcfde25483d0e107fb00738aca806fd59675c2c76d5e16c5710d840ff2ca966"
+    },
+    "ceet-financial": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "56b052a5e083fa9f15656c0eb3b31a36543d5e7e82b8ea5800a912b0ff558588"
+    },
+    "ceet-founder-ceo": {
+      "kind": "skill",
+      "version": "2.0.0",
+      "hash": "5dcdb456edd48c4b8db662f376fd77cd56afa79c60966fae9dbcf67edbeec54c"
+    },
+    "ceet-frontend-engineer": {
+      "kind": "skill",
+      "version": "2.0.0",
+      "hash": "b1a7fc03436945a197042d3e807ef795f7455f47b901ee93fdcda7472a982a44"
+    },
+    "ceet-impersonator": {
+      "kind": "skill",
+      "version": "2.1.0",
+      "hash": "25d518d625b220897a053644b6bdb68a1d7be643da6fbf3648e43c53464343e7"
+    },
+    "ceet-legal-compliance": {
+      "kind": "skill",
+      "version": "2.0.0",
+      "hash": "61f13396b58431b5043184942e4718f2aca3d494b6c9bb9e0571340f0fcca48a"
+    },
+    "ceet-marketing": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "e6e07689576079260bd2bebde2c69fad750a4e502d2ac95a62312ef99dc419ab"
+    },
+    "ceet-people-ops": {
+      "kind": "skill",
+      "version": "2.0.0",
+      "hash": "d4a98f3a96cb64bcd2a558b1ab63a00f280fa757d3ff636599c81929acbf6327"
+    },
+    "ceet-product-manager": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "7105c43c773c9c31bce70e95affceac3164833be0e604cfac6575694a34b523f"
+    },
+    "ceet-sales": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "ae680efa4d83fb5dc29481bb723efb74ef9ca2d1ac735a042911da2d7eaf1252"
+    },
+    "ceet-sub-agent-orchestration": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "3f2428cdc2be6d223d582c28ffb310e136eb2405a8d8de0ec2989182e18fb690"
+    },
+    "ceet-ui-designer": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "607d6b37af0a0bb4162036d03c5c87222d6272629a55e085abbe9f490ff2e00f"
+    },
+    "ceet-ux-researcher": {
+      "kind": "skill",
+      "version": "2.0.1",
+      "hash": "1c9cac54b6c458a28fbfc266137ddd8c37c14d570f0e0c3bb377775aadba78fc"
+    },
+    "code-reviewer": {
+      "kind": "role",
+      "version": "1.5.0",
+      "hash": "8ebc55e518e8b77453b389195eae47484b7bdb68523ed6c084c97d9d14fa4519"
+    },
+    "cognitive-ux": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "e56e22dfb82f0fb57ce2b7d1273dd10e6397a388161d33bedce66dc38f5fb87c"
+    },
+    "commit-changes": {
+      "kind": "step",
+      "version": "1.2.0",
+      "hash": "3556156b01a4e845ada41f5f66cabb4739fc661e976b371cf3d08d5716b656ed"
+    },
+    "competitive-intelligence-strategist": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "b50694d1c0ebe66f448aea77bc53cdaa45586d5e111c8e565f8557d6944b60a8"
+    },
+    "competitor-gap-extractor": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "9fbe2d323213b11d87aeea5b7b59b291acccdc485ee104167438136a28fe1c9e"
+    },
+    "conventional-commits": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "95f6e9e28e81f45da1e15999400f4201d247082f095da82d6d1e3a809ee9f0a3"
+    },
+    "conversion-copywriter": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "77cba25cd2bd1048e5532c841e7573ca96a7af800c31e3e1f09b0752bf681f12"
+    },
+    "conversion-ux-architect": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "ac8de14433e443ee8f729c3b8887d7bfc747ba6acd54573825ca096a871c1771"
+    },
+    "core-implementer": {
+      "kind": "role",
+      "version": "1.0.0",
+      "hash": "29a9130b27f315b3c661c36f106fcd19c3af9dd30280a999f11918b0e113b891"
+    },
+    "dark-mode": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "501caa3773da35467e555aa51c31acc5bcfb9b5eaf7a4823897e4d01e50d2d20"
+    },
+    "data-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "24c0cc6e3ce722a61c1cd81968fd8be6f407dece3268db7f847246a7c52ce93a"
+    },
+    "data-scientist": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "ccfe53a766c2dcae691cb178735a23ff9cc8b69f06105f517bf365265c8abf97"
+    },
+    "db-migrations-safe": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "edcd10d964409d33ae05e2f8f073413545632f1d79d6d54fe095a56f3731f0ef"
+    },
+    "delivery-analyst": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "e692aab8f583907a0be643c7a7de422570f699c1eb053d5b76c813614e0fcd99"
+    },
+    "design-engineer": {
+      "kind": "role",
+      "version": "1.2.0",
+      "hash": "514871548ce1f970f0d742f4e6d0ea07bd76bec964c5ccaf51b57241455d6b45"
+    },
+    "deterministic-tests": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "52f596ca07a255e96f44a308b8a063832933980102605bfd8df7364bbf0eac85"
+    },
+    "devops-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "fea2e16235911dfa494b6703d0b41604580ed0e1939615225cfd187578852305"
+    },
+    "docs-sync": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "88f1d3928f0efffdd3d547f8c8e5518527f7f924714a192f73202901d4fb228a"
+    },
+    "docs-verified": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "4621620e48cd21894d84e62d60f5f7bee22fc2d20bcaaa3d8f2c5a4a23a9808a"
+    },
+    "documentation-reviewer": {
+      "kind": "role",
+      "version": "1.3.0",
+      "hash": "252ffe3dee91d5bccea67a806a791b43ffcacaa514b222ab16ab316cc94650d5"
+    },
+    "dry-run": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "ddf1ac56a0511a3bdc900b4aa6270538b682a2f4edc923ca211e60420a4d8b3d"
+    },
+    "ds-house": {
+      "kind": "mod",
+      "version": "1.2.0",
+      "hash": "ddf53dc57eaf83957801b1a341ece6ea97ac0778ca25d1da35d3f044bc09eeba"
+    },
+    "ds-shadcn": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "5746d7382f51e6bea09cbb6da18e20d46f86f743ebeae2f60906e65289467535"
+    },
+    "ds-tailwind": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "90e72522627cd2507e1dfeb9239695cf66768e650024738f5c199c1bfa95b772"
+    },
+    "edge-case-coverage": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "45b288df59c64ecd49c545d99431b673f0bfa0ba7893a8b0d169e64d6b90c5e8"
+    },
+    "error-ux": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "e8c6c27d86467c268ee3cd703bbf370f3f3c3f85bdf86256d75c812ccddf5c21"
+    },
+    "explain-to-me": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "942954fe436d5af36af45945167b952ff46f55511021d1c565b0923a9c4a40bd"
+    },
+    "extreme-performance": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "bee6149837a2d19658da1bc65eb3c512afda1d8952edf92d7f4fe6ba3e989f99"
+    },
+    "findings-evaluator": {
+      "kind": "role",
+      "version": "1.4.0",
+      "hash": "c55c3a8e0338e34a2dce7677251418c1414668d7e98852dcc96d2a7d4beb300d"
+    },
+    "form-validation": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "bc9afde70b8487da85ea958de1a940f56a3fdc44bd6667eb7fcd8c404f924650"
+    },
+    "frontend-developer": {
+      "kind": "role",
+      "version": "1.2.0",
+      "hash": "af93d9496056ec00cdcf067b0e6976b79f05eb7025510a05e51ba4f0374d31a9"
+    },
+    "frontend-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "0e8ed0da96046eafd9f11efee0b23b9f202aad4461fa911edaab234efa656d75"
+    },
+    "full-stack-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "40c057db674f5b32d3f2ed1b5b5f43403c2e0ef3c394c22fa1995f1f2e5f5ae0"
+    },
+    "hotfix-discipline": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "74d3f4d8a0566597512e6b13c5071eefee1bb702b978b7ba76314e4e1a859daf"
+    },
+    "i18n-ready": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "3dd843342558895b3c3a3e32505263d33425d6c74c44c841dd0603890a720f6e"
+    },
+    "iac-pipeline-only": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "2cb09ce705f00544f133d023f90268a3d48608547060d83cba587484ce318827"
+    },
+    "idea-map-synthesizer": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "ffd7eb4020c024c011b239661ac2d024b02fbaaea0bb8fc7cd967c00216b06ab"
+    },
+    "implement-to-green": {
+      "kind": "step",
+      "version": "1.0.0",
+      "hash": "f84d2a73691935950b85dfb67bb33dcd9a620df391bd4cce1837eadc7dea1ee1"
+    },
+    "incident-analyst": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "7b9a4a16d8ac7832c9475e4497cbf0b496f3d864c48cb7472004b5ddaf302db0"
+    },
+    "incident-responder": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "8966449d874bc1b67dc5709065548e17e08fefe58eadf456584757fc843f611f"
+    },
+    "jira-agentic-requirements-pipeline": {
+      "kind": "skill",
+      "version": "2.1.1",
+      "hash": "059da699ec24c1474c0b87e4b36ff96ceb4f9deb2e0da073a4bbdb2cd8092e62"
+    },
+    "landing-page": {
+      "kind": "step",
+      "version": "1.0.0",
+      "hash": "923068353f40c53a7d41f2d417a9018d3ccc24493e3a9aa7ec06766c0439ccd1"
+    },
+    "landing-page-marketing": {
+      "kind": "skill",
+      "version": "1.1.0",
+      "hash": "cfd68b7548b758337523286db6c90404837c1753907ac69ab30636ce84bf80c4"
+    },
+    "layout-discipline": {
+      "kind": "skill",
+      "version": "1.1.0",
+      "hash": "7b862322e5f4da1325972305f41ec838d66b03ccf59be0cddcd07ee5bab16795"
+    },
+    "legacy-compat": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "0dedfa8055588644791b5b087ea3ee161c06f5f8abb6f2f793bacef6c3799e58"
+    },
+    "locale-en": {
+      "kind": "mod",
+      "version": "1.2.0",
+      "hash": "f6f2bdbc5aed4c84e200689abf07d32b0ae0dd703ddc10bd934699bec3855b21"
+    },
+    "locale-es": {
+      "kind": "mod",
+      "version": "1.2.0",
+      "hash": "caa90ea25cd5b55e2a6986857bbd0eac9cea8ca414d54e5061ebae4efbb27714"
+    },
+    "measured-performance": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "6e87d00efb2dcb3384d9f8a743d38a42505f9ff782fefb33279b1a929b0551e6"
+    },
+    "micro-sale-copywriting": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "012e129dd82eadf94281460f2cd2bd0c1d5616656837f6aa9213487c0a29c921"
+    },
+    "mobile-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "c23edcad8e39c11ed083d0a272d378d9c4a1a3d17f0201514ed9db76839b38a7"
+    },
+    "observability-ready": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "e55b2f0fa3b4fc8d463c9c6bb022abc9c9f85b61066e4da0b5d9174a379f38f0"
+    },
+    "officium": {
+      "kind": "preset",
+      "version": "1.5.0",
+      "hash": "d39fd4fc225eedef013e006e975f55b9c779849d4c3d74ec218b85eff5b662b8"
+    },
+    "officium-attention": {
+      "kind": "hook",
+      "version": "1.0.1",
+      "hash": "ad27b69ef46a4fe82820e67950547533489d5b6a23e22c7a18648476b2429b2a"
+    },
+    "officium-attention-clear-prompt": {
+      "kind": "hook",
+      "version": "1.0.1",
+      "hash": "b228fa8702150f99021cd86739f6d178cd04b40854fe89a57a69a82fc70483b9"
+    },
+    "officium-attention-clear-stop": {
+      "kind": "hook",
+      "version": "1.0.1",
+      "hash": "a58518ed1ecc0827a689650a23f6ba0784b7ed02676a61346b2d68df9fb172ba"
+    },
+    "officium-attention-clear-tool": {
+      "kind": "hook",
+      "version": "1.0.1",
+      "hash": "681a8878d3df4d43e92a2cc793d7e6f65201a6383fd5482249d52530eeb48442"
+    },
+    "officium-heartbeat": {
+      "kind": "hook",
+      "version": "1.2.1",
+      "hash": "a54f9cff2b975875d1efb1598f8d63fc5f3a51500fbfb53121f5b2cf438e46d4"
+    },
+    "officium-heartbeat-done": {
+      "kind": "hook",
+      "version": "1.1.0",
+      "hash": "bc807ffffa46b1326a9854fc327a2fec0c026c6077d5fbc4331dd3f8c2f3b287"
+    },
+    "officium-heartbeat-done-failure": {
+      "kind": "hook",
+      "version": "1.0.1",
+      "hash": "de6a08d682aac482bd9451dea4fee316c8dfe3021cb2cdc36eebb5dc082f6740"
+    },
+    "officium-heartbeat-done-prompt": {
+      "kind": "hook",
+      "version": "1.0.0",
+      "hash": "57afabf5e4838df138278400bdb23146c7d90263e3ea5e24e067e010293bd697"
+    },
+    "officium-heartbeat-done-stop": {
+      "kind": "hook",
+      "version": "1.0.0",
+      "hash": "57a5716b828d24d77312352eb44d89b9c5097c963ae3099884cff880155c2d8d"
+    },
+    "officium-session": {
+      "kind": "hook",
+      "version": "1.1.3",
+      "hash": "47c405ccc5bfb00dc4fbed63ca4c1e4066ca0aecea69d390280d9552566da2ab"
+    },
+    "officium-statusline": {
+      "kind": "hook",
+      "version": "1.0.2",
+      "hash": "0e578878356867197304a68c73b51f25d093ea809e57c9a981251e2b0505eaf2"
+    },
+    "officium-temporary-refs": {
+      "kind": "hook",
+      "version": "1.0.0",
+      "hash": "51bbd0d42e353e6bdd5b93e72ed56b0633dfe473ada342d7464797b02de09362"
+    },
+    "on-call-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "c661821a800d58474f4bcf0181d6630dc048543accb95ddb573047b70a4b81c1"
+    },
+    "output-budget": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "b5db40bbdc696df75f38a0a397f6b8b8c388896102560ea91d8291c654498fb4"
+    },
+    "performance-reviewer": {
+      "kind": "role",
+      "version": "1.3.0",
+      "hash": "742b60820b59d27c53012bfcc4d454f5550e7aee21dc7318b901990b46bc0c61"
+    },
+    "platform-architect": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "88580aff0e063bea9e4e199319d32a1c608c3913926051dbcc5c9c26a91258e2"
+    },
+    "platform-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "ef03d0ecb28742ece2154aa701cb55a442ba3c3671d9e6c6ecb2ded120c903f8"
+    },
+    "portfolio-positioning": {
+      "kind": "skill",
+      "version": "1.1.0",
+      "hash": "c4475da147f4517a7f3a6416824e2aef92385ddca9aa27a4bffb1575b3680d2c"
+    },
+    "post-deploy-verifier": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "7b121e00055b1a7f6652d50e9fbb42124029e01a5c4058a6bbe2c3bff77686fd"
+    },
+    "privacy-guard": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "af74942dcee77c0136122c58702d0d0b3e400a88c8d0748e5c5975bd8128d877"
+    },
+    "product-analyst": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "6f310c23bf18541324c2736441519c521b563d5ec56867ce97a272c785a9fbc9"
+    },
+    "product-hunt-launch-readiness": {
+      "kind": "skill",
+      "version": "1.1.0",
+      "hash": "85337d454aaf81db4940e7f6478c434bcf58fdce5196caacf2c36f1a4049a486"
+    },
+    "product-manager": {
+      "kind": "role",
+      "version": "1.2.0",
+      "hash": "e918e07edf764670714fb8ea6c684df539abd565f722443a414c43b69d25b4fd"
+    },
+    "production-watcher-sre": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "b57826fb01344c0dafa0c9197d5d27181011ce08f4fce59b56c4bf1000be8006"
+    },
+    "progressive-disclosure": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "efcbed85adcd90ab9fc34f410146e386edab75f2f73413b04c1600b6cb022be1"
+    },
+    "qa-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "ddec21abc47419dd5b6e94585a77977c51a05c2d6dbf90f2d2372d035b42737f"
+    },
+    "qa-strategist": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "db2ff1fee23d6d34f1bd434e9258dddd0bd6846b6ec76901cfc88ecd35e9933f"
+    },
+    "read-card": {
+      "kind": "step",
+      "version": "1.1.0",
+      "hash": "024bad84b01561f9f12633d9da0a3da45db3814a1fba6d524a3eec407be35d74"
+    },
+    "red-team-auditor": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "1a6f0501e583e4b6cf25424c76400e8c07bcf926b3f2ab478d6d395f88929582"
+    },
+    "reduction": {
+      "kind": "skill",
+      "version": "1.1.2",
+      "hash": "a35009c60c1ec4fb52e2c81711047230a0137957f6418aea9ee954f1bba11f61"
+    },
+    "refactor-safely": {
+      "kind": "step",
+      "version": "1.0.0",
+      "hash": "63c186508b468381083b66c4ff4c2a2898fc96f523d9e5b46524f607f0fce1fe"
+    },
+    "regression-sentinel": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "ae6fc88d5274a8e601328068d9c5d6c5d7460672fe94cbd38b8339bbb5602e84"
+    },
+    "release-manager": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "88560135919afb6cb4a371210f3397c21623e42039d709d47fc740d1b18f85a4"
+    },
+    "research-radar": {
+      "kind": "skill",
+      "version": "1.0.0",
+      "hash": "5f61f524b03dfcb082f0012873b4af22057b1be919e2c6ccddf845e41ba9b081"
+    },
+    "resilient-backend": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "2095d586ab6a18dca3497a5c5c9019cab17932539a7b37763101847fb8411176"
+    },
+    "responsive-design": {
+      "kind": "mod",
+      "version": "1.2.0",
+      "hash": "02c60c7417e8eba808a8ab5ebdd1831d90f4917f32e10a6e6658c4d5f6e86c77"
+    },
+    "review-diff": {
+      "kind": "step",
+      "version": "1.0.0",
+      "hash": "e0aa581723baf472b54571614dd99db1e8665967ae3d128f3d68c21391cee168"
+    },
+    "review-harness": {
+      "kind": "skill",
+      "version": "1.4.0",
+      "hash": "0644ca16c3c07705ea4c0a00612801d525ab2eca879ac868814be41fbc297c2f"
+    },
+    "routine-operator": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "075dc158bab9a3c01935288f6009c02af61747d5c244ccda73aec16dc7564d24"
+    },
+    "rule-enforcer": {
+      "kind": "mod",
+      "version": "1.0.1",
+      "hash": "7f6d594a5a559fd955aff2cb828e9469b5ed4ef6d1f3a2ad8f1436a2a19a849b"
+    },
+    "rule-of-seven": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "35021b46565e276d5453a0fc0f7c330ca60774915b0a49c4c5aca2a65868f445"
+    },
+    "rule-of-seven-vanguard": {
+      "kind": "flow",
+      "version": "1.0.0",
+      "hash": "afee43142829aecf6b37725d8c2c95e82b0d066d7351504b29aa9b43d204dbb4"
+    },
+    "run-tests": {
+      "kind": "step",
+      "version": "1.1.0",
+      "hash": "d226cb95d31369eb40b0f4e89423ca848feb36ed9604f8b5d9641e51074f7ed3"
+    },
+    "runbook-execution": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "c4f7d432d92000a62f4c68e20e78842cfab23a3cbdb128f58991be31a38b28a1"
+    },
+    "scaffold-structure": {
+      "kind": "step",
+      "version": "1.0.0",
+      "hash": "b4f372fa66b0c26ea16afbd0a0be4bab624f308ca2fea68e817e8d2fa6c37dac"
+    },
+    "security-architect": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "0ec556f2e82fe4d9b44bfc2060c60e021b1e54f865891fb15df7c7e84c9f83a6"
+    },
+    "security-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "5d7153030ff631aad53ff2fbe82717617a7b924c1cbe332979e2c5d366226382"
+    },
+    "security-hardened": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "3c83323cc37709609c62dd2c1dc6586c05183d2cc935594fc6d225a7428a130a"
+    },
+    "security-researcher": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "5ba5cbed7d617b4a636d7eb7608109d8e05f3a708d92410c5684585b8b1e8ca9"
+    },
+    "security-reviewer": {
+      "kind": "role",
+      "version": "1.3.0",
+      "hash": "7a663e35f3d47275699a2ae68b745f7cec5678a0a2919fa2e112a0de83812456"
+    },
+    "self-review": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "e5379fbc15d8a2ae615476020fac5ffec283bdafd9893486dcecc27b83ba4f5b"
+    },
+    "semantic-deduplicator": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "ba67966f9d077a0b97b12231420463c92d81a731ba0a520d6abc13ae5903a6f7"
+    },
+    "seo-meta": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "0fcf785b27546d4fe7688e86c09d53c0235cc7935e81ad5693bdd6545f696675"
+    },
+    "set-card-status": {
+      "kind": "step",
+      "version": "1.1.0",
+      "hash": "fb56a9ff0eea1fc5d64246760750688a4ed9e1e1c625f499572315c3d1e38e88"
+    },
+    "software-architect": {
+      "kind": "role",
+      "version": "2.1.0",
+      "hash": "3ed1f531e40c328143ba0d94ecd85bd6054cbb3c57179d641355fda526d9ef39"
+    },
+    "spec-adherence": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "64e8eae95475b180fba3768a72263ae9d9d9248f9cbf36bfe413b46acae7de0b"
+    },
+    "strict-linting": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "667ec64d630773ebebeedd46a1280813081f31c2790f5d49488c056975219ad8"
+    },
+    "structured-data": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "5d4fdf5b3da3da4ec52a4d4d50efe8115886f65efd6324a8371afa04a587a6db"
+    },
+    "supply-chain-integrity": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "da916655642b41876fbf5934c3540611d98f2b3cad3aacc73792bb2cb81b0d2d"
+    },
+    "systematic-debug": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "c3aaff9db345e382246d9902e0bee28e20b1811e7544dda84b3527ab36f36e27"
+    },
+    "tech-lead": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "afd1b5e04abe76881f742bc277800af8a9fddf2cd40ec4529bacd0f0942fa02e"
+    },
+    "technical-researcher": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "e9e8f12191c0860c1fe2d933af07e4316ccdfcd27e805ec4f81ecfaf51eac3e9"
+    },
+    "technical-writer": {
+      "kind": "role",
+      "version": "2.2.0",
+      "hash": "4e2210de515b96391d0bb60b30bdd4b6daa6406dce381a50b373faabd41370cd"
+    },
+    "test-automation-engineer": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "43178f607927bbf4c922a8603fe21b0d8c0ca9d5ad7acc4bdb2375315bfd8698"
+    },
+    "test-driven": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "3b95a277a4d8bd43fc697af0ccf6a1fd4ee13d7a36d405b2d0bc5f5cf757dd7b"
+    },
+    "topology": {
+      "kind": "skill",
+      "version": "1.1.0",
+      "hash": "3fe981eb49be86a3c6e3dd6f828c502fbc59bb7dd7e8b3a46479f69b20e5cc30"
+    },
+    "traffic-to-funnel": {
+      "kind": "skill",
+      "version": "1.1.0",
+      "hash": "259681c90c228d57b2fecd2ae81351558a80bb1162e737b377820568dbdb0f6d"
+    },
+    "ui-fluidity-verification": {
+      "kind": "skill",
+      "version": "1.0.0",
+      "hash": "d8a1f9f35c3a5bac4545956d008284ad8659442af1c2d039631a2fa3209d6570"
+    },
+    "ux-psychology": {
+      "kind": "skill",
+      "version": "1.0.1",
+      "hash": "c8754bf8ae850df07585e894a096a62a7d9a440ad32f9d89de1f9cf8b4018317"
+    },
+    "ux-researcher": {
+      "kind": "role",
+      "version": "1.1.0",
+      "hash": "a7e5388be374962464d9978dd091d3ad7bd72af3b5de761340cd40cba34dcb1a"
+    },
+    "ux-ui-accessibility-reviewer": {
+      "kind": "role",
+      "version": "1.4.0",
+      "hash": "cadd42934cf58f406a7fdaeb03cc426ea7f73a82e94959c63676baabaf019088"
+    },
+    "ux-ui-designer": {
+      "kind": "role",
+      "version": "1.3.0",
+      "hash": "f5fb7d780f659c76cc4300d685156057441fc79c323873665ba8641beadfe1c9"
+    },
+    "verbose-comments": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "75b5d96348d0caebb0279eaa2c9d5047cf3eadcb6995bc1969bb5d28a0eb1c1a"
+    },
+    "vuln-remediation": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "1602127b153a0008596045c110878de3673f17a2a66773675c7987f57b37262a"
+    },
+    "web-vitals": {
+      "kind": "mod",
+      "version": "1.0.0",
+      "hash": "b969689854754ae395bb840bdff368dd917c2d27a903b1cd0db917fb26aec9dd"
+    },
+    "workflow-author": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "c10ead3d4c07560e9c3f95c9f3a70f448126e432c44a6528a85c70b4b8960d4d"
+    },
+    "write-failing-tests": {
+      "kind": "step",
+      "version": "1.0.0",
+      "hash": "5ee3724e53563fe87ee4706709783682b5d0494f45cf3f716a3649cf175a5433"
+    },
+    "zero-dependencies": {
+      "kind": "mod",
+      "version": "1.1.0",
+      "hash": "0ccfc58dc394710464cb2ad3a67b2878558d373374c0dac5f30eeeda72884fd7"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {"query": "review this pull request the way my CEET backend clone would, if I have one set up in this project", "should_trigger": true},
+  {"query": "before you start, check whether this repo has a CEET pack for the role this task needs", "should_trigger": true},
+  {"query": "draft the PRD for the export feature following my product manager cognitive profile", "should_trigger": true},
+  {"query": "which CEET role does this request need, and is its pack already initialized here?", "should_trigger": true},
+  {"query": "write the onboarding emails in my copy voice — use my CEET pack if there is one, otherwise tell me", "should_trigger": true},
+  {"query": "plan the database migration as my cloned SRE would decide it", "should_trigger": true},
+  {"query": "do the incident postmortem following the CEET profile of our devops lead", "should_trigger": true},
+  {"query": "route this task to the right CEET clone: redesign the settings screen", "should_trigger": true},
+  {"query": "use my cognitive clone's judgment for this pricing page review, or offer me the example pack", "should_trigger": true},
+  {"query": "I don't know if I ever ran the CEET interview for frontend here; find out and continue with it", "should_trigger": true},
+  {"query": "review this pull request for bugs and style issues", "should_trigger": false},
+  {"query": "run the CEET backend engineer interview with me from the start", "should_trigger": false},
+  {"query": "render my CEET pack again after I edited the profile", "should_trigger": false},
+  {"query": "build a simulated CEET pack of how Linus Torvalds reviews patches from his public mails", "should_trigger": false},
+  {"query": "which agent framework should I use to route requests between LLM tools?", "should_trigger": false},
+  {"query": "set up a router that sends support tickets to the right team based on keywords", "should_trigger": false},
+  {"query": "write the PRD for the export feature", "should_trigger": false},
+  {"query": "list the skills installed in this project and what each one does", "should_trigger": false},
+  {"query": "create a CLAUDE.md that tells the agent to follow our team's conventions", "should_trigger": false},
+  {"query": "measure the fidelity of my CEET pack against my held-out decisions", "should_trigger": false}
+]

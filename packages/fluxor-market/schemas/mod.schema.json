@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mod.schema.json",
+  "title": "Mod manifest",
+  "description": "HOW the work is done: a stackable set of invariants. The injected text is the sibling `<id>.md`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "version",
+    "description",
+    "tags",
+    "icon",
+    "iconLibrary",
+    "domains",
+    "precedence",
+    "enforcement"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "kind": {
+      "const": "mod"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "stability": {
+      "$ref": "common.schema.json#/$defs/stability"
+    },
+    "aliases": {
+      "$ref": "common.schema.json#/$defs/aliases"
+    },
+    "description": {
+      "$ref": "common.schema.json#/$defs/description"
+    },
+    "tags": {
+      "$ref": "common.schema.json#/$defs/tags"
+    },
+    "domains": {
+      "$ref": "common.schema.json#/$defs/domains"
+    },
+    "requires": {
+      "$ref": "common.schema.json#/$defs/requires"
+    },
+    "icon": {
+      "$ref": "common.schema.json#/$defs/icon"
+    },
+    "iconLibrary": {
+      "$ref": "common.schema.json#/$defs/iconLibrary"
+    },
+    "precedence": {
+      "description": "Conflict class among stacked mods: security > correctness > scope > style. Constraints the user declared outrank every mod.",
+      "enum": [
+        "security",
+        "correctness",
+        "scope",
+        "style"
+      ]
+    },
+    "enforcement": {
+      "description": "How the mod is guaranteed: `prompt` (text only), `runtime` (engine-interpreted `runtime` block), `hook` (a harness hook with a test bench).",
+      "enum": [
+        "prompt",
+        "runtime",
+        "hook"
+      ]
+    },
+    "exclusiveGroup": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "incompatibleWith": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/atomId"
+      },
+      "uniqueItems": true
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "blockTools": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "attachTools": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "contract": {
+          "$ref": "common.schema.json#/$defs/contract"
+        }
+      }
+    },
+    "config": {
+      "$ref": "#/$defs/config"
+    }
+  },
+  "$defs": {
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "description": "File name under `.harness/config/` in the target project.",
+          "type": "string",
+          "pattern": "^[a-z0-9-]+\\.json$"
+        },
+        "schema": {
+          "description": "JSON Schema for that file (draft 2020-12, within the subset tools/marketplace.py checks): `<id>.config.schema.json`, next to the manifest. It installs next to the mod's .md.",
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*\\.config\\.schema\\.json$"
+        },
+        "example": {
+          "description": "A complete example config that validates against the schema: `<id>.config.example.json`, next to the manifest. It installs next to the mod's .md.",
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*\\.config\\.example\\.json$"
+        }
+      }
+    }
+  }
+}

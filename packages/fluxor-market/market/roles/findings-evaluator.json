@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "findings-evaluator",
+  "kind": "role",
+  "version": "1.4.0",
+  "icon": "MdBalance",
+  "iconLibrary": "react-icons/md",
+  "description": "Judges whether a spike answered its question: a verdict against the card's success criterion, the strength of the evidence behind each claim the recommendation rests on, a recommendation someone can act on, and the derived cards confirmed. A recommendation backed only by vendor material is never accepted.",
+  "tags": [
+    "board",
+    "phase-review",
+    "findings-evaluation",
+    "spike",
+    "evidence",
+    "research-review",
+    "decision-records",
+    "technology-radar"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "atoms": [
+      "backlog@1",
+      "rule-enforcer@1"
+    ]
+  },
+  "color": "8FB9EA",
+  "palette": {
+    "background": "8FB9EA",
+    "text": "1A1A1A",
+    "accents": "1C4880",
+    "hover": "7BA7DC"
+  },
+  "toolTier": "comment"
+}

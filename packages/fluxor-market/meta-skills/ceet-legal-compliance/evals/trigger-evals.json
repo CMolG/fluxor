@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about my contract redline positions so Claude does first-pass review the way I do", "should_trigger": true},
+  {"query": "I'm GC at a health-tech startup. Build me an AI setup that triages privacy questions like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my legal thinking into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a compliance lead? fintech, EU and UK", "should_trigger": true},
+  {"query": "our outgoing DPO agreed to be interviewed so an assistant keeps her DPA and sub-processor positions", "should_trigger": true},
+  {"query": "capture how I turn a no into a yes-if for product teams, so any AI tool answers them my way", "should_trigger": true},
+  {"query": "run the CEET legal compliance interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my risk posture and escalation rules for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about policy drafting and the risk register into agents and rules for my AI assistant", "should_trigger": true},
+  {"query": "re-run my legal cognitive profile, I changed how I handle breach notification since last year", "should_trigger": true},
+  {"query": "review this MSA and tell me which clauses to push back on", "should_trigger": false},
+  {"query": "is our cookie banner compliant with GDPR?", "should_trigger": false},
+  {"query": "interview me about how I write HR policies and run difficult conversations so an AI does People work like me", "should_trigger": false},
+  {"query": "capture how our CFO runs month-end close and controls into an AI profile", "should_trigger": false},
+  {"query": "build a simulated legal profile of how a famous judge reasons, from his opinions", "should_trigger": false},
+  {"query": "draft a privacy policy for our mobile app", "should_trigger": false},
+  {"query": "rank our outside counsel by how often they missed deadlines", "should_trigger": false},
+  {"query": "write a job description for an associate general counsel", "should_trigger": false},
+  {"query": "which CEET role should I use for a compliance officer who also runs HR?", "should_trigger": false},
+  {"query": "interview our security engineer about incident response runbooks for an AI clone", "should_trigger": false}
+]

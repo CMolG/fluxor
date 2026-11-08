@@ -1,0 +1,11 @@
+{
+  "$comment": "The in-house design system, for the ds-house mod. Illustrative names.",
+  "uiPackage": "@acme/ui",
+  "brandColorSource": "packages/ui/src/theme/brand.ts",
+  "tokenPrefix": "--acme-",
+  "contracts": [
+    ".harness/contracts/art-direction.md",
+    ".harness/contracts/design-tokens.md",
+    ".harness/contracts/admission-test.md"
+  ]
+}

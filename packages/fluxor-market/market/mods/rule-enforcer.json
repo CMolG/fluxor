@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "rule-enforcer",
+  "kind": "mod",
+  "version": "1.0.1",
+  "icon": "MdGavel",
+  "iconLibrary": "react-icons/md",
+  "description": "Makes a review walk the project's written rules that apply to the change, one by one with evidence, and puts that checklist in the verdict: a violated rule is a send-back, an unchecked one is never a pass, and no checklist means no approval.",
+  "tags": [
+    "review",
+    "rules",
+    "quality",
+    "enforcement",
+    "verification"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

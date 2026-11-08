@@ -1,0 +1,808 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-financial",
+  "title": "Finance",
+  "nameSlot": "finance_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "forecast",
+      "budget",
+      "unit economics",
+      "margin",
+      "pricing model",
+      "p&l",
+      "valuation",
+      "fp&a",
+      "cfo",
+      "financial model",
+      "board memo",
+      "cash flow",
+      "month-end close",
+      "capital allocation"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about finance: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What's your role — CFO, controller, FP&A, business partner to a function?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What stage / scale is your company? Revenue model (SaaS, marketplace, transactional)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "What's your reporting cadence (monthly close, board cadence, weekly flash)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.controls.close_process"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "Who are your internal customers (exec, board, investors, functional leaders)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Model taste",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "Walk me through how you structure a new model — sheets, naming, color coding, driver sheet.",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.model_taste.structure",
+                "directives.model_taste.conventions"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "Monolithic vs. modular workbooks — where's your default and why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.model_taste.monolithic_vs_modular"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "Your stance on circular references, Excel vs. Google Sheets vs. specialized tools (Pigment, Cube, Mosaic, Anaplan)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.model_taste.circular_references",
+                "directives.model_taste.tools"
+              ]
+            },
+            {
+              "id": "Q8",
+              "prompt": "What's a model convention you fight for?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.model_taste.conventions",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Assumptions",
+          "questions": [
+            {
+              "id": "Q9",
+              "prompt": "What's your process for choosing a key assumption — sales-provided, historical, market, gut?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.assumptions.choose_process",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "What's an assumption you refuse to use without a written source?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.assumptions.refuse_without_source"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "Where do you intentionally stay conservative? Where do you allow optimism?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.assumptions.conservative_vs_optimistic"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Forecasting",
+          "questions": [
+            {
+              "id": "Q12",
+              "prompt": "Bottoms-up vs. tops-down — which do you lead with and why?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.forecasting.bottoms_up_vs_tops_down",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "How do you reconcile FP&A forecast with the sales forecast?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.forecasting.reconcile_sales"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What variance band (actual vs. forecast) triggers action for you?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.forecasting.variance_trigger"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "How do you re-forecast mid-quarter without re-forecasting every week?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.forecasting.mid_quarter_reforecast"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Unit economics",
+          "questions": [
+            {
+              "id": "Q16",
+              "prompt": "Which unit economic metric do you actually trust — CAC, CAC payback, LTV/CAC, contribution margin?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.unit_economics.trust_metrics"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "When do you include fully-loaded costs vs. direct?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.unit_economics.fully_loaded_vs_direct"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What's a unit-economics number people cite that you distrust?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.unit_economics.mistrusted_numbers"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Capital allocation",
+          "questions": [
+            {
+              "id": "Q22",
+              "prompt": "Your ROI / payback bar for discretionary spend?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.capital_allocation.roi_bar"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "How do you evaluate a \"strategic\" request with no clear ROI?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.capital_allocation.evaluate_strategic"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "What's a line item you refuse to fund, no matter the argument?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.capital_allocation.refuse_to_fund",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "title": "Board & investor voice",
+          "questions": [
+            {
+              "id": "Q25",
+              "prompt": "Default structure of your board memo?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.board_voice.memo_structure"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "What do you emphasize, and what do you refuse to bury?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.board_voice.emphasize",
+                "directives.board_voice.refuse_to_hide",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "What's a metric you show because it's asked for, vs. one you show because it matters?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.board_voice.emphasize"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "Finance phrases you use (\"bridge\", \"walk\", \"waterfall\", \"normalized\", \"run-rate\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "Phrases you avoid or redefine?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q44",
+              "prompt": "Pick a hard finance call from the last few months, one where reasonable finance leads would have disagreed: a forecast you cut, a budget you refused, a number you would not put in front of the board. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.capital_allocation.evaluate_strategic"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Tell me about a forecast that missed badly, by 20% or more. What did you notice first, how did you re-forecast, and what did you change in the model afterward?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.forecasting.mid_quarter_reforecast",
+                "directives.forecasting.variance_trigger",
+                "directives.meta_cognition.knowledge_evolution"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "Think of an operating model or budget a capable, less experienced analyst hands you for review. What would they miss that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.model_taste.conventions",
+                "directives.model_taste.circular_references",
+                "directives.assumptions.refuse_without_source"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Walk me through the last scenario / forecast / model you built — end to end, assumptions, decisions, readout.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you cut that?",
+                "What would have made you keep it?"
+              ],
+              "feeds": [
+                "directives.model_taste.structure",
+                "directives.assumptions.choose_process",
+                "directives.board_voice.memo_structure"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "Think of two spend requests with similar projected returns, one you funded and one you turned down (or build the pair now from this year's asks). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which number would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.capital_allocation.roi_bar",
+                "directives.capital_allocation.evaluate_strategic",
+                "directives.budgeting.handle_over_asks"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "Here is all you get: mid-quarter, bookings are 18% under forecast, sales says three large deals will close in the last week, and the board meets in ten days. What do you tell the CEO, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you re-forecast without knowing more?"
+              ],
+              "feeds": [
+                "directives.forecasting.reconcile_sales",
+                "directives.board_voice.refuse_to_hide"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-planning",
+      "title": "Depth: budgeting, close and scenarios",
+      "optional": true,
+      "purpose": "How the person budgets, runs the close, models scenarios and works on pricing.",
+      "sections": [
+        {
+          "id": "F",
+          "title": "Budgeting",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "Zero-based, last-year-plus, or outcome-tied?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.budgeting.approach"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "How do you handle a function leader who consistently over-asks?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.budgeting.handle_over_asks"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "What's your stance on re-opening budgets mid-year?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.budgeting.mid_year_reopening"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Close & controls",
+          "questions": [
+            {
+              "id": "Q28",
+              "prompt": "What are your non-negotiables in month-end close?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.controls.non_negotiables",
+                "directives.controls.close_process"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "Where do you accept materiality thresholds, and where do you not?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.controls.non_negotiables",
+                "directives.personality.quality_calibration"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "What's a control you've added after being burned?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.controls.non_negotiables",
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Scenario modeling",
+          "questions": [
+            {
+              "id": "Q31",
+              "prompt": "Base / bull / bear — how do you pick the variables you flex?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.assumptions.conservative_vs_optimistic"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "Sensitivity tables — which variables, which ranges?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.model_taste.structure"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "When do you run Monte Carlo / stochastic models vs. deterministic scenarios?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.model_taste.tools"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Pricing partnership",
+          "questions": [
+            {
+              "id": "Q34",
+              "prompt": "When does finance engage in pricing decisions?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "What pricing move do you always push for? Always push against?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework",
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-judgment",
+      "title": "Depth: heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "The person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "L",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "\"If a forecast shows {X}% growth with flat headcount, I {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.assumptions.conservative_vs_optimistic"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "\"If an assumption needs more than {X} qualifiers, I {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.assumptions.refuse_without_source"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "\"A clean model has {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.model_taste.conventions",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q41",
+              "prompt": "A modeling or forecasting pattern you outgrew.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q42",
+              "prompt": "A trend you distrust right now.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q49",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "A number goes out wrong: a restated quarter, a board deck with a formula error, a cash shortfall found late. What do you do in the first hour, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "What finance belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "What reliably frustrates you in how a company plans, budgets or reports its numbers?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

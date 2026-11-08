@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "iac-pipeline-only",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdSettingsSuggest",
+  "iconLibrary": "react-icons/md",
+  "description": "Infrastructure, pipelines and environments change only as reviewed code applied by the pipeline: plan output on the card, no manual change to an environment, pinned versions, one artifact promoted, and a named way back.",
+  "tags": [
+    "iac",
+    "gitops",
+    "ci-cd",
+    "pipeline",
+    "rollback"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

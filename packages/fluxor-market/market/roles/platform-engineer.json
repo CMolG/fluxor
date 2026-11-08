@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "platform-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdSettingsSuggest",
+  "iconLibrary": "react-icons/md",
+  "description": "Builds a planned card's infrastructure, pipelines and environments as code, applied only through the pipeline: GitOps-reconciled state, signed build provenance, CIS-hardened configuration and the observability the change needs. Makes no manual change to an environment and keeps no secret in the repository; leaves the design, the release and security controls to their owners.",
+  "tags": [
+    "board",
+    "phase-action",
+    "infra",
+    "platform",
+    "iac",
+    "gitops",
+    "ci-cd",
+    "supply-chain"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

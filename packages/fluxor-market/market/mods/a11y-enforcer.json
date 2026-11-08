@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "a11y-enforcer",
+  "kind": "mod",
+  "version": "2.0.0",
+  "icon": "MdAccessibility",
+  "iconLibrary": "react-icons/md",
+  "description": "Forces all generated UI elements to include accessible names and focus management, and to meet WCAG 2.2 AA by measurement (contrast per state, target size, focus visibility); AAA thresholds apply when the project declares them.",
+  "tags": [
+    "a11y",
+    "accessibility",
+    "wcag",
+    "inclusive"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "runtime": {
+    "attachTools": [
+      "web-browser"
+    ]
+  },
+  "precedence": "correctness",
+  "enforcement": "runtime"
+}

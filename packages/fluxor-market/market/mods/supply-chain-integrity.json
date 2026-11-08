@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "supply-chain-integrity",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdVerifiedUser",
+  "iconLibrary": "react-icons/md",
+  "description": "Builds and dependencies stay verifiable: signed provenance checked before deploy, artifacts referenced by digest, the SBOM regenerated on every dependency change, no known exploited flaw, no secret in the repository, logs or images.",
+  "tags": [
+    "supply-chain",
+    "sbom",
+    "provenance",
+    "secrets",
+    "hardening"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "security",
+  "enforcement": "prompt"
+}

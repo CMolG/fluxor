@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "seo-meta",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdTravelExplore",
+  "iconLibrary": "react-icons/md",
+  "description": "Enforces a complete semantic document head: titles, meta description, canonical URLs, Open Graph and Twitter cards, sitemap and robots awareness.",
+  "tags": [
+    "seo",
+    "meta",
+    "open-graph",
+    "discoverability"
+  ],
+  "domains": [
+    "web"
+  ],
+  "runtime": {
+    "attachTools": [
+      "web-browser"
+    ]
+  },
+  "precedence": "correctness",
+  "enforcement": "runtime"
+}

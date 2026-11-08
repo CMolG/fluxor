@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "design-engineer",
+  "kind": "role",
+  "version": "1.2.0",
+  "icon": "MdDesignServices",
+  "iconLibrary": "react-icons/md",
+  "description": "Hybrid expert in UX/UI, frontend architecture, and design systems. Crafts minimalist, highly functional interfaces for any product.",
+  "tags": [
+    "design",
+    "ui",
+    "ux",
+    "motion",
+    "design-system",
+    "polish"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "color": "06D6A0",
+  "palette": {
+    "background": "06D6A0",
+    "text": "111111",
+    "accents": "D90368",
+    "hover": "05B586"
+  },
+  "toolTier": "write"
+}

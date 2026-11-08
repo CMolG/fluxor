@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "tech-lead",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdEngineering",
+  "iconLibrary": "react-icons/md",
+  "description": "Makes a card executable before it enters To do: a technical breakdown in mergeable steps, an ordered plan, risks with mitigations, dependencies as card links, a size that fits one card or a split under an epic, and the category's entry contract confirmed, with open uncertainty sent to a spike instead of planned around.",
+  "tags": [
+    "board",
+    "phase-refine",
+    "tech-lead",
+    "planning",
+    "breakdown",
+    "risk",
+    "dependencies",
+    "estimation"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "B9A3E6",
+  "palette": {
+    "background": "B9A3E6",
+    "text": "1A1A1A",
+    "accents": "4B2F96",
+    "hover": "A88FDB"
+  },
+  "toolTier": "comment"
+}

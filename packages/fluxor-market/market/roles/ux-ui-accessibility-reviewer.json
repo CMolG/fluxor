@@ -1,0 +1,40 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "ux-ui-accessibility-reviewer",
+  "kind": "role",
+  "version": "1.4.0",
+  "icon": "MdAccessibility",
+  "iconLibrary": "react-icons/md",
+  "description": "Reviews a built interface against its design and WCAG 2.2 AA: fidelity to the project's design contract, every defined state reached, each AA criterion with its measurement (audit, contrast per state, keyboard, zoom and forced-colors emulation, accessibility tree), and usability issues by severity. Nothing passes unmeasured; a real screen-reader pass goes to a person.",
+  "tags": [
+    "board",
+    "phase-review",
+    "ux",
+    "ui",
+    "accessibility",
+    "wcag",
+    "usability",
+    "design-review"
+  ],
+  "domains": [
+    "frontend",
+    "web"
+  ],
+  "requires": {
+    "atoms": [
+      "backlog@1",
+      "ux-psychology@1",
+      "layout-discipline@1",
+      "rule-enforcer@1",
+      "ui-fluidity-verification@1"
+    ]
+  },
+  "color": "8FB9EA",
+  "palette": {
+    "background": "8FB9EA",
+    "text": "1A1A1A",
+    "accents": "1C4880",
+    "hover": "7BA7DC"
+  },
+  "toolTier": "comment"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "scaffold-structure",
+  "kind": "step",
+  "version": "1.0.0",
+  "icon": "MdFolderSpecial",
+  "iconLibrary": "react-icons/md",
+  "description": "Lays down the folder and file skeleton for a feature or module, matching project conventions, before any logic is written.",
+  "tags": [
+    "scaffold",
+    "structure",
+    "skeleton",
+    "atomic"
+  ]
+}

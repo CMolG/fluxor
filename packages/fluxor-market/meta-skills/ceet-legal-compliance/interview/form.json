@@ -1,0 +1,782 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-legal-compliance",
+  "title": "Legal / Compliance",
+  "nameSlot": "counsel_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "legal",
+      "compliance",
+      "contract",
+      "policy",
+      "gdpr",
+      "consent",
+      "privacy",
+      "regulatory",
+      "redline",
+      "counsel",
+      "dpa",
+      "general counsel",
+      "data protection",
+      "msa"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about legal and compliance work: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What's your role — GC, associate GC, compliance lead, DPO, legal ops, fractional?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What jurisdictions do you practice in? What jurisdictions are you explicitly *not* advising on?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.privacy.jurisdiction_focus"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "What's your company's stage, industry, and regulatory profile?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "What's your team shape (solo, team, outside counsel relationships)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.escalation.escalate_outside"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Risk posture",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "Where on the spectrum are you — paranoid, protective, pragmatic, business-forward? Where's your instinct?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.risk_posture.spectrum_position",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "Where do you think most in-house lawyers err too cautious? Too permissive?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.risk_posture.where_most_err"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "How do you frame \"no\" as \"yes, if…\"?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.risk_posture.frame_no",
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Contract playbook",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "Walk me through your standard redline positions on: liability cap, IP ownership, warranty, indemnity, termination, auto-renewal, data protection, MFN clauses.",
+              "kind": "open",
+              "required": true,
+              "minutes": 5,
+              "feeds": [
+                "directives.contract.standard_redlines"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "What's a clause you'll *always* push back on? One you'll *always* concede?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.contract.always_push",
+                "directives.contract.always_concede"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "What's your standard position on governing law and venue?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.contract.governing_law"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "What's a clause most teams ignore that you flag every time?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.contract.standard_redlines"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Escalation",
+          "questions": [
+            {
+              "id": "Q12",
+              "prompt": "What do you handle directly? What do you escalate to outside counsel?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.escalation.handle_directly",
+                "directives.escalation.escalate_outside",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "What partner-level decisions always go to your outside counsel regardless of size?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.escalation.escalate_outside"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What's a matter type where you refuse to be the final say?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.escalation.refuse_final_say",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Privacy & data protection",
+          "questions": [
+            {
+              "id": "Q15",
+              "prompt": "GDPR / CCPA / CPRA / state-by-state US / global — where's your center of gravity?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.privacy.jurisdiction_focus"
+              ]
+            },
+            {
+              "id": "Q16",
+              "prompt": "Default DPA posture — your own template or accept customer's?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.privacy.dpa_stance"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "Sub-processor discipline — how strict?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.privacy.sub_processor_strictness"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "Cross-border data transfer — your default mechanism?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.privacy.cross_border"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "title": "Disputes & incidents",
+          "questions": [
+            {
+              "id": "Q25",
+              "prompt": "Walk me through your breach-notification workflow.",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.disputes.breach_workflow",
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "How do you handle a customer dispute that's heading toward termination?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.disputes.incident_flow"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "When do you involve PR / communications?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.disputes.incident_flow"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "Legal phrases you use carefully (\"best efforts\" vs. \"commercially reasonable\", \"material\", \"including without limitation\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "Phrases you ban (in business writing) or rewrite?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q44",
+              "prompt": "Pick a hard legal call from the last few months, one where reasonable lawyers would have disagreed: a clause you let through, a launch you slowed down, a risk you accepted on the business's behalf. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.risk_posture.spectrum_position"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Tell me about a matter that went wrong or nearly did: a breach, a dispute that escalated, a clause that bit you a year later. What did you notice first, and what did you change afterward?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.disputes.incident_flow",
+                "directives.meta_cognition.knowledge_evolution"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "Think of a contract a capable, less experienced lawyer marks as ready to sign. What would they miss that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.contract.standard_redlines",
+                "directives.privacy.sub_processor_strictness",
+                "directives.ip.customer_data"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Walk me through the last contract you redlined — key positions, concessions, rationale.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you concede that?",
+                "What would have made you hold the line?"
+              ],
+              "feeds": [
+                "directives.contract.standard_redlines",
+                "directives.contract.always_concede"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "Think of two product or sales requests that carried similar legal risk, one you approved and one you blocked (or build the pair now from recent asks). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.risk_posture.frame_no",
+                "directives.escalation.refuse_final_say"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "Here is all you get: a customer's security team reports that one of your sub-processors may have exposed personal data, the facts will take a week to confirm, and a notification deadline may already be running. What do you do first, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you notify without knowing more?"
+              ],
+              "feeds": [
+                "directives.disputes.breach_workflow",
+                "directives.privacy.cross_border"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-practice",
+      "title": "Depth: policy, risk, IP and the business",
+      "optional": true,
+      "purpose": "Policy drafting, the risk register, IP, working with sales and keeping up with regulation.",
+      "sections": [
+        {
+          "id": "F",
+          "title": "Policy drafting",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "What voice do you write policies in — legalistic, plain-English, example-driven?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.voice"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "What's in your standard skeleton (purpose, scope, definitions, roles, process, review)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.skeleton"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "What do you insist on in a policy that most companies omit?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.insist_on_sections"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Risk register",
+          "questions": [
+            {
+              "id": "Q22",
+              "prompt": "What risks do you track explicitly? Re-review cadence?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.risk_register.tracking",
+                "directives.risk_register.review_cadence"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "What's a risk people underweight at your stage?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.risk_register.tracking"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "How do you communicate risk to execs — memo, heat map, narrative?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.risk_register.exec_communication"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "IP",
+          "questions": [
+            {
+              "id": "Q28",
+              "prompt": "Open-source license review stance — strict, reasonable, hands-off?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.ip.open_source_review"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "Employee IP assignment and invention assignment conventions?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.ip.employee_ip"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "Customer data — what contractual rights do you reserve for product improvement?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.ip.customer_data"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Commercial partnership",
+          "questions": [
+            {
+              "id": "Q31",
+              "prompt": "How do you work with sales — embedded, requested, bottleneck?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.risk_posture.frame_no"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "What's a sales ask you *always* refuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.contract.always_push",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "What's your SLA for turning around a contract?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Regulatory reading",
+          "questions": [
+            {
+              "id": "Q34",
+              "prompt": "How do you stay current on relevant regulation?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "What's a framework or regulation you've recently started taking more seriously?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-judgment",
+      "title": "Depth: heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "The person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "L",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "\"If a contract has {X}, I immediately {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.contract.standard_redlines"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "\"When a product team wants to launch {X}, my first question is {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.risk_posture.frame_no"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "\"I know a policy is too long when {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.skeleton",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q41",
+              "prompt": "A legal pattern or process you've outgrown.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q42",
+              "prompt": "A compliance trend you distrust (e.g. over-privileging an audit at the expense of real control).",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q49",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "A regulator's letter or a subpoena lands on a Friday afternoon, or a leaked document puts the company in the press. What do you do in the first hour, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "What legal belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "What reliably frustrates you in how a company works with its legal or compliance function?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

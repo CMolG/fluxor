@@ -1,0 +1,43 @@
+{
+  "$comment": "Identity for the portfolio-positioning skill. Fictional example.",
+  "name": "Alex Rivera",
+  "shortClaim": "Senior Software Engineer — Data Platforms",
+  "extendedClaim": "Senior data platform engineer · Go & Python · streaming pipelines · Remote (UTC-5) · Open to contract (US/EU)",
+  "availability": "Open to senior roles & select contracts · Remote (US/EU)",
+  "availabilityUpdated": "2026-09",
+  "anchorStack": ["Go", "Python", "Kafka", "PostgreSQL", "Kubernetes", "AWS"],
+  "anchorProofs": [
+    {
+      "text": "Rebuilt a logistics platform's ingestion pipeline: p95 latency from 4 s to 300 ms",
+      "artifactUrl": "https://example.com/work/ingestion-rewrite",
+      "context": "Lead engineer, team of four, 2024-2025"
+    },
+    {
+      "text": "Maintains an open-source schema-migration tool used by 300+ teams",
+      "artifactUrl": "https://example.com/oss/migrate-kit",
+      "context": "Sole maintainer since 2022"
+    },
+    {
+      "text": "Designed, built and runs the two products on this site",
+      "artifactUrl": "https://example.com/products",
+      "context": "End to end, in production since 2023"
+    }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/alex-rivera-example",
+    "https://github.com/alex-rivera-example",
+    "https://example.social/@alexrivera"
+  ],
+  "publicEmail": "alex@example.com",
+  "hubPath": "/hire",
+  "hiringLanguage": "en",
+  "siteUrl": "https://example.com",
+  "organizationName": "Rivera Labs",
+  "imageUrl": "https://example.com/assets/alex-rivera.jpg",
+  "resumeUrl": "https://example.com/alex-rivera-resume.pdf",
+  "timezone": "UTC-5 (US Eastern)",
+  "location": "Austin, Texas",
+  "category": "senior engineer who ships data platforms to production",
+  "writingStructure": "Open long pieces with a short introduction and the author's motivation before the subject.",
+  "voice": "Plain, first person, numbers over adjectives, no hype words."
+}

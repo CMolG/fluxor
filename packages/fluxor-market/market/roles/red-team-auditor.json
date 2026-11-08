@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "red-team-auditor",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdGavel",
+  "iconLibrary": "react-icons/md",
+  "description": "Stress-tests capabilities, claims and copy as a skeptical buyer and as a hostile competitor would, and rejects whatever does not survive.",
+  "tags": [
+    "flow",
+    "market",
+    "audit",
+    "red-team",
+    "claims"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "betterOn": "anthropic/claude-opus-4.6",
+  "color": "F5B7B1",
+  "palette": {
+    "background": "F5B7B1",
+    "text": "111111",
+    "accents": "1C4880",
+    "hover": "E89F98"
+  },
+  "toolTier": "read"
+}

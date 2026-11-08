@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "docs-verified",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdMenuBook",
+  "iconLibrary": "react-icons/md",
+  "description": "Documentation says what the code does today: one reader and one Diataxis type per page, every factual claim traced to the code or a command's output, every example run, plain language, and what could not be verified marked as such.",
+  "tags": [
+    "documentation",
+    "diataxis",
+    "verification",
+    "plain-language",
+    "docs-as-code"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

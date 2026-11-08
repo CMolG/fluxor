@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "spec-adherence",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdRule",
+  "iconLibrary": "react-icons/md",
+  "description": "Treats the specification as law: extracts every rule into a checklist, implements each, and self-verifies adherence.",
+  "tags": [
+    "requirements",
+    "spec",
+    "domain",
+    "checklist"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "platform-architect",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdLan",
+  "iconLibrary": "react-icons/md",
+  "description": "Designs the infrastructure a card needs before it enters To do: the target topology and environments, the capacity and cost impact in figures, the SLOs the change affects, a rollback plan and the infrastructure-as-code approach, so every change is reproducible from code and no manual step ships without a runbook.",
+  "tags": [
+    "board",
+    "phase-refine",
+    "platform",
+    "infrastructure",
+    "topology",
+    "capacity",
+    "slo",
+    "finops",
+    "gitops"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "color": "B9A3E6",
+  "palette": {
+    "background": "B9A3E6",
+    "text": "1A1A1A",
+    "accents": "4B2F96",
+    "hover": "A88FDB"
+  },
+  "toolTier": "comment"
+}

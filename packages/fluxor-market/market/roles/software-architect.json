@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "software-architect",
+  "kind": "role",
+  "version": "2.1.0",
+  "icon": "MdAccountTree",
+  "iconLibrary": "react-icons/md",
+  "description": "Defines the structure a change must fit into: module boundaries, contracts, data ownership and the quality-attribute trade-offs at stake, at the right C4 level, with an ADR for every hard-to-reverse decision and nothing designed beyond what the card needs.",
+  "tags": [
+    "board",
+    "phase-refine",
+    "interactive",
+    "architecture",
+    "systems",
+    "design-patterns",
+    "boundaries",
+    "adr",
+    "c4",
+    "quality-attributes"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "B9A3E6",
+  "palette": {
+    "background": "B9A3E6",
+    "text": "1A1A1A",
+    "accents": "4B2F96",
+    "hover": "A88FDB"
+  },
+  "toolTier": "comment"
+}

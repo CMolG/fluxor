@@ -1,0 +1,64 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-core",
+  "kind": "skill",
+  "version": "2.3.0",
+  "packaging": "traditional",
+  "description": "The shared method and tools of the CEET meta-skills: interview protocol and consent, synthesis rules, the pack contract, a deterministic renderer with tool adapters, the pack validator, checks, decision retrieval and fidelity measurement.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "methodology"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write",
+      "git"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "tools": [
+    {
+      "name": "ceet_interview",
+      "command": ["python3", "scripts/interview.py"],
+      "description": "Records consent and verbatim answers of a CEET interview, and says what to ask next from the gaps in the profile."
+    },
+    {
+      "name": "ceet_render_pack",
+      "command": ["python3", "scripts/render_pack.py"],
+      "description": "Renders a pack from its cognitive profile (dry run first), runs the teachback, installs adapters and erases a pack."
+    },
+    {
+      "name": "ceet_validate_pack",
+      "command": ["python3", "scripts/validate_pack.py"],
+      "description": "Validates an interview or simulated pack against its role: consent, slots, references, evidence, privacy, drift."
+    },
+    {
+      "name": "ceet_examples",
+      "command": ["python3", "scripts/examples.py"],
+      "description": "Retrieves the person's real decisions closest to a task from a pack's examples."
+    },
+    {
+      "name": "ceet_check",
+      "command": ["python3", "scripts/ceet_check.py"],
+      "description": "Runs a pack's mechanical checks (secrets, commit message format, banned patterns) and their bench."
+    },
+    {
+      "name": "ceet_fidelity",
+      "command": ["python3", "scripts/fidelity.py"],
+      "description": "Measures how well a pack decides like its person against held-out decisions and their own consistency."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "evals/**",
+      "tests/**"
+    ]
+  }
+}

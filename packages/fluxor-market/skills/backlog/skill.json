@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "backlog",
+  "kind": "skill",
+  "version": "1.41.0",
+  "packaging": "traditional",
+  "description": "A provider-agnostic session protocol for an MCP-backed backlog: resume before pick, unblock the sprint before leaving it, a ready card before an action plan, action plan before code, status reports, review before done, human walls, and Radar-style card references in code and commits. Officium is the first adapter.",
+  "tags": [
+    "backlog",
+    "kanban",
+    "mcp",
+    "workflow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "network",
+      "fs.read",
+      "git"
+    ],
+    "runtimes": [
+      "python>=3.9",
+      "node>=18?"
+    ]
+  },
+  "config": {
+    "file": "backlog.json",
+    "schema": "config.schema.json",
+    "example": "config.example.json"
+  },
+  "tools": [
+    {
+      "name": "card_refs",
+      "command": [
+        "python3",
+        "scripts/card_refs.py"
+      ],
+      "description": "Lists card references (card://KEY) in the code, counts them per card, and flags temporary references to closed cards."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "softDeps": [
+    {
+      "what": "The jira-agentic-requirements-pipeline skill, to select the questions a card that is not ready needs and render them as a requestHuman draft",
+      "fallback": "Ask the questions of references/readiness.md by hand, and write the wall card from them."
+    }
+  ]
+}

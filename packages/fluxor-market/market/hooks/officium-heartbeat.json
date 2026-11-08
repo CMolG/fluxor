@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "officium-heartbeat",
+  "kind": "hook",
+  "version": "1.2.1",
+  "description": "Keeps the Officium card an agent works lit on the board from each tool call, at zero model tokens, with a ticker during long shell calls, background ones included.",
+  "tags": [
+    "officium",
+    "monitoring",
+    "agents"
+  ],
+  "event": "preTool",
+  "timeoutMs": 5000,
+  "sends": {
+    "to": "{{OFFICIUM_API}}",
+    "what": [
+      "a one-line status built from the tool call (a shell call's description, or the name of the file being read or edited)",
+      "the machine's name",
+      "the model and effort of the session's last reply",
+      "the account's Officium heartbeat token, to authenticate"
+    ]
+  }
+}

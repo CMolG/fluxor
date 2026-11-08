@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pack.schema.json",
+  "title": "CEET pack manifest",
+  "description": "pack.json, written by render_pack.py: which meta-skill and form a pack came from, the consent it was made under, and the hash of every shared file, so drift and erasure are mechanical.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packId", "metaSkill", "formVersion", "source", "profileVersion", "renderedAt", "consent", "templatesHash", "files"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "packId": { "$ref": "common.schema.json#/$defs/packId" },
+    "metaSkill": {
+      "description": "The meta-skill id, with `@<version>` when the renderer could read it.",
+      "type": "string",
+      "pattern": "^ceet-[a-z0-9-]+(@[0-9]+\\.[0-9]+\\.[0-9]+)?$"
+    },
+    "formVersion": { "$ref": "common.schema.json#/$defs/version" },
+    "source": { "enum": ["interview", "simulation"] },
+    "profileVersion": { "$ref": "common.schema.json#/$defs/version" },
+    "renderedAt": { "$ref": "common.schema.json#/$defs/date" },
+    "consent": { "$ref": "common.schema.json#/$defs/consent" },
+    "templatesHash": {
+      "description": "SHA-256 over the role's template paths and contents: the template set the pack was rendered from.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "files": {
+      "description": "Every shared file of the pack (not private/), with its SHA-256.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "installed": {
+      "description": "Adapter files copied into the project, so erasure can remove them.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["adapter", "path", "sha256"],
+        "properties": {
+          "adapter": { "type": "string", "minLength": 2 },
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    }
+  }
+}

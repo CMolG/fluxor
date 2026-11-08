@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cognitive-profile.schema.json",
+  "title": "CEET cognitive profile",
+  "description": "The ground truth of a pack: every slot of the role's profile template as data. The slots a given role requires are derived from its templates/cognitive-profile.md; validate_pack.py checks them. Verbatim answers are not here: they stay in the pack's private/answers.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "artifactType", "role", "formVersion", "source", "name", "consent", "identity", "directives"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "2.0.0" },
+    "artifactType": { "const": "cognitive-profile" },
+    "role": {
+      "description": "The meta-skill id (`ceet-backend-engineer`).",
+      "type": "string",
+      "pattern": "^ceet-[a-z0-9-]+$"
+    },
+    "formVersion": {
+      "description": "The version of the role's form.json the answers were given to; [Q<n>] references resolve against it.",
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "source": { "enum": ["interview", "simulation"] },
+    "name": {
+      "description": "The person's name or chosen alias; fills the role's name slot.",
+      "type": "string",
+      "minLength": 1
+    },
+    "meta": {
+      "description": "Header values. The renderer fills `date` and `fingerprint_hash` when they are missing.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date": { "$ref": "common.schema.json#/$defs/date" },
+        "version": { "$ref": "common.schema.json#/$defs/version" },
+        "fingerprint_hash": { "type": "string", "pattern": "^[0-9a-f]{12}$" }
+      }
+    },
+    "consent": { "$ref": "common.schema.json#/$defs/consent" },
+    "identity": {
+      "type": "object",
+      "additionalProperties": { "$ref": "common.schema.json#/$defs/slotValue" }
+    },
+    "directives": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "$ref": "common.schema.json#/$defs/slotValue" }
+      }
+    },
+    "contradictions": {
+      "description": "Tensions between answers, kept as data (synthesis rule 5). Rendered into `{identity.contradictions}` when that slot has no value of its own.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tension", "question_a", "question_b"],
+        "properties": {
+          "tension": { "type": "string", "minLength": 5 },
+          "question_a": { "type": "string", "pattern": "^(Q|E)[1-9][0-9]*$" },
+          "question_b": { "type": "string", "pattern": "^(Q|E)[1-9][0-9]*$" },
+          "resolution": { "type": "string" }
+        }
+      }
+    },
+    "checks": {
+      "description": "The person's rules that are not judgment calls, as data for ceet_check.py (plan item 2.4). Optional; only what the person stated precisely.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "commitMessage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pattern", "source"],
+          "properties": {
+            "pattern": { "description": "A Python regular expression the first line of a commit message must match.", "type": "string", "minLength": 2 },
+            "example": { "type": "string" },
+            "source": { "type": "string", "pattern": "^(Q|E)[1-9][0-9]*$" }
+          }
+        },
+        "forbidden": {
+          "description": "Patterns that must not appear in added lines of the files a glob selects.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "pattern", "message", "source"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+              "pattern": { "type": "string", "minLength": 1 },
+              "paths": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+              "message": { "type": "string", "minLength": 5 },
+              "source": { "type": "string", "pattern": "^(Q|E)[1-9][0-9]*$" },
+              "blocks": { "description": "A line the check must block (its bench case).", "type": "string", "minLength": 1 },
+              "passes": { "description": "A line the check must let through (its bench case).", "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "secrets": {
+          "description": "Run the built-in secret scan on commits (no judgment call; on by default when the pack has hooks).",
+          "type": "boolean"
+        }
+      }
+    },
+    "review": {
+      "description": "Decisions the person made while reviewing the synthesis.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "specialCategoryCleared": {
+          "description": "Slots whose mention of health, beliefs or another special category the person reviewed and chose to keep, because it is about the work and they want it there.",
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z_][a-z0-9_]*(\\.[a-z0-9_]+)+$" }
+        }
+      }
+    },
+    "teachback": {
+      "description": "Whether the person reviewed every directive (plan item 4.3).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["pending", "done"] },
+        "date": { "$ref": "common.schema.json#/$defs/date" }
+      }
+    }
+  }
+}

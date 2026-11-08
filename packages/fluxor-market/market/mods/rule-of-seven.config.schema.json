@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rule-of-seven.config.schema.json",
+  "title": "rule-of-seven: .harness/config/rule-of-seven.json",
+  "description": "How many rival gaps, capabilities and touchpoints a market strategy holds, for the rule-of-seven mod. Every key is optional; `$`-prefixed keys are comments.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^\\$": {
+      "description": "A comment (for example `$comment`) or `$schema`; ignored."
+    }
+  },
+  "properties": {
+    "count": {
+      "description": "The number of rival gaps, capabilities and touchpoints. The mod refuses a count above the number of drivers it lists. Default: 7.",
+      "type": "integer",
+      "minimum": 1,
+      "default": 7
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$comment": "Backlog settings for the backlog skill. Keys: see its SKILL.md.",
+  "provider": "officium",
+  "mcpServer": "officium",
+  "mcpUrl": "https://javadaba.com/api/officium/mcp",
+  "boardUrl": "https://javadaba.com/officium/app",
+  "project": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "name": "My Project"
+  },
+  "keyPrefix": "PROJ",
+  "legacyKeyPrefixes": [
+    "HUMAN"
+  ],
+  "statuses": {
+    "backlog": "todo",
+    "doing": "doing",
+    "review": "review",
+    "deploy": "deploy",
+    "done": "done"
+  },
+  "sprints": "auto",
+  "machineName": "hostname",
+  "statusReportMinutes": 10,
+  "codeReferences": {
+    "scheme": "card"
+  }
+}

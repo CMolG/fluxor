@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "backlog-session-start",
+  "kind": "hook",
+  "version": "1.0.0",
+  "description": "At the start of a session, reminds the agent of the backlog's session order with this project's id and this machine's name, read from the harness's backlog config; sends nothing.",
+  "tags": [
+    "backlog",
+    "agents"
+  ],
+  "event": "sessionStart",
+  "timeoutMs": 5000,
+  "sends": null
+}

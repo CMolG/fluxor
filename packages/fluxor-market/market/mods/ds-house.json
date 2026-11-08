@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "ds-house",
+  "kind": "mod",
+  "version": "1.2.0",
+  "icon": "MdDiamond",
+  "iconLibrary": "react-icons/md",
+  "description": "Pins all UI to the project's own in-house design system: primitives from the house UI package (never re-implemented locally), one brand-color source, precomputed contrast-safe ink tokens, and the house visual signature over the substrate's template look.",
+  "tags": [
+    "design-system",
+    "ui",
+    "ux",
+    "tokens",
+    "brand",
+    "identity",
+    "polish"
+  ],
+  "exclusiveGroup": "design-system",
+  "domains": [
+    "frontend"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt",
+  "config": {
+    "file": "ds-house.json",
+    "schema": "ds-house.config.schema.json",
+    "example": "ds-house.config.example.json"
+  }
+}

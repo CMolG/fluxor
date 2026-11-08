@@ -1,0 +1,157 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "rule-of-seven-vanguard",
+  "kind": "flow",
+  "version": "1.0.0",
+  "stability": "experimental",
+  "recommendedComplexity": "high",
+  "cost": "finite",
+  "icon": "MdTrendingUp",
+  "iconLibrary": "react-icons/md",
+  "description": "Turns a product's mind map and its rivals' weaknesses into a fixed-count market strategy: rival gaps, defensible capabilities, micro-sale copy, a conversion page blueprint and a red-team audit that loops back until the items pass.",
+  "tags": [
+    "strategy",
+    "positioning",
+    "landing-page",
+    "conversion",
+    "rule-of-seven",
+    "finite"
+  ],
+  "noteTypes": [
+    {
+      "id": "CoreVision",
+      "description": "The root product thesis and the target audience."
+    },
+    {
+      "id": "CompetitorWeakness",
+      "description": "Observed complaints or limits in rival tools."
+    },
+    {
+      "id": "RawFeatureIdea",
+      "description": "Unfiltered product ideas from the user's brain dump."
+    },
+    {
+      "id": "BuyerObjection",
+      "description": "Reasons a prospect hesitates to buy or switch."
+    }
+  ],
+  "steps": [
+    {
+      "id": "rival-gap-analysis",
+      "prompt": "Find the closest direct rival to the product in the core-vision note, and extract its structural weaknesses. Use the competitor-gap-extractor method: every claim cites a public source, and each gap is scored on defensibility and user pain. Use the competitive weakness notes as the primary input; use the core vision as context only. When no weakness note exists for a gap you found, research it from public sources and say so in the output. Produce a RivalGapsMatrix with exactly the gap count the rule-of-seven mod sets. For each gap, state whether the product already covers it, with evidence from its code or documents.",
+      "roleId": "competitive-intelligence-strategist",
+      "modIds": [
+        "rule-of-seven",
+        "competitor-gap-extractor",
+        "idea-map-synthesizer"
+      ],
+      "prevStepIds": [],
+      "noteBindings": [
+        {
+          "type": "CompetitorWeakness",
+          "mode": "primary-input"
+        },
+        {
+          "type": "CoreVision",
+          "mode": "read-context"
+        }
+      ]
+    },
+    {
+      "id": "product-moat-architecture",
+      "prompt": "Turn the raw product ideas and the rival gaps into product capabilities. Group the raw feature ideas into pillars with the idea-map-synthesizer method, merge duplicates with the semantic-deduplicator method, and tie each capability to one rival gap and one user outcome. Use the raw feature ideas as the primary input and the core vision as context. When no raw idea covers a gap, research the capability from public sources and say so in the output. Produce a ProductCapabilitiesSpec with exactly the capability count the rule-of-seven mod sets. For each capability, state whether the product already has it, with evidence from its code or documents, or that it does not have it.",
+      "roleId": "asymmetric-product-architect",
+      "modIds": [
+        "rule-of-seven",
+        "idea-map-synthesizer",
+        "competitor-gap-extractor",
+        "semantic-deduplicator"
+      ],
+      "prevStepIds": [
+        "rival-gap-analysis"
+      ],
+      "noteBindings": [
+        {
+          "type": "RawFeatureIdea",
+          "mode": "primary-input"
+        },
+        {
+          "type": "CoreVision",
+          "mode": "read-context"
+        }
+      ]
+    },
+    {
+      "id": "landing-micro-sales",
+      "prompt": "Write one micro-sale for each capability in the capability spec, with the micro-sale-copywriting method: a hook that names the friction, the mechanism, the asymmetric proof against the rival, and a single micro-close. Answer the buyer objections in the copy where they bite, using the buyer objection notes as the primary input and the core vision as context. Remove the duplicates with the semantic-deduplicator method. When no buyer objection note covers a capability, research the likely objection from public sources and say so in the output. Produce a MicroSalesCopyDeck with exactly the touchpoint count the rule-of-seven mod sets, one block per capability, in plain language a non-technical buyer understands in under five seconds.",
+      "roleId": "conversion-copywriter",
+      "modIds": [
+        "rule-of-seven",
+        "micro-sale-copywriting",
+        "semantic-deduplicator"
+      ],
+      "prevStepIds": [
+        "product-moat-architecture"
+      ],
+      "noteBindings": [
+        {
+          "type": "BuyerObjection",
+          "mode": "primary-input"
+        },
+        {
+          "type": "CoreVision",
+          "mode": "read-context"
+        }
+      ]
+    },
+    {
+      "id": "landing-ux-blueprint",
+      "prompt": "Design the conversion page that carries the copy deck: the order of the sections, the layout pattern of each one, the primary element of each, and the states of every interactive block. Use the progressive-disclosure method so the page moves from the value proposition to the interactive proof, alternating the layout pattern of consecutive sections. Keep the micro-sale structure of the copy deck intact. Use the core vision as context. Produce a LandingUXBlueprint with one section per touchpoint of the copy deck, each with its pattern, its job and its loading, empty, error and success states.",
+      "roleId": "conversion-ux-architect",
+      "modIds": [
+        "rule-of-seven",
+        "progressive-disclosure",
+        "micro-sale-copywriting"
+      ],
+      "prevStepIds": [
+        "product-moat-architecture",
+        "landing-micro-sales"
+      ],
+      "noteBindings": [
+        {
+          "type": "CoreVision",
+          "mode": "read-context"
+        }
+      ]
+    },
+    {
+      "id": "red-team-audit",
+      "prompt": "Audit the capability spec and the copy deck as a skeptical buyer and as a hostile competitor. Test every item against the three tests: the claim has its cited evidence; the item is not a duplicate of another item; a non-technical reader understands it in a few seconds. Use the buyer objection notes as the primary input, to check that each objection is answered, and the competitor weakness notes as read-context, to check that no claim about a rival lacks its source. Produce an AuditValidationReport with a verdict for each item. Each failing item carries a rewrite direction that the capability or copy step can follow. Do not rewrite the items yourself.",
+      "roleId": "red-team-auditor",
+      "modIds": [
+        "rule-of-seven",
+        "semantic-deduplicator",
+        "micro-sale-copywriting"
+      ],
+      "prevStepIds": [
+        "product-moat-architecture",
+        "landing-micro-sales",
+        "landing-ux-blueprint"
+      ],
+      "loopBackTo": {
+        "stepId": "product-moat-architecture",
+        "maxIterations": 2
+      },
+      "noteBindings": [
+        {
+          "type": "BuyerObjection",
+          "mode": "primary-input"
+        },
+        {
+          "type": "CompetitorWeakness",
+          "mode": "read-context"
+        }
+      ]
+    }
+  ]
+}

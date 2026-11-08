@@ -1,0 +1,53 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "atoms",
+  "kind": "skill",
+  "version": "1.2.0",
+  "packaging": "traditional",
+  "description": "Inspects, explains or changes the market atom set (role, mods, steps) mounted for a task, adds atoms to the market, and ships the prompt hook that mounts the set on every prompt.",
+  "tags": [
+    "market",
+    "atoms",
+    "roles",
+    "mods",
+    "harness"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read"
+    ],
+    "atoms": [
+      "atoms-engine@1"
+    ],
+    "runtimes": [
+      "python>=3.9",
+      "jq?"
+    ]
+  },
+  "config": {
+    "file": "atoms.json",
+    "schema": "config.schema.json",
+    "example": "config.example.json"
+  },
+  "hooks": [
+    {
+      "event": "UserPromptSubmit",
+      "command": "hooks/prepare-batch.sh",
+      "timeout": 10,
+      "blocking": false
+    }
+  ],
+  "tools": [
+    {
+      "name": "atoms",
+      "command": [
+        "python3",
+        "atoms.py"
+      ],
+      "description": "Mounts, explains, lists and shows market atoms for an intent, and reports what the prompt hook mounted."
+    }
+  ]
+}

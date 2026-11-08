@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "docs-sync",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdHistoryEdu",
+  "iconLibrary": "react-icons/md",
+  "description": "Every change updates the README, API references, and changelog entries it invalidates — stale docs are defects.",
+  "tags": [
+    "documentation",
+    "changelog",
+    "readme",
+    "sync"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

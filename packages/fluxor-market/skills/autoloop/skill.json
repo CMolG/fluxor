@@ -1,0 +1,54 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "autoloop",
+  "kind": "skill",
+  "version": "1.18.0",
+  "packaging": "traditional",
+  "description": "Runs the backlog with N background Claude sessions in parallel, one card each in its own git worktree, integrating into one control branch: a detached supervisor recycles each session between cards, an atomic per-card claim keeps two sessions off one card, and the review ends by merging into the control branch and pushing without ever forcing.",
+  "tags": [
+    "backlog",
+    "agents",
+    "worktrees",
+    "workflow",
+    "automation"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write",
+      "git",
+      "shell",
+      "network"
+    ],
+    "atoms": [
+      "backlog@1"
+    ],
+    "runtimes": [
+      "node>=18",
+      "gh?"
+    ]
+  },
+  "config": {
+    "file": "autoloop.json",
+    "schema": "config.schema.json",
+    "example": "config.example.json"
+  },
+  "tools": [
+    {
+      "name": "autoloop",
+      "command": [
+        "node",
+        "scripts/autoloop.mjs"
+      ],
+      "description": "Starts, inspects and stops the parallel loop, and gives its workers card claims, card branches and the integration into the control branch."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "tests/**"
+    ]
+  }
+}

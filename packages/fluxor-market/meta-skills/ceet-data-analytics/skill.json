@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-data-analytics",
+  "kind": "skill",
+  "version": "2.0.1",
+  "packaging": "meta",
+  "description": "Interviews a data analyst about metrics, hypotheses, experimentation and SQL/Python work, and renders the answers into their cognitive clone and a pack of agents, skills, commands and rules that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "analytics",
+    "metrics",
+    "experimentation"
+  ],
+  "domains": [
+    "data"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}

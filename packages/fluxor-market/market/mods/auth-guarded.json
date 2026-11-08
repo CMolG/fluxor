@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "auth-guarded",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdLock",
+  "iconLibrary": "react-icons/md",
+  "description": "Requires authentication and authorization (RBAC) on every route, endpoint, and server action; default-deny access with explicit grants.",
+  "tags": [
+    "auth",
+    "authentication",
+    "authorization",
+    "rbac"
+  ],
+  "domains": [
+    "backend",
+    "web"
+  ],
+  "precedence": "security",
+  "enforcement": "prompt"
+}

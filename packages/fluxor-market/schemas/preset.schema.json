@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "preset.schema.json",
+  "title": "Preset manifest",
+  "description": "A named bundle of the market's skills and hooks that a project adds in one step: `market/presets/<id>.json`, a manifest with no files. The catalog seed turns it into a `preset` row whose `spec.items` are these items as written; Fluxor adds them with their params as one revision, and `marketplace.py install` expands a preset a project's `harness.json` selects into its items.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "version",
+    "title",
+    "description",
+    "items"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "kind": {
+      "const": "preset"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "stability": {
+      "$ref": "common.schema.json#/$defs/stability"
+    },
+    "title": {
+      "description": "The preset's name as a person reads it, on the catalog card and the support page.",
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 80
+    },
+    "description": {
+      "$ref": "common.schema.json#/$defs/description"
+    },
+    "tags": {
+      "$ref": "common.schema.json#/$defs/tags"
+    },
+    "items": {
+      "description": "What the preset adds, in order. Each key is a skill or a hook of this market (never a preset or a meta-skill). No version: the catalog adds each item's newest version.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key"
+        ],
+        "properties": {
+          "key": {
+            "$ref": "common.schema.json#/$defs/atomId"
+          },
+          "params": {
+            "description": "The item's default params: what `{{NAME}}` in its files is replaced with and, for a skill that declares a config, the content of its config file. Any JSON value but null; every string in it, at any depth, travels verbatim, and its `{{NAME}}` is resolved by whoever renders the files.",
+            "type": "object",
+            "additionalProperties": {
+              "type": ["string", "number", "boolean", "object", "array"]
+            }
+          }
+        }
+      }
+    },
+    "precedenceTemplates": {
+      "description": "Ready-made Officium precedence rules (ADR 0032, JAVA-1692) a person imports into a project: a release train, a compliance-first list. A rule is the ADR's own shape; `{{NAME}}` tokens may stand only inside `match.epics` and `match.tags` values, each declared in `placeholders`. Importing COPIES the filled rules into the project's own setting: nothing is read from here at `cards.next` time.",
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "description", "rules"],
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/atomId" },
+          "title": { "type": "string", "minLength": 3, "maxLength": 80 },
+          "description": { "type": "string", "minLength": 10, "maxLength": 500 },
+          "placeholders": {
+            "type": "array",
+            "maxItems": 10,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "label"],
+              "properties": {
+                "key": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{0,31}$" },
+                "label": { "type": "string", "minLength": 3, "maxLength": 80 }
+              }
+            }
+          },
+          "rules": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "reason", "match"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "reason": { "type": "string", "minLength": 1, "maxLength": 500 },
+                "match": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "epics": { "$ref": "#/$defs/values" },
+                    "tags": { "$ref": "#/$defs/values" },
+                    "categories": { "$ref": "#/$defs/values" },
+                    "signals": { "$ref": "#/$defs/values" }
+                  }
+                },
+                "defaults": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "priority": { "enum": ["superHigh", "high", "medium", "low", "superLow"] },
+                    "sprint": { "enum": ["none", "join"] }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "values": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+    }
+  }
+}

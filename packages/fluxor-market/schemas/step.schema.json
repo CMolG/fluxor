@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "step.schema.json",
+  "title": "Step manifest",
+  "description": "ONE move: an atomic, reusable unit of a plan. The step prompt is the sibling `<id>.md`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "version",
+    "description",
+    "tags",
+    "icon",
+    "iconLibrary"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "kind": {
+      "const": "step"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "stability": {
+      "$ref": "common.schema.json#/$defs/stability"
+    },
+    "aliases": {
+      "$ref": "common.schema.json#/$defs/aliases"
+    },
+    "description": {
+      "$ref": "common.schema.json#/$defs/description"
+    },
+    "tags": {
+      "$ref": "common.schema.json#/$defs/tags"
+    },
+    "domains": {
+      "$ref": "common.schema.json#/$defs/domains"
+    },
+    "requires": {
+      "$ref": "common.schema.json#/$defs/requires"
+    },
+    "icon": {
+      "$ref": "common.schema.json#/$defs/icon"
+    },
+    "iconLibrary": {
+      "$ref": "common.schema.json#/$defs/iconLibrary"
+    },
+    "contract": {
+      "$ref": "common.schema.json#/$defs/contract"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I run discovery calls so Claude preps my calls the way I do", "should_trigger": true},
+  {"query": "I'm an enterprise AE selling to hospitals. Build me an AI setup that writes cold emails like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my sales thinking into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a seller? mid-market SaaS, 60-day cycles", "should_trigger": true},
+  {"query": "our top rep is leaving and agreed to be interviewed so an assistant keeps her objection handling and walk-away rules", "should_trigger": true},
+  {"query": "capture how I qualify and disqualify deals, so any AI tool reviews my pipeline my way", "should_trigger": true},
+  {"query": "run the CEET sales interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my negotiation judgment — anchoring, discount ladder, when I walk — for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about champions and multi-threading into agents and rules for my AI assistant", "should_trigger": true},
+  {"query": "re-run my sales cognitive profile, I changed how I forecast commit since last year", "should_trigger": true},
+  {"query": "write a cold email to the VP of operations at Acme about our scheduling product", "should_trigger": false},
+  {"query": "interview me about how I run QBRs and save at-risk accounts so an AI does renewals like me", "should_trigger": false},
+  {"query": "clone our head of growth's positioning and channel playbook for an AI assistant", "should_trigger": false},
+  {"query": "capture how our founder pitches investors and decides fundraising into an AI profile", "should_trigger": false},
+  {"query": "build a simulated sales profile of how a famous sales author thinks, from his books", "should_trigger": false},
+  {"query": "score this deal with MEDDICC and tell me if it will close", "should_trigger": false},
+  {"query": "rank our account executives by win rate and tell me who to put on a performance plan", "should_trigger": false},
+  {"query": "write a job description for a senior AE and a rubric for the mock discovery call", "should_trigger": false},
+  {"query": "which CEET role should I use for someone who does both sales and account management?", "should_trigger": false},
+  {"query": "interview our pricing analyst about discount approval rules for an AI clone", "should_trigger": false}
+]

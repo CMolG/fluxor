@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about my visual design taste so Claude critiques mocks the way I do", "should_trigger": true},
+  {"query": "I own the design system at a SaaS company. Build me an AI setup that reviews components like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my design taste into something I can load in ChatGPT and Claude", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a UI designer? I design our dashboard and mobile app", "should_trigger": true},
+  {"query": "our lead designer is leaving and agreed to be interviewed so an assistant keeps his type scale, spacing and critique voice", "should_trigger": true},
+  {"query": "capture how I think about color tokens, dark mode and contrast, so any AI tool designs my way", "should_trigger": true},
+  {"query": "run the CEET UI designer interview with me, I have forty minutes now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my design judgment — grid, type, motion, states — for Cursor and Gemini", "should_trigger": true},
+  {"query": "turn my answers about component variants and Figma conventions into agents and rules for my design assistant", "should_trigger": true},
+  {"query": "re-run my UI designer cognitive profile, I changed my motion and reduced-motion defaults since last year", "should_trigger": true},
+  {"query": "design a pricing page layout for our app", "should_trigger": false},
+  {"query": "interview me about how I build React components and handle accessibility so an AI codes UI like me", "should_trigger": false},
+  {"query": "capture how our UX researcher runs usability tests into an AI profile", "should_trigger": false},
+  {"query": "clone our copywriter's voice for button labels and empty states", "should_trigger": false},
+  {"query": "build a simulated UI designer profile of how Stripe's design team works, from their public sites", "should_trigger": false},
+  {"query": "check this screen's color contrast against WCAG 2.2", "should_trigger": false},
+  {"query": "write a job description for a senior product designer and a rubric for the portfolio review", "should_trigger": false},
+  {"query": "which CEET role should I use for a design engineer who writes most of the UI code?", "should_trigger": false},
+  {"query": "rate our designers' mockups this quarter and rank them", "should_trigger": false},
+  {"query": "interview our marketer about brand positioning for an AI clone", "should_trigger": false}
+]

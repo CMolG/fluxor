@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-frontend-engineer",
+  "kind": "skill",
+  "version": "2.0.0",
+  "packaging": "meta",
+  "description": "Interviews a frontend engineer about UI state, rendering, accessibility and client performance, and renders the answers into their cognitive clone and a pack of agents, skills, commands, rules and hooks that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "frontend",
+    "ui",
+    "accessibility"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}

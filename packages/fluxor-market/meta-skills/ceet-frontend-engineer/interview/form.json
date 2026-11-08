@@ -1,0 +1,957 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-frontend-engineer",
+  "title": "Frontend Engineer",
+  "nameSlot": "engineer_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "frontend",
+      "ui",
+      "component",
+      "react",
+      "vue",
+      "svelte",
+      "css",
+      "browser",
+      "render",
+      "accessibility",
+      "a11y",
+      "typescript",
+      "hydration",
+      "web vitals",
+      "storybook"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about UI: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What surface do you own (marketing site, app, design system, internal tools)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What's your framework + build + styling stack?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.styling.methodology"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "Who are your users (consumer, B2B, internal), and what's their typical device / network?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.performance.web_vitals_priority"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "How large is your component library or design system, and are you a consumer or author of it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.styling.deviation_policy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Mental models",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "When you see a new screen in a design file, what do you mentally break it into first — layout regions, components, data dependencies, or states?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.decision_framework",
+                "directives.component_design.composition_philosophy"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "Do you think of a component primarily as a *unit of data*, a *unit of markup*, a *unit of behavior*, or a *unit of visual identity*? Has that answer changed over your career?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.component_design.composition_philosophy"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "How do you explain \"reactive UI\" to someone who's never written any?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "State",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "What goes in local state, what gets lifted, what belongs in a store, and what belongs in the URL?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.state_management.local_vs_global_rules",
+                "directives.state_management.url_state_policy"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "Server state vs. client state — where do you draw the line, and what library/pattern do you reach for?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.state_management.server_vs_client_state"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "What's an anti-pattern around state that you see constantly in other people's code?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.state_management.anti_patterns"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Component architecture",
+          "questions": [
+            {
+              "id": "Q12",
+              "prompt": "What makes a component \"too big\" for you? What's your refactor trigger?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.component_design.size_triggers",
+                "directives.code_review.refactoring_stance"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "How do you feel about prop-drilling, render props, slots, composition, and context? Rank them, roughly.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.component_design.prop_drilling_stance"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "Do you design for *composition* or *configuration* first? Example?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.component_design.composition_vs_configuration"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "What's a component pattern you reach for that most people don't?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.component_design.composition_philosophy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Accessibility",
+          "questions": [
+            {
+              "id": "Q24",
+              "prompt": "Walk me through what you check before merging a component. (If they don't say \"keyboard,\" probe specifically.)",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "What do you check with the keyboard alone, and in what order?"
+              ],
+              "feeds": [
+                "directives.accessibility.pre_merge_checklist",
+                "directives.accessibility.keyboard_navigation"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "What ARIA pattern do you reach for most often, and which one do you consistently see people misuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.accessibility.aria_patterns"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "What's your stance on \"div soup\"? How militant are you on semantic HTML?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.accessibility.semantic_html_stance"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "What automated / manual a11y checks are in your workflow?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.accessibility.testing_approach"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "title": "Taste & heroes",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "Name 2-3 websites or apps whose frontend craft you admire. What specifically?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.core_values",
+                "directives.personality.quality_calibration"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "What's a UI pattern that looks fashionable right now but you distrust?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q41",
+              "prompt": "What's a small detail (focus rings, loading behavior, hover states) you care about that others overlook?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q42",
+              "prompt": "What do you consistently reject in PRs?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.code_review.blocking_criteria"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "What's a pattern you outgrew — used to love, now avoid?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q44",
+              "prompt": "Any local vocabulary for components or patterns? (e.g. \"composer\", \"island\", \"shell\", \"chrome\"...)",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Any words you refuse to use (\"beautiful\", \"clean\", \"slick\", \"pop\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q46",
+              "prompt": "Pick a hard frontend decision from the last few months, one where reasonable engineers would have disagreed: a state library, a rendering mode, a component API, a design-system break. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "Tell me about a time you regretted a state choice. What did you learn?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.state_management.anti_patterns",
+                "directives.state_management.local_vs_global_rules"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "Think of an interactive component going into your app or design system: a combobox, a modal, a data table. What would a capable mid-level engineer miss when building or reviewing it that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.code_review.blocking_criteria",
+                "directives.accessibility.keyboard_navigation"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "Bring a real pull request touching UI that you reviewed recently. Walk through it the way you did: where you slowed down, what you flagged, what you let go, and what you wrote.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you let that one go?",
+                "What would have made you block it?"
+              ],
+              "feeds": [
+                "directives.code_review.philosophy",
+                "directives.code_review.mentoring_voice",
+                "directives.code_review.blocking_criteria"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "Think of two component APIs for the same kind of need, one you approved and one you pushed back on (or build the pair now from your codebase). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.component_design.composition_vs_configuration",
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "Here is all you get: after last week's release, INP at the 75th percentile on your busiest page went from 150 ms to 450 ms, lab scores are unchanged, and nobody has complained. What do you do first, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you revert the release without knowing more?"
+              ],
+              "feeds": [
+                "directives.performance.web_vitals_priority",
+                "directives.performance.memoization_stance"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-rendering",
+      "title": "Depth: rendering and performance",
+      "optional": true,
+      "purpose": "Rendering modes, Web Vitals, bundles, media, memoization and hydration.",
+      "sections": [
+        {
+          "id": "F",
+          "title": "Rendering & performance",
+          "questions": [
+            {
+              "id": "Q20",
+              "prompt": "SSR vs. SSG vs. CSR vs. streaming vs. islands — when do you pick which?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.rendering.ssr_ssg_csr_rules",
+                "directives.rendering.streaming_strategy",
+                "directives.rendering.islands_stance"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "Which Web Vital do you chase first (LCP, INP, CLS)? What's your workflow when it regresses?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.performance.web_vitals_priority"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "What's your approach to code-splitting and bundle size?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.performance.bundle_strategy",
+                "directives.performance.lazy_loading_rules"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "What images / media strategy do you default to?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.performance.image_optimization"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "P",
+          "title": "Under the hood",
+          "questions": [
+            {
+              "id": "Q52",
+              "prompt": "When do you reach for memoization (memo, useMemo, a compiler, signals), and when do you remove it? What did you measure the last time you decided?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.performance.memoization_stance"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "Tell me about a hydration mismatch, a layout shift or a server/client divergence you chased. What did you look at, in what order, and what rule came out of it?",
+              "kind": "incident",
+              "required": false,
+              "minutes": 5,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?"
+              ],
+              "feeds": [
+                "directives.rendering.hydration_approach"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-design",
+      "title": "Depth: styling, motion, states and forms",
+      "optional": true,
+      "purpose": "The design system in code, responsive layout, motion, the states of a component and forms.",
+      "sections": [
+        {
+          "id": "E",
+          "title": "Styling & design system",
+          "questions": [
+            {
+              "id": "Q16",
+              "prompt": "Utility classes, CSS modules, CSS-in-JS, plain CSS, vanilla-extract — what's your stack and *why that one*?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.styling.methodology"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "How do you handle design tokens and theming?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.styling.design_tokens",
+                "directives.styling.dark_mode_approach"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What's your stance on custom components vs. using a UI kit (Radix, shadcn, Headless UI, Chakra, etc.)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.styling.deviation_policy",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q19",
+              "prompt": "Where do you refuse to deviate from the design system, and where do you allow local overrides?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.styling.deviation_policy"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "How do you make a layout work from a small phone to a wide screen: mobile first or desktop first, breakpoints or container queries? Show me the last layout that fought you.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.styling.responsive_strategy"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Motion & micro-interactions",
+          "questions": [
+            {
+              "id": "Q31",
+              "prompt": "Where do you add motion deliberately? Where do you refuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.motion.where_deliberate",
+                "directives.motion.where_refuse"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "What's a UI animation you consider a smell / overused?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.motion.where_refuse"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "Default duration, easing, and reduced-motion stance?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.motion.easing_duration",
+                "directives.motion.reduced_motion"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Empty / loading / error",
+          "questions": [
+            {
+              "id": "Q34",
+              "prompt": "Do you design all four states (empty, loading, error, success)? If not, which do you skip and why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.ui_states.state_coverage"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "Skeletons vs. spinners vs. optimistic UI — your defaults?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.ui_states.loading_pattern"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "title": "Forms & validation",
+          "questions": [
+            {
+              "id": "Q28",
+              "prompt": "Where does validation live — on blur, on submit, on every keystroke? Why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.forms_validation.validation_timing",
+                "directives.forms_validation.validation_location"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "How do you design error states? Inline, summary, toast, field-level, or combination?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.forms_validation.error_states"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "What's your default for controlled vs. uncontrolled inputs?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.forms_validation.controlled_vs_uncontrolled"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-craft",
+      "title": "Depth: types, tests and git",
+      "optional": true,
+      "purpose": "TypeScript, testing, reviews and git habits.",
+      "sections": [
+        {
+          "id": "K",
+          "title": "Testing",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "Unit / component / integration / E2E / visual regression — what's your mix and where does each live?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.testing.unit_component_e2e_mix",
+                "directives.testing.visual_regression"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "What do you refuse to test? What do you over-test?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.testing.unit_component_e2e_mix",
+                "directives.testing.coverage_expectations"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "When do you reach for a Storybook-like tool, and what do you put in it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.testing.storybook_stance"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Q",
+          "title": "Types, tests & git",
+          "questions": [
+            {
+              "id": "Q54",
+              "prompt": "How strict is your TypeScript: which compiler flags, and what do you do with `any`, `as` casts and non-null assertions? What would you block in a pull request?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.typescript.strictness_level",
+                "directives.typescript.any_policy"
+              ]
+            },
+            {
+              "id": "Q55",
+              "prompt": "Type aliases or interfaces, and when do you write a generic? Show me a generic you are proud of, or one you removed because it was too clever.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.typescript.type_vs_interface",
+                "directives.typescript.generic_patterns"
+              ]
+            },
+            {
+              "id": "Q56",
+              "prompt": "In component and end-to-end tests, what do you mock (the network, time, the browser, child components) and what do you insist is real? Tell me about a mock that lied to you.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.testing.mocking_philosophy"
+              ]
+            },
+            {
+              "id": "Q57",
+              "prompt": "How do you branch, and how do you write commit messages? Paste a real commit message of yours that you would call a good one.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.git_workflow.branching_strategy",
+                "directives.git_workflow.commit_message_format",
+                "directives.git_workflow.commit_message_example"
+              ]
+            },
+            {
+              "id": "Q58",
+              "prompt": "How do you write a review comment on a less experienced engineer's component: the tone, how much you explain, what you leave as a suggestion? Paste a real one if you can.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.code_review.mentoring_voice",
+                "directives.code_review.philosophy"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "R",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q59",
+              "prompt": "When you are unsure or stuck, how do you say so, and at what point do you escalate or ask for help? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q60",
+              "prompt": "The day of a launch, part of your users get a blank page. What do you do in the first ten minutes, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q61",
+              "prompt": "What frontend belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q62",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q63",
+              "prompt": "What reliably frustrates you in a codebase or in a team's habits?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

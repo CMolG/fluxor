@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "devops-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdCloud",
+  "iconLibrary": "react-icons/md",
+  "description": "Expert in CI/CD pipelines, containerization, cloud infrastructure, and automation.",
+  "tags": [
+    "devops",
+    "ci-cd",
+    "docker",
+    "kubernetes",
+    "cloud",
+    "aws"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "color": "E0FF4F",
+  "palette": {
+    "background": "E0FF4F",
+    "text": "111111",
+    "accents": "D90368",
+    "hover": "C9E647"
+  },
+  "toolTier": "write"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Product name only (≤40)",
+  "tagline": "What it does / how it helps (≤60, no hype, no emoji)",
+  "tagline_alternatives": ["Second option", "Third option"],
+  "description": "What it is and who it's for. What's new or different. Two or three standout features. (≤500; core message in the first ~260)",
+  "launch_tags": ["Topic 1", "Topic 2", "Topic 3"],
+  "links": {
+    "website": "https://example.com",
+    "additional": []
+  },
+  "thumbnail": "evidence/screens/thumbnail-240x240.png",
+  "gallery": [
+    {"title": "Hook", "description": "Product UI + one-line value proposition (also the social preview)", "file": "evidence/screens/gallery-1270x760.png"},
+    {"title": "The aha moment", "description": "Core workflow screenshot with a short caption", "file": null},
+    {"title": "Proof / way in", "description": "Real testimonials or metrics, then the free plan or offer", "file": null}
+  ],
+  "video": null,
+  "interactive_demo": null,
+  "makers": ["@producthunt-username"],
+  "first_comment": "Hi Product Hunt! I'm … (see references/launch-kit-guide.md; first ~800 chars visible; end with a specific question; never ask for upvotes)",
+  "shoutouts": ["Tool you used 1", "Tool you used 2"],
+  "pricing": "free | paid | paid_with_free_trial_or_plan",
+  "promo": {"offer": "3 months of Pro free", "code": "PRODUCTHUNT", "expiration": "YYYY-MM-DD"},
+  "launch_date": "YYYY-MM-DD",
+  "social_posts": ["We just launched … on Product Hunt — … I'd love your feedback: <link>"],
+  "outreach_messages": [],
+  "community_messages": [],
+  "email_announcement": ""
+}

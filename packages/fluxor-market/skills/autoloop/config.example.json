@@ -1,0 +1,20 @@
+{
+  "$comment": "Parallel loop settings for the autoloop skill. Keys: see its SKILL.md.",
+  "slots": 3,
+  "targetTemplate": "feat/cb-{projectTag}-sprint-{sprint}",
+  "worktreeRoot": "~/wt",
+  "setup": "npm ci --prefer-offline",
+  "prompt": ".harness/config/autoloop-prompt.md",
+  "env": {
+    "TRACKER_MACHINE": "{{MACHINE}}"
+  },
+  "idleMinutes": 30,
+  "liaison": {
+    "command": "node .harness/skills/backlog/scripts/officium-summons.mjs",
+    "pollSeconds": 60
+  },
+  "remoteSwitch": {
+    "command": "node .harness/skills/backlog/scripts/officium-autoloop.mjs",
+    "pollSeconds": 20
+  }
+}

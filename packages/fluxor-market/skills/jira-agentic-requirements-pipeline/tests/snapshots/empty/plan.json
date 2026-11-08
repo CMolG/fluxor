@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-300",
+  "confidence": 0.6,
+  "proposedBranchName": "ai/demo-300-base",
+  "implementationScope": [
+    "businessObjective: Decision for Business Objective",
+    "functionalScope: Decision for Functional Scope",
+    "businessRules: Decision for Business Rules",
+    "stateLifecycle: Decision for State Lifecycle",
+    "userExperience: Decision for User Experience",
+    "compatibility: Decision for Compatibility & Backward Compatibility",
+    "communications: Decision for Messages & Communications",
+    "legalCompliancePrivacy: Decision for Legal, Compliance & Privacy",
+    "reporting: Decision for Data & Functional Reporting",
+    "acceptanceCriteria: Decision for Acceptance Criteria"
+  ],
+  "excludedScope": [],
+  "detectedEntities": [
+    "approval"
+  ],
+  "detectedFlows": [
+    "primary business flow"
+  ],
+  "requiresHumanReview": true,
+  "functionalContractUsed": {
+    "businessObjective": "Decision for Business Objective",
+    "functionalScope": "Decision for Functional Scope",
+    "businessRules": [
+      "Decision for Business Rules"
+    ],
+    "stateLifecycle": [
+      "Decision for State Lifecycle"
+    ],
+    "userExperience": [
+      "Decision for User Experience"
+    ],
+    "compatibility": [
+      "Decision for Compatibility & Backward Compatibility"
+    ],
+    "rollout": [],
+    "supportAndBackoffice": [],
+    "communications": [
+      "Decision for Messages & Communications"
+    ],
+    "riskAndAbuse": [],
+    "legalCompliancePrivacy": [
+      "Decision for Legal, Compliance & Privacy"
+    ],
+    "reporting": [
+      "Decision for Data & Functional Reporting"
+    ],
+    "acceptanceCriteria": [
+      "Decision for Acceptance Criteria"
+    ],
+    "outOfScope": [],
+    "actorsAndPermissions": [],
+    "edgeCases": [],
+    "pricingAndBilling": [],
+    "activationAndConfiguration": [],
+    "auditability": [],
+    "errorHandling": [],
+    "externalDependencies": [],
+    "localization": [],
+    "accessibility": [],
+    "perceivedPerformance": [],
+    "functionalSecurity": [],
+    "dataQuality": [],
+    "criticality": [],
+    "reversibility": [],
+    "migration": [],
+    "rapidDecisions": []
+  },
+  "generatedAt": "<timestamp>",
+  "status": "QUESTIONS_ONLY",
+  "note": "Confidence too low for base branch. Keep requirement discovery only."
+}

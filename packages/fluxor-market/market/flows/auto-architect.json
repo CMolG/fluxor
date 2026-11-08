@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-architect",
+  "kind": "flow",
+  "version": "2.0.0",
+  "stability": "experimental",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "infinite",
+  "icon": "MdDesignServices",
+  "iconLibrary": "react-icons/md",
+  "description": "Continuously analyzes the project to autonomously generate and manage finite Agentic Cards in the backlog.",
+  "tags": [
+    "orchestration",
+    "planning",
+    "management",
+    "architect",
+    "backlog",
+    "markdown",
+    "loop",
+    "infinite"
+  ],
+  "steps": [
+    {
+      "id": "analyze-architecture",
+      "prompt": "Analyze project structure, dependencies, and architectural patterns"
+    },
+    {
+      "id": "identify-improvement-areas",
+      "prompt": "Identify areas needing refactoring, modularization, or cleanup"
+    },
+    {
+      "id": "generate-backlog-cards",
+      "prompt": "Generate finite Agent Sessions as backlog tasks for each improvement"
+    },
+    {
+      "id": "prioritize-by-impact",
+      "prompt": "Prioritize tasks by impact and dependency order"
+    },
+    {
+      "id": "monitor-and-requeue",
+      "prompt": "Continuously monitor for new architectural drift and create new tasks",
+      "loopBackTo": {
+        "stepId": "analyze-architecture",
+        "maxIterations": 3
+      }
+    }
+  ]
+}

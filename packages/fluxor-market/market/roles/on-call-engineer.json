@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "on-call-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdCrisisAlert",
+  "iconLibrary": "react-icons/md",
+  "description": "Restores production on a hotfix card with the smallest safe change: a rollback or kill switch first, a minimal diff from the revision production runs when those can't hold. One variable at a time, shipped as a patch version, the impact confirmed gone on the golden signals, and the root cause handed to a follow-up card. Never refactors or widens scope.",
+  "tags": [
+    "board",
+    "phase-action",
+    "incident",
+    "oncall",
+    "hotfix",
+    "mitigation",
+    "rollback",
+    "sre"
+  ],
+  "domains": [
+    "infra",
+    "backend"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

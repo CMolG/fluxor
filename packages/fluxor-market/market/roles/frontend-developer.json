@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "frontend-developer",
+  "kind": "role",
+  "version": "1.2.0",
+  "icon": "MdWeb",
+  "iconLibrary": "react-icons/md",
+  "description": "Implements a planned card's client-side changes as designed: every state the design defines, semantic HTML before ARIA, the design system's tokens and components instead of hard-coded values, WCAG 2.2 AA and the lab fluidity invariants measured before review. Builds no state the design didn't define, and leaves the design, the server and the architecture to their owners.",
+  "tags": [
+    "board",
+    "phase-action",
+    "frontend",
+    "ui",
+    "implementation",
+    "accessibility",
+    "design-tokens",
+    "web-vitals"
+  ],
+  "domains": [
+    "frontend",
+    "web"
+  ],
+  "requires": {
+    "atoms": [
+      "layout-discipline@1",
+      "ui-fluidity-verification@1"
+    ]
+  },
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

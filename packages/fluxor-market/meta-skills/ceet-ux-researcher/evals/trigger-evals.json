@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I run user interviews so Claude drafts discussion guides the way I do", "should_trigger": true},
+  {"query": "I lead research at a health app. Build me an AI setup that synthesizes sessions like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my research thinking into something I can load in ChatGPT and Claude", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a UX researcher? I'm the only researcher on the team", "should_trigger": true},
+  {"query": "our senior researcher is leaving and agreed to be interviewed so an assistant keeps her recruiting and consent standards", "should_trigger": true},
+  {"query": "capture how I choose between interviews, diary studies and surveys, so any AI tool plans studies my way", "should_trigger": true},
+  {"query": "run the CEET UX researcher interview with me, I can do the core now and the rest next week", "should_trigger": true},
+  {"query": "I want a portable profile of my behavioral research judgment — saturation, said vs. done, readouts — for Cursor and Gemini", "should_trigger": true},
+  {"query": "turn my answers about synthesis and readouts into agents and rules for my research assistant", "should_trigger": true},
+  {"query": "re-run my UXR cognitive profile, I stopped trusting stated preference the way I used to", "should_trigger": true},
+  {"query": "write a discussion guide for interviews about our checkout flow", "should_trigger": false},
+  {"query": "interview me about my visual design taste, spacing and color so an AI critiques mocks like me", "should_trigger": false},
+  {"query": "capture how our PM prioritizes and writes specs into an AI profile", "should_trigger": false},
+  {"query": "synthesize these twelve interview transcripts into themes", "should_trigger": false},
+  {"query": "build a simulated researcher profile of how Nielsen Norman Group thinks, from their articles", "should_trigger": false},
+  {"query": "audit this signup form for cognitive load and dark patterns", "should_trigger": false},
+  {"query": "write a job description for a UX researcher and a rubric for the portfolio review", "should_trigger": false},
+  {"query": "which CEET role should I use for a designer who also runs usability tests?", "should_trigger": false},
+  {"query": "evaluate our researchers' study quality this year and rank them", "should_trigger": false},
+  {"query": "interview our customer success lead about churn signals for an AI clone", "should_trigger": false}
+]

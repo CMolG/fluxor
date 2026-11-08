@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "jira-agentic-requirements-pipeline",
+  "kind": "skill",
+  "version": "2.1.1",
+  "packaging": "traditional",
+  "description": "Turns an ambiguous Jira ticket into a validated functional contract: rule-based discovery, a prioritized business questionnaire answered in a resumable CLI, and a base-branch plan with traceability.",
+  "tags": [
+    "jira",
+    "requirements",
+    "questionnaire",
+    "contracts"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "network",
+      "fs.read",
+      "fs.write"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "tools": [
+    {
+      "name": "jira_pipeline_cli",
+      "command": [
+        "python3",
+        "scripts/jira_pipeline_cli.py"
+      ],
+      "description": "Fetches a Jira issue, analyzes it, generates and collects business questions, resolves the functional contract and plans the base branch."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "examples/**",
+      "tests/**",
+      "evals/**"
+    ]
+  }
+}

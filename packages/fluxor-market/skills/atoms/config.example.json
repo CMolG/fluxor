@@ -1,0 +1,12 @@
+{
+  "maxMods": 4,
+  "budget": 16000,
+  "minChars": 20,
+  "minTokens": 3,
+  "neverAuto": ["ds-shadcn", "ds-tailwind"],
+  "allowAuto": ["ds-house"],
+  "signals": {
+    "package.json": { "@acme/ui": ["design-system", "house", "ui", "component"] },
+    "files": { "packages/ui": ["design-system", "house", "ui"] }
+  }
+}

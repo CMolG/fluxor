@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "test-driven",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdScience",
+  "iconLibrary": "react-icons/md",
+  "description": "Requires writing and presenting unit tests before implementing any core logic.",
+  "tags": [
+    "tdd",
+    "testing",
+    "unit-tests",
+    "reliability"
+  ],
+  "incompatibleWith": [
+    "dry-run"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "runtime": {
+    "contract": {
+      "mustWriteFiles": true,
+      "requiredArtifacts": [
+        {
+          "description": "At least one test file must exist for the change (TDD red before green)",
+          "pathPattern": "(\\.(test|spec)\\.[cm]?[jt]sx?$|(^|/)test_[^/]+\\.py$|_test\\.(py|go)$)"
+        }
+      ]
+    }
+  },
+  "precedence": "correctness",
+  "enforcement": "runtime"
+}

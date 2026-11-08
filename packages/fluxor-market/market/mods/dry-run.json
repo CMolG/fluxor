@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "dry-run",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdPreview",
+  "iconLibrary": "react-icons/md",
+  "description": "Prevents final code generation, outputting only pseudocode, flowcharts, and step-by-step explanations.",
+  "tags": [
+    "planning",
+    "pseudocode",
+    "explanation",
+    "no-code"
+  ],
+  "incompatibleWith": [
+    "strict-linting",
+    "test-driven",
+    "locale-en",
+    "locale-es"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "runtime": {
+    "blockTools": [
+      "write_file"
+    ]
+  },
+  "precedence": "scope",
+  "enforcement": "runtime"
+}

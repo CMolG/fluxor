@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-optimizer-finite",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "medium",
+  "cost": "medium",
+  "icon": "MdSpeed",
+  "iconLibrary": "react-icons/md",
+  "description": "Executes a single, targeted algorithmic or performance optimization task from the backlog and terminates.",
+  "tags": [
+    "performance",
+    "algorithm",
+    "big-o",
+    "math",
+    "task",
+    "single-shot",
+    "finite"
+  ],
+  "usableBy": [
+    "agentic-task"
+  ],
+  "steps": [
+    {
+      "id": "read-backlog-task",
+      "stepRef": "read-card",
+      "prompt": "Read the assigned optimization task from the backlog"
+    },
+    {
+      "id": "profile-target",
+      "prompt": "Profile the target code section for performance metrics"
+    },
+    {
+      "id": "implement-optimization",
+      "prompt": "Implement the optimization with benchmarks"
+    },
+    {
+      "id": "validate-with-tests",
+      "stepRef": "run-tests",
+      "prompt": "Run tests to validate correctness"
+    },
+    {
+      "id": "mark-complete",
+      "stepRef": "set-card-status",
+      "prompt": "Mark the backlog item as complete and terminate"
+    }
+  ]
+}

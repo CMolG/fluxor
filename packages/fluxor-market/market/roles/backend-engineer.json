@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "backend-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdStorage",
+  "iconLibrary": "react-icons/md",
+  "description": "Specialist in APIs, databases, server logic, and infrastructure architecture.",
+  "tags": [
+    "backend",
+    "api",
+    "database",
+    "server",
+    "node",
+    "python"
+  ],
+  "domains": [
+    "backend"
+  ],
+  "color": "3A405A",
+  "palette": {
+    "background": "3A405A",
+    "text": "FFFFFF",
+    "accents": "FFD166",
+    "hover": "4D5575"
+  },
+  "toolTier": "write"
+}

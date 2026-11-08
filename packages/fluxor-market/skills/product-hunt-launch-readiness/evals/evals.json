@@ -1,0 +1,94 @@
+{
+  "skill_name": "product-hunt-launch-readiness",
+  "setup": "Serve the web fixtures before running evals 2 and 3: `python3 -m http.server 8765 --bind 127.0.0.1 --directory evals/fixtures/orbit-site` and `python3 -m http.server 8766 --bind 127.0.0.1 --directory evals/fixtures/tallyfox-site`. Give each run its own copy of evals/fixtures/quillmate for eval 1. Keep the servers running for the whole run (e.g. wrap each in a restart loop) and tell executors not to stop them.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "repo-quillmate",
+      "prompt": "hey, we're launching Quillmate (our AI meeting notes app) on Product Hunt on Oct 6 (2026). The code is at {REPO}. Can you go through the repo and tell me if it's ready for the launch and what we need to fix before then? I'm based in Madrid btw.",
+      "expected_output": "A NOT READY verdict with evidence-backed blockers: the 'Please upvote us' banner, localhost metadataBase and missing /og.png, no gallery screenshots, 128px logo below the 240x240 thumbnail, a public OpenAI endpoint without auth or rate limits; majors such as card-required trial and long sign-up form, no analytics/ref attribution, no privacy/terms. Includes a validated launch kit (tagline <=60) and the go-live time 09:01 CEST in Madrid.",
+      "files": [
+        "evals/fixtures/quillmate"
+      ],
+      "expectations": [
+        "Flags the 'Please upvote us' Product Hunt banner (app/components/ProductHuntBanner.tsx) as a violation of Product Hunt's rules, and says the upvote ask must be removed or replaced",
+        "Identifies that metadataBase is hard-coded to http://localhost:3000 in app/layout.tsx, breaking social previews in production",
+        "Notes that /og.png referenced in the Open Graph metadata does not exist in the repo",
+        "Flags that the only logo (public/logo.png, 128x128) is too small for Product Hunt's 240x240 thumbnail",
+        "Flags that the repo has no product screenshots that could be used for the Product Hunt gallery",
+        "States that the Product Hunt gallery needs at least 2 images (1270x760 recommended)",
+        "Flags the public /api/summarize OpenAI endpoint (no auth, no rate limit) as a launch-day cost or abuse risk",
+        "Flags the broken sign-up/checkout flow: Stripe's success_url points to a /welcome route that doesn't exist and/or no account is ever created (the password is ignored)",
+        "Flags the credit-card-required trial and/or the long sign-up form (phone, company, role, team size) as friction for Product Hunt visitors",
+        "Flags missing analytics and/or missing attribution of Product Hunt traffic (ref=producthunt / UTM)",
+        "Flags that there are no privacy policy or terms pages (footer links point to '#')",
+        "Presents a Product Hunt tagline (in the reply or launch kit) of 60 characters or fewer that says what the product does, with no hype words or emoji",
+        "States that the launch goes live at 12:01 AM Pacific Time, which is 09:01 in Madrid (CEST), on October 6",
+        "Gives an overall verdict that the product is not ready to launch as-is",
+        "Names at least one Product Hunt eligibility rule the maker must confirm that can't be seen in the code: posting account at least a week old, no launch of the same product in the last 6 months, or no upvote services/vote groups",
+        "Saves a written readiness report file in the outputs directory with a verdict and, for each blocker, file:line evidence and a fix",
+        "Flags the critical vulnerability in next@15.3.2 (e.g. via npm audit) or marks the dependency audit as unverified when the registry is unreachable",
+        "Flags the hype headline 'The Ultimate Revolutionary AI Note-Taking Experience 🚀' as unsuitable",
+        "Notes that the core product (meeting bot, notes view, Slack delivery) isn't in the repo and asks where it runs",
+        "Describes its evidence accurately: does not claim real OpenAI/Stripe/Resend calls or production checks it didn't make, and scopes findings to where they occur"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "url-orbit-waitlist",
+      "prompt": "Our landing page is running at http://localhost:8765/ (it's the same build that'll go to orbit.ai). We want to put Orbit on Product Hunt this Friday — can you check the page and tell me if it's good to go for PH?",
+      "expected_output": "A NOT READY verdict: the page is waitlist/early-access only (not eligible for featuring) so the launch should wait until the product is usable (use a Coming Soon page meanwhile); /demo, /pricing and /terms return 404; no Open Graph/Twitter tags, no meta description, no favicon; hype + emoji headline unsuitable as a tagline. Correctly notes Plausible analytics is present. Mentions 12:01 AM PT.",
+      "files": [
+        "evals/fixtures/orbit-site"
+      ],
+      "expectations": [
+        "Identifies that the page only offers a waitlist / early-access sign-up (no usable product) and explains this makes it ineligible or very unlikely to be featured on Product Hunt",
+        "Recommends not launching this Friday until the product is usable, and suggests an alternative such as a Product Hunt Coming Soon/teaser page to collect followers",
+        "Notes that the lead time is already short or past due for a Friday launch (scheduling in advance and/or the posting account needing to be at least a week old)",
+        "Detects that the 'Try the demo' link (/demo) returns 404",
+        "Detects that the Pricing link (/pricing) returns 404",
+        "Detects that the Terms link (/terms) returns 404",
+        "Flags the waitlist form's Formspree endpoint (formspree.io/f/xyzabc) as a likely placeholder that could lose sign-ups",
+        "Flags the missing Open Graph image/tags and Twitter card",
+        "Flags the missing meta description",
+        "Flags the missing favicon/app icon and that there is no source for a 240x240 thumbnail",
+        "Flags the hype/emoji headline ('The world's most revolutionary AI platform. Ever.') as unsuitable and proposes a tagline of 60 characters or fewer, without hype or emoji, that uses only claims present on the page",
+        "Correctly reports that analytics (Plausible) is present rather than claiming the page has no analytics",
+        "Mentions that Product Hunt launch days start at 12:01 AM Pacific Time",
+        "Gives an overall verdict that the page is not ready for a Product Hunt launch",
+        "Does not suggest asking for upvotes and does not invent product facts (pricing, metrics, testimonials) in any drafted copy",
+        "Flags the unverifiable claims on the page ('Join 2,000+ people', 'Infinite memory', 'startups to Fortune 500') as needing proof or softening",
+        "Drafts a description or first comment that uses only claims present on the page and marks unknowns as TODOs"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "listing-tallyfox",
+      "prompt": "I'm about to submit Tallyfox to Product Hunt next Thursday (Oct 1). Site is at http://localhost:8766/ (staging copy of tallyfox.app). Here's my draft listing, can you review it against PH's rules and give me a fixed version I can paste?\n\nName: Tallyfox — The Smartest Invoice Tracker for Freelancers\nTagline: The best invoicing app ever made — revolutionize your freelance business 🚀🔥\nDescription: Tallyfox is the ultimate invoicing solution for freelancers, designers, developers, writers, consultants and agencies of every size who are tired of chasing late payments. Our cutting-edge platform tracks every single invoice you send, automatically emails polite reminders before and after the due date, shows your cash flow in a beautiful dashboard, sends receipts the moment clients pay, supports Stripe, PayPal and bank transfers, and lets you customize everything with your own branding. Join 1,200 happy freelancers today!\nLaunch tags: Productivity, Fintech, Freelance, SaaS, Invoicing\nPricing: Paid\nThumbnail: icon-512.png (512x512)\nGallery: hero.png (1270x760)\nFirst comment: Hey Product Hunt! 👋 I'm Dana, the maker of Tallyfox. Please upvote us and share with your friends — every upvote counts 🙏 We built Tallyfox because freelancers lose hours every month chasing payments.\nShoutouts: Stripe, Notion, Figma, Vercel\nPromo: 50% off Pro for 3 months, code PRODUCTHUNT50\nTweet for launch day: We're live on Product Hunt! Go upvote Tallyfox 🦊 https://www.producthunt.com/posts/tallyfox",
+      "expected_output": "Each field is checked against the form's limits and rules with counts: name 55/40, tagline 75/60 + hype + emoji, description 528/500, 5 tags (max 3), 4 shoutouts (max 3), 1 gallery image (min 2), promo missing expiration, first comment and tweet ask for upvotes, pricing should be 'Paid (with a free trial or plan)' because the site has a Free plan. A corrected, paste-ready listing within limits. No false claims about the site, which has OG tags, icons and a pricing page.",
+      "files": [
+        "evals/fixtures/tallyfox-site"
+      ],
+      "expectations": [
+        "Flags the name as over the 40-character limit and proposes a name of 40 characters or fewer",
+        "Flags the tagline as over 60 characters and/or using hype and emoji, and the proposed replacement tagline is 60 characters or fewer with no emoji",
+        "Flags the description as over the 500-character limit and provides a rewritten description of 500 characters or fewer",
+        "Does not present 260 characters as the current description limit (mentioning that only ~260 characters are visible before truncation is fine)",
+        "Flags that 5 launch tags exceed the maximum of 3 and proposes 3 or fewer",
+        "Flags the first comment's request to upvote as against Product Hunt's rules",
+        "The rewritten first comment contains no request to upvote",
+        "Flags the launch-day tweet ('Go upvote Tallyfox') as asking for upvotes and rewrites it without asking for upvotes",
+        "Does not guess the Product Hunt post URL in the rewritten tweet (uses a placeholder or tells the user to insert the real link)",
+        "Flags that the gallery has only 1 image while at least 2 are required, and recommends adding more (3+, 1270x760)",
+        "Flags that the pricing option should be 'Paid (with a free trial or plan)' (or otherwise reflect the Free plan) because the site offers a free plan",
+        "Flags that the promo is missing an expiration date",
+        "Flags that 4 shoutouts exceed the maximum of 3, and the final recommendation lists 3 or fewer",
+        "The rewritten description uses only facts from the draft or the site (e.g. drops 'agencies of every size', keeps custom branding as a Pro feature)",
+        "Does not falsely claim that the site lacks Open Graph tags, a favicon/icons, or a pricing page",
+        "Gives the go-live time (12:01 AM Pacific Time on Thursday Oct 1) and says the launch must be scheduled now because it's only days away",
+        "Flags at least one visitor-path defect on the staging site (e.g. 'Log in' goes to /signup/, the Google button links back to sign-up, or the Crisp ID '6f1c-demo' is a placeholder)"
+      ]
+    }
+  ],
+  "notes": "Iteration 2 (46 expectations) scored with_skill 46/46 vs without_skill 40/46. The expectations added after it (eval 1: 17-20, eval 2: 16-17, eval 3: 16-17, plus reworded eval1 #1/#15/#16 and eval3 #3) come from grader feedback and haven't been run yet."
+}

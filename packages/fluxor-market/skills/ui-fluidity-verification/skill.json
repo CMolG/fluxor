@@ -1,0 +1,61 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ui-fluidity-verification",
+  "kind": "skill",
+  "version": "1.0.0",
+  "packaging": "traditional",
+  "description": "Verifies that a UI is fluid, not just functional: frame, interaction and layout-shift invariants, algorithmic layout checks across derived widths and font scales, honest limits of headless emulation, and gates that tell regressions from noise.",
+  "tags": [
+    "performance",
+    "layout",
+    "responsive",
+    "testing",
+    "ci",
+    "web-vitals",
+    "accessibility"
+  ],
+  "domains": [
+    "frontend",
+    "web"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "tools": [
+    {
+      "name": "breakpoints",
+      "command": [
+        "python3",
+        "scripts/breakpoints.py"
+      ],
+      "description": "Derives the viewport test matrix (both sides of every media threshold, per user font scale) and the container sizes from CSS files."
+    },
+    {
+      "name": "gate",
+      "command": [
+        "python3",
+        "scripts/gate.py"
+      ],
+      "description": "Three-valued UI quality gate: structural metrics compared exactly, timing samples by paired rank tests, bootstrap bounds and false-discovery control."
+    },
+    {
+      "name": "layout_diff",
+      "command": [
+        "python3",
+        "scripts/layout_diff.py"
+      ],
+      "description": "Structural layout regression between two probe snapshots, reduced to change clusters with their probable origins."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "tests/**"
+    ]
+  }
+}

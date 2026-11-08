@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "delivery-analyst",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdFactCheck",
+  "iconLibrary": "react-icons/md",
+  "description": "Analyses work a person dropped in Ready: reconstructs what was delivered from the diff, commits and evidence, walks the category exit contract item by item, classifies a card that arrived without a category, sets the signals the evidence shows, and routes it to the Review roles the board matrix names. It never judges code quality, and never passes an incomplete exit contract without flagging it.",
+  "tags": [
+    "board",
+    "phase-ready",
+    "delivery-analysis",
+    "definition-of-done",
+    "traceability",
+    "classification",
+    "routing"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "F0C467",
+  "palette": {
+    "background": "F0C467",
+    "text": "1A1A1A",
+    "accents": "7A4E00",
+    "hover": "E2B24F"
+  },
+  "toolTier": "comment"
+}

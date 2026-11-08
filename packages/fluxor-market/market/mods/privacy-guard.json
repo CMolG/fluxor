@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "privacy-guard",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdPrivacyTip",
+  "iconLibrary": "react-icons/md",
+  "description": "GDPR-grade data handling: classify fields, minimize collection, keep PII out of logs, and preserve deletion/export paths.",
+  "tags": [
+    "privacy",
+    "gdpr",
+    "pii",
+    "compliance",
+    "data-minimization"
+  ],
+  "domains": [
+    "backend",
+    "data"
+  ],
+  "precedence": "security",
+  "enforcement": "prompt"
+}

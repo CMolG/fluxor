@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I design interview loops so Claude drafts rubrics the way I do", "should_trigger": true},
+  {"query": "I'm head of people at a 200-person remote company. Build me an AI setup that writes policies like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my people ops thinking into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as an HR business partner? I support engineering", "should_trigger": true},
+  {"query": "our head of talent is leaving and agreed to be interviewed so an assistant keeps her hiring bar and debrief process", "should_trigger": true},
+  {"query": "capture how I prepare difficult conversations, so any AI tool helps managers plan them my way", "should_trigger": true},
+  {"query": "run the CEET people ops interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my performance-process judgment — calibration, ratings, what never goes in a review — for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about leveling and comp transparency into agents and rules for my AI assistant", "should_trigger": true},
+  {"query": "re-run my people ops cognitive profile, I changed how I run calibration since last year", "should_trigger": true},
+  {"query": "read these five performance reviews and tell me who should go on a PIP", "should_trigger": false},
+  {"query": "score these candidates' interview notes and pick who we should hire", "should_trigger": false},
+  {"query": "rank our engineers by performance so we know who to lay off", "should_trigger": false},
+  {"query": "interview me about my contract redlines and privacy stance so an AI does legal review like me", "should_trigger": false},
+  {"query": "capture how our founder decides hiring at each stage and allocates attention into an AI profile", "should_trigger": false},
+  {"query": "build a simulated HR profile of how a famous management author thinks, from her books", "should_trigger": false},
+  {"query": "write a remote-work policy for our company", "should_trigger": false},
+  {"query": "what is the legal notice period for dismissing an employee in Spain?", "should_trigger": false},
+  {"query": "which CEET role should I use for a recruiter who also does sales hiring?", "should_trigger": false},
+  {"query": "interview our engineering manager about running one-on-ones for an AI clone", "should_trigger": false}
+]

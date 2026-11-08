@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "hotfix-discipline",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdCrisisAlert",
+  "iconLibrary": "react-icons/md",
+  "description": "Restores production with the smallest safe change: mitigation before any diff, one variable at a time, a minimal patch cut from what production runs, a UTC timeline, and the root cause handed to a linked follow-up card.",
+  "tags": [
+    "hotfix",
+    "incident",
+    "mitigation",
+    "rollback",
+    "patch-version"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "scope",
+  "enforcement": "prompt"
+}

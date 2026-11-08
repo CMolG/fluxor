@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "measured-performance",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdSpeed",
+  "iconLibrary": "react-icons/md",
+  "description": "A performance claim carries a before and after number from the same method, and every new or changed query carries its plan read on realistic data: no unintended full scan, bounded reads, indexes only where a plan needs one.",
+  "tags": [
+    "performance",
+    "measurement",
+    "queries",
+    "explain",
+    "indexes"
+  ],
+  "domains": [
+    "backend",
+    "data"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,35 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/069-harness-project-officium-link-unique.yaml
+  - changeSet:
+      id: 069-harness-project-officium-link-unique
+      author: javadaba
+      context: default
+      comment: >
+        JAVA-406: at most one harness project is linked to an Officium project, because the linked
+        project decides which role version every agent on that board reads.
+
+        If two or more were already linked to the same Officium project, only the most recently
+        changed link is kept and the others are unlinked (officium_project_id set to null; the
+        harness projects and their items stay, they just stop being the board's). The partial unique
+        index then refuses a second link, and the API answers it 409 officium_project_already_linked.
+      changes:
+        - sql:
+            sql: |
+              update fluxor_harness_project
+                 set officium_project_id = null
+               where id in (
+                 select id from (
+                   select id, row_number() over (
+                            partition by officium_project_id
+                            order by updated_at desc, created_at desc, id desc) as position
+                     from fluxor_harness_project
+                    where officium_project_id is not null
+                 ) ranked
+                  where position > 1
+               );
+
+              create unique index if not exists uq_fluxor_harness_project_officium
+                on fluxor_harness_project(officium_project_id)
+                where officium_project_id is not null;

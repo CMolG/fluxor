@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I run incidents so Claude can help on-call the way I would", "should_trigger": true},
+  {"query": "I lead our platform team. Build me an AI setup that reviews Terraform and pipeline changes like me — ask me whatever you need", "should_trigger": true},
+  {"query": "extract my SRE thinking into something I can load in Cursor and Copilot", "should_trigger": true},
+  {"query": "clone our platform engineer: she agreed to an interview so the assistant keeps her change-management standards after she leaves", "should_trigger": true},
+  {"query": "capture how I think about SLOs, error budgets and paging so any AI tool gives alerting advice my way", "should_trigger": true},
+  {"query": "run the CEET devops interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "make a cognitive clone of me as an SRE — I own the Kubernetes clusters and the CI/CD pipelines", "should_trigger": true},
+  {"query": "I want a portable profile of my infrastructure judgment — rollbacks, canaries, IaC, cost — for ChatGPT and Claude", "should_trigger": true},
+  {"query": "turn my answers about postmortems and runbooks into agents and rules that write them in my voice", "should_trigger": true},
+  {"query": "re-run my devops cognitive profile, I changed how I handle feature flags and toil since last year", "should_trigger": true},
+  {"query": "write a postmortem for yesterday's outage from these Slack logs", "should_trigger": false},
+  {"query": "interview me about how I design APIs and handle retries in my services so the AI codes like me", "should_trigger": false},
+  {"query": "our p99 latency doubled after the deploy, help me debug it", "should_trigger": false},
+  {"query": "build a simulated SRE profile from Google's SRE book", "should_trigger": false},
+  {"query": "write a Terraform module for an S3 bucket with versioning", "should_trigger": false},
+  {"query": "rank our on-call engineers by how fast they resolve incidents", "should_trigger": false},
+  {"query": "which CEET role should I use for someone who does both backend and infrastructure?", "should_trigger": false},
+  {"query": "set up a CLAUDE.md with our team's Kubernetes conventions", "should_trigger": false},
+  {"query": "write a job description for a senior SRE and an interview rubric", "should_trigger": false},
+  {"query": "interview our analytics lead about dashboards and metric design for an AI clone", "should_trigger": false}
+]

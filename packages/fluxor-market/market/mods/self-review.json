@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "self-review",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdRateReview",
+  "iconLibrary": "react-icons/md",
+  "description": "Runs a finalization self-review against the objective and prior team artifacts before declaring a task complete.",
+  "tags": [
+    "review",
+    "quality",
+    "self-check",
+    "verification"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

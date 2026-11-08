@@ -1,0 +1,806 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-people-ops",
+  "title": "People Ops / HR",
+  "nameSlot": "hr_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "hiring",
+      "onboarding plan",
+      "performance review",
+      "compensation",
+      "people ops",
+      "hr",
+      "people operations",
+      "interview rubric",
+      "leveling",
+      "calibration",
+      "difficult conversation",
+      "hr policy",
+      "talent"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about People practices: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What's your scope — full People, Talent only, People Partner to a function, HR generalist?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What's the org size, stage, distribution (in-person, hybrid, remote)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "What's your tool stack (ATS, HRIS, performance tool, engagement survey)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "Who do you partner with most closely?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Hiring bar",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "What do you hire on that most companies don't?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.hiring.hire_on",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "What's the one thing you refuse to compromise on in hiring?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.hiring.refuse_to_compromise",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "When you reject a candidate who everyone else loves, what's the signal you're responding to?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.hiring.reject_signal"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Rubrics & process",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "Walk me through your interview rubric for a common role.",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.rubrics.rubric_walkthrough"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "What signal do you trust in a loop? What signal do you distrust?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.rubrics.trusted_signals"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "How do you run a debrief — free-form, structured, voting, consensus?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.rubrics.debrief_process"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "How do you handle a strong \"no\" against a collective \"yes\"?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.rubrics.handle_strong_no",
+                "identity.decision_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Leveling & comp",
+          "questions": [
+            {
+              "id": "Q12",
+              "prompt": "What leveling framework do you use? Custom or off-shelf?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.leveling_comp.framework"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "Your stance on comp transparency — bands published, internal-only, private?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.leveling_comp.transparency_stance"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What's a comp decision you push back on most often?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.leveling_comp.pushback_decisions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Performance",
+          "questions": [
+            {
+              "id": "Q15",
+              "prompt": "Continuous feedback vs. formal reviews — your balance?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.performance.feedback_cadence"
+              ]
+            },
+            {
+              "id": "Q16",
+              "prompt": "Ratings, no ratings, narratives — what do you use and why?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.performance.ratings_stance"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "Calibration — how do you run it without making it theater?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.performance.calibration"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What do you refuse to include in a review?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.performance.refuse_in_reviews",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "title": "PIPs & underperformance",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "What's your criteria for starting a PIP?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.pip.start_criteria",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "What does a PIP require to be fair in your view?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.pip.fairness_bar"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "What's a PIP pattern you refuse to participate in?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.pip.refuse_to_participate",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Difficult conversations",
+          "questions": [
+            {
+              "id": "Q22",
+              "prompt": "Walk me through how you prepare for a hard conversation.",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.difficult_conversations.prepare_process"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "What's your opener for delivering negative feedback?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.difficult_conversations.opener",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "What phrases do you reach for (\"what I'm observing is…\", \"I want to be honest with you…\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.difficult_conversations.reach_for_phrases",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "What's a phrase you ban in hard conversations (\"just\", \"honestly\", \"don't take this personally\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.difficult_conversations.ban_phrases",
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q40",
+              "prompt": "People-ops phrases you use (\"one-on-one\", \"check-in\", \"skip-level\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q41",
+              "prompt": "Phrases you ban (\"culture fit\", \"family\", \"A-player\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q45",
+              "prompt": "Walk me through a departure you handled well and what made it so.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.difficult_conversations.prepare_process",
+                "identity.core_values",
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q44",
+              "prompt": "Walk me through a hire you're most proud of and why.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.hiring.hire_on",
+                "directives.hiring.reject_signal"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "Think of a review or performance-plan draft a capable, less experienced manager sends you before delivering it, with the names taken out. What would they miss that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.performance.refuse_in_reviews",
+                "directives.pip.fairness_bar"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "Take an interview rubric or scorecard you use now, with no candidate's data in it, and rework it with me for your next opening. Narrate each change as you make it.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you cut that?",
+                "What would have made you keep it?"
+              ],
+              "feeds": [
+                "directives.rubrics.rubric_walkthrough",
+                "directives.rubrics.trusted_signals"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "Think of two managers' requests to start a performance plan, one you supported and one you pushed back on (or build the pair now), without naming anyone. What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.pip.start_criteria",
+                "directives.pip.refuse_to_participate"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "Here is all you get: a manager wants to let someone go this month for low performance, there is no written feedback on file, and that employee raised a complaint about the manager two weeks ago. What do you advise first, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you stop the process without knowing more?"
+              ],
+              "feeds": [
+                "directives.pip.fairness_bar",
+                "directives.meta_cognition.escalation_protocol"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-culture",
+      "title": "Depth: culture, policy, org design and fairness",
+      "optional": true,
+      "purpose": "How the person reads a team, writes policy, shapes the org and thinks about fairness.",
+      "sections": [
+        {
+          "id": "H",
+          "title": "Culture diagnosis",
+          "questions": [
+            {
+              "id": "Q26",
+              "prompt": "What do you read in a team to sense culture — rituals, silence, meeting tone, DMs?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.culture.read_signals"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "What's an engagement survey question you don't trust?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.culture.survey_stance"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "What signal tells you a manager's team is quietly broken?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.culture.diagnosis_method"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Policy drafting",
+          "questions": [
+            {
+              "id": "Q29",
+              "prompt": "What tone do you write policies in — formal, warm, terse, narrative?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.voice"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "What's a policy section you always include that most skip?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.template"
+              ]
+            },
+            {
+              "id": "Q31",
+              "prompt": "What policies do you prefer to leave *implicit*?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.template",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "How often do you review a policy, and what event makes you rewrite one before its review date?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.policy.update_cadence"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Org design",
+          "questions": [
+            {
+              "id": "Q32",
+              "prompt": "What's your default span of control? When do you bend?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "When should a team split, merge, or rotate?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q34",
+              "prompt": "What's an org-design mistake you've seen repeatedly?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "DEI & fairness",
+          "questions": [
+            {
+              "id": "Q35",
+              "prompt": "What do you measure about fairness / equity? What do you refuse to reduce to a metric?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q36",
+              "prompt": "What's a DEI practice you've seen fail, and what did you learn?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-judgment",
+      "title": "Depth: heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "The person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "L",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q37",
+              "prompt": "\"A good hiring signal is {X}; a fake one is {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.rubrics.trusted_signals"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "\"When a manager says their team is 'fine', I check {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.culture.read_signals"
+              ]
+            },
+            {
+              "id": "Q39",
+              "prompt": "\"A review is done when {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.performance.refuse_in_reviews",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q42",
+              "prompt": "A People practice you outgrew.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "A trend you distrust (e.g. unlimited PTO, stack ranking, mandatory office).",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q51",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "A people crisis breaks: a harassment report about a senior leader, a layoff that leaks before it is announced, a public post from a former employee. What do you do in the first hour, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "What people-practice belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q54",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q55",
+              "prompt": "What reliably frustrates you in how a company hires, reviews or treats its people?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

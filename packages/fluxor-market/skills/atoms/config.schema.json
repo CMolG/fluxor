@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "atoms.config.schema.json",
+  "title": "atoms: .harness/config/atoms.json",
+  "description": "Tunes the market engine (market/motor.py) that the atoms skill and its preparation hook share. Every key is optional and the file itself is optional; the environment variables ATOMS_MAX_MODS, ATOMS_BUDGET, ATOMS_MIN_CHARS and ATOMS_MIN_TOKENS override the file. The engine ignores unknown keys silently, so this schema rejects them to catch typos; `$`-prefixed keys are comments.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^\\$": {
+      "description": "A comment (for example `$comment`) or `$schema`; ignored by the engine."
+    }
+  },
+  "properties": {
+    "maxMods": {
+      "description": "Cap on stacked mods per set. Default: 3. Env override: ATOMS_MAX_MODS.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 3
+    },
+    "budget": {
+      "description": "Character budget for the injected block; the tail is trimmed beyond it. Default: 14000. Env override: ATOMS_BUDGET.",
+      "type": "integer",
+      "minimum": 1,
+      "default": 14000
+    },
+    "minChars": {
+      "description": "Prompts shorter than this mount nothing, unless a directive forces it. Default: 20. Env override: ATOMS_MIN_CHARS.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 20
+    },
+    "minTokens": {
+      "description": "Minimum meaningful words for a prompt to mount a set. Default: 3. Env override: ATOMS_MIN_TOKENS.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 3
+    },
+    "neverAuto": {
+      "description": "Atom ids (roles or mods) never picked from wording in this project, added to the lexicon's `never_auto`. Still attachable with `@role:` / `@mod:`. Matched case-insensitively. Default: [].",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/atomId"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "allowAuto": {
+      "description": "Atom ids removed from the lexicon's `never_auto` for this project, so wording can pick them (for example `ds-house`, which is opt-in). Matched case-insensitively. Default: [].",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/atomId"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "signals": {
+      "description": "Extra project detectors merged over the lexicon's `project_signals` (a key here replaces the lexicon's entry with the same name). Signals only break exact score ties. Default: {}.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "package.json": {
+          "description": "Dependency name (or scope prefix) -> tokens added when the session's directory or the project root declares that dependency in dependencies, devDependencies or peerDependencies.",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/tokens"
+          }
+        },
+        "files": {
+          "description": "Path relative to the session's directory or the project root -> tokens added when that path exists.",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/tokens"
+          }
+        }
+      },
+      "default": {}
+    },
+    "cards": {
+      "description": "Card-driven roles: a prompt that names a card (a key with one of keyPrefixes, e.g. PROJ-12) or carries one of loopMarkers (an autonomous loop's prompt, whose iteration picks the card) mounts no role from its wording: the card names it, among the roles its board allows (see the backlog skill). The key itself is not scored. Default: off.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\$": {
+          "description": "A comment; ignored by the engine."
+        }
+      },
+      "properties": {
+        "keyPrefixes": {
+          "description": "Card key prefixes, as in PROJ for PROJ-12. Default: [].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9]*$"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "loopMarkers": {
+          "description": "Substrings that mark an autonomous loop's prompt (for example the path of its prompt file). Default: [].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "default": []
+        }
+      },
+      "default": {}
+    }
+  },
+  "$defs": {
+    "atomId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tokens": {
+      "description": "Words fed to the scorer as if the prompt contained them (for example design-system, house, ui).",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

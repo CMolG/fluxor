@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-200",
+  "title": "Add an approval gate to subscription upgrades",
+  "businessGoal": "Add or improve a business approval/review step for a user-facing operation.",
+  "functionalEntities": [
+    "account",
+    "approval",
+    "customer",
+    "operator",
+    "subscription",
+    "support",
+    "user"
+  ],
+  "userActions": [
+    "confirm or approve operation"
+  ],
+  "possibleAffectedFlows": [
+    "auditability flow",
+    "commercial access flow",
+    "compatibility flow",
+    "operation review or confirmation",
+    "support operations"
+  ],
+  "explicitRequirements": [
+    "mandatory business behavior requested",
+    "optional business behavior requested",
+    "approval or review behavior requested",
+    "business limit or threshold requested",
+    "compatibility behavior requested",
+    "auditability requested"
+  ],
+  "missingBusinessDecisions": [
+    "acceptance_criteria",
+    "communications",
+    "expiration",
+    "rollout"
+  ],
+  "detectedCategories": [
+    "Acceptance Criteria",
+    "Actors & Permissions",
+    "Auditability & Traceability",
+    "Business Objective",
+    "Business Rules",
+    "Compatibility & Backward Compatibility",
+    "Data Quality",
+    "Functional Error Handling",
+    "Functional Scope",
+    "Legal, Compliance & Privacy",
+    "Pricing, Billing & Monetization",
+    "State Lifecycle",
+    "Support & Backoffice",
+    "User Experience"
+  ],
+  "ambiguityLevel": {
+    "level": "MEDIUM",
+    "constraintDensity": 6.349,
+    "ambiguityMarkers": 1.587,
+    "signals": {
+      "constraintKeywords": [
+        "legacy",
+        "limit",
+        "support",
+        "compliance"
+      ],
+      "ambiguityMarkers": [
+        "pending"
+      ],
+      "constraintKeywordCounts": {
+        "legacy": 1,
+        "limit": 1,
+        "support": 1,
+        "compliance": 1
+      },
+      "ambiguityMarkerCounts": {
+        "pending": 1
+      }
+    }
+  }
+}

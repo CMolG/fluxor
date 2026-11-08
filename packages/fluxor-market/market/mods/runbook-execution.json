@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "runbook-execution",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdEventRepeat",
+  "iconLibrary": "react-icons/md",
+  "description": "Recurring maintenance runs exactly as its runbook states: no runbook, no run; each step previewed where the tool can, proved in an evidence table, verified by its effect, and every deviation turned into a linked card.",
+  "tags": [
+    "operations",
+    "runbook",
+    "maintenance",
+    "evidence",
+    "toil"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "precedence": "scope",
+  "enforcement": "prompt"
+}

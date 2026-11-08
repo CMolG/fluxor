@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "officium-heartbeat-done-failure",
+  "kind": "hook",
+  "version": "1.0.1",
+  "description": "Stops the heartbeat ticker of a shell call that failed or was interrupted, which never reaches the postTool hook; sends nothing.",
+  "tags": [
+    "officium",
+    "monitoring",
+    "agents"
+  ],
+  "event": "postToolFailure",
+  "timeoutMs": 5000,
+  "sends": null
+}

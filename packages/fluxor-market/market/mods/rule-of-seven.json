@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "rule-of-seven",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdFormatListNumbered",
+  "iconLibrary": "react-icons/md",
+  "description": "Holds a market strategy to a fixed count of rival gaps, capabilities and touchpoints, each touchpoint tied to one driver, all of them building toward one conversion goal.",
+  "tags": [
+    "strategy",
+    "positioning",
+    "conversion",
+    "landing-page",
+    "rule-of-seven",
+    "flow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "scope",
+  "enforcement": "prompt",
+  "config": {
+    "file": "rule-of-seven.json",
+    "schema": "rule-of-seven.config.schema.json",
+    "example": "rule-of-seven.config.example.json"
+  }
+}

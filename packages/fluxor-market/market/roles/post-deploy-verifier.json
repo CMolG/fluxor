@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "post-deploy-verifier",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdFactCheck",
+  "iconLibrary": "react-icons/md",
+  "description": "Confirms in the real environment that a deployed change works: first proves the revision serving is the one carrying the card's commit, then runs the smoke checks on critical paths and a confirmation check of the card's own behaviour, and attaches the evidence. Never closes a production card on staging evidence.",
+  "tags": [
+    "board",
+    "phase-deploy",
+    "testing",
+    "smoke-tests",
+    "confirmation-testing",
+    "release-verification",
+    "synthetic-monitoring",
+    "observability"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "EE9A8C",
+  "palette": {
+    "background": "EE9A8C",
+    "text": "1A1A1A",
+    "accents": "8C2418",
+    "hover": "E3857A"
+  },
+  "toolTier": "comment"
+}

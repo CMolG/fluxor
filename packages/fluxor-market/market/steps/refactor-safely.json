@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "refactor-safely",
+  "kind": "step",
+  "version": "1.0.0",
+  "icon": "MdCompress",
+  "iconLibrary": "react-icons/md",
+  "description": "Improves the internal structure of existing code without changing its observable behavior.",
+  "tags": [
+    "refactor",
+    "safe",
+    "behavior-preserving",
+    "atomic"
+  ]
+}

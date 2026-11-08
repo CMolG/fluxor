@@ -1,0 +1,9 @@
+A PRD reads as a decision document, not a feature list. The opening sentence states the problem in business terms and the cost of doing nothing.
+Scope is the set of behaviors that must change for the feature to be considered shipped; out of scope is the set of behaviors we are explicitly choosing not to alter, with reasoning.
+Success metrics are concrete, measurable, and tied to the originating problem. Vanity counts (clicks, impressions) belong in the body of the doc only when justified.
+Rollout is staged: internal dogfood first, then a small percentage of admin accounts gated by feature flag, then progressive expansion with explicit fail-fast criteria.
+Risks include adoption risk (admins who refuse to enroll), recovery risk (lockout becomes the new failure mode), and security risk (a poorly chosen recovery path negates the entire feature).
+SOC2 findings are addressed in the success metrics, not in marketing copy. The PRD names the auditor finding and the verification path the auditor will accept.
+The PRD calls out non-obvious decisions: TOTP vs WebAuthn, recovery codes vs admin-assisted reset, mandatory vs opt-in for the first wave, and the deadline by which mandatory enrollment becomes effective.
+Out of scope is treated as a first-class section: mobile, customer (non-admin) accounts, third-party SSO integrations, and SCIM-managed enrollment are deferred with reasoning.
+The risk section enumerates the rollback path: how to disable the feature flag, how to handle accounts mid-enrollment, and the on-call playbook for "all admins locked out" scenarios.

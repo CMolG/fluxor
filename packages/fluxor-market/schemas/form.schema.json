@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "form.schema.json",
+  "title": "Meta-skill form",
+  "description": "The questions a meta-skill depends on, as data: stable ids, prompts, probes, time estimates and the profile slots each answer feeds. A consumer can render it as a page (Fluxor), ask it one section at a time (MCP elicitation) or run it as an interview; the repository renders it to Markdown for people. See the meta-skills contract (meta-skills.md, beside catalog-format.md).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["formVersion", "role", "title", "modules"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "formVersion": {
+      "description": "SemVer of the form. Adding a question is a minor bump; changing what a question id asks, or removing one, is a major bump, because packs cite questions by id.",
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "role": {
+      "description": "The id of the meta-skill this form belongs to.",
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "title": {
+      "description": "The role's name as people read it (\"Backend Engineer\").",
+      "type": "string",
+      "minLength": 2
+    },
+    "nameSlot": {
+      "description": "The profile slot that holds the person's name or chosen alias (`engineer_name`). Filled at synthesis, fed by no question.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "intro": {
+      "description": "What the interviewer reads before the first question.",
+      "type": "string",
+      "minLength": 10
+    },
+    "wrap": {
+      "description": "What the interviewer does after the last question.",
+      "type": "string",
+      "minLength": 10
+    },
+    "routing": {
+      "description": "How a request reaches this role: lowercase keywords and phrases matched on word boundaries by ceet-autodiscover.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["keywords"],
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9&+/.' -]+$" }
+        }
+      }
+    },
+    "derived": {
+      "description": "Slots synthesized across the whole interview rather than from specific questions (contradictions between answers, for example), with the reason. They count as fed.",
+      "type": "object",
+      "patternProperties": { "^[a-z_][a-z0-9_]*(\\.[a-z0-9_]+)+$": { "type": "string", "minLength": 10 } },
+      "additionalProperties": false
+    },
+    "profileOnly": {
+      "description": "Slots rendered only in the cognitive profile, never in an artifact template, with the reason. Every other slot must be used by at least one artifact template.",
+      "type": "object",
+      "patternProperties": { "^[a-z_][a-z0-9_]*(\\.[a-z0-9_]+)+$": { "type": "string", "minLength": 10 } },
+      "additionalProperties": false
+    },
+    "modules": {
+      "description": "Parts of the interview, asked in order. Required modules make the core; optional ones are depth modules the person may skip or do later.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/module" }
+    }
+  },
+  "$defs": {
+    "module": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "optional", "purpose", "sections"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "title": { "type": "string", "minLength": 2 },
+        "optional": { "type": "boolean" },
+        "purpose": { "type": "string", "minLength": 10 },
+        "sections": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/section" } }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "questions"],
+      "properties": {
+        "id": {
+          "description": "A letter, unique across the form (`A`, `B`, …, `AA`).",
+          "type": "string",
+          "pattern": "^[A-Z]{1,2}$"
+        },
+        "title": { "type": "string", "minLength": 2 },
+        "questions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/question" } }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "prompt", "kind", "required", "minutes"],
+      "properties": {
+        "id": {
+          "description": "Stable id, cited by packs as `[Q<n>]`. Never renumbered or reused: a new question takes the next free number wherever it is placed.",
+          "type": "string",
+          "pattern": "^Q[1-9][0-9]*$"
+        },
+        "prompt": { "type": "string", "minLength": 10 },
+        "kind": {
+          "description": "`open`: a direct question. The decision-capture kinds come from cognitive task analysis: `incident` (a Critical Decision Method walk through one real case), `knowledge-audit` (what a novice would miss), `simulation` (thinking through one of the person's real artifacts), `contrastive` (choosing between two concrete options), `limited-information` (deciding with a deliberately partial picture).",
+          "enum": ["open", "incident", "knowledge-audit", "simulation", "contrastive", "limited-information"]
+        },
+        "required": {
+          "description": "Whether the core needs the answer. An unanswered required question leaves its slots without evidence.",
+          "type": "boolean"
+        },
+        "minutes": {
+          "description": "Estimated minutes to answer, follow-ups included.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "probes": {
+          "description": "Follow-ups for vague answers.",
+          "type": "array",
+          "items": { "type": "string", "minLength": 5 }
+        },
+        "feeds": {
+          "description": "The profile slots this answer is evidence for (`directives.code_review.philosophy`).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z_][a-z0-9_]*(\\.[a-z0-9_]+)+$" }
+        },
+        "captures": {
+          "description": "What else the answer becomes: `decisions` are real decisions with their rationale, stored as the pack's examples.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["decisions"] }
+        }
+      }
+    }
+  }
+}

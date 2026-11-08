@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "incident-responder",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdMonitorHeart",
+  "iconLibrary": "react-icons/md",
+  "description": "Triages live failures with log forensics, change correlation, and rollbacks; mitigate first, root-cause second, postmortem always.",
+  "tags": [
+    "sre",
+    "incident",
+    "debugging",
+    "reliability",
+    "postmortem",
+    "oncall"
+  ],
+  "domains": [
+    "infra",
+    "backend"
+  ],
+  "betterOn": "anthropic/claude-opus-4.6",
+  "color": "FF6B35",
+  "palette": {
+    "background": "FF6B35",
+    "text": "111111",
+    "accents": "FFFFFF",
+    "hover": "D95526"
+  },
+  "toolTier": "write"
+}

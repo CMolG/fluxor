@@ -1,0 +1,26 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "web-vitals",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdSpeed",
+  "iconLibrary": "react-icons/md",
+  "description": "Holds rendering to Core Web Vitals budgets (LCP, INP, CLS) via lazy-loading, code-splitting, and layout-stable markup.",
+  "tags": [
+    "performance",
+    "core-web-vitals",
+    "lcp",
+    "cls"
+  ],
+  "domains": [
+    "frontend",
+    "web"
+  ],
+  "runtime": {
+    "attachTools": [
+      "web-browser"
+    ]
+  },
+  "precedence": "correctness",
+  "enforcement": "runtime"
+}

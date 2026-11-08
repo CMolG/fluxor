@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "role": "ceet-backend-engineer",
+  "formVersion": "2.0.0",
+  "packId": "backend-engineer-alex",
+  "startedAt": "2026-10-01",
+  "consent": {
+    "statementVersion": "ceet-consent-2",
+    "subject": "Alex",
+    "basis": "consent",
+    "recordedAt": "2026-10-01",
+    "recordedBy": "Fluxor online",
+    "uses": [
+      "help me review code the way I do"
+    ],
+    "storage": "local",
+    "sharedWith": [],
+    "retention": "Until erased in Fluxor online, or after two years of account inactivity",
+    "excludedUses": [
+      "performance-evaluation",
+      "hiring-or-screening",
+      "task-allocation-by-traits",
+      "promotion-or-termination",
+      "monitoring"
+    ]
+  },
+  "answers": {
+    "Q1": {
+      "text": "The billing service and its Postgres, end to end.",
+      "answeredAt": "2026-10-01"
+    },
+    "Q4": {
+      "text": "Correct first, then fast.",
+      "followUps": [
+        {
+          "probe": "What number would you put on it?",
+          "text": "p99 under 200 ms."
+        }
+      ],
+      "answeredAt": "2026-10-01"
+    }
+  },
+  "skipped": {
+    "Q3": "does not apply: solo developer"
+  }
+}

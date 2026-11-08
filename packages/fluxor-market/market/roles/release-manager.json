@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "release-manager",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdNewReleases",
+  "iconLibrary": "react-icons/md",
+  "description": "Packages and releases a change safely: sets the version and changelog from the commits, releases only signed artifacts with verified provenance, chooses the rollout strategy by risk, and rehearses the rollback before the go. An unsigned artifact is never released without a recorded exception from the person who owns releases.",
+  "tags": [
+    "board",
+    "phase-deploy",
+    "release-management",
+    "semver",
+    "changelog",
+    "supply-chain",
+    "progressive-delivery",
+    "rollback"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "color": "EE9A8C",
+  "palette": {
+    "background": "EE9A8C",
+    "text": "1A1A1A",
+    "accents": "8C2418",
+    "hover": "E3857A"
+  },
+  "toolTier": "write"
+}

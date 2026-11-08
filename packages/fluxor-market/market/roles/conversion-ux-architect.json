@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "conversion-ux-architect",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdViewQuilt",
+  "iconLibrary": "react-icons/md",
+  "description": "Designs a conversion page's visual hierarchy, scroll pacing, interactive states and component layout, so the reader does not tire and the path to the action stays short.",
+  "tags": [
+    "flow",
+    "market",
+    "ux",
+    "landing-page",
+    "conversion"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "betterOn": "opencode/claude-sonnet-4-6",
+  "color": "D7BDE2",
+  "palette": {
+    "background": "D7BDE2",
+    "text": "111111",
+    "accents": "1C4880",
+    "hover": "C0A0D0"
+  },
+  "toolTier": "write"
+}

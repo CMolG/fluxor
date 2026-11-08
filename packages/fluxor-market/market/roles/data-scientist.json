@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "data-scientist",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdTimeline",
+  "iconLibrary": "react-icons/md",
+  "description": "Master of Python, mathematics, data pipelines, and AI/ML frameworks.",
+  "tags": [
+    "data",
+    "ml",
+    "ai",
+    "python",
+    "statistics",
+    "pipelines"
+  ],
+  "domains": [
+    "data"
+  ],
+  "betterOn": "anthropic/claude-opus-4.6",
+  "color": "2274A5",
+  "palette": {
+    "background": "2274A5",
+    "text": "FFFFFF",
+    "accents": "F2C94C",
+    "hover": "1A5B82"
+  },
+  "toolTier": "write"
+}

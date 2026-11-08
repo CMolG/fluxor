@@ -1,0 +1,22 @@
+[
+  {"query": "my CEET interview stopped halfway yesterday, pick it up from where the state file says we left off", "should_trigger": true},
+  {"query": "render my cognitive profile into the pack again, I fixed two answers in cognitive-profile.json", "should_trigger": true},
+  {"query": "validate the CEET pack in .harness/packs/backend-me before I install it in Cursor", "should_trigger": true},
+  {"query": "how well does my CEET clone actually decide like me? measure its fidelity against the held-out decisions", "should_trigger": true},
+  {"query": "I want to add a new CEET role for QA engineers: what does the form, profile and templates need?", "should_trigger": true},
+  {"query": "erase my CEET pack and the raw interview answers, I'm withdrawing consent", "should_trigger": true},
+  {"query": "the synthesized cognitive profile says I prefer monoliths, that's wrong — correct it and re-render the pack", "should_trigger": true},
+  {"query": "render my existing CEET pack for Copilot and AGENTS.md as well as Claude Code", "should_trigger": true},
+  {"query": "which of my CEET pack's past decisions are closest to this new task? pull the examples it should load", "should_trigger": true},
+  {"query": "review the consent record of the CEET interview we ran with Marta, is it complete?", "should_trigger": true},
+  {"query": "write a CLAUDE.md for this repo with our coding conventions", "should_trigger": false},
+  {"query": "create a .cursorrules file so Cursor stops using default exports", "should_trigger": false},
+  {"query": "set up a system prompt that makes the assistant answer like a pirate", "should_trigger": false},
+  {"query": "design an interview guide for user research sessions with our customers about onboarding", "should_trigger": false},
+  {"query": "evaluate our RAG chatbot's answers against a golden dataset and report accuracy", "should_trigger": false},
+  {"query": "validate this JSON file against its schema and tell me which fields fail", "should_trigger": false},
+  {"query": "prepare me for a senior backend engineer job interview with mock questions", "should_trigger": false},
+  {"query": "write a personality assessment to screen candidates for our sales team", "should_trigger": false},
+  {"query": "package this folder as an Agent Skill with a SKILL.md and a description", "should_trigger": false},
+  {"query": "summarize what our tech lead said in the last three retros into a doc", "should_trigger": false}
+]

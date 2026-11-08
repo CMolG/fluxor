@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "competitor-gap-extractor",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdTravelExplore",
+  "iconLibrary": "react-icons/md",
+  "description": "Finds the closest direct rival, extracts the weaknesses its architecture, pricing, UX or scope cause, and scores each gap by defensibility and by user pain, citing a public source for every claim.",
+  "tags": [
+    "competitive-analysis",
+    "gaps",
+    "sources",
+    "research",
+    "flow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

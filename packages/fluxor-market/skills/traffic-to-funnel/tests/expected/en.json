@@ -1,0 +1,266 @@
+{
+  "thresholds": {
+    "min_impressions": 100,
+    "pages": {
+      "p25_score": 0.285,
+      "p75_score": 0.75,
+      "p75_exit_rate": 0.769,
+      "median_conversion": 0.004
+    }
+  },
+  "pages": {
+    "ranking": [
+      {
+        "url": "/blog/hiring-guide",
+        "views": 98700.0,
+        "sessions": 90112.0,
+        "entrances": 85430.0,
+        "exits": 79020.0,
+        "avg_time_s": 182.7,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 58.3,
+        "conversions": 310.0,
+        "exit_rate": 0.8006079027355623,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.0034401633522727275,
+        "signals": [
+          "leak",
+          "no_next_step"
+        ],
+        "consumption_score": 0.905,
+        "consumption": "high"
+      },
+      {
+        "url": "/pricing",
+        "views": 312450.0,
+        "sessions": 201877.0,
+        "entrances": 88120.0,
+        "exits": 140300.0,
+        "avg_time_s": 61.2,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 41.0,
+        "conversions": 9870.0,
+        "exit_rate": 0.4490318450952152,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.04889115649628239,
+        "signals": [],
+        "consumption_score": 0.857,
+        "consumption": "high"
+      },
+      {
+        "url": "/",
+        "views": 1234567.0,
+        "sessions": 845210.0,
+        "entrances": 700112.0,
+        "exits": 512300.0,
+        "avg_time_s": 38.4,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 22.5,
+        "conversions": 4210.0,
+        "exit_rate": 0.41496330292321115,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.004981010636409887,
+        "signals": [],
+        "consumption_score": 0.714,
+        "consumption": "medium"
+      },
+      {
+        "url": "/features",
+        "views": 12500.0,
+        "sessions": 10020.0,
+        "entrances": 3400.0,
+        "exits": 4100.0,
+        "avg_time_s": 44.1,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 30.2,
+        "conversions": 620.0,
+        "exit_rate": 0.328,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.06187624750499002,
+        "signals": [],
+        "consumption_score": 0.667,
+        "consumption": "medium"
+      },
+      {
+        "url": "/about",
+        "views": 3410.0,
+        "sessions": 3100.0,
+        "entrances": 1020.0,
+        "exits": 2050.0,
+        "avg_time_s": 25.0,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 18.4,
+        "conversions": 12.0,
+        "exit_rate": 0.6011730205278593,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.003870967741935484,
+        "signals": [],
+        "consumption_score": 0.381,
+        "consumption": "medium"
+      },
+      {
+        "url": "/careers",
+        "views": 860.0,
+        "sessions": 812.0,
+        "entrances": 300.0,
+        "exits": 610.0,
+        "avg_time_s": 30.5,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 12.1,
+        "conversions": 0.0,
+        "exit_rate": 0.7093023255813954,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.0,
+        "signals": [],
+        "consumption_score": 0.333,
+        "consumption": "medium"
+      },
+      {
+        "url": "/legal/privacy",
+        "views": 450.0,
+        "sessions": 440.0,
+        "entrances": 120.0,
+        "exits": 400.0,
+        "avg_time_s": 15.2,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 9.8,
+        "conversions": 0.0,
+        "exit_rate": 0.8888888888888888,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.0,
+        "signals": [
+          "leak"
+        ],
+        "consumption_score": 0.143,
+        "consumption": "low"
+      },
+      {
+        "url": "/old-landing",
+        "views": 87.0,
+        "sessions": 80.0,
+        "entrances": 70.0,
+        "exits": 66.0,
+        "avg_time_s": 12.0,
+        "scroll_50_pct": null,
+        "scroll_90_pct": 5.0,
+        "conversions": 0.0,
+        "exit_rate": 0.7586206896551724,
+        "bounce_rate": null,
+        "quick_back_rate": null,
+        "conversion_rate": 0.0,
+        "signals": [
+          "insufficient_sample"
+        ],
+        "consumption_score": 0.0,
+        "consumption": "low"
+      }
+    ]
+  },
+  "search": {
+    "queries": [
+      {
+        "url": "/blog/hiring-guide",
+        "query": "hiring guide",
+        "impressions": 125400.0,
+        "clicks": 9870.0,
+        "position": 2.1,
+        "ctr": 0.079,
+        "expected_ctr": 0.15,
+        "signals": [
+          "asset_to_defend"
+        ],
+        "opportunity": 8941.0
+      },
+      {
+        "url": "/",
+        "query": "recruiting software",
+        "impressions": 310000.0,
+        "clicks": 2480.0,
+        "position": 11.3,
+        "ctr": 0.008,
+        "expected_ctr": 0.015,
+        "signals": [
+          "striking_distance"
+        ],
+        "opportunity": 2170.0
+      },
+      {
+        "url": "/pricing",
+        "query": "ats for startups",
+        "impressions": 48200.0,
+        "clicks": 1120.0,
+        "position": 6.4,
+        "ctr": 0.023,
+        "expected_ctr": 0.05,
+        "signals": [
+          "striking_distance",
+          "low_ctr_for_position"
+        ],
+        "opportunity": 1291.8
+      },
+      {
+        "url": "/careers",
+        "query": "ledgerly careers",
+        "impressions": 95.0,
+        "clicks": 20.0,
+        "position": 1.0,
+        "ctr": 0.211,
+        "expected_ctr": 0.28,
+        "signals": [],
+        "opportunity": 6.6
+      },
+      {
+        "url": "/features",
+        "query": "best ats",
+        "impressions": 1050.0,
+        "clicks": 14.0,
+        "position": 18.2,
+        "ctr": 0.013,
+        "expected_ctr": 0.015,
+        "signals": [
+          "striking_distance"
+        ],
+        "opportunity": 1.8
+      }
+    ],
+    "by_url": [
+      {
+        "url": "/blog/hiring-guide",
+        "impressions": 125400.0,
+        "clicks": 9870.0,
+        "queries": 1
+      },
+      {
+        "url": "/",
+        "impressions": 310000.0,
+        "clicks": 2480.0,
+        "queries": 1
+      },
+      {
+        "url": "/pricing",
+        "impressions": 48200.0,
+        "clicks": 1120.0,
+        "queries": 1
+      },
+      {
+        "url": "/careers",
+        "impressions": 95.0,
+        "clicks": 20.0,
+        "queries": 1
+      },
+      {
+        "url": "/features",
+        "impressions": 1050.0,
+        "clicks": 14.0,
+        "queries": 1
+      }
+    ]
+  }
+}

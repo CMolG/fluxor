@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I design metrics and experiments so Claude analyzes data the way I do", "should_trigger": true},
+  {"query": "I'm the lead analyst for growth. Build me an AI setup that reviews queries and write-ups like me — ask me whatever you need", "should_trigger": true},
+  {"query": "extract my analytics thinking into something I can load in Cursor and ChatGPT", "should_trigger": true},
+  {"query": "clone our data scientist: he agreed to be interviewed so an assistant keeps his A/B testing discipline", "should_trigger": true},
+  {"query": "capture how I frame stakeholder questions and talk about uncertainty so any AI tool works my way", "should_trigger": true},
+  {"query": "run the CEET data interview with me, I have an hour now and can do the rest tomorrow", "should_trigger": true},
+  {"query": "make a cognitive clone of me as an analytics engineer — dbt, Snowflake, and our metrics layer", "should_trigger": true},
+  {"query": "I want a portable profile of my data judgment — joins I distrust, power calculations, chart choices — for Claude", "should_trigger": true},
+  {"query": "turn my answers about data quality checks and SQL conventions into agents and rules for my coding assistant", "should_trigger": true},
+  {"query": "re-run my data cognitive profile, I changed how I handle peeking and multiple comparisons", "should_trigger": true},
+  {"query": "analyze this A/B test export and tell me if the variant won", "should_trigger": false},
+  {"query": "interview me about how I design database schemas and migrations so the AI codes like me", "should_trigger": false},
+  {"query": "write a dbt model that deduplicates the events table", "should_trigger": false},
+  {"query": "build a simulated analyst profile of how Airbnb's data team thinks, from their blog", "should_trigger": false},
+  {"query": "interview me about product discovery and roadmap prioritization for an AI clone", "should_trigger": false},
+  {"query": "rate each analyst on my team by the quality of their dashboards", "should_trigger": false},
+  {"query": "which CEET role should I use for a machine learning engineer who mostly ships models to production?", "should_trigger": false},
+  {"query": "set up a CLAUDE.md with our SQL style guide", "should_trigger": false},
+  {"query": "write a job description for a senior data analyst and a scoring rubric", "should_trigger": false},
+  {"query": "capture how I run incidents and on-call into an AI profile", "should_trigger": false}
+]

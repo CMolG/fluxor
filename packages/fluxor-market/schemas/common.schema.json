@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Shared definitions for marketplace manifests",
+  "$defs": {
+    "atomId": {
+      "description": "Stable identifier, unique within the marketplace. Equal to the manifest's file stem (or the skill folder). Never reused for a different atom; a rename keeps the old id in `aliases`.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "atomRef": {
+      "description": "A reference to another atom: `id`, optionally with a version range (`id@1`, `id@^1.2`, `id@~1.2.3`, `id@1.2.3`).",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*(@[\\^~]?(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*)){0,2})?$"
+    },
+    "version": {
+      "description": "Semantic version of the atom's content. Any change to what gets installed requires a bump; the lock file enforces it.",
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$"
+    },
+    "description": {
+      "description": "One or two sentences shown on the catalog card.",
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 400
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+      "uniqueItems": true
+    },
+    "domains": {
+      "description": "Where the atom is meaningful. Informational: used for hints and auto-selection, never enforced.",
+      "type": "array",
+      "items": { "enum": ["frontend", "backend", "web", "data", "infra", "universal"] },
+      "uniqueItems": true
+    },
+    "stability": {
+      "description": "`experimental` atoms are published but flagged; `deprecated` atoms stay installable for existing projects and are hidden from new ones.",
+      "enum": ["stable", "experimental", "deprecated"]
+    },
+    "toolTier": {
+      "description": "The most a session that works this role may do with its tools: `read` reads the tree and the board, `comment` adds the project's declared checks and the loop's own CLI, `write` is the session as it is today. Narrowest first.",
+      "enum": ["read", "comment", "write"]
+    },
+    "aliases": {
+      "description": "Former ids of this atom. Consumers resolve an alias to this id.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/atomId" },
+      "uniqueItems": true
+    },
+    "icon": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]+$" },
+    "iconLibrary": { "type": "string", "pattern": "^react-icons/[a-z0-9]+$" },
+    "betterOn": {
+      "description": "Legacy model hint copied to the Fluxor projection as is.",
+      "type": "string",
+      "minLength": 1
+    },
+    "capability": {
+      "description": "An abstract capability a provider maps to its own tools.",
+      "enum": ["fs.read", "fs.write", "shell", "git", "browser", "test-runner", "web-search", "network"]
+    },
+    "requires": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capabilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/capability" },
+          "uniqueItems": true
+        },
+        "atoms": {
+          "description": "Atoms that must be installed alongside this one.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/atomRef" },
+          "uniqueItems": true
+        },
+        "runtimes": {
+          "description": "Interpreters the atom's scripts need, e.g. `python>=3.9`, `node>=18`, `jq`. Suffix `?` marks an optional one.",
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z0-9]+([<>=]=?[0-9.]+)?\\??$" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "artifactRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "pathPattern"],
+      "properties": {
+        "description": { "type": "string", "minLength": 1 },
+        "pathPattern": { "type": "string", "minLength": 1 },
+        "mustContain": { "type": "array", "items": { "type": "string" } },
+        "minBytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "contract": {
+      "description": "A step's definition of done, verified by the engine with corrective retries (Fluxor's StepContract).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mustWriteFiles": { "type": "boolean" },
+        "forbidStubMarkers": { "type": "boolean" },
+        "requiredArtifacts": { "type": "array", "items": { "$ref": "#/$defs/artifactRequirement" } },
+        "forbiddenArtifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["description", "pathPattern"],
+            "properties": {
+              "description": { "type": "string", "minLength": 1 },
+              "pathPattern": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "requireDeclaredDependencies": { "type": "boolean" },
+        "maxAttempts": { "type": "integer", "minimum": 1 },
+        "haltOnBreach": { "type": "boolean" },
+        "localeCoverage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["description", "catalogPathPattern"],
+            "properties": {
+              "description": { "type": "string", "minLength": 1 },
+              "catalogPathPattern": { "type": "string", "minLength": 1 },
+              "sourcePathPattern": { "type": "string", "minLength": 1 },
+              "requireTranslated": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

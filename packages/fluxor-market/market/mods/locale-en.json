@@ -1,0 +1,34 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "locale-en",
+  "kind": "mod",
+  "version": "1.2.0",
+  "icon": "MdTranslate",
+  "iconLibrary": "react-icons/md",
+  "description": "Guarantees the English source i18n catalog defines every key used via t() across the app.",
+  "tags": [
+    "i18n",
+    "l10n",
+    "catalog",
+    "source-locale"
+  ],
+  "incompatibleWith": [
+    "dry-run"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "runtime": {
+    "contract": {
+      "forbidStubMarkers": true,
+      "localeCoverage": [
+        {
+          "description": "English source catalog (src/i18n/en.ts) covers every used key",
+          "catalogPathPattern": "src/i18n/en\\.(ts|tsx)$"
+        }
+      ]
+    }
+  },
+  "precedence": "correctness",
+  "enforcement": "runtime"
+}

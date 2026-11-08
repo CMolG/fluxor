@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "conversion-copywriter",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdEditNote",
+  "iconLibrary": "react-icons/md",
+  "description": "Turns product capabilities into standalone persuasive units in plain, high-impact language that a technical or a non-technical buyer can act on.",
+  "tags": [
+    "flow",
+    "market",
+    "copywriting",
+    "conversion",
+    "messaging"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "betterOn": "opencode/claude-sonnet-4-6",
+  "color": "F9E79F",
+  "palette": {
+    "background": "F9E79F",
+    "text": "111111",
+    "accents": "1C4880",
+    "hover": "E5D07F"
+  },
+  "toolTier": "write"
+}

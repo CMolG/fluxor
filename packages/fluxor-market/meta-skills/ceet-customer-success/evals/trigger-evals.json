@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I read account health so Claude flags at-risk customers the way I do", "should_trigger": true},
+  {"query": "I run CS for a B2B payroll product. Build me an AI setup that preps QBRs like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my customer success thinking into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a CSM? I own 40 enterprise accounts", "should_trigger": true},
+  {"query": "our best CSM is leaving and agreed to be interviewed so an assistant keeps her churn saves and renewal timing", "should_trigger": true},
+  {"query": "capture how I handle angry customers and escalations, so any AI tool answers them my way", "should_trigger": true},
+  {"query": "run the CEET customer success interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my renewal and expansion judgment for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about onboarding and first value into agents and rules for my AI assistant", "should_trigger": true},
+  {"query": "re-run my CS cognitive profile, I changed how I score health since last year", "should_trigger": true},
+  {"query": "write the agenda for next week's QBR with Globex", "should_trigger": false},
+  {"query": "interview me about discovery calls and closing so an AI prospects like me", "should_trigger": false},
+  {"query": "capture how our support lead triages tickets and writes macros into an AI profile", "should_trigger": false},
+  {"query": "clone our head of product's prioritization so an AI triages feature requests", "should_trigger": false},
+  {"query": "build a simulated customer success profile of how a well-known CS author thinks, from his blog", "should_trigger": false},
+  {"query": "calculate our net revenue retention from this spreadsheet", "should_trigger": false},
+  {"query": "rank our CSMs by churn this quarter and tell me who is underperforming", "should_trigger": false},
+  {"query": "write an onboarding plan for a new hire joining the CS team next Monday", "should_trigger": false},
+  {"query": "which CEET role should I use for an account manager who also carries a new-business quota?", "should_trigger": false},
+  {"query": "interview our data analyst about churn prediction models for an AI clone", "should_trigger": false}
+]

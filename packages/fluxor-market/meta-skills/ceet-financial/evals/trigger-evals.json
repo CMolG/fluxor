@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I build operating models so Claude reviews them the way I do", "should_trigger": true},
+  {"query": "I'm the CFO of a Series B marketplace. Build me an AI setup that drafts board memos like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my finance thinking into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as an FP&A lead? SaaS, monthly close", "should_trigger": true},
+  {"query": "our controller is retiring and agreed to be interviewed so an assistant keeps his close checklist and materiality calls", "should_trigger": true},
+  {"query": "capture how I say no to budget requests, so any AI tool reviews spend asks my way", "should_trigger": true},
+  {"query": "run the CEET finance interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my forecasting judgment — variance triggers, reforecasts, sales reconciliation — for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about unit economics and capital allocation into agents and rules for my AI assistant", "should_trigger": true},
+  {"query": "re-run my finance cognitive profile, I changed how I set assumptions since last year", "should_trigger": true},
+  {"query": "build a three-statement model for a subscription business with these inputs", "should_trigger": false},
+  {"query": "capture how our founder decides fundraising, runway and strategy into an AI profile", "should_trigger": false},
+  {"query": "interview me about pricing negotiations and discount ladders so an AI closes deals like me", "should_trigger": false},
+  {"query": "clone our head of growth's budget split between brand and demand for an AI assistant", "should_trigger": false},
+  {"query": "build a simulated finance profile of how a famous investor thinks, from his shareholder letters", "should_trigger": false},
+  {"query": "what is a good CAC payback period for a B2B SaaS company?", "should_trigger": false},
+  {"query": "rank our budget owners by how much they overspent and flag who to replace", "should_trigger": false},
+  {"query": "write a job description for an FP&A analyst and a modeling test", "should_trigger": false},
+  {"query": "which CEET role should I use for a founder who also acts as CFO?", "should_trigger": false},
+  {"query": "interview our data analyst about cohort dashboards for an AI clone", "should_trigger": false}
+]

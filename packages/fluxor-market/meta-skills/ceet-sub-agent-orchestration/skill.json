@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-sub-agent-orchestration",
+  "kind": "skill",
+  "version": "2.0.1",
+  "packaging": "traditional",
+  "description": "Splits complex work across sub-agents, each bound to one CEET role's pack, validates every handoff against the OrchestrationPlan and SubAgentResult contracts, and merges the results.",
+  "tags": [
+    "ceet",
+    "orchestration",
+    "sub-agents",
+    "contracts"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "tools": [
+    {
+      "name": "validate_handoff",
+      "command": [
+        "python3",
+        "scripts/validate_handoff.py"
+      ],
+      "description": "Validates an OrchestrationPlan before dispatch and each SubAgentResult after it; exit 1 on a violation."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "tests/**",
+      "evals/**"
+    ]
+  }
+}

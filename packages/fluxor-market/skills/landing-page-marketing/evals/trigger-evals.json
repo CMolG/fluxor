@@ -1,0 +1,22 @@
+[
+  {"query": "our saas homepage converts at like 1.2% and I think the hero is the problem. can you look at src/app/(marketing)/page.tsx and rewrite it so people get why it's worth $39/mo", "should_trigger": true},
+  {"query": "Review https://brewcraft.shop/pages/subscription — visitors land from Instagram and bounce. What's wrong with the page and what would you change?", "should_trigger": true},
+  {"query": "I need a sales page for my 8-week pottery course (€340, small groups of 6, Lisbon). Build it as a single html file I can upload to my hosting", "should_trigger": true},
+  {"query": "write 5 headline options + subheadline for the landing page of our API monitoring tool, current one is 'Observability, reimagined' and nobody understands it", "should_trigger": true},
+  {"query": "can you redo our pricing section? 3 plans (Starter 19, Pro 49, Team 129), people keep emailing asking what the difference is and most pick starter then churn", "should_trigger": true},
+  {"query": "Mi landing no vende. Es una app de reservas para peluquerías, 29€/mes. Te paso el texto actual abajo, dime qué falla y reescríbelo para que se vea el valor", "should_trigger": true},
+  {"query": "Our product page for the ergonomic chair has great reviews but low add-to-cart. Here's the copy and the specs sheet, make it sell better without making stuff up", "should_trigger": true},
+  {"query": "I have 40 customer interviews in interviews/*.md. Mine them for the words customers use and turn it into new landing page copy for our bookkeeping service", "should_trigger": true},
+  {"query": "is my offer good enough? $997 coaching program, 12 weeks, 1:1 calls. the page is at ./site/index.html — tell me how to make the offer more compelling on the page", "should_trigger": true},
+  {"query": "turn our boring features page into something that actually explains the value, it's just a grid of 12 icons with one-liners (apps/web/pages/features.tsx)", "should_trigger": true},
+  {"query": "Write three Facebook ad variations for our meal-prep delivery service targeting busy parents, with primary text, headline and description", "should_trigger": false},
+  {"query": "draft a 5-email onboarding sequence for new trial users of our CRM, first one goes out right after signup", "should_trigger": false},
+  {"query": "Our landing page scores 42 on mobile PageSpeed. Fix the LCP and CLS issues in the Next.js app, the hero image is huge", "should_trigger": false},
+  {"query": "prepare our Product Hunt launch: tagline, description, maker comment and gallery plan for Tuesday", "should_trigger": false},
+  {"query": "write a 1500-word SEO blog post on 'how to get clients to pay invoices on time' for our blog", "should_trigger": false},
+  {"query": "set up an A/B test in PostHog for the signup button color and tell me how long to run it with 3k visitors/week", "should_trigger": false},
+  {"query": "convert this Figma landing page design into a responsive Tailwind + React component, match the design exactly, copy is final", "should_trigger": false},
+  {"query": "what pricing model should we use for our API — usage-based, seats, or tiers? we have 200 customers and want to raise ARPU", "should_trigger": false},
+  {"query": "write a LinkedIn post announcing our new landing page redesign and thanking the design team", "should_trigger": false},
+  {"query": "audit the accessibility of our marketing site (WCAG 2.2 AA) — contrast, keyboard nav, alt text — and list fixes", "should_trigger": false}
+]

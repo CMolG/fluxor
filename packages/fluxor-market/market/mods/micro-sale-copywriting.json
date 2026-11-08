@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "micro-sale-copywriting",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdSell",
+  "iconLibrary": "react-icons/md",
+  "description": "Writes every feature as a self-contained micro-sale in four parts: a hook that names the friction, the mechanism that removes it, the asymmetric proof against the rival, and a single micro-close.",
+  "tags": [
+    "copywriting",
+    "conversion",
+    "landing-page",
+    "micro-sale",
+    "flow"
+  ],
+  "domains": [
+    "web"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt"
+}

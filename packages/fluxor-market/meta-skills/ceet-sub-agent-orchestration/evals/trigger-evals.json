@@ -1,0 +1,22 @@
+[
+  {"query": "review this change with three sub-agents in parallel, backend, frontend and SRE, each following its CEET pack, then merge their findings", "should_trigger": true},
+  {"query": "split the launch work across our CEET clones: the PM writes the PRD, the copywriter the landing copy, the designer the screens", "should_trigger": true},
+  {"query": "ceet-autodiscover says this needs several roles; yes, launch the role sub-agents in parallel and consolidate", "should_trigger": true},
+  {"query": "build an OrchestrationPlan for this refactor with one sub-agent per CEET role and validate it before dispatch", "should_trigger": true},
+  {"query": "the frontend sub-agent returned its SubAgentResult, validate it against the contract before merging", "should_trigger": true},
+  {"query": "run the security review as a backend clone and a devops clone in separate workspaces, then reconcile", "should_trigger": true},
+  {"query": "delegate this audit to role-based sub-agents bound to our CEET packs, and use the example pack where a role has none", "should_trigger": true},
+  {"query": "have my legal and financial CEET clones each review the pricing change, then give me one combined answer", "should_trigger": true},
+  {"query": "coordinate the marketing, sales and customer success clones on the churn report without them editing the same files", "should_trigger": true},
+  {"query": "plan parallel CEET sub-agents for this migration and give me the consolidated delivery with its trace", "should_trigger": true},
+  {"query": "launch three sub-agents to search the codebase for every use of the old API", "should_trigger": false},
+  {"query": "review this change for security issues", "should_trigger": false},
+  {"query": "set up a CrewAI crew with a researcher and a writer agent", "should_trigger": false},
+  {"query": "run the CEET backend engineer interview with me", "should_trigger": false},
+  {"query": "check whether this project has a CEET pack for the SRE role", "should_trigger": false},
+  {"query": "explain how to run tests in parallel with pytest-xdist", "should_trigger": false},
+  {"query": "write a JSON schema for our agent handoff messages", "should_trigger": false},
+  {"query": "split this big PR into smaller ones that can be reviewed independently", "should_trigger": false},
+  {"query": "orchestrate our Kubernetes jobs so the batch workers don't compete for the database", "should_trigger": false},
+  {"query": "assign these ten tickets to the right engineers on my team", "should_trigger": false}
+]

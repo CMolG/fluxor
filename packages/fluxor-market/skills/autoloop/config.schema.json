@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autoloop.config.schema.json",
+  "title": "autoloop: .harness/config/autoloop.json",
+  "description": "How the parallel loop runs in this project. Every key is optional; the defaults are in the skill's SKILL.md. `$`-prefixed keys are comments.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^\\$": {
+      "description": "A comment (for example `$comment`) or `$schema`; ignored."
+    }
+  },
+  "properties": {
+    "slots": {
+      "description": "Slots when `/autoloop` names none. Default: 2.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "maxSlots": {
+      "description": "The most slots `start` accepts. Default: 6.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "target": {
+      "description": "The control branch the person chose; wins over the sprint template. Default: none.",
+      "type": "string",
+      "minLength": 1
+    },
+    "targetTemplate": {
+      "description": "The active sprint's control branch, with {projectTag} and {sprint}. Default: feat/cb-{projectTag}-sprint-{sprint}.",
+      "type": "string",
+      "minLength": 1
+    },
+    "projectTag": {
+      "description": "{projectTag} in the template. Default: the backlog config's keyPrefix in lower case.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "remote": {
+      "description": "The remote branches are pushed to. Default: origin.",
+      "type": "string",
+      "minLength": 1
+    },
+    "baseBranch": {
+      "description": "What a new control branch starts from, and what its pull request merges into. Default: main.",
+      "type": "string",
+      "minLength": 1
+    },
+    "worktreeRoot": {
+      "description": "Directory of the slot worktrees, on the git side; `~` is that side's home. Default: ~/wt.",
+      "type": "string",
+      "minLength": 1
+    },
+    "worktreePrefix": {
+      "description": "Slot worktree names: <prefix><n>. Default: loop-.",
+      "type": "string",
+      "minLength": 1
+    },
+    "setup": {
+      "description": "Shell command run once in a new worktree before its first session, e.g. installing dependencies. Default: none.",
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt": {
+      "description": "Project notes appended to the worker prompt: a path from the project root. Default: none.",
+      "type": "string",
+      "minLength": 1
+    },
+    "machineName": {
+      "description": "`hostname`, `env:VAR` or a literal; each slot reports `<it>-loop-<n>`. Default: hostname.",
+      "type": "string",
+      "minLength": 1
+    },
+    "env": {
+      "description": "Extra variables for every worker; values may use the prompt placeholders ({{MACHINE}}, {{SLOT}}...). Default: none.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "idleMinutes": {
+      "description": "Minutes without a transcript write before a session is recycled as dead. Default: 30.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "doneGraceSeconds": {
+      "description": "Seconds without a transcript write, after a done marker, before a still-busy session is recycled. Default: 120.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "pollSeconds": {
+      "description": "The supervisor's poll. Default: 15.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "startTimeoutSeconds": {
+      "description": "A session gone within this long of its launch is a failed start. Default: 120.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "maxFailedStarts": {
+      "description": "Failed starts in a row that disable a slot. Default: 3.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "claimTtlMinutes": {
+      "description": "Age at which an unrefreshed claim may be taken over. Default: 15.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "portOffsetStep": {
+      "description": "AUTOLOOP_PORT_OFFSET is slot x this. Default: 100.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "doneMarker": {
+      "description": "What `done` writes in the worktree. Default: .claude/autoloop.done.",
+      "type": "string",
+      "minLength": 1
+    },
+    "relaunchMarker": {
+      "description": "What `relaunch` writes in the worktree: the model and effort this slot restarts on. Default: .claude/autoloop.relaunch.",
+      "type": "string",
+      "minLength": 1
+    },
+    "idleMarker": {
+      "description": "What `idle` writes in the worktree when a worker finds no card to claim. Default: .claude/autoloop.idle.",
+      "type": "string",
+      "minLength": 1
+    },
+    "idleRetryMinutes": {
+      "description": "How long a slot parked by `idle` waits before a new session looks for a card again. Default: 30.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "claude": {
+      "description": "How a worker is launched; `--bg` and its name are added. Default: claude --dangerously-skip-permissions.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tiers": {
+      "description": "Holds a launched session to the tool tier its role declares (read, comment or write): with `enabled` true, a read or comment session is started without the file-writing tools and with AUTOLOOP_TOOL_TIER set for the project's guard. Default: disabled, so every session launches as before.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "scratch": {
+          "description": "Directories a held session may write to: its own scratch space, outside the tree.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputs": {
+          "description": "Directories a held session may write its check outputs to.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "checks": {
+          "description": "Commands a held session may run (a read-only check runner, the project's test or lint run).",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "liaison": {
+      "description": "With 2 or more slots, the supervisor runs this command itself (no session, no model) on behalf of the lowest slot, to summon the person to what waits on them. Default: none, so no liaison.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command"],
+      "properties": {
+        "command": {
+          "description": "A shell line run from the project root with AUTOLOOP_MACHINE set to the liaison slot's machine. It prints ONE JSON line, {\"pending\": <integer>, \"open\": <http(s) URL or null>, \"summary\": <string>}; a URL is opened in the person's default browser.",
+          "type": "string",
+          "minLength": 1
+        },
+        "pollSeconds": {
+          "description": "Seconds between runs. Default: 60.",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "remoteSwitch": {
+      "description": "The tracker's Start/Stop switch: the supervisor itself (no session, no model) runs this command on a clock, saying whether the loop runs or stands by, and applies the order it prints back. Default: none, so the loop answers only to start and stop on this machine.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command"],
+      "properties": {
+        "command": {
+          "description": "A shell line run from the project root with AUTOLOOP_STATE (running or idle), AUTOLOOP_MACHINE, AUTOLOOP_SLOTS and AUTOLOOP_TARGET set. It prints ONE JSON line, {\"command\": \"start\" | \"stop\" | null}.",
+          "type": "string",
+          "minLength": 1
+        },
+        "pollSeconds": {
+          "description": "Seconds between beats. Default: 20.",
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "pickRun": {
+      "description": "The run a slot's next session starts on: before each launch the supervisor itself (no session, no model) runs this command and starts the session on the model and effort it prints, so no session is spent only on relaunching itself onto its card's model. A slot that a relaunch restarted keeps the run its card asked for. Default: none, so a session starts on the run its slot had.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command"],
+      "properties": {
+        "command": {
+          "description": "A shell line run from the project root with AUTOLOOP_MACHINE set to the slot's machine. It prints ONE JSON line, {\"model\": <string> | null, \"effort\": \"low\" | \"medium\" | \"high\" | \"xhigh\" | \"max\" | null}; anything else, or a failure, keeps the slot's run.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "doneCheck": {
+      "description": "The done gate: `done` runs this command with AUTOLOOP_CARD set to the keys the slot holds, and is refused (exit 7) while it answers that the unit still has work for the session, which the tracker would hand straight back to the next one. `done --forced run-killed|environment|context` goes past it. Default: none, so `done` ends any session.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command"],
+      "properties": {
+        "command": {
+          "description": "A shell line run from the project root. It prints ONE JSON line, {\"open\": <boolean>, \"key\": <string>, \"reason\": <string>}; a failure or anything else lets the `done` through with a warning, so a check that cannot answer never traps a session.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "preflight": {
+      "description": "What this machine cannot run, checked once by `start` before any session is launched. A non-zero exit prints its output as a warning; the loop starts anyway. Default: none.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command"],
+      "properties": {
+        "command": {
+          "description": "A shell line run from the project root; exit 0 when the machine can run everything the loop's cards may ask for.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "cli": {
+      "description": "How the prompt tells workers to run this skill's tool. Default: node .harness/skills/autoloop/scripts/autoloop.mjs.",
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

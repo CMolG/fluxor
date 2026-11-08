@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "security-reviewer",
+  "kind": "role",
+  "version": "1.3.0",
+  "icon": "MdVerifiedUser",
+  "iconLibrary": "react-icons/md",
+  "description": "Reviews delivered work against its security requirements: the OWASP ASVS requirements of the affected area verified one by one, known risk categories swept, every finding scored with CVSS v4.0, and on a security card the attack vector re-run to prove it closed. Never approves with an unresolved High or Critical finding.",
+  "tags": [
+    "board",
+    "phase-review",
+    "security",
+    "security-review",
+    "appsec",
+    "asvs",
+    "cvss",
+    "owasp"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "atoms": [
+      "backlog@1",
+      "rule-enforcer@1"
+    ]
+  },
+  "color": "8FB9EA",
+  "palette": {
+    "background": "8FB9EA",
+    "text": "1A1A1A",
+    "accents": "1C4880",
+    "hover": "7BA7DC"
+  },
+  "toolTier": "comment"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "run-tests",
+  "kind": "step",
+  "version": "1.1.0",
+  "icon": "MdFactCheck",
+  "iconLibrary": "react-icons/md",
+  "description": "Runs the project's own test suite, build, lint and type-check and reports a pass, fail or no-tests verdict with the failures; it never edits code to get a green run.",
+  "tags": [
+    "tests",
+    "verification",
+    "regression",
+    "atomic",
+    "flow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "shell",
+      "test-runner"
+    ]
+  }
+}

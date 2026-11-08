@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "progressive-disclosure",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdLayers",
+  "iconLibrary": "react-icons/md",
+  "description": "Sequences a page from the value proposition to the interactive proof, starting with minimal load, and alternates the layout pattern of consecutive sections so the scroll never feels repetitive.",
+  "tags": [
+    "ux",
+    "layout",
+    "landing-page",
+    "pacing",
+    "progressive-disclosure",
+    "flow"
+  ],
+  "domains": [
+    "web",
+    "frontend"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt"
+}

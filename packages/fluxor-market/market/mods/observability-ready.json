@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "observability-ready",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdInsights",
+  "iconLibrary": "react-icons/md",
+  "description": "Enforces structured correlation-id logging, golden-signal metrics, and spans on every new endpoint; forbids console.log and unobservable code.",
+  "tags": [
+    "observability",
+    "logging",
+    "metrics",
+    "tracing",
+    "otel"
+  ],
+  "domains": [
+    "backend",
+    "infra"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

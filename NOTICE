@@ -1,0 +1,16 @@
+Fluxor
+Copyright 2026 Carlos Molina Galindo
+
+Licensed under the Elastic License 2.0. See LICENSE.
+
+Fluxor is developed by Carlos Molina Galindo as independent work, inside the Javadaba
+monorepo, since June 2026 (first under the working name Heliox); its base marketplace joined it
+from a separate repository in September 2026.
+This repository is the Local edition, published on 2026-11-08. Fluxor carries the harness of
+the FIERCE framework described in:
+
+  Molina Galindo, C. (2026). FIERCE: Fast Implementation Ensuring Results by Capable Experts.
+  Position paper. https://doi.org/10.5281/zenodo.23972303
+
+"Fluxor" and "Fluxor Cloud" name the products of the licensor. The license does not grant
+rights to those names beyond describing the origin of the software.

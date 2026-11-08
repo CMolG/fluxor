@@ -1,0 +1,22 @@
+[
+  {"query": "we're putting our budgeting app on product hunt next tuesday, can you look at the repo in ./app and tell me what's missing before launch? also what time does it go live for me in Berlin", "should_trigger": true},
+  {"query": "Can you review my PH listing before I submit? tagline: 'The smartest AI copilot for recruiters ever made' — description is below, I think it's too long", "should_trigger": true},
+  {"query": "I want to hunt my own product on producthunt. Is my landing page https://notely.so good enough to actually get featured?", "should_trigger": true},
+  {"query": "write the maker first comment for our product hunt launch of Relaydesk (help desk for Shopify stores). we launch friday, I'm the founder, it's free up to 2 agents", "should_trigger": true},
+  {"query": "what size do product hunt gallery images need to be, and can you grab screenshots of localhost:3000 at that size for our launch", "should_trigger": true},
+  {"query": "my side project (a chrome extension that summarizes youtube videos) is almost done — should I put it on PH now or wait? code's in ~/code/tubesum", "should_trigger": true},
+  {"query": "Audit https://getcadence.io before our Product Hunt launch. Anything that would stop us from getting Product of the Day?", "should_trigger": true},
+  {"query": "going live on PH in 10 days with our open source CLI (repo is this folder). check the README and the package and tell me what to fix first", "should_trigger": true},
+  {"query": "We launched on Product Hunt in March 2026 and want to relaunch with v2 in October. Are we allowed to, and what should we prepare?", "should_trigger": true},
+  {"query": "prepare everything for launching Pixelmint on product hunt and fix whatever you can in the code, the next.js marketing site is in this repo", "should_trigger": true},
+  {"query": "Write a Show HN post for our open source CLI tool (repo is ./cli). HN folks hate marketing speak so keep it plain", "should_trigger": false},
+  {"query": "Can you run a Lighthouse audit on https://getcadence.io and fix the LCP and CLS problems in our Next.js app?", "should_trigger": false},
+  {"query": "draft a LinkedIn post announcing that Relaydesk just closed a $2M seed round led by Kindred", "should_trigger": false},
+  {"query": "Help me write the Chrome Web Store listing (description + 5 screenshots) for my youtube summarizer extension", "should_trigger": false},
+  {"query": "What were the top 5 AI products on Product Hunt last month? I need them for a competitor slide in our pitch deck", "should_trigger": false},
+  {"query": "build me a python script that scrapes today's Product Hunt leaderboard into a google sheet every morning", "should_trigger": false},
+  {"query": "review the onboarding flow in app/signup for friction — our trial-to-paid conversion dropped from 9% to 5% last month", "should_trigger": false},
+  {"query": "We're launching on the App Store next week. Check our App Store screenshots and description against Apple's guidelines", "should_trigger": false},
+  {"query": "write a press release for our product launch next Tuesday, we're announcing an AI scheduling assistant for clinics", "should_trigger": false},
+  {"query": "what's a good tagline for my bakery's new website? we do sourdough and pastries in Lisbon", "should_trigger": false}
+]

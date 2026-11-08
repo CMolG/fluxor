@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "idea-map-synthesizer",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdHub",
+  "iconLibrary": "react-icons/md",
+  "description": "Reads the typed notes bound to a step, groups loose notes into capability pillars, and keeps the strategic intent each note carries.",
+  "tags": [
+    "mind-map",
+    "synthesis",
+    "notes",
+    "capabilities",
+    "flow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "scope",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "qa-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdBugReport",
+  "iconLibrary": "react-icons/md",
+  "description": "Obsessed with edge cases, end-to-end testing, continuous integration, and TDD/BDD practices.",
+  "tags": [
+    "qa",
+    "testing",
+    "e2e",
+    "cypress",
+    "tdd",
+    "edge-cases"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "87E752",
+  "palette": {
+    "background": "87E752",
+    "text": "111111",
+    "accents": "D90368",
+    "hover": "76C947"
+  },
+  "toolTier": "write"
+}

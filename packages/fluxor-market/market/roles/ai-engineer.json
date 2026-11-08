@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "ai-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdSmartToy",
+  "iconLibrary": "react-icons/md",
+  "description": "Builds LLM-powered applications: prompts, agent loops, RAG, structured outputs, and eval-gated changes.",
+  "tags": [
+    "ai",
+    "llm",
+    "agents",
+    "rag",
+    "prompts",
+    "evals",
+    "mcp"
+  ],
+  "domains": [
+    "backend",
+    "data"
+  ],
+  "betterOn": "anthropic/claude-opus-4.6",
+  "color": "00BBF9",
+  "palette": {
+    "background": "00BBF9",
+    "text": "111111",
+    "accents": "3A405A",
+    "hover": "009FD4"
+  },
+  "toolTier": "write"
+}

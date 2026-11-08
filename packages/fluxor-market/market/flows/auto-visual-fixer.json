@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-visual-fixer",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "infinite",
+  "icon": "MdFormatShapes",
+  "iconLibrary": "react-icons/md",
+  "description": "Continuously audits and fixes UI/UX accessibility and layout issues without altering brand identity.",
+  "tags": [
+    "ui",
+    "ux",
+    "a11y",
+    "accessibility",
+    "css",
+    "styling",
+    "layout",
+    "loop",
+    "infinite"
+  ],
+  "steps": [
+    {
+      "id": "audit-a11y-and-layout",
+      "prompt": "Audit the UI for accessibility violations and layout inconsistencies"
+    },
+    {
+      "id": "prioritize-by-severity",
+      "prompt": "Prioritize issues by severity (WCAG compliance first)"
+    },
+    {
+      "id": "apply-targeted-fixes",
+      "prompt": "Apply targeted CSS/component fixes without altering business logic"
+    },
+    {
+      "id": "verify-visually",
+      "prompt": "Verify fixes visually and with accessibility tooling"
+    },
+    {
+      "id": "commit-and-loop",
+      "stepRef": "commit-changes",
+      "prompt": "Commit changes and loop to the next UI issue",
+      "loopBackTo": {
+        "stepId": "audit-a11y-and-layout",
+        "maxIterations": 3
+      }
+    }
+  ]
+}

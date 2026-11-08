@@ -1,0 +1,48 @@
+# Fluxor Local: the database and the API, both published on the loopback only.
+#
+#   docker compose up --build
+#   python3 fluxor-sync.py init --server http://127.0.0.1:18191/api --enroll local --project <id>
+#
+# Set FLUXOR_LOCAL_TOKEN (in your shell or a .env file next to this one) to require
+# `Authorization: Bearer <token>` on the MCP endpoint; it then also becomes the enrollment code.
+name: ${COMPOSE_PROJECT_NAME:-fluxor-local}
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: fluxor
+      POSTGRES_USER: fluxor
+      POSTGRES_PASSWORD: ${FLUXOR_DB_PASSWORD:-fluxor}
+    ports:
+      - "127.0.0.1:${FLUXOR_DB_PORT:-15434}:5432"
+    volumes:
+      - fluxor-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fluxor -d fluxor"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  api:
+    build: ./server
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      FLUXOR_DB_URL: jdbc:postgresql://db:5432/fluxor
+      FLUXOR_DB_USER: fluxor
+      FLUXOR_DB_PASSWORD: ${FLUXOR_DB_PASSWORD:-fluxor}
+      FLUXOR_LOCAL_TOKEN: ${FLUXOR_LOCAL_TOKEN:-}
+      FLUXOR_LOCAL_ENROLLMENT_CODE: ${FLUXOR_LOCAL_ENROLLMENT_CODE:-}
+      FLUXOR_LOCAL_PUBLIC_URL: ${FLUXOR_LOCAL_PUBLIC_URL:-http://127.0.0.1:18191/api}
+    ports:
+      - "127.0.0.1:${FLUXOR_API_PORT:-18191}:18191"
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/18191 && printf \"GET /q/health/ready HTTP/1.0\\r\\n\\r\\n\" >&3 && grep -q UP <&3'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  fluxor-db:

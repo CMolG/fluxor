@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "research-radar",
+  "kind": "skill",
+  "version": "1.0.0",
+  "packaging": "traditional",
+  "description": "Mines a codebase for potentially novel techniques, checks each against the state of the art, separates real innovation from hype, and turns the promising ones into papers, talks, posts or releases.",
+  "tags": [
+    "research",
+    "novelty",
+    "prior-art",
+    "innovation"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "web-search"
+    ]
+  }
+}

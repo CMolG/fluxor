@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "competitive-intelligence-strategist",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdManageSearch",
+  "iconLibrary": "react-icons/md",
+  "description": "Deconstructs a closest rival's pricing, UX friction and technical limits, and turns them into the structural gaps a product can exploit, each one cited to a public source.",
+  "tags": [
+    "flow",
+    "market",
+    "competitive-analysis",
+    "strategy",
+    "positioning"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "betterOn": "anthropic/claude-opus-4.6",
+  "color": "7FB3D5",
+  "palette": {
+    "background": "7FB3D5",
+    "text": "111111",
+    "accents": "1C4880",
+    "hover": "6A9DC0"
+  },
+  "toolTier": "read"
+}

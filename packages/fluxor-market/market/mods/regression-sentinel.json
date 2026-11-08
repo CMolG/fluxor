@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "regression-sentinel",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdGppGood",
+  "iconLibrary": "react-icons/md",
+  "description": "Brownfield guard: read before write, preserve public contracts, limit blast radius, and prove prior features survive.",
+  "tags": [
+    "regression",
+    "brownfield",
+    "contracts",
+    "safe"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "deterministic-tests",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdRule",
+  "iconLibrary": "react-icons/md",
+  "description": "Tests give the same result on every run and sit at the lowest level that proves the behavior: controlled time, randomness and order, no fixed waits, retries or skips, flakiness fixed at its cause, and no production code changed on a testing card.",
+  "tags": [
+    "testing",
+    "determinism",
+    "flaky-tests",
+    "test-levels",
+    "reliability"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

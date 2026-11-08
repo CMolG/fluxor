@@ -1,0 +1,834 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-ui-designer",
+  "title": "UI Designer",
+  "nameSlot": "designer_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "design",
+      "visual",
+      "component library",
+      "design system",
+      "motion",
+      "typography",
+      "layout",
+      "ui design",
+      "figma",
+      "color",
+      "spacing",
+      "design tokens",
+      "mockup"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about visual and interface design: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What surface do you design for (marketing, app, dashboards, consumer, B2B, hardware UI)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What stack are you in — Figma, tokens tooling, design system tools, prototyping?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "Who hands off to you (PM, research, brand) and who receives your handoff (front-end, marketing, brand)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "What's the rough size and maturity of your design system?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.components.system_end_point"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Taste through exemplars",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "Name 3 products whose UI craft you respect. What specifically — don't say \"clean.\"",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.critique.heroes_and_anti_heroes",
+                "identity.core_values",
+                "directives.personality.quality_calibration"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "Name 3 products that you think are over-hyped visually. Why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.critique.heroes_and_anti_heroes"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "Describe a single screen, anywhere, that's near-perfect to you. Walk me through what's working.",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "feeds": [
+                "directives.personality.quality_calibration",
+                "identity.decision_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Grid & spacing",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "What baseline unit do you work in (4, 8, other)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.grid_spacing.baseline_unit"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "Tight or airy — where's your default, and what pushes you off it?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.grid_spacing.tight_vs_airy"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "What ratios recur in your work (12-col, golden, whatever you gravitate to)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.grid_spacing.ratio_preferences"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Type",
+          "questions": [
+            {
+              "id": "Q11",
+              "prompt": "Favorite typefaces for body, UI chrome, display? Any you refuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.typography.typeface_rules"
+              ]
+            },
+            {
+              "id": "Q12",
+              "prompt": "What's your type scale? How many steps?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.typography.scale_system"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "Line height and measure convictions?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.typography.line_height_measure"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What's one type mistake you see everywhere?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.typography.type_mistakes"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Color",
+          "questions": [
+            {
+              "id": "Q15",
+              "prompt": "How do you think about a color system — semantic tokens, named ramps, raw hex?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.color.system_approach"
+              ]
+            },
+            {
+              "id": "Q16",
+              "prompt": "What's your stance on dark mode — first-class, afterthought, or single-mode design?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.color.dark_mode_stance"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "Contrast bar — do you go beyond WCAG? In which direction?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.color.contrast_bar"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "A color you overuse? One you avoid?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.color.over_under_used"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "title": "Components",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "What's the smallest primitive you design from (tokens, atoms, molecules)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.components.smallest_primitive"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "At what level of the system do you stop — where does \"system\" end and \"app\" begin?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.components.system_end_point"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "How do you handle variants — props-based, multiple components, composition?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.components.variant_approach"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "Component naming conventions you insist on?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.components.naming_conventions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "States & craft",
+          "questions": [
+            {
+              "id": "Q23",
+              "prompt": "Which state (default, hover, active, focus, disabled, loading, empty, error, success) gets the least love on teams you've worked with? How do you change that?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.states_craft.neglected_state"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "What's a micro-detail (ring width, shadow softness, button border) that you obsess over?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.states_craft.micro_detail_obsession"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "What's something you always check before calling a mock done?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.states_craft.done_checklist"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Critique",
+          "questions": [
+            {
+              "id": "Q34",
+              "prompt": "When you critique someone's mock, what do you look at in what order?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.critique.feedback_voice",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "What words do you reach for repeatedly (\"weight\", \"rhythm\", \"heavy\", \"polite\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.critique.vocabulary",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q36",
+              "prompt": "What phrases do you avoid giving as feedback?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.critique.feedback_voice",
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q47",
+              "prompt": "Pick a hard design decision from the last few months, one where reasonable designers would have disagreed: a system change, a component API, a brand exception, a cut. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.components.variant_approach"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "Tell me about a design that shipped and did not work: people missed it, engineering could not build it as drawn, or it broke the system. What did you notice first, and what did you change?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.states_craft.neglected_state",
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "Think of a screen a capable mid-level designer hands you as done. What would they miss that you would catch before it ships? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.states_craft.done_checklist",
+                "directives.states_craft.micro_detail_obsession",
+                "directives.color.contrast_bar"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Walk me through the last piece you designed — inputs, decisions, cuts, final, rationale.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you cut that?",
+                "What would have made you keep it?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.personality.quality_calibration"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "Think of two variants of the same component or screen, one you shipped and one you rejected (or build the pair now from your files). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.components.variant_approach",
+                "directives.critique.vocabulary"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "Here is all you get: engineering says the new card component ships in two days if you drop its hover, focus and empty states, and marketing needs it for Monday's launch. What do you decide, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you let it ship without the states?"
+              ],
+              "feeds": [
+                "directives.states_craft.neglected_state",
+                "directives.personality.quality_calibration"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-motion",
+      "title": "Depth: motion, icons and brand",
+      "optional": true,
+      "purpose": "Motion, icons and illustration, and where brand may bend usability.",
+      "sections": [
+        {
+          "id": "H",
+          "title": "Motion",
+          "questions": [
+            {
+              "id": "Q26",
+              "prompt": "Where do you use motion deliberately? Where do you refuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.motion.where_deliberate",
+                "directives.motion.smell_animations"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "Default easing and duration?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.motion.duration_easing"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "Reduced-motion stance — strict or loose?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.motion.reduced_motion"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Icons & illustration",
+          "questions": [
+            {
+              "id": "Q29",
+              "prompt": "Icon style and grid — what's your standard?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.grid_spacing.baseline_unit"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "When do illustrations earn their keep? When are they decoration?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q31",
+              "prompt": "Illustration style references you use?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.critique.heroes_and_anti_heroes"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Brand vs. usability",
+          "questions": [
+            {
+              "id": "Q32",
+              "prompt": "Where do you let brand override usability norms? Example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "Where do you refuse to let brand override?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework",
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-tooling",
+      "title": "Depth: tooling, heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "How the person keeps design files, their rules of thumb, and what they refuse to ship.",
+      "sections": [
+        {
+          "id": "L",
+          "title": "Tooling discipline",
+          "questions": [
+            {
+              "id": "Q37",
+              "prompt": "Figma file organization conventions?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.figma.naming_discipline",
+                "directives.figma.library_management"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "Variables, modes, and tokens — how far are you in, and what's your strategy?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.figma.variables"
+              ]
+            },
+            {
+              "id": "Q39",
+              "prompt": "What handoff rituals do you insist on?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.figma.library_management"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "How do you use auto layout and constraints: what do you always build with them, and where do you refuse to? Show me a frame you rebuilt because its layout fought you.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.figma.auto_layout"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q40",
+              "prompt": "\"If a screen has more than {X} primary actions, it's {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q41",
+              "prompt": "\"When I can't decide between two variants, I {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q42",
+              "prompt": "\"I know a design is done when {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.states_craft.done_checklist"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q43",
+              "prompt": "A visual trend you distrust right now?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q44",
+              "prompt": "A UI pattern that looks impressive but you won't ship?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "Q",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q52",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "A release goes out with a broken visual: the wrong brand color, an unreadable dark mode, a layout that collapses on phones. What do you do in the first hour, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q54",
+              "prompt": "What design belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q55",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q56",
+              "prompt": "What reliably frustrates you in a design team's habits or in how design reviews go?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

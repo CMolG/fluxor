@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about positioning and ICP so Claude plans campaigns the way I do", "should_trigger": true},
+  {"query": "I'm head of growth at a B2B startup. Build me an AI setup that reasons about channels and funnels like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my marketing thinking into something I can load in ChatGPT and Claude", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a product marketer? I own launches and messaging", "should_trigger": true},
+  {"query": "our CMO is leaving next quarter and agreed to be interviewed so an assistant keeps her GTM playbook", "should_trigger": true},
+  {"query": "capture how I split brand and demand budget and what I actually believe about attribution, for any AI tool", "should_trigger": true},
+  {"query": "run the CEET marketing interview with me, I can do the core now and the depth modules next week", "should_trigger": true},
+  {"query": "I want a portable profile of my growth playbook — ICP refusals, killed channels, launch tiers — for Cursor and Gemini", "should_trigger": true},
+  {"query": "turn my answers about messaging pillars and funnel leaks into agents and rules for my marketing assistant", "should_trigger": true},
+  {"query": "re-run my marketing cognitive profile, I stopped trusting last-touch attribution since we last did it", "should_trigger": true},
+  {"query": "write three ad variants for our spring campaign", "should_trigger": false},
+  {"query": "interview me about my writing voice, banned words and editing habits so an AI writes copy like me", "should_trigger": false},
+  {"query": "clone our copywriter's tone for emails and microcopy into an AI profile", "should_trigger": false},
+  {"query": "capture how I write headlines and CTAs, sentence by sentence, for my AI assistant", "should_trigger": false},
+  {"query": "build a simulated marketing profile of how HubSpot's growth team thinks, from their blog", "should_trigger": false},
+  {"query": "audit our landing page against Product Hunt's launch guidelines", "should_trigger": false},
+  {"query": "write a job description for a head of demand gen and a scorecard for the interviews", "should_trigger": false},
+  {"query": "which CEET role fits a founder who runs marketing and sales at the same time?", "should_trigger": false},
+  {"query": "rank our marketers by pipeline sourced this quarter", "should_trigger": false},
+  {"query": "interview our product manager about roadmaps and prioritization for an AI clone", "should_trigger": false}
+]

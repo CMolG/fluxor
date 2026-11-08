@@ -1,0 +1,56 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-impersonator",
+  "kind": "skill",
+  "version": "2.1.0",
+  "packaging": "traditional",
+  "description": "Drafts a simulated CEET pack for any role from evidence instead of an interview: a public figure from public work material, or anyone else with their own recorded consent. Every directive gets a sourced evidence row or an explicit unknown, and the pack is rendered and validated by ceet-core.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "simulation",
+    "provenance"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "softDeps": [
+    {
+      "what": "Web search, for public-figure mode",
+      "fallback": "Work only from documents the user provides, and say the evidence base is narrower."
+    },
+    {
+      "what": "Git history of the repository, for a consenting repository author",
+      "fallback": "Work only from material the person provides, and say the evidence base is narrower."
+    }
+  ],
+  "tools": [
+    {
+      "name": "validate_pack",
+      "command": [
+        "python3",
+        "scripts/validate_pack.py"
+      ],
+      "description": "ceet-core's pack validator for a simulated pack: consent basis, an evidence row for every directive, sources, the Simulation Notice in every file."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "README.md",
+      "tests/**",
+      "evals/**"
+    ]
+  }
+}

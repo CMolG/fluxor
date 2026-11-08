@@ -1,0 +1,43 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/011-harness-blob-and-enrollment.yaml
+  - changeSet:
+      id: 011-harness-blob-and-enrollment
+      author: javadaba
+      context: default
+      comment: >
+        JAVA-555: what a paired writer (fluxor-sync, ADR 0019) needs to pull a project's harness.
+
+        fluxor_harness_blob holds the bytes of every file a catalog skill lists in spec.files, by
+        sha256, so a snapshot can name a file by its hash and the writer fetches only what it lacks.
+        Catalog data like fluxor_harness_item: written only by migrations, which
+        scripts/harness-catalog-seed.mjs generates. The check recomputes the hash, so a row can
+        never serve bytes other than the ones its key names.
+
+        fluxor_harness_enrollment is the one-time code the Fluxor MCP mints for an account, traded
+        once for a device token (fluxor_device). Only the code's sha256 is kept; it lapses at
+        expires_at and is spent when consumed_at is set, which also records the device it made.
+      changes:
+        - sql:
+            sql: |
+              create table if not exists fluxor_harness_blob (
+                sha256 text primary key check (sha256 ~ '^[0-9a-f]{64}$'),
+                content bytea not null,
+                size int not null,
+                created_at timestamptz not null default now(),
+                check (octet_length(content) = size),
+                check (encode(sha256(content), 'hex') = sha256)
+              );
+
+              create table if not exists fluxor_harness_enrollment (
+                id uuid primary key,
+                code_hash text not null unique,
+                account_id uuid not null,
+                expires_at timestamptz not null,
+                consumed_at timestamptz,
+                device_id uuid references fluxor_device(id),
+                created_at timestamptz not null default now()
+              );
+              create index if not exists idx_fluxor_harness_enrollment_account
+                on fluxor_harness_enrollment(account_id);

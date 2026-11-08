@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schemas/preset.schema.json",
+  "id": "officium",
+  "kind": "preset",
+  "version": "1.5.0",
+  "title": "Officium backlog",
+  "description": "Lets your agent work your Officium board: the backlog skill (how to pick, work and close a card), the autoloop skill (several agents at once), a reminder of the session order at start, the hooks that keep Officium's view of the agent live (heartbeat, session, status line, attention), and a check that keeps a card with temporary code references out of review.",
+  "tags": [
+    "officium",
+    "backlog",
+    "agents"
+  ],
+  "items": [
+    {
+      "key": "backlog",
+      "params": {
+        "provider": "officium",
+        "mcpServer": "officium",
+        "mcpUrl": "https://javadaba.com/api/officium/mcp",
+        "boardUrl": "https://javadaba.com/officium/app",
+        "project": {
+          "id": "{{OFFICIUM_PROJECT_ID}}"
+        }
+      }
+    },
+    {
+      "key": "autoloop"
+    },
+    {
+      "key": "backlog-session-start"
+    },
+    {
+      "key": "officium-heartbeat"
+    },
+    {
+      "key": "officium-heartbeat-done"
+    },
+    {
+      "key": "officium-heartbeat-done-failure"
+    },
+    {
+      "key": "officium-heartbeat-done-prompt"
+    },
+    {
+      "key": "officium-heartbeat-done-stop"
+    },
+    {
+      "key": "officium-session"
+    },
+    {
+      "key": "officium-statusline"
+    },
+    {
+      "key": "officium-attention"
+    },
+    {
+      "key": "officium-attention-clear-tool"
+    },
+    {
+      "key": "officium-attention-clear-prompt"
+    },
+    {
+      "key": "officium-attention-clear-stop"
+    },
+    {
+      "key": "officium-temporary-refs"
+    }
+  ],
+  "precedenceTemplates": [
+    {
+      "id": "release-train",
+      "title": "Release train",
+      "description": "The epic that ships next outranks the rest of the backlog and its cards join the active sprint.",
+      "placeholders": [
+        { "key": "RELEASE_EPIC", "label": "Key or label of the epic that ships next" }
+      ],
+      "rules": [
+        {
+          "name": "Next release",
+          "reason": "The release on the train ships on its date: its cards come before everything else.",
+          "match": { "epics": ["{{RELEASE_EPIC}}"] },
+          "defaults": { "priority": "high", "sprint": "join" }
+        }
+      ]
+    },
+    {
+      "id": "compliance-first",
+      "title": "Compliance first",
+      "description": "Security cards and cards touching personal data come first, then a client's epic.",
+      "placeholders": [
+        { "key": "CLIENT_EPIC", "label": "Key or label of the client's epic" }
+      ],
+      "rules": [
+        {
+          "name": "Security",
+          "reason": "A security card is never waiting behind feature work.",
+          "match": { "categories": ["security"] },
+          "defaults": { "priority": "superHigh" }
+        },
+        {
+          "name": "Personal data",
+          "reason": "A card that touches auth, permissions or personal data is reviewed and shipped first.",
+          "match": { "signals": ["touches-auth-permissions-or-personal-data"] },
+          "defaults": { "priority": "high" }
+        },
+        {
+          "name": "Client commitment",
+          "reason": "A client's epic has a promise attached: its cards come before the rest.",
+          "match": { "epics": ["{{CLIENT_EPIC}}"] },
+          "defaults": { "priority": "high", "sprint": "join" }
+        }
+      ]
+    }
+  ]
+}

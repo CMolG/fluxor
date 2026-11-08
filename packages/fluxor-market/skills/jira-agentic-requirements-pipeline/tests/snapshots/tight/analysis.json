@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-100",
+  "title": "Premium content publishing approval window",
+  "businessGoal": "Add or improve a business approval/review step for a user-facing operation.",
+  "functionalEntities": [
+    "approval",
+    "audit",
+    "content",
+    "operator",
+    "partner",
+    "report",
+    "request",
+    "review",
+    "support",
+    "user"
+  ],
+  "userActions": [
+    "cancel operation",
+    "confirm or approve operation",
+    "receive communication",
+    "retry operation",
+    "start operation"
+  ],
+  "possibleAffectedFlows": [
+    "auditability flow",
+    "communication flow",
+    "compatibility flow",
+    "operation cancellation or rejection",
+    "operation creation",
+    "operation review or confirmation",
+    "retry or repetition flow",
+    "support operations"
+  ],
+  "explicitRequirements": [
+    "mandatory business behavior requested",
+    "optional business behavior requested",
+    "approval or review behavior requested",
+    "communication behavior requested",
+    "business limit or threshold requested",
+    "compatibility behavior requested",
+    "auditability requested"
+  ],
+  "missingBusinessDecisions": [],
+  "detectedCategories": [
+    "Acceptance Criteria",
+    "Activation & Functional Configuration",
+    "Actors & Permissions",
+    "Auditability & Traceability",
+    "Business External Dependencies",
+    "Business Objective",
+    "Business Rules",
+    "Compatibility & Backward Compatibility",
+    "Data & Functional Reporting",
+    "Functional Error Handling",
+    "Functional Scope",
+    "Internationalization & Localization",
+    "Legal, Compliance & Privacy",
+    "Messages & Communications",
+    "Rollout & Transition",
+    "State Lifecycle",
+    "Support & Backoffice",
+    "User Experience"
+  ],
+  "ambiguityLevel": {
+    "level": "LOW",
+    "constraintDensity": 10.526,
+    "ambiguityMarkers": 0.0,
+    "signals": {
+      "constraintKeywords": [
+        "except",
+        "all users",
+        "legacy",
+        "retry",
+        "limit",
+        "expire",
+        "support",
+        "compliance"
+      ],
+      "ambiguityMarkers": [],
+      "constraintKeywordCounts": {
+        "except": 1,
+        "all users": 1,
+        "legacy": 1,
+        "retry": 1,
+        "limit": 1,
+        "expire": 2,
+        "support": 1,
+        "compliance": 2
+      },
+      "ambiguityMarkerCounts": {}
+    }
+  }
+}

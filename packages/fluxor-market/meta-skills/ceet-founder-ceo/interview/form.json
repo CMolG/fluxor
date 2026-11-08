@@ -1,0 +1,889 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-founder-ceo",
+  "title": "Founder / CEO",
+  "nameSlot": "founder_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "strategy",
+      "narrative",
+      "fundraising",
+      "capital",
+      "org design",
+      "ceo",
+      "founder",
+      "board update",
+      "investor update",
+      "runway",
+      "all-hands",
+      "startup",
+      "co-founder"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about running a company: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What's the company — product, stage, team size, revenue, capital raised?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What role do you actually play day-to-day (CEO, founder-operator, chairperson-style)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "Who's on your leadership team?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "What's your personal stage of founder-journey — in the weeds, scaling out, scaling deep?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.hiring.first_20_vs_100_vs_500"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Strategic frame",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "What's your one-sentence theory of the business?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.strategy.one_sentence_theory"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "What's the insight or wedge that the rest of the market hasn't caught up to yet?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.strategy.one_sentence_theory",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "How do you stress-test your own strategy?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.strategy.stress_test"
+              ]
+            },
+            {
+              "id": "Q8",
+              "prompt": "What would have to be true for your current strategy to be wrong?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.strategy.what_would_make_wrong"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Capital",
+          "questions": [
+            {
+              "id": "Q9",
+              "prompt": "How much runway do you run at deliberately — 12mo, 18mo, 24mo?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.capital.runway_deliberate"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "What's your posture on dilution vs. efficiency?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.capital.dilution_vs_efficiency"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "When you fundraise, what do you refuse to do to get the round?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.capital.refuse_in_fundraising",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q12",
+              "prompt": "What's a capital decision you regret?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.capital.regrets",
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Attention",
+          "questions": [
+            {
+              "id": "Q13",
+              "prompt": "What do you protect on your calendar ruthlessly? What's always the first thing cut?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.attention.protect_ruthlessly",
+                "directives.personal_os.calendar_management"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What do you delegate that most founders at your stage don't? What do you *refuse* to delegate?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.attention.delegate_at_stage",
+                "directives.attention.refuse_to_delegate"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "How do you know you're spending your time wrong — what's the signal?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.attention.wrong_spending_signal"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Hiring",
+          "questions": [
+            {
+              "id": "Q16",
+              "prompt": "What do you hire on at this stage that you didn't before?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.hiring.stage_bar",
+                "directives.hiring.first_20_vs_100_vs_500"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "What's your one thing you refuse to compromise on?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.hiring.refuse_to_compromise",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What's a hire you're proud of? One you got wrong — and what was missed?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.hiring.stage_bar"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "title": "Decision posture",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "When do you decide fast vs. slow?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.decision.fast_vs_slow",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "Reversible vs. irreversible — how do you think about it?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.decision.reversible_vs_irreversible",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "When have you reversed a decision publicly? What was the result?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.decision.reversible_vs_irreversible",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "What's your process when you can't decide — consult, wait, force it, delegate?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.decision.delegation_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Communication",
+          "questions": [
+            {
+              "id": "Q23",
+              "prompt": "Your default board update skeleton?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.narrative.board_memo_voice"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "Your all-hands voice — warm, directive, candid, provocative?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.narrative.all_hands_voice",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "Your investor-email voice — how does it differ?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.narrative.investor_update_voice"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "What do you refuse to say in external comms even if true?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.narrative.customer_email_voice",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "How does information reach you from the team, and how does it travel down from you: which meetings, documents and rituals, at what cadence? What do you never want to learn second-hand?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.communication.info_flow_up",
+                "directives.communication.info_flow_down",
+                "directives.communication.ritual_cadence"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "N",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q45",
+              "prompt": "Words you insist on (\"focus\", \"crisp\", \"clarity\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "Words you ban (\"rockstar\", \"family\", \"synergy\", \"pivot\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q50",
+              "prompt": "Walk me through the last hard call you made under ambiguity — what you considered, what you ignored, how you decided.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.decision.fast_vs_slow",
+                "directives.strategy.what_would_make_wrong"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "Tell me about a crisis you led the company through: an outage, a lost customer, a round that fell apart. What did you notice first, who did you tell and in what order, and what did it change?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.crisis.first_30_seconds",
+                "directives.crisis.communication_sequence",
+                "directives.crisis.team_management"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q53",
+              "prompt": "Think of a strategy document or plan a capable, first-time executive on your team brings you. What would they miss that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.strategy.stress_test",
+                "directives.strategy.what_would_make_wrong",
+                "directives.personality.quality_calibration"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "Walk me through the last board update you wrote — structure, cuts, tone, response.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you cut that?",
+                "What would have made you keep it?"
+              ],
+              "feeds": [
+                "directives.narrative.board_memo_voice",
+                "directives.board.bad_news_delivery"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q54",
+              "prompt": "Think of two opportunities that looked equally attractive, one you went after and one you said no to (or build the pair now from what is on your desk). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.strategy.one_sentence_theory",
+                "directives.attention.protect_ruthlessly"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q55",
+              "prompt": "Here is all you get: nine months of runway, a term sheet at a flat valuation with a 2x liquidation preference, and a large customer who says they will sign next quarter. What do you do, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you sign without knowing more?"
+              ],
+              "feeds": [
+                "directives.capital.refuse_in_fundraising",
+                "directives.capital.runway_deliberate",
+                "directives.capital.dilution_vs_efficiency"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-leadership",
+      "title": "Depth: board, organization and narrative",
+      "optional": true,
+      "purpose": "Working with the board, shaping the leadership team, and how the person tells the company's story.",
+      "sections": [
+        {
+          "id": "H",
+          "title": "Board",
+          "questions": [
+            {
+              "id": "Q27",
+              "prompt": "What do you tell the board early? What do you hold?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.board.share_when",
+                "directives.board.bad_news_delivery"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "How do you handle a board member pushing in the wrong direction?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.board.handle_pressure"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "What's the most useful thing your board has ever done for you?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.board.share_when"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Org design",
+          "questions": [
+            {
+              "id": "Q30",
+              "prompt": "How do you think about layers, spans, and scope?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.decision.delegation_framework"
+              ]
+            },
+            {
+              "id": "Q31",
+              "prompt": "What's a leadership-team pattern you've seen work? One that failed?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "When do you hire an exec \"above\" a high performer vs. promoting up?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.hiring.stage_bar"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Narrative",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "How do you compress a quarter into two paragraphs?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.narrative.board_memo_voice",
+                "directives.narrative.investor_update_voice"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "What metaphors do you reach for?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "What's a narrative move you consider manipulative and refuse to make?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.narrative.all_hands_voice",
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-operating",
+      "title": "Depth: crises and the personal operating system",
+      "optional": true,
+      "purpose": "How the person leads through a crisis, and the rituals and habits that keep them effective.",
+      "sections": [
+        {
+          "id": "J",
+          "title": "Crisis",
+          "questions": [
+            {
+              "id": "Q33",
+              "prompt": "When something's on fire, what's your first move?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Who do you tell first, second and third, and in what words?"
+              ],
+              "feeds": [
+                "directives.crisis.first_30_seconds",
+                "directives.crisis.communication_sequence",
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q34",
+              "prompt": "What do you protect in a crisis — team morale, customer trust, product integrity, cash?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.crisis.team_management",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "What crisis taught you the most? What did it change?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.crisis.team_management",
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "title": "Operating system",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "Calendar, journaling, reading, coaching — what's in your personal stack?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.personal_os.calendar_management",
+                "directives.personal_os.journaling",
+                "directives.personal_os.reading",
+                "directives.personal_os.coaching"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "What's a daily / weekly ritual that's non-negotiable?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personal_os.calendar_management"
+              ]
+            },
+            {
+              "id": "Q41",
+              "prompt": "What's a habit you had to kill to be effective?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-judgment",
+      "title": "Depth: heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "The person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "M",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q42",
+              "prompt": "\"If something is the right decision, it should feel {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "\"I know I'm procrastinating when {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.attention.wrong_spending_signal"
+              ]
+            },
+            {
+              "id": "Q44",
+              "prompt": "\"A leader is not yet a leader until {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.hiring.stage_bar"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "O",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q47",
+              "prompt": "A founder pattern you outgrew.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "A trend in founder culture you distrust.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "Q",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q56",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q57",
+              "prompt": "What leadership belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q58",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q59",
+              "prompt": "What reliably frustrates you in how a company is led or how its founders are advised?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,742 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-copywriter",
+  "title": "Copywriter",
+  "nameSlot": "writer_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "copy",
+      "headline",
+      "cta",
+      "tone",
+      "voice",
+      "tagline",
+      "subheadline",
+      "rewrite",
+      "copywriting",
+      "microcopy",
+      "email copy",
+      "landing page copy",
+      "brand voice"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about writing: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What kind of writing do you do (marketing pages, email, UX / microcopy, long-form, ads, all of the above)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What brands / products / audiences have you written for? What's current?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "Who reviews your work? What feedback loop do you run on?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Voice through contrast",
+          "questions": [
+            {
+              "id": "Q4",
+              "prompt": "Three sentences you'd write without hesitation.",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.voice.principles",
+                "directives.voice.sentence_rhythm"
+              ]
+            },
+            {
+              "id": "Q5",
+              "prompt": "Three sentences you'd never let ship, even if a stakeholder asked.",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.voice.principles",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "Put your voice on axes: serious↔playful, formal↔casual, reverent↔irreverent, sparse↔rich. Where's home?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "Where do contractions sit on that line for you: always, never, or depending on the channel?"
+              ],
+              "feeds": [
+                "directives.voice.axes",
+                "directives.voice.contractions_stance"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Heroes",
+          "questions": [
+            {
+              "id": "Q7",
+              "prompt": "Three writers, copywriters, or brands whose voice you measure against. Why each?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.heroes.writers_admired",
+                "directives.heroes.brands_admired"
+              ]
+            },
+            {
+              "id": "Q8",
+              "prompt": "Three pieces of your own work you're proud of. What makes them work?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.heroes.work_proud_of",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Structure",
+          "questions": [
+            {
+              "id": "Q10",
+              "prompt": "How do you open a landing page? An email? An ad?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.structure.landing_page_open",
+                "directives.structure.email_open",
+                "directives.structure.ad_open"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "Do you write headline-first, body-first, CTA-first, or outline-first? Why?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.structure.headline_body_cta_order"
+              ]
+            },
+            {
+              "id": "Q12",
+              "prompt": "AIDA, PAS, story-arc, reverse pyramid — which frameworks do you actually use, and which do you mock?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.structure.headline_body_cta_order",
+                "identity.decision_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Audience",
+          "questions": [
+            {
+              "id": "Q13",
+              "prompt": "When you sit to write, who are you picturing? In what state (distracted, skeptical, hopeful, pissed)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.audience.reader_state"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What's a reader assumption you make that others don't?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.audience.attention_assumptions"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "Reading level — what's your target? What's too dumbed-down?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.audience.reading_level"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "title": "Persuasion",
+          "questions": [
+            {
+              "id": "Q16",
+              "prompt": "Proof, story, benefit, provocation, social proof, urgency — rank them by your default reach.",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.persuasion.proof_vs_story",
+                "directives.persuasion.social_proof_use"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "Where do you refuse to push (manipulative urgency, false scarcity)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.persuasion.refused_tactics",
+                "directives.persuasion.urgency_stance"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What's a persuasion move that works but you won't do?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.persuasion.refused_tactics",
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Editing",
+          "questions": [
+            {
+              "id": "Q19",
+              "prompt": "Your editing procedure — read aloud, cut half, tighten verbs, kill adjectives? What specifically?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.editing.procedure"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "What's your rule for sentence length and variance?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.editing.sentence_length_rule",
+                "directives.voice.sentence_rhythm"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "What punctuation do you love (em-dash, semicolon)? Avoid?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.editing.punctuation_rules"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "Oxford comma stance?",
+              "kind": "open",
+              "required": false,
+              "minutes": 1,
+              "feeds": [
+                "directives.editing.oxford_comma"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "title": "Banned words & preferred words",
+          "questions": [
+            {
+              "id": "Q23",
+              "prompt": "List your banned words and phrases. (\"Leverage\", \"seamless\", \"revolutionary\", \"delight\", etc.)",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.banned_preferred.banned_words",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "List words you reach for constantly. What do they do for you?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.banned_preferred.reach_for_words",
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "How do you handle buzzwords when stakeholders insist?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.banned_preferred.buzzword_handling"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "CTAs & conversion",
+          "questions": [
+            {
+              "id": "Q29",
+              "prompt": "CTA philosophy — literal vs. evocative? Short vs. long?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.conversion.cta_philosophy"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "How do you think about urgency, scarcity, and social proof honestly?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.conversion.urgency_framing",
+                "directives.conversion.scarcity_stance",
+                "directives.persuasion.social_proof_use"
+              ]
+            },
+            {
+              "id": "Q31",
+              "prompt": "What's a conversion win you're proud of? A loss?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.conversion.cta_philosophy",
+                "directives.conversion.urgency_framing"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q41",
+              "prompt": "Pick a hard copy decision from the last few months, one where reasonable writers would have disagreed: a headline, a claim, the tone of a sensitive message, a fight with a stakeholder over a word. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.voice.principles"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "One piece you look back at and would rewrite. What was wrong?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution",
+                "directives.personality.quality_calibration"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q42",
+              "prompt": "Think of a landing page or email draft a capable junior writer hands you. What would they miss that you would catch before it ships? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.editing.procedure",
+                "directives.audience.attention_assumptions"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "Show me three before/after edits. Narrate why you changed each.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why that cut and not another?",
+                "What would a stakeholder have pushed back on, and would you give way?"
+              ],
+              "feeds": [
+                "directives.editing.procedure",
+                "directives.voice.sentence_rhythm"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Think of two headlines for the same page, one you shipped and one you killed (or write the pair now for a product you know). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which word would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.voice.principles",
+                "directives.persuasion.proof_vs_story"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q44",
+              "prompt": "Here is all you get: the variant with a countdown timer and \"only 3 left\" converts 22% better in the test, the stock is not actually limited, and the growth lead wants it live tomorrow. What do you do, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "What would make you ship it anyway?"
+              ],
+              "feeds": [
+                "directives.conversion.scarcity_stance",
+                "directives.conversion.urgency_framing",
+                "directives.persuasion.refused_tactics"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-craft",
+      "title": "Depth: microcopy, brand and heuristics",
+      "optional": true,
+      "purpose": "Interface copy, working with design and brand, the person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "I",
+          "title": "Microcopy",
+          "questions": [
+            {
+              "id": "Q26",
+              "prompt": "What makes a great button label to you? A great error message? A great empty state?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.conversion.cta_philosophy",
+                "directives.voice.principles"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "What's a microcopy pattern you always push back on?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.voice.principles"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "Do you believe in \"conversational\" UI copy, or is it overused?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.voice.axes"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Working with design & brand",
+          "questions": [
+            {
+              "id": "Q32",
+              "prompt": "How do you collaborate with design — headline-first or layout-first?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.structure.headline_body_cta_order"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "Where do you defer to brand guidelines? Where do you push?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q34",
+              "prompt": "How do you handle voice drift across channels (email vs. landing vs. in-product)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.voice.principles"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q35",
+              "prompt": "\"If I can't read it aloud without stumbling, {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.editing.procedure"
+              ]
+            },
+            {
+              "id": "Q36",
+              "prompt": "\"When I'm stuck on a headline, I {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "\"I know a draft is done when {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q38",
+              "prompt": "Copy trends you refuse to follow.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q39",
+              "prompt": "A mode of writing you outgrew.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q45",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "A message goes out wrong: a typo in a subject line sent to a million people, a joke that lands as offensive, a price stated wrong. What do you do in the first hour, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "What writing belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q48",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "What reliably frustrates you in how teams brief, review or approve copy?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

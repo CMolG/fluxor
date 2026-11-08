@@ -1,0 +1,27 @@
+{
+  "$comment": "Allowances for review-harness. Keys: see the skill's SKILL.md.",
+  "providers": ["claude", "codex"],
+  "requiredHooks": ["prepare-batch.sh", "bash-invariants.sh"],
+  "requireHookSplit": true,
+  "pointerMaxLines": 12,
+  "ignore": ["research/**", "vendor-docs/**"],
+  "links": {
+    "exclude": [".harness/plans/**", ".harness/reports/**", ".harness/audits/**", "ONGOING.md"],
+    "allowMissing": [".harness/skills/old-tool/old_tool.py"],
+    "placeholders": ["XX", "000X", "..."]
+  },
+  "strayDocs": {
+    "patterns": ["**/docs/**", "**/plans/**", "**/specs/**", "**/adr/**", "**/.backlog/**"],
+    "subprojectDocs": true,
+    "allow": ["docs/public/**"],
+    "fail": true
+  },
+  "hookBench": {
+    "casePatterns": ["{stem}.cases*.tsv"],
+    "runner": "test-hooks.sh",
+    "require": "blocking",
+    "exempt": ["final-cycle.sh", "session-lock.sh"]
+  },
+  "codex": { "skillsDir": ".agents/skills", "hooksFile": ".codex/hooks.json" },
+  "frictionLog": "$TMPDIR/my-project-harness-friction.tsv"
+}

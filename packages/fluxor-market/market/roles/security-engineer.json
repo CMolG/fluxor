@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "security-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdGppGood",
+  "iconLibrary": "react-icons/md",
+  "description": "Closes a planned card's vulnerability or applies its security control (patch, hardening, secrets, access control, supply-chain hygiene) and proves the attack vector is no longer exploitable, with an updated SBOM when dependencies change. Keeps exploit details on the card until the fix is deployed; leaves threat modeling and review to their owners.",
+  "tags": [
+    "board",
+    "phase-action",
+    "security",
+    "appsec",
+    "remediation",
+    "supply-chain",
+    "secrets",
+    "sbom"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

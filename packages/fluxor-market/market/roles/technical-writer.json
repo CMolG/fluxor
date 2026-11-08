@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "technical-writer",
+  "kind": "role",
+  "version": "2.2.0",
+  "icon": "MdMenuBook",
+  "iconLibrary": "react-icons/md",
+  "description": "Writes documentation that says what the code actually does, organised by what its reader needs: one Diataxis type per document, every claim traced to the code, every example run, plain language, and the docs shipped in the same change as the code.",
+  "tags": [
+    "board",
+    "phase-action",
+    "interactive",
+    "documentation",
+    "writing",
+    "openapi",
+    "diataxis",
+    "plain-language",
+    "docs-as-code",
+    "api",
+    "api-reference"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

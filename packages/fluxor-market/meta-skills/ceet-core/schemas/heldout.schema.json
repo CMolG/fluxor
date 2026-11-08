@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heldout.schema.json",
+  "title": "Held-out decision set",
+  "description": "`.harness/fidelity/<pack-id>/heldout.json`: 20–40 of the person's real past decisions, set aside before the interview and never shown to synthesis, plus a blind retest of a subset that sets the ceiling. Scored by fidelity.py (references/fidelity.md).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packId", "createdAt", "items"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "packId": { "$ref": "common.schema.json#/$defs/packId" },
+    "createdAt": { "$ref": "common.schema.json#/$defs/date" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "situation", "options", "choice"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^H[1-9][0-9]*$" },
+          "domain": { "type": "string", "pattern": "^[a-z_][a-z0-9_]*$" },
+          "situation": { "type": "string", "minLength": 10 },
+          "options": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } },
+          "choice": { "description": "Index of the option the person actually chose.", "type": "integer", "minimum": 0 },
+          "rationale": { "type": "string" },
+          "when": { "type": "string" },
+          "defect": {
+            "description": "For task-quality items: a known defect planted in the situation, which a good answer finds (plan item 3.4). Scored apart from fidelity.",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "retest": {
+      "description": "The person's blind redo of a subset, about two weeks later: item id → chosen option index.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "answers"],
+      "properties": {
+        "date": { "$ref": "common.schema.json#/$defs/date" },
+        "answers": {
+          "type": "object",
+          "patternProperties": { "^H[1-9][0-9]*$": { "type": "integer", "minimum": 0 } },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

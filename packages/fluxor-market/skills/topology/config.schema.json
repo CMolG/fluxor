@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "topology.config.schema.json",
+  "title": "topology: .harness/config/topology.json",
+  "description": "The project's layering rules for the topology skill, as data. Every key is optional; with no file only the generic checks (no cycles, no phantom dependencies) run. topology.py reports an unknown key at the top level, in `phantoms`, in a group, in `route` or in `route.maven` as a violation (`verify` exits 1). The only `$` key it accepts is `$schema`, at the top level: a `$comment` is an unknown key there. Globs: `*` stays within one path segment, `**` crosses segments; a glob that selects packages matches the package name or its directory relative to the root.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "description": "Optional pointer to this schema, for editors.",
+      "type": "string"
+    },
+    "workspaces": {
+      "description": "Package directory globs, used instead of pnpm-workspace.yaml / the root package.json `workspaces`. `!glob` excludes. Default: autodetected.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "extensions": {
+      "description": "Suffixes of the source files scanned for imports (an empty list means the default). Default: [\".ts\", \".tsx\", \".js\", \".jsx\", \".mjs\", \".cjs\", \".mts\", \".cts\"].",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^\\.\\S+$"
+      },
+      "default": [".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".mts", ".cts"]
+    },
+    "exclude": {
+      "description": "Path globs whose files are not scanned (e.g. \"**/examples/**\"). Default: [].",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": []
+    },
+    "phantoms": {
+      "description": "The phantom-dependency check: something imported in a package's code that its own package.json does not declare.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "description": "\"all\": every bare import must be declared. \"workspace\": only imports of workspace packages. \"off\": no phantom check. Default: \"all\".",
+          "enum": ["all", "workspace", "off"],
+          "default": "all"
+        },
+        "rootDependencies": {
+          "description": "Dependencies declared in the root package.json count as declared for every package. Default: true.",
+          "type": "boolean",
+          "default": true
+        },
+        "ignore": {
+          "description": "Imports that are not phantoms, each with its reason. An ignore without a reason is itself a violation and does not apply. Default: [].",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["import", "reason"],
+            "properties": {
+              "import": {
+                "description": "Glob on the package name or the import specifier.",
+                "type": "string",
+                "minLength": 1
+              },
+              "in": {
+                "description": "Package glob the ignore is limited to. Default: every package.",
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "description": "Why it is not a phantom. Required.",
+                "type": "string",
+                "pattern": "\\S"
+              }
+            }
+          },
+          "default": []
+        }
+      }
+    },
+    "groups": {
+      "description": "Named package groups the rules refer to. A package may belong to several groups. Default: {}.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["packages"],
+        "properties": {
+          "packages": {
+            "description": "Package globs (name or directory).",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "isolated": {
+            "description": "No member may depend on another member. Default: false.",
+            "type": "boolean",
+            "default": false
+          },
+          "leaf": {
+            "description": "Members may depend only on their own group plus `mayDependOn`. Default: false.",
+            "type": "boolean",
+            "default": false
+          },
+          "mayDependOn": {
+            "description": "Groups a leaf group may also depend on; each must be a group defined here. Default: [].",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "default": []
+          },
+          "reason": {
+            "description": "Printed with this group's violations. Optional.",
+            "type": "string"
+          }
+        }
+      },
+      "default": {}
+    },
+    "forbidden": {
+      "description": "Forbidden edges between groups; `from` and `to` must name groups defined in `groups`. Default: [].",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to"],
+        "properties": {
+          "from": {
+            "description": "Group whose members may not depend on `to`.",
+            "type": "string",
+            "minLength": 1
+          },
+          "to": {
+            "description": "Group the members of `from` may not depend on.",
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "description": "Printed with the violations. Optional.",
+            "type": "string"
+          }
+        }
+      },
+      "default": []
+    },
+    "exceptions": {
+      "description": "Edges excused from the forbidden, isolated and leaf rules (never from cycles or phantoms). An exception without a reason is itself a violation and does not apply; one that excuses nothing is reported as stale. Default: [].",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to", "reason"],
+        "properties": {
+          "from": {
+            "description": "Package glob (name or directory).",
+            "type": "string",
+            "minLength": 1
+          },
+          "to": {
+            "description": "Package glob (name or directory).",
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "description": "Why the edge is allowed. Required.",
+            "type": "string",
+            "pattern": "\\S"
+          }
+        }
+      },
+      "default": []
+    },
+    "route": {
+      "description": "The `route` command: bounded contexts and their domain vocabulary.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maven": {
+          "description": "Maven routing. false switches it off; an object configures it; absent or true autodetects from the reactor.",
+          "type": ["object", "boolean"],
+          "additionalProperties": false,
+          "properties": {
+            "root": {
+              "description": "Reactor root directory, or a list of them; modules are read recursively from <module> entries. Default: the root pom.xml, else the top-level pom.xml files found.",
+              "type": ["string", "array"],
+              "minLength": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "contexts": {
+              "description": "Directory glob(s), one directory per bounded context (e.g. \"backend/contexts/*\"). Default: none; each module whose directory ends in `domainSuffix` is a context, with its sibling <ctx>-* modules as layers.",
+              "type": ["string", "array"],
+              "minLength": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "domainSuffix": {
+              "description": "Marks the module whose types are the context's vocabulary. Default: \"-domain\".",
+              "type": "string",
+              "default": "-domain"
+            },
+            "expectedLayers": {
+              "description": "Layers every context should have (e.g. [\"domain\", \"application\", \"infrastructure\"]); contexts missing one are flagged in `route`. Default: [].",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true,
+              "default": []
+            },
+            "excludeTypePaths": {
+              "description": "Path globs of type files left out of the vocabulary (e.g. \"**/ports/**\"). Default: [].",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "default": []
+            }
+          }
+        },
+        "packages": {
+          "description": "Package globs whose exported class/interface/type/enum names form a vocabulary (TypeScript routing). Test and story files are skipped. Default: [].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": []
+        },
+        "patternSuffixes": {
+          "description": "Suffixes that name a pattern, not a concept; they sort last in the vocabulary. Default: [\"Repository\", \"Service\", \"Resource\", \"Mapper\", \"Client\", \"Scheduler\", \"Job\", \"Exception\", \"Port\", \"Validator\", \"Factory\", \"Config\", \"Controller\", \"Handler\", \"Adapter\", \"Dto\", \"Props\"].",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": ["Repository", "Service", "Resource", "Mapper", "Client", "Scheduler", "Job", "Exception", "Port", "Validator", "Factory", "Config", "Controller", "Handler", "Adapter", "Dto", "Props"]
+        },
+        "note": {
+          "description": "One line printed after `route` output (e.g. where the pattern catalog lives). Default: none.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

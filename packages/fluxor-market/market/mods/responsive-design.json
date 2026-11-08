@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "responsive-design",
+  "kind": "mod",
+  "version": "1.2.0",
+  "icon": "MdDevices",
+  "iconLibrary": "react-icons/md",
+  "description": "Forces mobile-first, fluid layouts with container queries and relative units; forbids fixed pixel widths that break on resize.",
+  "tags": [
+    "responsive",
+    "mobile-first",
+    "layout",
+    "container-queries"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

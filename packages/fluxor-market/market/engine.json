@@ -1,0 +1,13 @@
+{
+  "$schema": "../schemas/engine.schema.json",
+  "id": "atoms-engine",
+  "kind": "engine",
+  "version": "1.3.2",
+  "description": "The deterministic atom assembler (motor.py) and its intent lexicon, installed next to the market atoms of a harness.",
+  "tags": ["engine", "assembler", "lexicon"],
+  "domains": ["universal"],
+  "requires": {
+    "runtimes": ["python>=3.9"]
+  },
+  "files": ["market/motor.py", "market/lexicon.json"]
+}

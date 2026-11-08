@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "error-ux",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdErrorOutline",
+  "iconLibrary": "react-icons/md",
+  "description": "Requires explicit loading, empty, and error states with retry paths on every remote-data surface; no swallowed rejections.",
+  "tags": [
+    "error-handling",
+    "loading-states",
+    "resilience",
+    "ux"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

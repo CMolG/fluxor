@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-400",
+  "title": "Reviewers should approve premium publishing",
+  "businessGoal": "Add or improve a business approval/review step for a user-facing operation.",
+  "functionalEntities": [
+    "approval",
+    "audit",
+    "content"
+  ],
+  "userActions": [
+    "confirm or approve operation",
+    "view operation status"
+  ],
+  "possibleAffectedFlows": [
+    "auditability flow",
+    "commercial access flow",
+    "operation review or confirmation"
+  ],
+  "explicitRequirements": [
+    "mandatory business behavior requested",
+    "approval or review behavior requested",
+    "business limit or threshold requested",
+    "auditability requested"
+  ],
+  "missingBusinessDecisions": [
+    "acceptance_criteria",
+    "communications",
+    "compliance",
+    "error_behavior",
+    "expiration",
+    "legacy_compatibility",
+    "scope",
+    "success_behavior",
+    "support_behavior"
+  ],
+  "detectedCategories": [
+    "Acceptance Criteria",
+    "Activation & Functional Configuration",
+    "Auditability & Traceability",
+    "Business Objective",
+    "Business Rules",
+    "Functional Scope",
+    "Messages & Communications",
+    "Pricing, Billing & Monetization",
+    "Priority, Severity & Criticality",
+    "Reversibility & Rollback",
+    "Risk, Fraud & Abuse",
+    "State Lifecycle"
+  ],
+  "ambiguityLevel": {
+    "level": "HIGH",
+    "constraintDensity": 0.0,
+    "ambiguityMarkers": 17.647,
+    "signals": {
+      "constraintKeywords": [],
+      "ambiguityMarkers": [
+        "tbd",
+        "we should",
+        "or",
+        "alternatively",
+        "maybe",
+        "not sure",
+        "to be defined",
+        "pending",
+        "unknown"
+      ],
+      "constraintKeywordCounts": {},
+      "ambiguityMarkerCounts": {
+        "tbd": 2,
+        "we should": 2,
+        "or": 1,
+        "alternatively": 1,
+        "maybe": 3,
+        "not sure": 1,
+        "to be defined": 1,
+        "pending": 2,
+        "unknown": 2
+      }
+    }
+  }
+}

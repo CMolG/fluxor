@@ -1,0 +1,64 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/003-harness-schema.yaml
+  - changeSet:
+      id: 003-harness-schema
+      author: javadaba
+      context: default
+      comment: >
+        Fluxor online's per-project harness (JAVA-157; the model is decision 1 of
+        .harness/reports/2026-09-28-fluxor-online-spike.md). The spike names the tables
+        heliox.harness_*; they carry the fluxor_ prefix instead, like every other bridge table in
+        this context, which all live in the default schema.
+
+        fluxor_harness_item is the catalog: one row per (key, version), written only by
+        migrations. key becomes a file name when a client renders the harness onto disk
+        (.harness/rules/<key>.md), so its format is checked here and not only in code. A hook must
+        carry its fallback directive as text, for clients that run no hooks (spike, decision 4).
+        A preset's spec lists the items it adds. (jsonb_typeof rather than the ? operator, which
+        JDBC reads as a bind parameter, and coalesced, because a check that evaluates to NULL
+        passes.)
+
+        fluxor_harness_project_item keeps one row per item key. changed_revision is the revision
+        that last added or changed it, and removed_revision is its tombstone, so "what changed
+        since revision N" is a read with no history table.
+      changes:
+        - sql:
+            sql: |
+              create table if not exists fluxor_harness_item (
+                key text not null check (key ~ '^[a-z0-9][a-z0-9-]{0,63}$'),
+                version int not null check (version >= 1),
+                kind text not null check (kind in ('directive', 'skill', 'hook', 'preset')),
+                title text not null,
+                description text not null default '',
+                body text not null default '',
+                spec jsonb not null default '{}'::jsonb,
+                provenance text,
+                created_at timestamptz not null default now(),
+                primary key (key, version),
+                check (kind <> 'hook' or coalesce(jsonb_typeof(spec -> 'fallback'), '') = 'string'),
+                check (kind <> 'preset' or coalesce(jsonb_typeof(spec -> 'items'), '') = 'array')
+              );
+
+              create table if not exists fluxor_harness_project (
+                id uuid primary key default gen_random_uuid(),
+                account_id uuid not null,
+                name text not null,
+                officium_project_id uuid,
+                revision bigint not null default 0 check (revision >= 0),
+                created_at timestamptz not null default now(),
+                updated_at timestamptz not null default now()
+              );
+              create index if not exists idx_fluxor_harness_project_account on fluxor_harness_project(account_id);
+
+              create table if not exists fluxor_harness_project_item (
+                project_id uuid not null references fluxor_harness_project(id),
+                item_key text not null,
+                item_version int not null,
+                params jsonb not null default '{}'::jsonb,
+                changed_revision bigint not null,
+                removed_revision bigint,
+                primary key (project_id, item_key),
+                foreign key (item_key, item_version) references fluxor_harness_item(key, version)
+              );

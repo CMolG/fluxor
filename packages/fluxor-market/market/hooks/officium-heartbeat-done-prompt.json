@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "officium-heartbeat-done-prompt",
+  "kind": "hook",
+  "version": "1.0.0",
+  "description": "Stops the heartbeat ticker of a background shell call when the client's notification says the call ended; sends nothing.",
+  "tags": [
+    "officium",
+    "monitoring",
+    "agents"
+  ],
+  "event": "promptSubmit",
+  "timeoutMs": 5000,
+  "sends": null
+}

@@ -1,0 +1,789 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-data-analytics",
+  "title": "Data / Analytics",
+  "nameSlot": "analyst_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "data",
+      "analytics",
+      "metric",
+      "dashboard",
+      "sql",
+      "etl",
+      "experiment",
+      "ab test",
+      "hypothesis",
+      "kpi",
+      "a/b test",
+      "dbt",
+      "warehouse",
+      "cohort",
+      "funnel"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about questions, metrics and data they can trust: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What's your role and who do you report into?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What's your stack (warehouse, transformation, BI, notebooks, ML tools)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.tools_workflow.sql_dialect"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "Who are your primary stakeholders (product, growth, finance, exec)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "What decisions does your team's work actually drive?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.cognitive_signature",
+                "identity.decision_framework"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Question framing",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "A stakeholder comes with a vague question. Walk me through how you reshape it into something answerable.",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.question_framing.reshape_process"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "What's a question you routinely refuse to answer, or reframe, before working on it?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.question_framing.refuse_before_working"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "How do you decide whether a question needs a dashboard, a one-off analysis, or a model?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.decision_framework",
+                "directives.modeling.simple_vs_complex"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Metric design",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "What makes a metric good or bad in your view?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.metric_design.good_vs_bad"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "How do you think about *input* vs. *output* metrics? Leading vs. lagging?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.metric_design.leading_lagging"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "Give me an example of a metric you designed that was gameable — what happened, what did you change?",
+              "kind": "incident",
+              "required": false,
+              "minutes": 4,
+              "feeds": [
+                "directives.metric_design.gaming_resistance"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q11",
+              "prompt": "How do you name metrics? Any conventions you insist on?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.metric_design.naming_conventions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Data quality",
+          "questions": [
+            {
+              "id": "Q12",
+              "prompt": "Before you trust a new table, what do you check?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.data_quality.trust_checklist"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "How do you smell a bad join? What does \"suspicious\" look like?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.data_quality.suspicious_joins"
+              ]
+            },
+            {
+              "id": "Q14",
+              "prompt": "What's your stance on staging models, tests, and freshness in dbt (or equivalent)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.data_quality.freshness_policy"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "What's an error class in data you've become allergic to?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.data_quality.allergies"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Communication",
+          "questions": [
+            {
+              "id": "Q31",
+              "prompt": "How do you structure a write-up — TL;DR first? Methods first? Story arc?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.communication.writeup_structure"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "What's your stance on charts — bar vs. line vs. small multiples vs. tables?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.communication.chart_preferences"
+              ]
+            },
+            {
+              "id": "Q33",
+              "prompt": "What phrase do you use when asked \"can you just give me the number?\" and the answer is \"not really\"?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.communication.just_the_number_response"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "K",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q37",
+              "prompt": "Any local terms (e.g. \"north star\", \"guardrail\", \"canary metric\", \"kitchen-sink model\")?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "Any words you refuse to use in write-ups (\"proves\", \"causes\", \"significant\" without context)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice",
+                "directives.statistical_rigor.uncertainty_language"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "What's a chart type or analysis pattern you consistently reject?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.communication.chart_preferences"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "What's a common data request you push back on, and how do you reframe it?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.question_framing.refuse_before_working",
+                "directives.question_framing.reshape_process"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "O",
+          "title": "Lines you hold",
+          "questions": [
+            {
+              "id": "Q47",
+              "prompt": "What would you refuse to publish or sign off on, no matter who is asking or how urgent it is? What's the story behind that line?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "identity.core_values",
+                "directives.data_quality.allergies"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "N",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q42",
+              "prompt": "Pick a hard analytical call from the last few months, one where reasonable analysts would have disagreed: a method, a metric definition, a result you would or would not stand behind. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.statistical_rigor.method_selection"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Tell me about a number you published that turned out to be wrong. How did you find out, what did you do in the first hour, and what do you do differently since?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.meta_cognition.crisis_personality",
+                "directives.data_quality.allergies"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q44",
+              "prompt": "Think of a query or dashboard a capable mid-level analyst hands you for review. What would they miss that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.data_quality.suspicious_joins",
+                "directives.data_quality.trust_checklist"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q41",
+              "prompt": "Walk me through the last real analysis you did — end to end. Every branch, every rejection, every \"I almost did X but did Y because…\".",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 10,
+              "probes": [
+                "Where did you almost go another way, and why didn't you?",
+                "What did you leave out of the write-up, and why?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.communication.writeup_structure"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Think of two metric or dashboard proposals for the same need, one you approved and one you sent back (or build the pair now from your work). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.metric_design.good_vs_bad",
+                "identity.decision_framework"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "Here is all you get: weekly active users dropped 12% last week, nothing shipped, and the pipeline dashboard is all green. What do you do first, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you tell stakeholders before you know more?"
+              ],
+              "feeds": [
+                "directives.data_quality.trust_checklist",
+                "directives.meta_cognition.escalation_protocol"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-methods",
+      "title": "Depth: statistics, models and experiments",
+      "optional": true,
+      "purpose": "Causal methods, uncertainty, modeling and experimentation.",
+      "sections": [
+        {
+          "id": "E",
+          "title": "Statistical rigor",
+          "questions": [
+            {
+              "id": "Q16",
+              "prompt": "RCT, diff-in-diff, synthetic control, observational — when do you reach for which?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.statistical_rigor.method_selection"
+              ]
+            },
+            {
+              "id": "Q17",
+              "prompt": "How do you talk about uncertainty in a write-up? What phrases do you avoid?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.statistical_rigor.uncertainty_language"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What's your practice around multiple comparisons?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.statistical_rigor.multiple_comparisons"
+              ]
+            },
+            {
+              "id": "Q19",
+              "prompt": "When do you trust a p-value, and when do you not?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.statistical_rigor.p_value_trust"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "F",
+          "title": "Modeling",
+          "questions": [
+            {
+              "id": "Q20",
+              "prompt": "Simple vs. complex — where's your default?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.modeling.simple_vs_complex"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "How do you know a model is \"good enough\" to ship?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.modeling.good_enough_bar"
+              ]
+            },
+            {
+              "id": "Q22",
+              "prompt": "What's your monitoring story for a deployed model?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.modeling.monitoring_story"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "What's a model-building shortcut you used to take and now refuse?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.modeling.shortcuts_refused"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Experimentation",
+          "questions": [
+            {
+              "id": "Q24",
+              "prompt": "How do you set up a power calculation / MDE for a new experiment?",
+              "kind": "open",
+              "required": false,
+              "minutes": 4,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.experimentation.power_calculation",
+                "directives.experimentation.mde_policy"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "What guardrail metrics do you always include?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.experimentation.guardrail_metrics"
+              ]
+            },
+            {
+              "id": "Q26",
+              "prompt": "What's your stance on peeking / sequential testing / early stopping?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.experimentation.peeking_stance"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "How do you handle experiments that \"fail to reject\" — what do you tell the stakeholder?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.statistical_rigor.uncertainty_language"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-craft",
+      "title": "Depth: tools and heuristics",
+      "optional": true,
+      "purpose": "The tools the person reaches for and the rules of thumb they apply.",
+      "sections": [
+        {
+          "id": "H",
+          "title": "Tools & workflow",
+          "questions": [
+            {
+              "id": "Q28",
+              "prompt": "SQL dialect you write in, pandas vs. Polars vs. DuckDB, viz library — pick your defaults and tell me why.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.tools_workflow.sql_dialect",
+                "directives.tools_workflow.dataframe_library",
+                "directives.tools_workflow.viz_library"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "Notebooks vs. scripts vs. dbt — where does each belong?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q30",
+              "prompt": "What's in your personal utility library / snippets?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.tools_workflow.utilities"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q34",
+              "prompt": "\"I always {X} before trusting a new data source.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.data_quality.trust_checklist"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "\"If a metric moves more than {X}%, I immediately check {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.data_quality.trust_checklist"
+              ]
+            },
+            {
+              "id": "Q36",
+              "prompt": "\"A good experiment pre-registers {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.experimentation.guardrail_metrics",
+                "directives.statistical_rigor.multiple_comparisons"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, the quality bar, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q48",
+              "prompt": "When you are unsure about a result or stuck on an analysis, how do you say so, and at what point do you escalate or ask for help? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "What is the difference between a quick number you would send in chat and an analysis you would put your name on? Where exactly is the line?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.personality.quality_calibration"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "What belief about data or analysis did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "When do you do your best analytical work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "What reliably frustrates you in a data stack or in how people use data?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

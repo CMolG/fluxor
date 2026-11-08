@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "ds-tailwind",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdStyle",
+  "iconLibrary": "react-icons/md",
+  "description": "Pins all styling to Tailwind CSS utility classes and design tokens; no ad-hoc CSS or competing styling systems.",
+  "tags": [
+    "design-system",
+    "tailwind",
+    "utility-css",
+    "tokens"
+  ],
+  "exclusiveGroup": "design-system",
+  "domains": [
+    "frontend"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt"
+}

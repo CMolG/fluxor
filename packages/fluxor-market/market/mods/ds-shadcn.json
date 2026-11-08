@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "ds-shadcn",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdViewQuilt",
+  "iconLibrary": "react-icons/md",
+  "description": "Pins all UI to the shadcn/ui design language and Radix primitives composed with Tailwind.",
+  "tags": [
+    "design-system",
+    "shadcn",
+    "radix",
+    "tailwind"
+  ],
+  "exclusiveGroup": "design-system",
+  "incompatibleWith": [
+    "zero-dependencies"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt"
+}

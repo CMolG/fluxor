@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-optimizer",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "infinite",
+  "icon": "MdSpeed",
+  "iconLibrary": "react-icons/md",
+  "description": "Continuously profiles and upgrades algorithmic complexity and performance in an infinite loop.",
+  "tags": [
+    "performance",
+    "algorithm",
+    "big-o",
+    "math",
+    "loop",
+    "infinite"
+  ],
+  "steps": [
+    {
+      "id": "profile-hotspots",
+      "prompt": "Profile the codebase for performance hotspots and algorithmic bottlenecks"
+    },
+    {
+      "id": "identify-complexity",
+      "prompt": "Identify functions with suboptimal Big-O complexity"
+    },
+    {
+      "id": "generate-optimizations",
+      "prompt": "Generate optimized implementations with benchmarks"
+    },
+    {
+      "id": "verify-with-tests",
+      "stepRef": "run-tests",
+      "prompt": "Run tests to verify correctness after optimization"
+    },
+    {
+      "id": "commit-and-loop",
+      "stepRef": "commit-changes",
+      "prompt": "Commit changes and loop to the next hotspot",
+      "loopBackTo": {
+        "stepId": "profile-hotspots",
+        "maxIterations": 3
+      }
+    }
+  ]
+}

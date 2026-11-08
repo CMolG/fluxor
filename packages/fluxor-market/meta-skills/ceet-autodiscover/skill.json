@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-autodiscover",
+  "kind": "skill",
+  "version": "2.0.1",
+  "packaging": "traditional",
+  "description": "Detects which CEET role a request needs, checks whether the project already has a filled pack for it, and gates the run before handing off to the pack, to sub-agent orchestration or to the Jira pipeline.",
+  "tags": [
+    "ceet",
+    "routing",
+    "cognitive-profile"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "tools": [
+    {
+      "name": "detect",
+      "command": [
+        "python3",
+        "scripts/detect.py"
+      ],
+      "description": "Matches a request to a CEET role and reports the project's packs, incomplete packs and examples."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "tests/**",
+      "evals/**"
+    ]
+  }
+}

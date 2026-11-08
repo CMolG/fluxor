@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "flow.schema.json",
+  "title": "Flow manifest",
+  "description": "A pre-planned pipeline of steps. The long-form prompt is the sibling `<id>.md`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "version",
+    "description",
+    "tags",
+    "icon",
+    "iconLibrary",
+    "recommendedComplexity",
+    "cost"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "kind": {
+      "const": "flow"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "stability": {
+      "$ref": "common.schema.json#/$defs/stability"
+    },
+    "aliases": {
+      "$ref": "common.schema.json#/$defs/aliases"
+    },
+    "description": {
+      "$ref": "common.schema.json#/$defs/description"
+    },
+    "tags": {
+      "$ref": "common.schema.json#/$defs/tags"
+    },
+    "domains": {
+      "$ref": "common.schema.json#/$defs/domains"
+    },
+    "requires": {
+      "$ref": "common.schema.json#/$defs/requires"
+    },
+    "icon": {
+      "$ref": "common.schema.json#/$defs/icon"
+    },
+    "iconLibrary": {
+      "$ref": "common.schema.json#/$defs/iconLibrary"
+    },
+    "betterOn": {
+      "$ref": "common.schema.json#/$defs/betterOn"
+    },
+    "recommendedComplexity": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "cost": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "finite",
+        "infinite"
+      ]
+    },
+    "usableBy": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "destructive": {
+      "description": "The flow rewrites or deletes content beyond the files it creates (history, infrastructure, data). Exporters require a human gate.",
+      "type": "boolean"
+    },
+    "noteTypes": {
+      "description": "The note types the flow reads (a mind map of typed notes). A step binds one with noteBindings.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9]*$",
+            "maxLength": 64
+          },
+          "description": {
+            "$ref": "common.schema.json#/$defs/description"
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "prompt"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/atomId"
+          },
+          "stepRef": {
+            "description": "The market step this flow step instantiates (`id`, optionally with a version range); the flow's `prompt` specializes it. Not part of the Fluxor projection.",
+            "$ref": "common.schema.json#/$defs/atomRef"
+          },
+          "prompt": {
+            "description": "What the engine runs for this step. Required even with a `stepRef`: it specializes the referenced step for this flow.",
+            "type": "string",
+            "minLength": 1
+          },
+          "roleId": {
+            "$ref": "common.schema.json#/$defs/atomId"
+          },
+          "modIds": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/atomId"
+            },
+            "uniqueItems": true
+          },
+          "prevStepIds": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/atomId"
+            },
+            "uniqueItems": true
+          },
+          "loopBackTo": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "stepId",
+              "maxIterations"
+            ],
+            "properties": {
+              "stepId": {
+                "$ref": "common.schema.json#/$defs/atomId"
+              },
+              "maxIterations": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "noteBindings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "mode"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "pattern": "^[A-Z][A-Za-z0-9]*$",
+                  "maxLength": 64
+                },
+                "mode": {
+                  "enum": [
+                    "primary-input",
+                    "read-context"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

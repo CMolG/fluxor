@@ -1,0 +1,13 @@
+{
+  "issueKey": "DEMO-100",
+  "title": "Premium content publishing approval window",
+  "description": "Premium content cannot be published until two reviewers approve the request, except for trusted partners. Limit retry attempts to three. The approval window expires after 24 hours. Support backoffice operators can override stuck reviews. All users on the legacy platform keep the previous behavior. Compliance requires a full audit trail. Communications must be sent via email when reviewers are assigned. Rollout is progressive by country. Acceptance criteria: cover success, error, expired, cancelled, and override states.",
+  "labels": ["premium", "approval", "compliance"],
+  "epic": null,
+  "status": "Open",
+  "comments": [
+    {"author": "pm", "body": "All conditions are confirmed by legal. Reporting must track every state transition.", "created": "2026-04-10T10:00:00Z"}
+  ],
+  "acceptanceCriteria": [],
+  "fetchedAt": "2026-04-10T10:00:00Z"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "security-hardened",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdShield",
+  "iconLibrary": "react-icons/md",
+  "description": "Applies extreme sanitization, uses parameterized queries, and flags potential security risks.",
+  "tags": [
+    "security",
+    "sanitization",
+    "safe",
+    "hardened"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "security",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,49 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/022-fluxor-pack.yaml
+  - changeSet:
+      id: 022-fluxor-pack
+      author: javadaba
+      context: default
+      comment: >
+        JAVA-286: a CEET pack a person rendered on their machine and published to Fluxor online, so
+        the harness sync delivers it to their projects.
+
+        fluxor_pack is one pack per account and pack id (role and person, so it names a person),
+        with the versions it was rendered from and the consent statement it was kept under.
+        fluxor_pack_file holds its shared files exactly as pack.json hashed them (never private/).
+        fluxor_pack_project attaches a pack to the account's harness projects. All of it is the
+        person's data: purged with the account, and deleted when they unpublish the pack, erase
+        the interview or withdraw its consent.
+      changes:
+        - sql:
+            sql: |
+              create table if not exists fluxor_pack (
+                id uuid primary key,
+                account_id uuid not null,
+                pack_id text not null,
+                role text not null,
+                form_version text not null,
+                profile_version text not null,
+                statement_version text not null,
+                published_at timestamptz not null,
+                unique (account_id, pack_id)
+              );
+              create index if not exists idx_fluxor_pack_account_role on fluxor_pack(account_id, role);
+
+              create table if not exists fluxor_pack_file (
+                pack uuid not null references fluxor_pack(id),
+                path text not null,
+                sha256 text not null check (sha256 ~ '^[0-9a-f]{64}$'),
+                content text not null,
+                primary key (pack, path)
+              );
+
+              create table if not exists fluxor_pack_project (
+                pack uuid not null references fluxor_pack(id),
+                project_id uuid not null references fluxor_harness_project(id),
+                attached_at timestamptz not null,
+                primary key (pack, project_id)
+              );
+              create index if not exists idx_fluxor_pack_project_project on fluxor_pack_project(project_id);

@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ux-psychology",
+  "kind": "skill",
+  "version": "1.0.1",
+  "packaging": "traditional",
+  "description": "Designs and audits interfaces with cognitive psychology: cognitive load, the gulfs of execution and evaluation, Fogg's B=MAP, processing fluency and trust, dark patterns versus desirable difficulties, cognitive accessibility and DSA/GDPR exposure.",
+  "tags": [
+    "ux",
+    "psychology",
+    "cognitive-load",
+    "dark-patterns",
+    "accessibility"
+  ],
+  "domains": [
+    "frontend",
+    "web"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "tools": [
+    {
+      "name": "scan_friction",
+      "command": [
+        "python3",
+        "scripts/scan_friction.py"
+      ],
+      "description": "Scans UI code for undue friction, dark-pattern and evaluation-gulf candidates in English and Spanish copy."
+    }
+  ],
+  "softDeps": [
+    {
+      "what": "A technical SEO and performance audit skill",
+      "fallback": "Point to the web-vitals, seo-meta and structured-data market mods."
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skill.schema.json",
+  "title": "Skill manifest",
+  "description": "A skill folder with SKILL.md; `skill.json` sits next to it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "version",
+    "description",
+    "tags",
+    "packaging"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "kind": {
+      "const": "skill"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "stability": {
+      "$ref": "common.schema.json#/$defs/stability"
+    },
+    "aliases": {
+      "$ref": "common.schema.json#/$defs/aliases"
+    },
+    "description": {
+      "$ref": "common.schema.json#/$defs/description"
+    },
+    "tags": {
+      "$ref": "common.schema.json#/$defs/tags"
+    },
+    "domains": {
+      "$ref": "common.schema.json#/$defs/domains"
+    },
+    "requires": {
+      "$ref": "common.schema.json#/$defs/requires"
+    },
+    "packaging": {
+      "description": "`traditional`: installed and used as a whole (SKILL.md plus its files). `bundle`: also provides the atoms listed in `provides` for use on the flow board. `meta`: a meta-skill, which depends on a form: it declares in `form` the questions whose answers shape what it produces (see the meta-skills contract, meta-skills.md).",
+      "enum": [
+        "traditional",
+        "bundle",
+        "meta"
+      ]
+    },
+    "config": {
+      "$ref": "#/$defs/config"
+    },
+    "form": {
+      "$ref": "#/$defs/form"
+    },
+    "hooks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event",
+          "command"
+        ],
+        "properties": {
+          "event": {
+            "enum": [
+              "SessionStart",
+              "UserPromptSubmit",
+              "PreToolUse",
+              "PostToolUse",
+              "Stop"
+            ]
+          },
+          "matcher": {
+            "type": "string"
+          },
+          "command": {
+            "description": "Path relative to the skill folder.",
+            "type": "string",
+            "minLength": 1
+          },
+          "timeout": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "blocking": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "tools": {
+      "description": "Deterministic scripts a harness may expose as MCP tools.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "command",
+          "description"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+([_.-][a-z0-9]+)*$"
+          },
+          "command": {
+            "description": "argv relative to the skill folder, e.g. [\"python3\", \"scripts/x.py\"].",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10
+          },
+          "inputSchema": {
+            "type": "object"
+          },
+          "outputSchema": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "provides": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mods": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/atomId"
+          },
+          "uniqueItems": true
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/atomId"
+          },
+          "uniqueItems": true
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/atomId"
+          },
+          "uniqueItems": true
+        },
+        "flows": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/atomId"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "softDeps": {
+      "description": "What the skill uses when it is available, and what it does otherwise.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "what",
+          "fallback"
+        ],
+        "properties": {
+          "what": {
+            "type": "string",
+            "minLength": 3
+          },
+          "fallback": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "install": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exclude": {
+          "description": "Globs, relative to the skill folder, that are not installed (evals, fixtures, tests).",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "description": "File name under `.harness/config/` in the target project.",
+          "type": "string",
+          "pattern": "^[a-z0-9-]+\\.json$"
+        },
+        "schema": {
+          "description": "JSON Schema for that file (draft 2020-12, within the subset tools/marketplace.py checks), relative to the skill folder; conventionally `config.schema.json`.",
+          "type": "string",
+          "minLength": 1
+        },
+        "example": {
+          "description": "A complete example config that validates against the schema, relative to the skill folder; conventionally `config.example.json`.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "form": {
+      "description": "The form a meta-skill depends on. With `questions` alone the skill asks the form while it runs; with `profile` and `templates` the answers fill the profile's slots and the templates render into a generated pack.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "questions"
+      ],
+      "properties": {
+        "questions": {
+          "description": "The questions, relative to the skill folder.",
+          "type": "string",
+          "minLength": 1
+        },
+        "profile": {
+          "description": "The template the answers fill: every `{slot}` in it is one value synthesized from the answers. Relative to the skill folder; requires `templates`.",
+          "type": "string",
+          "minLength": 1
+        },
+        "templates": {
+          "description": "The folder of artifact templates rendered with the profile's slots into the generated pack. Relative to the skill folder; requires `profile`. A template may only use slots the profile declares.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

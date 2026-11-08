@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "edge-case-coverage",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdAccountTree",
+  "iconLibrary": "react-icons/md",
+  "description": "Forces robust handling of edge cases (nulls, boundaries, overflow, invalid types) with real general logic instead of happy-path or hardcoded answers.",
+  "tags": [
+    "edge-cases",
+    "robustness",
+    "algorithms",
+    "correctness"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

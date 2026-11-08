@@ -1,0 +1,788 @@
+{
+  "$schema": "../../../schemas/form.schema.json",
+  "formVersion": "2.0.0",
+  "role": "ceet-ux-researcher",
+  "title": "UX Researcher",
+  "nameSlot": "researcher_name",
+  "intro": "Record consent first (ceet-core references/consent.md). Then ask one question at a time, in order, and dig into vague answers: a recent example, a number, the exception. Record every answer verbatim with `interview.py answer`. The core and the real decisions are required; the depth modules are optional, and `interview.py next` suggests the questions that fill the profile's gaps.",
+  "wrap": "Synthesize the profile, then run the teachback: show each directive with the questions it came from and let the person accept, edit or reject it. If they do not recognize themselves, re-interview that section.",
+  "routing": {
+    "keywords": [
+      "research",
+      "interview",
+      "synthesis",
+      "behavior",
+      "jtbd",
+      "user research",
+      "usability",
+      "ux research",
+      "diary study",
+      "usability test",
+      "readout",
+      "persona",
+      "participant"
+    ]
+  },
+  "derived": {
+    "identity.contradictions": "Tensions between answers across the whole interview (synthesis rule 5)."
+  },
+  "profileOnly": {
+    "identity.core_values": "Values stay in the profile; task prompts carry the directives they produce (plan item 2.2).",
+    "identity.frustration_triggers": "A trait for the person's own reading; the directives that act on it are rendered.",
+    "identity.contradictions": "Contradictions stay out of task prompts; the decision framework resolves them (plan item 2.2)."
+  },
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core interview",
+      "optional": false,
+      "purpose": "Who the person is and how they reason about research: enough evidence for the always-on core and the most consequential directives.",
+      "sections": [
+        {
+          "id": "A",
+          "title": "Context",
+          "questions": [
+            {
+              "id": "Q1",
+              "prompt": "What research function do you own — embedded, center-of-excellence, solo?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q2",
+              "prompt": "What product domain(s) do you work in?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q3",
+              "prompt": "How is research scoped into projects, and what's your typical cadence?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature"
+              ]
+            },
+            {
+              "id": "Q4",
+              "prompt": "Who are your primary \"customers\" internally (PM, design, eng, exec)?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.cognitive_signature",
+                "directives.communicating.show_to_team_vs_leadership"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "title": "Framing",
+          "questions": [
+            {
+              "id": "Q5",
+              "prompt": "A stakeholder asks \"can you study X?\" — how do you reshape that into a research question?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.research_framing.reshape_process",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q6",
+              "prompt": "What's a request you routinely refuse (or reframe) before accepting?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.research_framing.refuse_reframe"
+              ]
+            },
+            {
+              "id": "Q7",
+              "prompt": "How do you define *done* for a research project?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "directives.research_framing.done_definition",
+                "directives.personality.quality_calibration"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "title": "Method selection",
+          "questions": [
+            {
+              "id": "Q8",
+              "prompt": "Walk me through your mental tree: when do you pick interviews, diary study, usability test, survey, analytics, ethnography?",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.method_selection.decision_tree",
+                "identity.decision_framework"
+              ]
+            },
+            {
+              "id": "Q9",
+              "prompt": "What's a method you rarely use but everyone else seems to reach for? Why?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.method_selection.rarely_used"
+              ]
+            },
+            {
+              "id": "Q10",
+              "prompt": "How do you decide between qualitative and quantitative for a given question?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.method_selection.qual_vs_quant"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D",
+          "title": "Behavioral vs. attitudinal",
+          "questions": [
+            {
+              "id": "Q11",
+              "prompt": "What do you trust more — what users say, or what users do? When does that flip?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.behavioral_vs_attitudinal.trust_hierarchy",
+                "identity.core_values"
+              ]
+            },
+            {
+              "id": "Q12",
+              "prompt": "How do you design a study that catches the gap between said and done?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.behavioral_vs_attitudinal.study_design"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "E",
+          "title": "Recruiting",
+          "questions": [
+            {
+              "id": "Q14",
+              "prompt": "What are your recruiting standards? Who would you refuse to include?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.recruiting.standards",
+                "directives.recruiting.refused_participants"
+              ]
+            },
+            {
+              "id": "Q15",
+              "prompt": "How do you handle incentives — amount, form, ethics?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.recruiting.incentives",
+                "directives.ethics.compensation"
+              ]
+            },
+            {
+              "id": "Q16",
+              "prompt": "What's your stance on convenience samples, and when is it OK to relax?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "probes": [
+                "When does that rule break, and when does it never break?"
+              ],
+              "feeds": [
+                "directives.recruiting.convenience_samples"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "G",
+          "title": "Synthesis",
+          "questions": [
+            {
+              "id": "Q22",
+              "prompt": "Walk me through your synthesis workflow from raw notes to a claim.",
+              "kind": "open",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.synthesis.workflow"
+              ]
+            },
+            {
+              "id": "Q23",
+              "prompt": "Affinity, tagging, JTBD, behavioral archetype, user journey — what tools do you actually use and which do you distrust?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.synthesis.affinity_tools",
+                "directives.synthesis.jtbd_archetypes"
+              ]
+            },
+            {
+              "id": "Q24",
+              "prompt": "How many participants do you typically want before you'll make a claim? How do you justify that?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "probes": [
+                "What number would you put on it?"
+              ],
+              "feeds": [
+                "directives.synthesis.saturation_criterion"
+              ]
+            },
+            {
+              "id": "Q25",
+              "prompt": "What's your saturation criterion?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.synthesis.saturation_criterion"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "I",
+          "title": "Ethics & validity",
+          "questions": [
+            {
+              "id": "Q30",
+              "prompt": "What consent and recording policy do you enforce?",
+              "kind": "open",
+              "required": true,
+              "minutes": 3,
+              "feeds": [
+                "directives.ethics.consent_protocol",
+                "directives.ethics.recording_policy"
+              ]
+            },
+            {
+              "id": "Q31",
+              "prompt": "What bias are you most worried about in your own work?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice"
+              ]
+            },
+            {
+              "id": "Q32",
+              "prompt": "How do you handle sensitive topics (money, health, grief, frustration)?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.ethics.consent_protocol",
+                "directives.ethics.anonymization"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "L",
+          "title": "Vocabulary",
+          "questions": [
+            {
+              "id": "Q39",
+              "prompt": "JTBD, need, goal, outcome, problem, opportunity — which do you use, strictly?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice",
+                "directives.synthesis.jtbd_archetypes"
+              ]
+            },
+            {
+              "id": "Q40",
+              "prompt": "What phrases do you refuse to put in a readout (\"users want\", \"proves\", \"validates\")?",
+              "kind": "open",
+              "required": true,
+              "minutes": 2,
+              "feeds": [
+                "identity.communication_voice"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decisions",
+      "title": "Real decisions",
+      "optional": false,
+      "purpose": "Cognitive task analysis on the person's own cases: an incident walk-through, a knowledge audit, a simulation on a real artifact, a contrast and a decision with partial information. The answers become the pack's examples.",
+      "sections": [
+        {
+          "id": "O",
+          "title": "Real decisions",
+          "questions": [
+            {
+              "id": "Q44",
+              "prompt": "Pick a hard research decision from the last few months, one where reasonable researchers would have disagreed: a method, a sample, a claim you made or held back. Walk me through it from the first signal: what you noticed, the options you had, what you chose, and what made the difference.",
+              "kind": "incident",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "identity.decision_framework",
+                "directives.method_selection.decision_tree"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q13",
+              "prompt": "What's a study you've run where stated preference and behavior diverged — what happened?",
+              "kind": "incident",
+              "required": true,
+              "minutes": 6,
+              "probes": [
+                "What did you notice first, and what did it tell you?",
+                "What options did you have, and which did you rule out quickly?",
+                "What would someone less experienced have done at that point?",
+                "What would have changed your mind?"
+              ],
+              "feeds": [
+                "directives.behavioral_vs_attitudinal.divergence_examples",
+                "directives.behavioral_vs_attitudinal.trust_hierarchy"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q45",
+              "prompt": "Think of a study plan or discussion guide a colleague hands you for review. What would a capable, less experienced researcher miss in it that you would catch? List the cues you look for.",
+              "kind": "knowledge-audit",
+              "required": true,
+              "minutes": 5,
+              "probes": [
+                "Why does that cue matter here?",
+                "How would you teach someone to see it?"
+              ],
+              "feeds": [
+                "directives.interview_craft.unique_questions",
+                "directives.behavioral_vs_attitudinal.study_design",
+                "directives.recruiting.convenience_samples"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q43",
+              "prompt": "Walk me through the last study you ran — question, recruit, guide, sessions, synthesis, readout, impact.",
+              "kind": "simulation",
+              "required": true,
+              "minutes": 8,
+              "probes": [
+                "Why did you drop that thread?",
+                "What would have made you run more sessions?"
+              ],
+              "feeds": [
+                "directives.synthesis.workflow",
+                "directives.communicating.readout_format",
+                "directives.research_framing.reshape_process"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q46",
+              "prompt": "Think of two findings from the same study, one you put at the top of the readout and one you left out or softened (or build the pair now from a recent study). What exactly made the difference?",
+              "kind": "contrastive",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Which detail would flip your verdict?"
+              ],
+              "feeds": [
+                "directives.communicating.readout_format",
+                "directives.synthesis.saturation_criterion"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            },
+            {
+              "id": "Q47",
+              "prompt": "Here is all you get: five usability sessions, three participants failed the checkout task, two of them were recruited from your own customer list, and the team launches on Friday. What do you tell the team, and what is the one extra piece of information you ask for?",
+              "kind": "limited-information",
+              "required": true,
+              "minutes": 4,
+              "probes": [
+                "Why that piece of information and not another?",
+                "When would you tell them to hold the launch?"
+              ],
+              "feeds": [
+                "directives.synthesis.saturation_criterion",
+                "directives.recruiting.convenience_samples"
+              ],
+              "captures": [
+                "decisions"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-craft",
+      "title": "Depth: interview craft and influence",
+      "optional": true,
+      "purpose": "How the person runs a session, reports findings and makes research change decisions.",
+      "sections": [
+        {
+          "id": "F",
+          "title": "Interview craft",
+          "questions": [
+            {
+              "id": "Q17",
+              "prompt": "What's your go-to opener? Closer?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.interview_craft.opener_closer"
+              ]
+            },
+            {
+              "id": "Q18",
+              "prompt": "What question do you ask that most researchers don't?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.interview_craft.unique_questions"
+              ]
+            },
+            {
+              "id": "Q19",
+              "prompt": "How do you handle silence in an interview?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.interview_craft.silence_handling"
+              ]
+            },
+            {
+              "id": "Q20",
+              "prompt": "What's a technique (laddering, critical incident, think-aloud) you use most, and what's your twist on it?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.interview_craft.laddering_twist"
+              ]
+            },
+            {
+              "id": "Q21",
+              "prompt": "When a participant says something you strongly disagree with, what do you do?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "H",
+          "title": "Communicating findings",
+          "questions": [
+            {
+              "id": "Q26",
+              "prompt": "What format do you use for a readout — deck, doc, video?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.communicating.readout_format"
+              ]
+            },
+            {
+              "id": "Q27",
+              "prompt": "What goes at the top of a readout?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.communicating.readout_format"
+              ]
+            },
+            {
+              "id": "Q28",
+              "prompt": "What do you show leadership vs. the team?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.communicating.show_to_team_vs_leadership"
+              ]
+            },
+            {
+              "id": "Q29",
+              "prompt": "What's a finding you're proud of that changed a decision? How'd you make it land?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.communicating.influence_pattern"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "J",
+          "title": "Influence & politics",
+          "questions": [
+            {
+              "id": "Q33",
+              "prompt": "What do you do when leadership ignores research?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.communicating.influence_pattern"
+              ]
+            },
+            {
+              "id": "Q34",
+              "prompt": "What do you do when research says \"don't ship\" and the team ships anyway?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "probes": [
+                "Give me a recent, concrete example."
+              ],
+              "feeds": [
+                "directives.communicating.influence_pattern",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q35",
+              "prompt": "How do you build trust with skeptical engineers or execs?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.communicating.influence_pattern"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-judgment",
+      "title": "Depth: heuristics and anti-patterns",
+      "optional": true,
+      "purpose": "The person's rules of thumb and what they outgrew.",
+      "sections": [
+        {
+          "id": "K",
+          "title": "Heuristics",
+          "questions": [
+            {
+              "id": "Q36",
+              "prompt": "\"When a participant says 'I would pay for that', I {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.behavioral_vs_attitudinal.trust_hierarchy"
+              ]
+            },
+            {
+              "id": "Q37",
+              "prompt": "\"I don't trust usability data from fewer than {N} participants doing {X}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.synthesis.saturation_criterion"
+              ]
+            },
+            {
+              "id": "Q38",
+              "prompt": "\"If a behavior shows up in {X}% of participants, I consider it {Y}.\"",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.synthesis.saturation_criterion"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "M",
+          "title": "Anti-patterns",
+          "questions": [
+            {
+              "id": "Q41",
+              "prompt": "What's a research pattern you outgrew?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q42",
+              "prompt": "What's a method or artifact that's trendy now but you don't trust?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "identity.core_values",
+                "directives.synthesis.affinity_tools"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depth-people",
+      "title": "Depth: working with others",
+      "optional": true,
+      "purpose": "Uncertainty, crises, how the person has changed, focus and frustration.",
+      "sections": [
+        {
+          "id": "P",
+          "title": "Working with others",
+          "questions": [
+            {
+              "id": "Q48",
+              "prompt": "When you are unsure about a call, how do you say so, and at what point do you escalate a decision instead of making it yourself? Give a recent example.",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.uncertainty_voice",
+                "directives.meta_cognition.escalation_protocol"
+              ]
+            },
+            {
+              "id": "Q49",
+              "prompt": "A session goes wrong: a participant is distressed, or a recording with personal data ends up where it should not. What do you do in the first hour, and how do you talk to people while it is happening?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.crisis_personality"
+              ]
+            },
+            {
+              "id": "Q50",
+              "prompt": "What research belief did you hold firmly three years ago and have dropped since? What changed your mind?",
+              "kind": "open",
+              "required": false,
+              "minutes": 3,
+              "feeds": [
+                "directives.meta_cognition.knowledge_evolution"
+              ]
+            },
+            {
+              "id": "Q51",
+              "prompt": "When do you do your best work? Describe a good focus block and what breaks it.",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.focus_preference",
+                "directives.personality.flow_state_description"
+              ]
+            },
+            {
+              "id": "Q52",
+              "prompt": "What reliably frustrates you in how a team commissions, runs or uses research?",
+              "kind": "open",
+              "required": false,
+              "minutes": 2,
+              "feeds": [
+                "directives.personality.primary_frustration",
+                "identity.frustration_triggers"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

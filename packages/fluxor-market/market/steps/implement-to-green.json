@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "implement-to-green",
+  "kind": "step",
+  "version": "1.0.0",
+  "icon": "MdCheckCircle",
+  "iconLibrary": "react-icons/md",
+  "description": "Writes the smallest correct implementation needed to make failing tests pass (TDD green).",
+  "tags": [
+    "tdd",
+    "implementation",
+    "green",
+    "atomic"
+  ]
+}

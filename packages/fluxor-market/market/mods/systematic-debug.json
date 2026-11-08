@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "systematic-debug",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdTroubleshoot",
+  "iconLibrary": "react-icons/md",
+  "description": "Hypothesis-driven debugging: reproduce, isolate, hypothesize, and verify with an exact file:line — no blind loops.",
+  "tags": [
+    "debugging",
+    "root-cause",
+    "diagnosis",
+    "analysis"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

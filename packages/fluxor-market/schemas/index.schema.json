@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "index.schema.json",
+  "title": "Marketplace bundle index",
+  "description": "The `index.json` that `tools/marketplace.py build` writes. A deployment pipeline reads it to seed or update the marketplace database; every file it lists is in `blobs/<sha256>` next to it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "namespace", "publisher", "source", "atoms"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "namespace": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "publisher": { "type": "string" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit"],
+      "properties": {
+        "repository": { "type": "string" },
+        "commit": {
+          "description": "The commit the bundle was built from; a `-dirty` suffix means uncommitted changes, which a pipeline must refuse.",
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "atoms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref", "id", "kind", "version", "stability", "hash", "manifest", "files"],
+        "properties": {
+          "ref": { "description": "`<namespace>/<id>@<version>`, the key a database stores.", "type": "string" },
+          "id": { "$ref": "common.schema.json#/$defs/atomId" },
+          "kind": { "enum": ["role", "mod", "step", "flow", "hook", "preset", "skill", "engine"] },
+          "version": { "$ref": "common.schema.json#/$defs/version" },
+          "stability": { "$ref": "common.schema.json#/$defs/stability" },
+          "hash": {
+            "description": "sha256 over the canonical manifest and every file's install path, sha256 and executable bit. Equal hashes mean identical installed content.",
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "manifest": { "description": "The atom's manifest without `$schema`; validate it with `<kind>.schema.json`.", "type": "object" },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["path", "sha256", "size", "executable"],
+              "properties": {
+                "path": { "description": "Install path relative to the project's harness directory (`.harness/`).", "type": "string" },
+                "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+                "size": { "type": "integer", "minimum": 0 },
+                "executable": { "type": "boolean" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

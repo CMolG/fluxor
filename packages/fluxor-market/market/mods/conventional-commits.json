@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "conventional-commits",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdCommit",
+  "iconLibrary": "react-icons/md",
+  "description": "Atomic commits in Conventional Commits format with why-focused bodies and clean, reviewable history.",
+  "tags": [
+    "git",
+    "commits",
+    "changelog",
+    "hygiene"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt"
+}

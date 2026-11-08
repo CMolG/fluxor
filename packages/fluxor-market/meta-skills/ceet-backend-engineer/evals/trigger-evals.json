@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I do backend engineering so Claude can review PRs the way I do", "should_trigger": true},
+  {"query": "I'm the staff engineer on our payments API. Build me an AI setup that codes and reviews like me — ask me whatever you need", "should_trigger": true},
+  {"query": "extract my backend style into something I can load in Cursor and Copilot", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a backend dev? I own the order service and the Kafka consumers", "should_trigger": true},
+  {"query": "our senior backend engineer is leaving in a month and agreed to be interviewed so an assistant keeps her review standards. set that up", "should_trigger": true},
+  {"query": "capture how I think about idempotency, migrations and incident response so any AI tool works my way on our Go services", "should_trigger": true},
+  {"query": "run the CEET backend interview with me, I have an hour now and can do the rest tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my server-side engineering judgment — Postgres, queues, API design — for ChatGPT and Claude", "should_trigger": true},
+  {"query": "turn my answers about data integrity and API versioning into agents and rules for my coding assistant", "should_trigger": true},
+  {"query": "re-run my backend cognitive profile, a year has passed and I changed how I handle retries", "should_trigger": true},
+  {"query": "review this migration that renames users.email and adds a unique index on a 50M-row table", "should_trigger": false},
+  {"query": "interview me about how I build React components so the AI writes UI like me", "should_trigger": false},
+  {"query": "capture how I run incidents and on-call, SLOs and error budgets, into an AI profile", "should_trigger": false},
+  {"query": "build a simulated backend profile of how Netflix engineers think, from their tech blog", "should_trigger": false},
+  {"query": "design the database schema for a multi-tenant invoicing service", "should_trigger": false},
+  {"query": "write a job description for a senior backend engineer and a rubric to score candidates", "should_trigger": false},
+  {"query": "which CEET role should I use for a full-stack developer who mostly does APIs?", "should_trigger": false},
+  {"query": "set up a CLAUDE.md with our team's coding conventions for the Python services", "should_trigger": false},
+  {"query": "score my engineers' code review quality this quarter from their PR comments", "should_trigger": false},
+  {"query": "interview our analytics lead about metric design and experimentation for an AI clone", "should_trigger": false}
+]

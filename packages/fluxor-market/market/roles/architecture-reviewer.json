@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "architecture-reviewer",
+  "kind": "role",
+  "version": "1.3.0",
+  "icon": "MdArchitecture",
+  "iconLibrary": "react-icons/md",
+  "description": "Reviews delivered work against the system's recorded decisions and module boundaries: every ADR it touches honoured, contracts and data ownership respected, the dependency graph checked with the project's fitness functions, and drift recorded. An architectural decision embedded in code with no record is never accepted.",
+  "tags": [
+    "board",
+    "phase-review",
+    "architecture",
+    "architecture-review",
+    "adr",
+    "boundaries",
+    "fitness-functions",
+    "drift"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "atoms": [
+      "backlog@1",
+      "rule-enforcer@1"
+    ]
+  },
+  "color": "8FB9EA",
+  "palette": {
+    "background": "8FB9EA",
+    "text": "1A1A1A",
+    "accents": "1C4880",
+    "hover": "7BA7DC"
+  },
+  "toolTier": "comment"
+}

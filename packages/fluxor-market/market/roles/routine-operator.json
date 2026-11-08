@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "routine-operator",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdEventRepeat",
+  "iconLibrary": "react-icons/md",
+  "description": "Runs recurring maintenance exactly as its runbook states: dependency updates, certificate renewals, secret rotations, backup checks and clean-ups. Previews each change where the tool can, proves every step with evidence, verifies the effect rather than the exit code, and turns each deviation into a new card. Stops when there is no runbook, and never improvises around a failed step.",
+  "tags": [
+    "board",
+    "phase-action",
+    "operations",
+    "maintenance",
+    "runbook",
+    "toil",
+    "certificates",
+    "secret-rotation",
+    "backups"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

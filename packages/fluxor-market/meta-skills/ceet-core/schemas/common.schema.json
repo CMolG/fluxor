@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Shared definitions for CEET packs",
+  "$defs": {
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "packId": {
+      "description": "`<role>-<person>` in kebab-case, or the slug chosen for a simulated pack.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "questionId": {
+      "type": "string",
+      "pattern": "^Q[1-9][0-9]*$"
+    },
+    "consent": {
+      "description": "Who agreed to what. A pack cannot be rendered without it (ceet-core references/consent.md).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statementVersion", "subject", "basis", "recordedAt", "uses", "storage", "excludedUses"],
+      "properties": {
+        "statementVersion": {
+          "description": "The consent statement read to the person, by version (`ceet-consent-1`).",
+          "type": "string",
+          "pattern": "^ceet-consent-[0-9]+$"
+        },
+        "subject": {
+          "description": "The person profiled, by the name or alias they chose.",
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "description": "`consent`: the person agreed, after hearing the statement. `public-work`: a simulated pack of a public figure, built only from their public, work-related material; never valid for a private individual.",
+          "enum": ["consent", "public-work"]
+        },
+        "recordedAt": { "$ref": "#/$defs/date" },
+        "recordedBy": {
+          "description": "Who ran the interview or the simulation.",
+          "type": "string"
+        },
+        "uses": {
+          "description": "What the person agreed the pack is for, in their words or from the statement's list.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 3 }
+        },
+        "storage": {
+          "description": "`local`: the pack stays on the person's machine and is git-ignored. `repository`: the person opted in to committing the shared part of the pack (never `private/`).",
+          "enum": ["local", "repository"]
+        },
+        "sharedWith": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "retention": {
+          "description": "How long the pack is kept, or the event that ends it.",
+          "type": "string"
+        },
+        "excludedUses": {
+          "description": "Uses the pack may never serve, whatever else was agreed. Must list at least the uses in ceet-core's references/consent.md.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 3 }
+        }
+      }
+    },
+    "notSynthesized": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["_status", "_note"],
+      "properties": {
+        "_status": { "const": "not_synthesized" },
+        "_note": { "type": "string", "minLength": 5 }
+      }
+    },
+    "slotValue": {
+      "description": "A synthesized value (first person, with [Q<n>] or [E<n>] references), or an explicit gap.",
+      "anyOf": [
+        { "type": "string", "minLength": 1 },
+        { "$ref": "#/$defs/notSynthesized" }
+      ]
+    }
+  }
+}

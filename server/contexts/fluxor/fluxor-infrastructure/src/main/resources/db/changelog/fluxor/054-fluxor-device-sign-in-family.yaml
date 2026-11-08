@@ -1,0 +1,18 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/054-fluxor-device-sign-in-family.yaml
+  - changeSet:
+      id: 054-fluxor-device-sign-in-family
+      author: javadaba
+      context: default
+      comment: >
+        JAVA-1425. The OAuth token family (the native app's sign-in) that claimed a Fluxor pairing,
+        so signing out of the app revokes the device it made. Null from a browser's session or an
+        enrollment code. Expand-only: a nullable column every earlier release ignores.
+      changes:
+        - sql:
+            sql: |
+              alter table fluxor_device add column if not exists oauth_family_id uuid;
+              create index if not exists idx_fluxor_device_oauth_family on fluxor_device (oauth_family_id)
+                where oauth_family_id is not null;

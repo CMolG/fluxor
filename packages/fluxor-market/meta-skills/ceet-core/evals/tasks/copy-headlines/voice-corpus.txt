@@ -1,0 +1,8 @@
+Strong B2B observability headlines name the audience or the pain in the first six words. Vague benefits ("see everything", "unified platform") do not convert because they describe every product in the category.
+SREs respond to specific operational verbs: triage, narrow, root-cause, escalate, page, runbook. Headlines that lead with one of those verbs read as written by an operator.
+Incidents, outages, and latency regressions are the three event classes SREs encounter weekly. Naming them anchors the headline in their workday.
+Tracing and logs are tools, not benefits. The benefit is faster mean-time-to-resolution, fewer waking pages, and clearer postmortems. Headlines connect the tool to the benefit.
+Avoid vendor jargon: "next-generation", "AI-powered", "modern", "cloud-native". They signal the writer cares more about category positioning than the reader's job.
+Subheadlines reinforce the headline by adding the audience, the situation, or the outcome the reader can observe within a week of adoption.
+A landing page lives or dies on the first headline. The second and third headlines are usually for ad variants or section anchors; they should restate the same value differently, not introduce new claims.
+The product is tracing and logs. Resist the temptation to invent broader claims. If the headline says "everywhere" or "every layer", the reader's first thought is "what's missing".

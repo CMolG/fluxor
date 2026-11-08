@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "extreme-performance",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdBolt",
+  "iconLibrary": "react-icons/md",
+  "description": "Prioritizes raw execution speed and lowest Big-O complexity, even at the cost of readability.",
+  "tags": [
+    "performance",
+    "speed",
+    "optimization",
+    "hardcore"
+  ],
+  "incompatibleWith": [
+    "verbose-comments",
+    "legacy-compat"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

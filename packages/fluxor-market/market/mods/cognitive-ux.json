@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "cognitive-ux",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdPsychology",
+  "iconLibrary": "react-icons/md",
+  "description": "Enforces the interface-psychology discipline: cognitive-load budget, mandatory states, classified friction, entry/exit symmetry, and plain-language value; loads the ux-psychology skill when the session offers it.",
+  "tags": [
+    "ux",
+    "cognitive",
+    "psychology",
+    "friction",
+    "clarity",
+    "trust",
+    "value"
+  ],
+  "domains": [
+    "frontend",
+    "web"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-reducer-finite",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "medium",
+  "cost": "medium",
+  "icon": "MdCompress",
+  "iconLibrary": "react-icons/md",
+  "description": "Executes a single, targeted refactoring or code reduction task from the backlog and terminates.",
+  "tags": [
+    "refactor",
+    "deduplication",
+    "dry",
+    "architecture",
+    "bloat",
+    "task",
+    "single-shot",
+    "finite"
+  ],
+  "usableBy": [
+    "agentic-task"
+  ],
+  "steps": [
+    {
+      "id": "read-backlog-task",
+      "stepRef": "read-card",
+      "prompt": "Read the assigned reduction task from the backlog"
+    },
+    {
+      "id": "analyze-target",
+      "prompt": "Analyze the target code for safe simplification opportunities"
+    },
+    {
+      "id": "refactor-and-simplify",
+      "prompt": "Refactor and remove unnecessary complexity"
+    },
+    {
+      "id": "verify-no-regressions",
+      "stepRef": "run-tests",
+      "prompt": "Run tests to ensure no regressions"
+    },
+    {
+      "id": "mark-complete",
+      "stepRef": "set-card-status",
+      "prompt": "Mark the backlog item as complete and terminate"
+    }
+  ]
+}

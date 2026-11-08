@@ -1,0 +1,42 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "traffic-to-funnel",
+  "kind": "skill",
+  "version": "1.1.0",
+  "packaging": "traditional",
+  "description": "Turns real analytics and behavior data (GA4, Plausible, PostHog, Clarity, Search Console, logs, CSV) into a diagnosis and one funnel per product: amplify what works, repair what leaks, monetize where intent peaks.",
+  "tags": [
+    "analytics",
+    "funnel",
+    "cro",
+    "seo",
+    "monetization"
+  ],
+  "domains": [
+    "web",
+    "data"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "tools": [
+    {
+      "name": "analyze_traffic",
+      "command": [
+        "python3",
+        "scripts/analyze_traffic.py"
+      ],
+      "description": "Ranks pages and elements from normalized analytics CSVs and flags friction signals against site-relative thresholds."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "tests/**"
+    ]
+  }
+}

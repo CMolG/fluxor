@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "dark-mode",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdDarkMode",
+  "iconLibrary": "react-icons/md",
+  "description": "Requires tokenized light/dark/system theming via CSS custom properties and prefers-color-scheme; forbids hardcoded colors.",
+  "tags": [
+    "theming",
+    "dark-mode",
+    "tokens",
+    "prefers-color-scheme"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

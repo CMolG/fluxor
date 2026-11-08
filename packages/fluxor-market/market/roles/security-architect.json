@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "security-architect",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdPolicy",
+  "iconLibrary": "react-icons/md",
+  "description": "Models the threats of a card before any code is written: the assets, trust boundaries, threats and mitigations, the security requirements mapped to OWASP ASVS levels, and the regulatory obligations that apply, so no design crosses a trust boundary without a documented mitigation.",
+  "tags": [
+    "board",
+    "phase-refine",
+    "security",
+    "threat-modeling",
+    "asvs",
+    "privacy-by-design",
+    "compliance",
+    "appsec"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "B9A3E6",
+  "palette": {
+    "background": "B9A3E6",
+    "text": "1A1A1A",
+    "accents": "4B2F96",
+    "hover": "A88FDB"
+  },
+  "toolTier": "comment"
+}

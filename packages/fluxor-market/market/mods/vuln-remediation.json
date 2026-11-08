@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "vuln-remediation",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdBugReport",
+  "iconLibrary": "react-icons/md",
+  "description": "A vulnerability fix is proven and quiet: an exploit regression test red before and green after, the weakness named by CWE and ASVS id, the class fixed rather than one input, and no exploit detail outside the restricted card before deploy.",
+  "tags": [
+    "security",
+    "vulnerability",
+    "remediation",
+    "cwe",
+    "disclosure"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "security",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "officium-heartbeat-done",
+  "kind": "hook",
+  "version": "1.1.0",
+  "description": "Stops the heartbeat ticker of a long shell call once the call returns, or records the task id of a call that went to the background; sends nothing.",
+  "tags": [
+    "officium",
+    "monitoring",
+    "agents"
+  ],
+  "event": "postTool",
+  "timeoutMs": 5000,
+  "sends": null
+}

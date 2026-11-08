@@ -1,0 +1,22 @@
+[
+  {"query": "PAY-482 in Jira is vague, figure out what business questions we need answered before anyone codes it", "should_trigger": true},
+  {"query": "fetch DEMO-17 from our Jira and turn it into a functional contract the engineers can build from", "should_trigger": true},
+  {"query": "this Jira story has no acceptance criteria and two conflicting rules; detect the ambiguities and ask the product owner, not me", "should_trigger": true},
+  {"query": "run the requirements discovery on ticket CHK-90, then let me answer the questions in the terminal", "should_trigger": true},
+  {"query": "I answered half the business questions for OPS-311 yesterday, resume the session and resolve the contract", "should_trigger": true},
+  {"query": "prepare a base branch plan for Jira ticket WEB-1203 with traceability back to the answered questions", "should_trigger": true},
+  {"query": "our PM writes Jira tickets that devs keep misreading. Build a pipeline that turns each one into non-technical questions for the business first", "should_trigger": true},
+  {"query": "analyze the ambiguity in ABC-55 on atlassian and draft the questions for the stakeholders", "should_trigger": true},
+  {"query": "from the Jira issue LOG-77, generate the business questionnaire and the guardrails for the base branch", "should_trigger": true},
+  {"query": "the ticket MOB-9 needs a decision only the business can make; draft the request-human wall from the Jira analysis", "should_trigger": true},
+  {"query": "create a Jira ticket for the login bug with steps to reproduce", "should_trigger": false},
+  {"query": "write a JQL query that lists all open bugs assigned to me in project PAY", "should_trigger": false},
+  {"query": "move PAY-482 to In Progress and assign it to Laura", "should_trigger": false},
+  {"query": "set up a GitHub Action that posts to Jira when a PR merges", "should_trigger": false},
+  {"query": "write user stories for a shopping cart from scratch", "should_trigger": false},
+  {"query": "migrate our Jira project to Linear and keep the history", "should_trigger": false},
+  {"query": "summarize what the team finished in this sprint from the Jira board", "should_trigger": false},
+  {"query": "write a requirements document for our new mobile app", "should_trigger": false},
+  {"query": "estimate the story points of these five tickets", "should_trigger": false},
+  {"query": "create a feature branch called feature/PAY-482 and push it", "should_trigger": false}
+]

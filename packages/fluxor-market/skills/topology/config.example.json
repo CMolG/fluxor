@@ -1,0 +1,44 @@
+{
+  "workspaces": ["shell", "site", "packages/*", "packages/apps/*"],
+  "exclude": ["**/examples/**"],
+  "phantoms": {
+    "scope": "all",
+    "rootDependencies": true,
+    "ignore": [
+      { "import": "server-only", "in": "packages/apps/*",
+        "reason": "Provided by the framework's bundler; it is never installed." }
+    ]
+  },
+  "groups": {
+    "shell": { "packages": ["shell"] },
+    "app": {
+      "packages": ["packages/apps/*"],
+      "isolated": true,
+      "reason": "Each app deploys on its own under its base path; shared code goes to packages/*."
+    },
+    "design-system": {
+      "packages": ["@acme/ui", "@acme/brand"],
+      "leaf": true,
+      "reason": "Consumed by the whole ecosystem: it may only depend on itself."
+    }
+  },
+  "forbidden": [
+    { "from": "shell", "to": "app",
+      "reason": "Apps are mounted by same-domain iframe, not by import (see the architecture ADR)." }
+  ],
+  "exceptions": [
+    { "from": "site", "to": "packages/apps/player",
+      "reason": "The site's showcase renders the app's real leaf components, not a mockup." }
+  ],
+  "route": {
+    "maven": {
+      "root": "backend",
+      "contexts": "backend/contexts/*",
+      "domainSuffix": "-domain",
+      "expectedLayers": ["domain", "application", "infrastructure"],
+      "excludeTypePaths": ["**/ports/**"]
+    },
+    "packages": ["packages/sdk"],
+    "note": "What goes in each layer is fixed by the project's pattern catalog."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "topology",
+  "kind": "skill",
+  "version": "1.1.0",
+  "packaging": "traditional",
+  "description": "Derives a workspace's real package graph from the code and checks it: no cycles and no phantom dependencies always, plus configurable layering rules; routes domain vocabulary to its bounded context.",
+  "tags": [
+    "architecture",
+    "dependencies",
+    "monorepo",
+    "workspace"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "git"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "config": {
+    "file": "topology.json",
+    "schema": "config.schema.json",
+    "example": "config.example.json"
+  },
+  "tools": [
+    {
+      "name": "topology",
+      "command": [
+        "python3",
+        "topology.py"
+      ],
+      "description": "Prints the package graph, verifies architecture invariants (exit 1 on violations), or routes a domain term."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "tests/**"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "brainstorm-cards",
+  "kind": "flow",
+  "version": "1.0.1",
+  "stability": "experimental",
+  "betterOn": "opencode/claude-sonnet-4-6",
+  "recommendedComplexity": "medium",
+  "cost": "finite",
+  "icon": "MdLightbulb",
+  "iconLibrary": "react-icons/md",
+  "description": "Interactive brainstorm-with-vitamins: turns a rough idea into one or more Agentic Cards inside .backlog/.",
+  "tags": [
+    "brainstorm",
+    "discovery",
+    "requirements",
+    "cards",
+    "finite",
+    "single-shot"
+  ]
+}

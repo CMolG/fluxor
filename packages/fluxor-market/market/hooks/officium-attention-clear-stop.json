@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "officium-attention-clear-stop",
+  "kind": "hook",
+  "version": "1.0.1",
+  "description": "Clears the waiting-on-you mark officium-attention set on Officium's board once the turn ends.",
+  "tags": [
+    "officium",
+    "monitoring",
+    "agents"
+  ],
+  "event": "stop",
+  "timeoutMs": 5000,
+  "sends": {
+    "to": "{{OFFICIUM_API}}",
+    "what": [
+      "the session id",
+      "that the window is no longer blocked",
+      "the account's Officium heartbeat token, to authenticate"
+    ]
+  }
+}

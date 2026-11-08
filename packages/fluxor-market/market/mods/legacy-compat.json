@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "legacy-compat",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdHistory",
+  "iconLibrary": "react-icons/md",
+  "description": "Prioritizes safe patches and backward compatibility over massive refactors or modern syntax.",
+  "tags": [
+    "legacy",
+    "backward-compatible",
+    "safe",
+    "maintenance"
+  ],
+  "incompatibleWith": [
+    "extreme-performance"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

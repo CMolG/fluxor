@@ -1,0 +1,29 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "mobile-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdPhoneIphone",
+  "iconLibrary": "react-icons/md",
+  "description": "Ships native-feeling mobile apps with React Native/Expo or Flutter: offline-first, 60fps, store-ready.",
+  "tags": [
+    "mobile",
+    "react-native",
+    "expo",
+    "flutter",
+    "ios",
+    "android",
+    "offline"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "color": "FFB627",
+  "palette": {
+    "background": "FFB627",
+    "text": "111111",
+    "accents": "3A405A",
+    "hover": "DA9A1F"
+  },
+  "toolTier": "write"
+}

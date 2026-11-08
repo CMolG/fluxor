@@ -1,0 +1,22 @@
+[
+  {"query": "build a draft CEET pack of how DHH makes backend architecture decisions, from his public talks and blog posts", "should_trigger": true},
+  {"query": "my colleague Ana agreed to let me simulate her UX research judgment from her research reports; she recorded consent", "should_trigger": true},
+  {"query": "make a simulated product manager clone of Marty Cagan's public writing, every directive sourced", "should_trigger": true},
+  {"query": "derive a cognitive profile of the author of this repository from their commits — they consented in writing", "should_trigger": true},
+  {"query": "I want a simulated copywriter pack based on David Ogilvy's published work, with an evidence map", "should_trigger": true},
+  {"query": "turn Kelsey Hightower's public talks into an SRE CEET pack, mark anything you can't source as unknown", "should_trigger": true},
+  {"query": "simulate how Julie Zhuo would critique a design, as a CEET pack built from her book and posts", "should_trigger": true},
+  {"query": "our former tech lead consented to us building a clone of her code review style from her PR comments", "should_trigger": true},
+  {"query": "draft a founder-CEO CEET from Paul Graham's essays so I can compare it with my own pack", "should_trigger": true},
+  {"query": "create the evidence-map for a simulated frontend pack of Dan Abramov from his public writing", "should_trigger": true},
+  {"query": "interview me about how I review backend code so an AI can do it like me", "should_trigger": false},
+  {"query": "write a blog post in the style of Paul Graham about startups", "should_trigger": false},
+  {"query": "pretend to be Steve Jobs and give me feedback on my pitch deck", "should_trigger": false},
+  {"query": "build a clone of my coworker's code review style from his PRs, he doesn't need to know", "should_trigger": false},
+  {"query": "summarize Kelsey Hightower's best talks on Kubernetes", "should_trigger": false},
+  {"query": "profile our sales reps' personalities from their call transcripts so we know who to promote", "should_trigger": false},
+  {"query": "write a biography of Ada Lovelace for our team wiki", "should_trigger": false},
+  {"query": "re-render my own CEET pack after I corrected an answer", "should_trigger": false},
+  {"query": "analyze the commit history of this repo and tell me who wrote most of the auth module", "should_trigger": false},
+  {"query": "generate a fake user persona for our UX research, a 34-year-old nurse who shops online", "should_trigger": false}
+]

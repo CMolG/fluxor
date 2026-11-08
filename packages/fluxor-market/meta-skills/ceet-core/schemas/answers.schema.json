@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "answers.schema.json",
+  "title": "Interview answers and state",
+  "description": "private/answers.json in a pack: the consent record, every answer verbatim with its follow-ups, and what was skipped. Written by interview.py, so an interview can stop and resume. Never shared, never loaded as context by an agent doing work.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "role", "formVersion", "packId", "startedAt", "consent", "answers"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "role": { "type": "string", "pattern": "^ceet-[a-z0-9-]+$" },
+    "formVersion": { "$ref": "common.schema.json#/$defs/version" },
+    "packId": { "$ref": "common.schema.json#/$defs/packId" },
+    "startedAt": { "$ref": "common.schema.json#/$defs/date" },
+    "consent": { "$ref": "common.schema.json#/$defs/consent" },
+    "answers": {
+      "type": "object",
+      "patternProperties": {
+        "^Q[1-9][0-9]*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["text", "answeredAt"],
+          "properties": {
+            "text": { "description": "Verbatim, never edited (synthesis rule 1).", "type": "string" },
+            "followUps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["probe", "text"],
+                "properties": {
+                  "probe": { "type": "string" },
+                  "text": { "type": "string" }
+                }
+              }
+            },
+            "answeredAt": { "$ref": "common.schema.json#/$defs/date" }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "skipped": {
+      "type": "object",
+      "patternProperties": { "^Q[1-9][0-9]*$": { "type": "string" } },
+      "additionalProperties": false
+    }
+  }
+}

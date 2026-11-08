@@ -1,0 +1,4 @@
+{
+  "$comment": "The fixed count of the rule-of-seven mod. Seven is the default; a project may set a smaller count for a narrower strategy.",
+  "count": 7
+}

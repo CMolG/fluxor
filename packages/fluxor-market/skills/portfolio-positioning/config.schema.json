@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "portfolio-positioning.config.schema.json",
+  "title": "portfolio-positioning: .harness/config/portfolio-positioning.json",
+  "description": "The site owner's canonical identity: the single source of truth for everything the skill writes about them. The agent reads this file (the skill has no script). With the file absent, or a required key missing, the agent asks the user instead of guessing; this schema describes a complete file, so the required keys are required here. `$`-prefixed keys are ignored; any other unknown key is reported as a likely typo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "shortClaim", "availability", "availabilityUpdated"],
+  "patternProperties": {
+    "^\\$": {
+      "description": "A comment (for example `$comment`) or `$schema`; ignored."
+    }
+  },
+  "properties": {
+    "name": {
+      "description": "The full canonical name, exactly as it must appear everywhere (diacritics included). Required: asked for when absent.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "shortClaim": {
+      "description": "The role claim, under 10 words, always identical (e.g. \"Senior Software Engineer — Data Platforms\"). Required: asked for when absent.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "extendedClaim": {
+      "description": "A longer line for the hub, the About page and the schema.org `description`. Default: `shortClaim`.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "availability": {
+      "description": "The availability status stated as a fact, not a plea (e.g. \"Open to senior roles & select contracts · Remote (US/EU)\"). Required: asked for when absent.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "availabilityUpdated": {
+      "description": "When the availability was last confirmed, YYYY-MM or YYYY-MM-DD; rendered as \"Availability last updated {Month YYYY}\" (INV-08). Older than about three months: the agent asks the user to reconfirm. Required: asked for when absent.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?$"
+    },
+    "anchorStack": {
+      "description": "The 4-8 technologies the owner wants to be hired for; also feeds schema.org `knowsAbout`. Default: [] (the agent asks).",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "\\S"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "anchorProofs": {
+      "description": "2-5 verifiable proofs, in order ({proof1}, {proof2}...). A proof with no `artifactUrl` is flagged (INV-03); a missing proof is left as a labeled placeholder, never invented. Default: [] (the agent asks for 2-5).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "description": "The claim, with its number.",
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "artifactUrl": {
+            "description": "Where the claim can be verified.",
+            "$ref": "#/$defs/url"
+          },
+          "context": {
+            "description": "The owner's role, the scale and the dates.",
+            "type": "string",
+            "pattern": "\\S"
+          }
+        }
+      },
+      "default": []
+    },
+    "sameAs": {
+      "description": "External profile URLs, primary first: the first entry is the hub's second exit (INV-06). Default: [] (the agent asks).",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/url"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "publicEmail": {
+      "description": "The address meant for public contact; never a private address found elsewhere. Default: asked once; if the user declines, the hub's exits are the first two `sameAs` entries.",
+      "type": "string",
+      "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    "hubPath": {
+      "description": "Path of the hiring hub every page converges on. Default: \"/hire\".",
+      "type": "string",
+      "pattern": "^/\\S*$",
+      "default": "/hire"
+    },
+    "hiringLanguage": {
+      "description": "Language tag of all hiring-facing copy (INV-07). Default: \"en\".",
+      "type": "string",
+      "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
+      "default": "en"
+    },
+    "siteUrl": {
+      "description": "The site's canonical origin, used for JSON-LD @ids and absolute URLs. Default: autodetected from canonical tags, og:url or the sitemap; asked if none is found.",
+      "$ref": "#/$defs/url"
+    },
+    "organizationName": {
+      "description": "The site's organization. Default: autodetected from the site (Organization schema, logo alt text, title suffix); without one, the Organization node and worksFor/founder are omitted.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "imageUrl": {
+      "description": "The owner's photo. Default: none (schema.org `image` is omitted and the photo slots stay empty).",
+      "$ref": "#/$defs/url"
+    },
+    "resumeUrl": {
+      "description": "The résumé download. Default: none (the hub omits it and the brief says so).",
+      "$ref": "#/$defs/url"
+    },
+    "timezone": {
+      "description": "The owner's time zone, as written (e.g. \"UTC-5 (US Eastern)\"). Default: none (the availability line is used as written).",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "location": {
+      "description": "Where the owner is based. Default: none (factual prose omits it).",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "category": {
+      "description": "The category the owner is positioned in (behavioral lever 9). Default: derived from `shortClaim` plus the strongest proof, and confirmed with the user.",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "writingStructure": {
+      "description": "How long pieces are structured; passed to a content-writing skill. Default: none (that skill's default or a plain structure).",
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "voice": {
+      "description": "The owner's voice for copy. Default: none (clean and direct; first person on personal pages).",
+      "type": "string",
+      "pattern": "\\S"
+    }
+  },
+  "$defs": {
+    "url": {
+      "type": "string",
+      "pattern": "^https?://\\S+$"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-300",
+  "title": "Approval flow",
+  "businessGoal": "Add or improve a business approval/review step for a user-facing operation.",
+  "functionalEntities": [
+    "approval"
+  ],
+  "userActions": [
+    "perform business operation"
+  ],
+  "possibleAffectedFlows": [
+    "primary business flow"
+  ],
+  "explicitRequirements": [
+    "approval or review behavior requested"
+  ],
+  "missingBusinessDecisions": [
+    "acceptance_criteria",
+    "auditability",
+    "communications",
+    "compliance",
+    "error_behavior",
+    "expiration",
+    "legacy_compatibility",
+    "limits",
+    "rollout",
+    "scope",
+    "success_behavior",
+    "support_behavior"
+  ],
+  "detectedCategories": [
+    "Acceptance Criteria",
+    "Business Objective",
+    "Business Rules",
+    "Functional Scope"
+  ],
+  "ambiguityLevel": {
+    "level": "HIGH",
+    "constraintDensity": 0.0,
+    "ambiguityMarkers": 33.333,
+    "signals": {
+      "constraintKeywords": [],
+      "ambiguityMarkers": [
+        "tbd"
+      ],
+      "constraintKeywordCounts": {},
+      "ambiguityMarkerCounts": {
+        "tbd": 1
+      }
+    }
+  }
+}

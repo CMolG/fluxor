@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "portfolio-positioning",
+  "kind": "skill",
+  "version": "1.1.0",
+  "packaging": "traditional",
+  "description": "Turns an existing website into a hiring surface for its owner, page by page, without hurting the product's credibility: canonical identity, entity SEO, answer-engine visibility, behavioral levers and copy banks.",
+  "tags": [
+    "portfolio",
+    "personal-brand",
+    "seo",
+    "hiring",
+    "copy"
+  ],
+  "domains": [
+    "web"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write",
+      "browser"
+    ]
+  },
+  "config": {
+    "file": "portfolio-positioning.json",
+    "schema": "config.schema.json",
+    "example": "config.example.json"
+  }
+}

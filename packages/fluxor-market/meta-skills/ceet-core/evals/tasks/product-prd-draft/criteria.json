@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "2.0.0",
+  "task": "product-prd-draft",
+  "minWords": 250,
+  "maxWords": 1200,
+  "requiredSections": [
+    "scope",
+    "out of scope",
+    "success",
+    "rollout",
+    "risk"
+  ],
+  "requiredPhrases": [
+    "admin",
+    "2fa",
+    "recovery",
+    "soc2",
+    "rollout",
+    "metric"
+  ],
+  "seededDefects": [
+    {
+      "id": "recovery-is-scope",
+      "description": "Recovery is mandatory, so it belongs in scope with its own abuse risk (a weaker second factor).",
+      "detect": [
+        "recovery codes",
+        "backup codes",
+        "account recovery",
+        "recovery flow"
+      ]
+    },
+    {
+      "id": "enforcement-rollout",
+      "description": "Forcing 4,000 admins across 600 organizations at once risks lockouts; enforcement needs a staged rollout.",
+      "detect": [
+        "grace period",
+        "staged",
+        "phased",
+        "opt-in",
+        "per organization",
+        "per-organization",
+        "enforce"
+      ]
+    }
+  ]
+}

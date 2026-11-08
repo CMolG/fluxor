@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "data-engineer",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdStorage",
+  "iconLibrary": "react-icons/md",
+  "description": "Changes a planned card's schemas, migrations, queries and pipelines safely: migrations reversible or with a written forward-fix, expand/contract across releases for breaking changes, and query plans checked on realistic data. Stores no personal data beyond its purpose; leaves server code, architecture and the performance verdict to their owners.",
+  "tags": [
+    "board",
+    "phase-action",
+    "data",
+    "database",
+    "schema",
+    "migrations",
+    "sql",
+    "pipelines"
+  ],
+  "domains": [
+    "data",
+    "backend"
+  ],
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "write"
+}

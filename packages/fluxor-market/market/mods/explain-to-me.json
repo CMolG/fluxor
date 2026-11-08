@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "explain-to-me",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdSchool",
+  "iconLibrary": "react-icons/md",
+  "description": "Plain-language pedagogy in the conversation: defines jargon, uses project-anchored analogies, and recaps every change for non-expert builders.",
+  "tags": [
+    "pedagogy",
+    "plain-language",
+    "learning",
+    "vibe-coding"
+  ],
+  "incompatibleWith": [
+    "output-budget"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "style",
+  "enforcement": "prompt"
+}

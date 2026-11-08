@@ -1,0 +1,28 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "product-manager",
+  "kind": "role",
+  "version": "1.2.0",
+  "icon": "MdAssignment",
+  "iconLibrary": "react-icons/md",
+  "description": "Focuses on user and business value, writing user stories, and defining success metrics.",
+  "tags": [
+    "product",
+    "business",
+    "planning",
+    "metrics",
+    "agile"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "betterOn": "opencode/claude-sonnet-4-6",
+  "color": "E58F65",
+  "palette": {
+    "background": "E58F65",
+    "text": "111111",
+    "accents": "FFFFFF",
+    "hover": "CE815A"
+  },
+  "toolTier": "comment"
+}

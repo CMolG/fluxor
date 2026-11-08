@@ -1,0 +1,24 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/018-fluxor-flow-canvas.yaml
+  - changeSet:
+      id: 018-fluxor-flow-canvas
+      author: javadaba
+      context: default
+      comment: >
+        JAVA-163: a flow keeps the designer's canvas, and the definition compiled from it. A design
+        that does not compile yet is still saved, so `definition` becomes nullable; `canvas` is
+        null for a flow that never went through the designer (the API lays one out on read), and
+        a flow always has at least one of the two. `origin` gains `designer`. The format, the
+        canvas and the compile rules are `.harness/contracts/fluxor-flow.md`.
+      changes:
+        - sql:
+            sql: |
+              alter table fluxor_flow add column if not exists canvas jsonb;
+              alter table fluxor_flow alter column definition drop not null;
+              alter table fluxor_flow drop constraint if exists fluxor_flow_origin_check;
+              alter table fluxor_flow add constraint fluxor_flow_origin_check
+                check (origin in ('ide', 'console', 'designer'));
+              alter table fluxor_flow add constraint fluxor_flow_definition_or_canvas
+                check (definition is not null or canvas is not null);

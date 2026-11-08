@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "role.schema.json",
+  "title": "Role manifest",
+  "description": "WHO works: one persona per step. The prompt is the sibling `<id>.md`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "version",
+    "description",
+    "tags",
+    "icon",
+    "iconLibrary",
+    "domains",
+    "color",
+    "palette",
+    "toolTier"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/atomId"
+    },
+    "kind": {
+      "const": "role"
+    },
+    "version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "stability": {
+      "$ref": "common.schema.json#/$defs/stability"
+    },
+    "aliases": {
+      "$ref": "common.schema.json#/$defs/aliases"
+    },
+    "description": {
+      "$ref": "common.schema.json#/$defs/description"
+    },
+    "tags": {
+      "$ref": "common.schema.json#/$defs/tags"
+    },
+    "domains": {
+      "$ref": "common.schema.json#/$defs/domains"
+    },
+    "requires": {
+      "$ref": "common.schema.json#/$defs/requires"
+    },
+    "icon": {
+      "$ref": "common.schema.json#/$defs/icon"
+    },
+    "iconLibrary": {
+      "$ref": "common.schema.json#/$defs/iconLibrary"
+    },
+    "betterOn": {
+      "$ref": "common.schema.json#/$defs/betterOn"
+    },
+    "toolTier": {
+      "$ref": "common.schema.json#/$defs/toolTier"
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^[0-9A-Fa-f]{6}$"
+    },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "background",
+        "text",
+        "accents",
+        "hover"
+      ],
+      "properties": {
+        "background": {
+          "type": "string",
+          "pattern": "^[0-9A-Fa-f]{6}$"
+        },
+        "text": {
+          "type": "string",
+          "pattern": "^[0-9A-Fa-f]{6}$"
+        },
+        "accents": {
+          "type": "string",
+          "pattern": "^[0-9A-Fa-f]{6}$"
+        },
+        "hover": {
+          "type": "string",
+          "pattern": "^[0-9A-Fa-f]{6}$"
+        }
+      }
+    }
+  }
+}

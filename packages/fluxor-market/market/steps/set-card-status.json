@@ -1,0 +1,24 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "set-card-status",
+  "kind": "step",
+  "version": "1.1.0",
+  "icon": "MdAssignmentTurnedIn",
+  "iconLibrary": "react-icons/md",
+  "description": "Writes a task's new status and a short note back to the task source the flow was started from, using only the statuses that source defines.",
+  "tags": [
+    "task",
+    "backlog",
+    "status",
+    "atomic",
+    "flow"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.write"
+    ]
+  }
+}

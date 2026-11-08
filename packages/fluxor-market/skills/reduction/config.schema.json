@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reduction.config.schema.json",
+  "title": "reduction: .harness/config/reduction.json",
+  "description": "Project facts for the reduction skill. The file is optional: every key has a default or is autodetected, and a key left out keeps its default. Paths are relative to the project root. `$`-prefixed keys are ignored; any other unknown key is reported by reduction.py (`check` fails, the other commands warn and continue).",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^\\$": {
+      "description": "A comment (for example `$comment`) or `$schema`; ignored by reduction.py."
+    }
+  },
+  "properties": {
+    "analysisDir": {
+      "description": "Where the analysis files go, relative to the project root. Default: <harness>/analysis (`new` creates `.harness/analysis/` when the project has no harness).",
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "description": "Source roots per stack. A stack left out is autodetected. reduction.py reads only `java` and `react` here and ignores other keys.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "java": {
+          "description": "Roots whose *.java files are measured. Every root must be a directory (`check` fails otherwise). Default: autodetected, every Maven (pom.xml) or Gradle (build.gradle, build.gradle.kts) module that has src/main/java.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "react": {
+          "description": "Roots whose .ts .tsx .js .jsx .mjs .cjs files are measured. Every root must be a directory. Default: autodetected, every directory with a package.json that depends on react, react-dom, next, typescript or @types/react, or that has a tsconfig.json; workspace roots are skipped.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "uiPackage": {
+      "description": "The shared UI package (for example `@acme/ui`); null or an empty string means none. Default: autodetected when exactly one detected React project's package.json name ends in `ui`, `design-system` or `components`; otherwise none.",
+      "type": ["string", "null"]
+    },
+    "exclude": {
+      "description": "Globs (matched against `./<path relative to the root>`) of files never measured. Setting the key REPLACES the whole default list. Default: **/node_modules/**, **/target/**, **/build/**, **/dist/**, **/out/**, **/.next/**, **/.nuxt/**, **/.turbo/**, **/.gradle/**, **/coverage/**, **/generated/**, **/generated-sources/**, **/__generated__/**, **/vendor/**, **/third_party/**, **/.git/**, **/.harness/**, **/.claude/**, **/*.min.js, **/*.d.ts.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": ["**/node_modules/**", "**/target/**", "**/build/**", "**/dist/**", "**/out/**", "**/.next/**", "**/.nuxt/**", "**/.turbo/**", "**/.gradle/**", "**/coverage/**", "**/generated/**", "**/generated-sources/**", "**/__generated__/**", "**/vendor/**", "**/third_party/**", "**/.git/**", "**/.harness/**", "**/.claude/**", "**/*.min.js", "**/*.d.ts"]
+    },
+    "tests": {
+      "description": "Globs of test files, which never count toward the saving (`surface` leaves them out unless --tests is passed). Setting the key replaces the default list. Default: **/src/test/**, **/src/testFixtures/**, **/src/it/**, **/__tests__/**, **/test/**, **/tests/**, **/e2e/**, **/*.test.*, **/*.spec.*, **/*Test.java, **/*Tests.java, **/*IT.java.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "default": ["**/src/test/**", "**/src/testFixtures/**", "**/src/it/**", "**/__tests__/**", "**/test/**", "**/tests/**", "**/e2e/**", "**/*.test.*", "**/*.spec.*", "**/*Test.java", "**/*Tests.java", "**/*IT.java"]
+    },
+    "decided": {
+      "description": "Decisions the project already carries: technique id (J1-J10, R1-R6, T1-T5, case-insensitive) -> a non-empty reason. `new` refuses to open an analysis for a decided technique without --force. Default: {}.",
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^([Jj]([1-9]|10)|[Rr][1-6]|[Tt][1-5])$": {
+          "type": "string",
+          "pattern": "\\S"
+        }
+      },
+      "default": {}
+    },
+    "verify": {
+      "description": "Name -> command that phase 2 runs after every batch. Setting the key replaces the autodetected set. Default: autodetected (`./mvnw -q -pl <module> -am test` or `mvn ...` with a root pom.xml, `./gradlew :<module>:test` with a gradlew, `<pnpm|yarn|npm> test` when the root package.json has a test script).",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

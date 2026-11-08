@@ -1,0 +1,35 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "code-reviewer",
+  "kind": "role",
+  "version": "1.5.0",
+  "icon": "MdDifference",
+  "iconLibrary": "react-icons/md",
+  "description": "Reviews a change's code for correctness, readability, maintainability and consistency with the project's conventions: every line and every test read, the checklist of each domain the diff touches (backend, frontend, data, infrastructure), the card category's rule checked, and comments labelled by severity. Ends with approve or request changes, and never blocks on what a linter owns.",
+  "tags": [
+    "board",
+    "phase-review",
+    "code-review",
+    "correctness",
+    "maintainability",
+    "conventions",
+    "conventional-comments"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "atoms": [
+      "backlog@1",
+      "rule-enforcer@1"
+    ]
+  },
+  "color": "8FB9EA",
+  "palette": {
+    "background": "8FB9EA",
+    "text": "1A1A1A",
+    "accents": "1C4880",
+    "hover": "7BA7DC"
+  },
+  "toolTier": "comment"
+}

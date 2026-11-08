@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-feature-engineer-finite",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "medium",
+  "icon": "MdBuild",
+  "iconLibrary": "react-icons/md",
+  "description": "Executes a single, targeted feature implementation or architectural addition from the backlog and terminates.",
+  "tags": [
+    "feature",
+    "engineering",
+    "build",
+    "architecture",
+    "task",
+    "single-shot",
+    "finite"
+  ],
+  "usableBy": [
+    "agentic-task"
+  ],
+  "steps": [
+    {
+      "id": "read-backlog-task",
+      "stepRef": "read-card",
+      "prompt": "Read the assigned feature task from the backlog"
+    },
+    {
+      "id": "plan-approach",
+      "prompt": "Plan implementation approach and identify dependencies"
+    },
+    {
+      "id": "build-feature",
+      "prompt": "Build the feature with tests and documentation"
+    },
+    {
+      "id": "verify-integration",
+      "stepRef": "run-tests",
+      "prompt": "Run the full test suite to verify integration"
+    },
+    {
+      "id": "mark-complete",
+      "stepRef": "set-card-status",
+      "prompt": "Mark the backlog item as complete and terminate"
+    }
+  ]
+}

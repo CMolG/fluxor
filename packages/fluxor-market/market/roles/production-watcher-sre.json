@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "production-watcher-sre",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdQueryStats",
+  "iconLibrary": "react-icons/md",
+  "description": "Watches production after a deploy: compares SLIs against SLOs and the pre-deploy baseline over a declared window, weighs error-budget burn, and records a go or rollback decision with its data.",
+  "tags": [
+    "board",
+    "phase-deploy",
+    "sre",
+    "slo",
+    "error-budget",
+    "canary",
+    "rollback",
+    "observability"
+  ],
+  "domains": [
+    "infra",
+    "backend"
+  ],
+  "color": "EE9A8C",
+  "palette": {
+    "background": "EE9A8C",
+    "text": "1A1A1A",
+    "accents": "8C2418",
+    "hover": "E3857A"
+  },
+  "toolTier": "comment"
+}

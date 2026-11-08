@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-reducer",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "infinite",
+  "icon": "MdCompress",
+  "iconLibrary": "react-icons/md",
+  "description": "Continuously refactors and simplifies the codebase to reduce complexity and remove bloat.",
+  "tags": [
+    "refactor",
+    "deduplication",
+    "dry",
+    "architecture",
+    "bloat",
+    "loop",
+    "infinite"
+  ],
+  "steps": [
+    {
+      "id": "scan-for-bloat",
+      "prompt": "Scan the codebase for dead code, duplication, and unnecessary complexity"
+    },
+    {
+      "id": "identify-simplification-target",
+      "prompt": "Identify the highest-impact simplification opportunity"
+    },
+    {
+      "id": "refactor-preserving-behavior",
+      "prompt": "Refactor the code while preserving external behavior"
+    },
+    {
+      "id": "verify-no-regressions",
+      "stepRef": "run-tests",
+      "prompt": "Run the full test suite to verify no regressions"
+    },
+    {
+      "id": "commit-and-loop",
+      "stepRef": "commit-changes",
+      "prompt": "Commit changes and loop to the next reduction target",
+      "loopBackTo": {
+        "stepId": "scan-for-bloat",
+        "maxIterations": 3
+      }
+    }
+  ]
+}

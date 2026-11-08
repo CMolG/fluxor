@@ -1,0 +1,48 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-refiner",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "infinite",
+  "icon": "MdAutoFixHigh",
+  "iconLibrary": "react-icons/md",
+  "description": "Continuously analyzes and re-architects an existing codebase toward premium, production-grade quality through relentless functional (never cosmetic) upgrades.",
+  "tags": [
+    "refactor",
+    "evolution",
+    "features",
+    "quality",
+    "architecture",
+    "loop",
+    "infinite"
+  ],
+  "steps": [
+    {
+      "id": "analyze-features",
+      "prompt": "Analyze the project structure and inventory existing features"
+    },
+    {
+      "id": "generate-improvement-backlog",
+      "prompt": "Autonomously generate a prioritized functional improvement backlog"
+    },
+    {
+      "id": "engineer-upgrade",
+      "prompt": "Engineer real behavioral upgrades (not cosmetic) for the top item"
+    },
+    {
+      "id": "validate-and-log",
+      "prompt": "Validate the improvement and log results to results.tsv"
+    },
+    {
+      "id": "commit-and-loop",
+      "stepRef": "commit-changes",
+      "prompt": "Commit changes and loop to the next backlog item",
+      "loopBackTo": {
+        "stepId": "analyze-features",
+        "maxIterations": 3
+      }
+    }
+  ]
+}

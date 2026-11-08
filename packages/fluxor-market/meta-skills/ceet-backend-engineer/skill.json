@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-backend-engineer",
+  "kind": "skill",
+  "version": "2.0.0",
+  "packaging": "meta",
+  "description": "Interviews a backend engineer about systems, data, invariants, failure modes and APIs, and renders the answers into their cognitive clone and a pack of agents, skills, commands, rules and hooks that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "backend",
+    "apis",
+    "databases"
+  ],
+  "domains": [
+    "backend"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 095-harness-own-items
+      author: javadaba
+      context: default
+      comment: >
+        card://JAVA-750: people write their own harness items next to the market's. An own item has an
+        owner and a key with a dot (`team.rule`), which no market id has, so the catalog seed can never
+        collide with one; a market row keeps a key with no dot and no owner. Its visibility (the owner's
+        decision of 2026-11-03) is private, project (with the harness project), organization (with the
+        account whose organization it is) or public. A project item put with no version follows its own
+        item's newest version. Expand only: every new column is nullable or defaulted, and the widened
+        key check admits every key the old one did.
+      changes:
+        - sql:
+            splitStatements: true
+            sql: |
+              alter table fluxor_harness_item add column if not exists owner_account_id uuid;
+              alter table fluxor_harness_item add column if not exists visibility text not null default 'public';
+              alter table fluxor_harness_item add column if not exists harness_project_id uuid
+                references fluxor_harness_project(id);
+              alter table fluxor_harness_item add column if not exists organization_account_id uuid;
+              alter table fluxor_harness_item add column if not exists retired_at timestamptz;
+              alter table fluxor_harness_item drop constraint if exists fluxor_harness_item_key_check;
+              alter table fluxor_harness_item add constraint fluxor_harness_item_key_check
+                check (key ~ '^[a-z0-9][a-z0-9-]{0,63}(\.[a-z0-9][a-z0-9-]{0,63})?$');
+              alter table fluxor_harness_item add constraint fluxor_harness_item_own_key_check
+                check ((owner_account_id is null) = (position('.' in key) = 0));
+              alter table fluxor_harness_item add constraint fluxor_harness_item_visibility_check
+                check (visibility in ('private', 'project', 'organization', 'public')
+                  and (visibility = 'project') = (harness_project_id is not null)
+                  and (visibility = 'organization') = (organization_account_id is not null));
+              create index if not exists idx_fluxor_harness_item_owner
+                on fluxor_harness_item(owner_account_id) where owner_account_id is not null;
+              alter table fluxor_harness_project_item add column if not exists follows_latest boolean
+                not null default false;
+      rollback:
+        - sql:
+            splitStatements: true
+            sql: |
+              alter table fluxor_harness_project_item drop column if exists follows_latest;
+              delete from fluxor_harness_project_item where item_key like '%.%';
+              delete from fluxor_harness_item where owner_account_id is not null;
+              drop index if exists idx_fluxor_harness_item_owner;
+              alter table fluxor_harness_item drop constraint if exists fluxor_harness_item_visibility_check;
+              alter table fluxor_harness_item drop constraint if exists fluxor_harness_item_own_key_check;
+              alter table fluxor_harness_item drop constraint if exists fluxor_harness_item_key_check;
+              alter table fluxor_harness_item add constraint fluxor_harness_item_key_check
+                check (key ~ '^[a-z0-9][a-z0-9-]{0,63}$');
+              alter table fluxor_harness_item drop column if exists retired_at;
+              alter table fluxor_harness_item drop column if exists organization_account_id;
+              alter table fluxor_harness_item drop column if exists harness_project_id;
+              alter table fluxor_harness_item drop column if exists visibility;
+              alter table fluxor_harness_item drop column if exists owner_account_id;

@@ -1,0 +1,20 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "i18n-ready",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdTranslate",
+  "iconLibrary": "react-icons/md",
+  "description": "Externalizes every user-facing string, enforces ICU message format and locale-aware date, number, and currency formatting.",
+  "tags": [
+    "i18n",
+    "l10n",
+    "intl",
+    "localization"
+  ],
+  "domains": [
+    "frontend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,30 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/001-heliox-schema.yaml
+  - changeSet:
+      id: 001-heliox-schema
+      author: javadaba
+      context: default
+      changes:
+        - sql:
+            sql: |
+              create table if not exists heliox_ticket (
+                id uuid primary key,
+                subject text not null,
+                body text not null,
+                email text,
+                status text not null default 'OPEN',
+                created_at timestamptz not null default now()
+              );
+
+              create table if not exists heliox_release (
+                version text not null,
+                platform text not null,
+                url text not null,
+                notes text,
+                published_at timestamptz not null default now(),
+                primary key (version, platform)
+              );
+
+              create index if not exists idx_heliox_release_published on heliox_release(published_at desc);

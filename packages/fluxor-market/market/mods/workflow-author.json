@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "workflow-author",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdAccountTree",
+  "iconLibrary": "react-icons/md",
+  "description": "Writes one card's workflow (the role and extra mods per phase) and nothing else, from the card and the project's catalogs.",
+  "tags": [
+    "workflow",
+    "roles",
+    "mods",
+    "refine",
+    "card"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "scope",
+  "enforcement": "prompt"
+}

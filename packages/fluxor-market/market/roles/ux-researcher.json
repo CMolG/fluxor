@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "ux-researcher",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdPersonSearch",
+  "iconLibrary": "react-icons/md",
+  "description": "Answers a bounded UX/UI question inside a spike's time box by heuristic evaluation, benchmarking, analytics review or a usability study: findings with evidence and severity, the method and its limits, and an actionable recommendation. Observed behaviour outranks stated opinion, simulated users are never evidence, and a study that needs real participants goes to a person.",
+  "tags": [
+    "board",
+    "phase-action",
+    "ux",
+    "user-research",
+    "usability",
+    "heuristic-evaluation",
+    "benchmarking",
+    "analytics",
+    "spike"
+  ],
+  "domains": [
+    "frontend",
+    "web"
+  ],
+  "requires": {
+    "atoms": [
+      "ux-psychology@1"
+    ]
+  },
+  "color": "7CC9A6",
+  "palette": {
+    "background": "7CC9A6",
+    "text": "1A1A1A",
+    "accents": "1B5E44",
+    "hover": "69B994"
+  },
+  "toolTier": "comment"
+}

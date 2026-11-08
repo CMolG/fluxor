@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "db-migrations-safe",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdTableChart",
+  "iconLibrary": "react-icons/md",
+  "description": "Reversible, expand-contract schema migrations with idempotent batched backfills and zero destructive changes at deploy time.",
+  "tags": [
+    "database",
+    "migrations",
+    "schema",
+    "expand-contract",
+    "zero-downtime"
+  ],
+  "domains": [
+    "backend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.2.0",
+  "issueKey": "DEMO-100",
+  "functionalContract": {
+    "businessObjective": "Decision for Business Objective",
+    "functionalScope": "Decision for Functional Scope",
+    "businessRules": [
+      "Decision for Business Rules"
+    ],
+    "stateLifecycle": [
+      "Decision for State Lifecycle"
+    ],
+    "userExperience": [],
+    "compatibility": [
+      "Decision for Compatibility & Backward Compatibility"
+    ],
+    "rollout": [
+      "Decision for Rollout & Transition"
+    ],
+    "supportAndBackoffice": [],
+    "communications": [
+      "Decision for Messages & Communications"
+    ],
+    "riskAndAbuse": [],
+    "legalCompliancePrivacy": [
+      "Decision for Legal, Compliance & Privacy"
+    ],
+    "reporting": [
+      "Decision for Data & Functional Reporting"
+    ],
+    "acceptanceCriteria": [
+      "Decision for Acceptance Criteria"
+    ],
+    "outOfScope": [],
+    "actorsAndPermissions": [],
+    "edgeCases": [],
+    "pricingAndBilling": [],
+    "activationAndConfiguration": [],
+    "auditability": [],
+    "errorHandling": [],
+    "externalDependencies": [],
+    "localization": [],
+    "accessibility": [],
+    "perceivedPerformance": [],
+    "functionalSecurity": [],
+    "dataQuality": [],
+    "criticality": [],
+    "reversibility": [],
+    "migration": [],
+    "rapidDecisions": []
+  },
+  "source": "business_answers",
+  "unmappedAnswers": [],
+  "unresolvedItems": [],
+  "resolvedAt": "<timestamp>"
+}

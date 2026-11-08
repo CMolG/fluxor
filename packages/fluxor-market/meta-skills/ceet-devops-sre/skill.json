@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-devops-sre",
+  "kind": "skill",
+  "version": "2.0.0",
+  "packaging": "meta",
+  "description": "Interviews a DevOps engineer or SRE about infrastructure, CI/CD, observability and incident response, and renders the answers into their cognitive clone and a pack of agents, skills, commands, rules and hooks that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "sre",
+    "devops",
+    "incidents"
+  ],
+  "domains": [
+    "infra"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}

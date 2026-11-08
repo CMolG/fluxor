@@ -1,0 +1,22 @@
+[
+  {"query": "interview me about how I decide under ambiguity so Claude stress-tests my strategy the way I do", "should_trigger": true},
+  {"query": "I'm the CEO of a 40-person startup. Build me an AI setup that drafts board updates like me — ask whatever you need", "should_trigger": true},
+  {"query": "extract my founder thinking into something I can load in ChatGPT and Cursor", "should_trigger": true},
+  {"query": "can you make a cognitive clone of me as a founder? seed stage, two co-founders", "should_trigger": true},
+  {"query": "our founder is stepping back and agreed to be interviewed so an assistant keeps her capital and hiring rules", "should_trigger": true},
+  {"query": "capture how I protect my calendar and what I refuse to delegate, so any AI tool plans my week my way", "should_trigger": true},
+  {"query": "run the CEET founder CEO interview with me, I have an hour now and can finish tomorrow", "should_trigger": true},
+  {"query": "I want a portable profile of my fundraising judgment — runway, dilution, what I refuse in a round — for Claude and Gemini", "should_trigger": true},
+  {"query": "turn my answers about all-hands voice and investor updates into agents and rules for my AI assistant", "should_trigger": true},
+  {"query": "re-run my founder cognitive profile, I changed how I handle the board since last year", "should_trigger": true},
+  {"query": "write this month's investor update from these metrics", "should_trigger": false},
+  {"query": "interview me about budgets, forecasts and unit economics so an AI reviews models like our CFO", "should_trigger": false},
+  {"query": "capture how our head of people designs hiring loops and review processes into an AI profile", "should_trigger": false},
+  {"query": "clone our head of growth's positioning and channel playbook for an AI assistant", "should_trigger": false},
+  {"query": "build a simulated founder profile of how a famous tech CEO thinks, from his interviews", "should_trigger": false},
+  {"query": "should we raise a bridge round or cut burn? here is our P&L", "should_trigger": false},
+  {"query": "rank our leadership team by impact so I know who to replace", "should_trigger": false},
+  {"query": "write a job description for a VP of sales", "should_trigger": false},
+  {"query": "which CEET role should I use for a founder who is also the company's only salesperson?", "should_trigger": false},
+  {"query": "interview our chief of staff about running leadership offsites for an AI clone", "should_trigger": false}
+]

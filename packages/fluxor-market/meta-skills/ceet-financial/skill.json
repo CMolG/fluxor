@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-financial",
+  "kind": "skill",
+  "version": "2.0.1",
+  "packaging": "meta",
+  "description": "Interviews a finance lead about models, unit economics, forecasting and controls, and renders the answers into their cognitive clone and a pack of agents, skills, commands and rules that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "finance",
+    "forecasting"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "landing-page-marketing",
+  "kind": "skill",
+  "version": "1.1.0",
+  "packaging": "traditional",
+  "description": "Writes, audits and builds landing and sales pages that sell by making the product's value obvious: grounded in real facts and customer language, structured by awareness level, rendered on desktop and mobile, linted, and scored with a value-perception rubric.",
+  "tags": [
+    "landing-page",
+    "copywriting",
+    "conversion",
+    "marketing",
+    "audit"
+  ],
+  "domains": [
+    "web"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write",
+      "shell",
+      "browser"
+    ],
+    "runtimes": [
+      "python>=3.9",
+      "node>=18?"
+    ]
+  },
+  "tools": [
+    {
+      "name": "capture_page",
+      "command": [
+        "node",
+        "scripts/capture_page.cjs"
+      ],
+      "description": "Renders a page with Playwright and records what is visible in the first screen on desktop and mobile."
+    },
+    {
+      "name": "extract_page",
+      "command": [
+        "python3",
+        "scripts/extract_page.py"
+      ],
+      "description": "Extracts a page's message hierarchy: hero, sections, CTAs, forms, prices, quotes and meta."
+    },
+    {
+      "name": "copy_lint",
+      "command": [
+        "python3",
+        "scripts/copy_lint.py"
+      ],
+      "description": "Flags hype, unproven claims, fake urgency, generic CTAs and placeholders; checks numbers against a facts file."
+    },
+    {
+      "name": "value_score",
+      "command": [
+        "python3",
+        "scripts/value_score.py"
+      ],
+      "description": "Turns per-lever scores with evidence into the weighted value-perception score, applying caps."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "evals/**"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "reduction",
+  "kind": "skill",
+  "version": "1.1.2",
+  "packaging": "traditional",
+  "description": "Runs a code-reduction campaign (measure first, apply only after approval) with 21 techniques for Java, React and cross-cutting code; project facts come from config or autodetection.",
+  "tags": [
+    "refactoring",
+    "reduction",
+    "java",
+    "react",
+    "technical-debt"
+  ],
+  "domains": [
+    "backend",
+    "frontend"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write",
+      "git"
+    ],
+    "runtimes": [
+      "python>=3.9"
+    ]
+  },
+  "config": {
+    "file": "reduction.json",
+    "schema": "config.schema.json",
+    "example": "config.example.json"
+  },
+  "tools": [
+    {
+      "name": "reduction",
+      "command": [
+        "python3",
+        "reduction.py"
+      ],
+      "description": "Lists techniques, scaffolds and checks analysis files, and measures a technique's surface in the code."
+    }
+  ]
+}

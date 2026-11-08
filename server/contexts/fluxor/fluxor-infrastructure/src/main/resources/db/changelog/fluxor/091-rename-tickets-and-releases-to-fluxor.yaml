@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 091-rename-tickets-and-releases-to-fluxor
+      author: javadaba
+      context: default
+      comment: >
+        The last two tables of this context that still carried the product's former name take the
+        fluxor_ prefix every other table here already has (JAVA-1994). The expand half: during a
+        rolling deploy the previous release keeps reading and writing the old names, so each one
+        stays as a plain view over its new table (PostgreSQL updates a single-table view in place).
+        card://JAVA-1995 [temporary]: dropping the two views is the contract half, in a later
+        deploy.
+      changes:
+        - sql:
+            sql: |
+              alter table heliox_ticket rename to fluxor_ticket;
+              alter table fluxor_ticket rename constraint heliox_ticket_pkey to fluxor_ticket_pkey;
+              alter table heliox_release rename to fluxor_release;
+              alter table fluxor_release rename constraint heliox_release_pkey to fluxor_release_pkey;
+              alter index idx_heliox_release_published rename to idx_fluxor_release_published;
+              create view heliox_ticket as select * from fluxor_ticket;
+              create view heliox_release as select * from fluxor_release;

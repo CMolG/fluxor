@@ -1,0 +1,78 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "product-hunt-launch-readiness",
+  "kind": "skill",
+  "version": "1.1.0",
+  "packaging": "traditional",
+  "description": "Audits a repository, a live URL, or both against Product Hunt's launch guide and featuring guidelines; produces an evidence-backed readiness report, a validated launch kit, and a launch timeline in your timezone.",
+  "tags": [
+    "product-hunt",
+    "launch",
+    "audit",
+    "marketing"
+  ],
+  "domains": [
+    "web"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write",
+      "shell",
+      "browser",
+      "network"
+    ],
+    "runtimes": [
+      "python>=3.9",
+      "node>=18?"
+    ]
+  },
+  "tools": [
+    {
+      "name": "audit_repo",
+      "command": [
+        "python3",
+        "scripts/audit_repo.py"
+      ],
+      "description": "Collects launch evidence from a repository: metadata, assets with real sizes, copy signals, routes, providers."
+    },
+    {
+      "name": "audit_url",
+      "command": [
+        "python3",
+        "scripts/audit_url.py"
+      ],
+      "description": "Collects launch evidence from a live site: head metadata, social images, CTAs, copy signals, broken links."
+    },
+    {
+      "name": "capture_screenshots",
+      "command": [
+        "node",
+        "scripts/capture_screenshots.cjs"
+      ],
+      "description": "Takes gallery, full-page and mobile screenshots with Playwright, plus a thumbnail."
+    },
+    {
+      "name": "check_launch_kit",
+      "command": [
+        "python3",
+        "scripts/check_launch_kit.py"
+      ],
+      "description": "Validates every Product Hunt listing field against the form's limits and rules."
+    },
+    {
+      "name": "launch_timeline",
+      "command": [
+        "python3",
+        "scripts/launch_timeline.py"
+      ],
+      "description": "Converts 12:01 AM PT launch time to a local timezone and lays out launch milestones."
+    }
+  ],
+  "install": {
+    "exclude": [
+      "evals/**",
+      "tests/**"
+    ]
+  }
+}

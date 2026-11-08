@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "2.0.0",
+  "task": "copy-headlines",
+  "minWords": 60,
+  "maxWords": 350,
+  "requiredSections": [
+    "headline 1",
+    "headline 2",
+    "headline 3"
+  ],
+  "requiredPhrases": [
+    "sre",
+    "incident",
+    "trace",
+    "log",
+    "outage",
+    "latency"
+  ],
+  "forbiddenPhrases": [
+    "!",
+    "next-generation",
+    "revolutionary",
+    "ai-powered"
+  ],
+  "seededDefects": [
+    {
+      "id": "names-the-product",
+      "description": "The product is tracing and logs, not AI: a headline set that never names what it does misses the brief.",
+      "detect": [
+        "tracing",
+        "traces",
+        "trace",
+        "logs",
+        "log"
+      ]
+    }
+  ]
+}

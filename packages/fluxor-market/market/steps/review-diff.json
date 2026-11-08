@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schemas/step.schema.json",
+  "id": "review-diff",
+  "kind": "step",
+  "version": "1.0.0",
+  "icon": "MdRateReview",
+  "iconLibrary": "react-icons/md",
+  "description": "Reviews a change against a quality rubric and reports concrete findings without rewriting the code.",
+  "tags": [
+    "review",
+    "quality",
+    "diff",
+    "atomic"
+  ]
+}

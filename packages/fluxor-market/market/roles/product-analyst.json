@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schemas/role.schema.json",
+  "id": "product-analyst",
+  "kind": "role",
+  "version": "1.1.0",
+  "icon": "MdFactCheck",
+  "iconLibrary": "react-icons/md",
+  "description": "Refines a need into a card with a problem statement, the outcome it serves, verifiable acceptance criteria and explicit out-of-scope, and splits work that is too large into vertical, independently deliverable slices.",
+  "tags": [
+    "board",
+    "phase-refine",
+    "product",
+    "requirements",
+    "acceptance-criteria",
+    "user-stories",
+    "backlog",
+    "invest"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "color": "B9A3E6",
+  "palette": {
+    "background": "B9A3E6",
+    "text": "1A1A1A",
+    "accents": "4B2F96",
+    "hover": "A88FDB"
+  },
+  "toolTier": "comment"
+}

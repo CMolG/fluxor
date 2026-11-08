@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decisions.schema.json",
+  "title": "A person's real decisions",
+  "description": "examples/decisions.json in a pack: real decisions with their rationale, captured in the decision-capture stage of the interview. A few of the most similar ones are retrieved into a task (examples.py); they move an agent toward a person more than prose directives do.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "decisions"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "situation", "choice", "rationale"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^D[1-9][0-9]*$" },
+          "source": {
+            "description": "The question whose answer recorded it (`Q41`), or an evidence row for a simulated pack (`E3`).",
+            "type": "string",
+            "pattern": "^(Q|E)[1-9][0-9]*$"
+          },
+          "domain": {
+            "description": "The directive domain it bears on (`code_review`).",
+            "type": "string",
+            "pattern": "^[a-z_][a-z0-9_]*$"
+          },
+          "situation": { "type": "string", "minLength": 10 },
+          "cues": {
+            "description": "What the person noticed that made the difference.",
+            "type": "array",
+            "items": { "type": "string", "minLength": 2 }
+          },
+          "options": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "choice": { "type": "string", "minLength": 1 },
+          "rationale": { "type": "string", "minLength": 5 },
+          "noviceWould": {
+            "description": "What the person said a less experienced practitioner would have done.",
+            "type": "string"
+          },
+          "when": {
+            "description": "When it happened, as precisely as the person said (`2026-08`).",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

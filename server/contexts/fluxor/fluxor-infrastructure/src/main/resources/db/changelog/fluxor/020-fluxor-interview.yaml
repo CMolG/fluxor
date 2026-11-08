@@ -1,0 +1,62 @@
+databaseChangeLog:
+  # Pinned to the path it was first applied under (JAVA-1994): DATABASECHANGELOG keys each
+  # changeset on it, so moving the file without this would re-run every changeset.
+  - logicalFilePath: db/changelog/heliox/020-fluxor-interview.yaml
+  - changeSet:
+      id: 020-fluxor-interview
+      author: javadaba
+      context: default
+      comment: >
+        JAVA-285: a CEET interview answered in Fluxor online, kept per account and role.
+
+        fluxor_interview is one interview session (the role and the form version it was started on).
+        fluxor_interview_answer holds one row per question of the role's form: either its verbatim
+        answer and follow-ups, or the reason it was skipped, recorded_at being when that answer or
+        skip was given (a follow-up does not move it). Both are the person's data, purged with
+        the account and erased when they erase the interview or withdraw consent.
+
+        fluxor_interview_consent is the record of each consent given (statement version, uses, who
+        may see the pack, retention, the uses it may never serve). It is kept as proof of what was
+        agreed: a grant that replaces it, or a withdrawal, only ends it.
+      changes:
+        - sql:
+            sql: |
+              create table if not exists fluxor_interview (
+                id uuid primary key,
+                account_id uuid not null,
+                role text not null,
+                form_version text not null,
+                started_at timestamptz not null,
+                updated_at timestamptz not null,
+                unique (account_id, role)
+              );
+
+              create table if not exists fluxor_interview_answer (
+                interview_id uuid not null references fluxor_interview(id),
+                question_id text not null check (question_id ~ '^Q[1-9][0-9]*$'),
+                text text,
+                follow_ups jsonb not null default '[]'::jsonb,
+                skipped_reason text,
+                recorded_at timestamptz not null,
+                primary key (interview_id, question_id),
+                check ((text is null) <> (skipped_reason is null))
+              );
+
+              create table if not exists fluxor_interview_consent (
+                id uuid primary key,
+                account_id uuid not null,
+                role text not null,
+                statement_version text not null,
+                subject text not null,
+                uses jsonb not null,
+                storage text not null check (storage in ('local', 'repository')),
+                shared_with jsonb not null,
+                retention text not null,
+                excluded_uses jsonb not null,
+                granted_at timestamptz not null,
+                ended_at timestamptz,
+                end_reason text check (end_reason in ('replaced', 'withdrawn')),
+                check ((ended_at is null) = (end_reason is null))
+              );
+              create unique index if not exists uq_fluxor_interview_consent_current
+                on fluxor_interview_consent(account_id, role) where ended_at is null;

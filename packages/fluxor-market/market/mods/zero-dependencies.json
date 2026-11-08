@@ -1,0 +1,23 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "zero-dependencies",
+  "kind": "mod",
+  "version": "1.1.0",
+  "icon": "MdBlock",
+  "iconLibrary": "react-icons/md",
+  "description": "Forbids adding new third-party dependencies; solutions use native language features and standard libraries.",
+  "tags": [
+    "vanilla",
+    "native",
+    "no-deps",
+    "lightweight"
+  ],
+  "incompatibleWith": [
+    "ds-shadcn"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "precedence": "scope",
+  "enforcement": "prompt"
+}

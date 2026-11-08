@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schemas/hook.schema.json",
+  "id": "officium-statusline",
+  "kind": "hook",
+  "version": "1.0.2",
+  "description": "Draws the window's status line (model, effort, context, cost, five-hour limit) and reports that state to Officium's board, at most every ten seconds.",
+  "tags": [
+    "officium",
+    "monitoring",
+    "agents"
+  ],
+  "event": "statusLine",
+  "timeoutMs": 5000,
+  "sends": {
+    "to": "{{OFFICIUM_API}}",
+    "what": [
+      "the session id and name",
+      "the model, effort, thinking and fast-mode settings",
+      "the context window's use and size",
+      "the session's cost, durations and lines added and removed",
+      "the five-hour and seven-day limit use and their reset times",
+      "the project folder, the git worktree, the repository and the pull request",
+      "the client's version",
+      "the account's Officium heartbeat token, to authenticate"
+    ]
+  }
+}

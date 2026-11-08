@@ -1,0 +1,49 @@
+{
+  "$schema": "../../schemas/flow.schema.json",
+  "id": "auto-feature-engineer",
+  "kind": "flow",
+  "version": "2.1.0",
+  "betterOn": "anthropic/claude-opus-4.6",
+  "recommendedComplexity": "high",
+  "cost": "infinite",
+  "icon": "MdBuild",
+  "iconLibrary": "react-icons/md",
+  "description": "Continuously consumes the backlog to build new features, write tests, and commit them sequentially in an infinite loop.",
+  "tags": [
+    "feature",
+    "engineering",
+    "build",
+    "architecture",
+    "loop",
+    "infinite",
+    "tdd"
+  ],
+  "steps": [
+    {
+      "id": "pull-backlog-task",
+      "stepRef": "read-card",
+      "prompt": "Pull the next feature task from the backlog queue"
+    },
+    {
+      "id": "design-approach",
+      "prompt": "Design the implementation approach and identify affected files"
+    },
+    {
+      "id": "implement-feature",
+      "prompt": "Write the feature code with proper type safety and error handling"
+    },
+    {
+      "id": "write-tests",
+      "prompt": "Create or update tests covering the new functionality"
+    },
+    {
+      "id": "commit-and-loop",
+      "stepRef": "commit-changes",
+      "prompt": "Commit changes and loop to the next backlog feature",
+      "loopBackTo": {
+        "stepId": "pull-backlog-task",
+        "maxIterations": 3
+      }
+    }
+  ]
+}

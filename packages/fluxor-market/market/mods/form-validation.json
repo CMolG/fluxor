@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "form-validation",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdPlaylistAddCheck",
+  "iconLibrary": "react-icons/md",
+  "description": "Requires accessible client and server validation with typed schemas, inline error messaging tied to inputs, and no trust in client input.",
+  "tags": [
+    "forms",
+    "validation",
+    "accessibility",
+    "zod"
+  ],
+  "domains": [
+    "frontend",
+    "backend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

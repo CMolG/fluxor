@@ -1,0 +1,3066 @@
+{
+  "flows": [
+    {
+      "name": "auto-architect",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "infinite",
+      "icon": "MdDesignServices",
+      "iconLibrary": "react-icons/md",
+      "description": "Continuously analyzes the project to autonomously generate and manage finite Agentic Cards in the backlog.",
+      "tags": [
+        "orchestration",
+        "planning",
+        "management",
+        "architect",
+        "backlog",
+        "markdown",
+        "loop",
+        "infinite"
+      ],
+      "steps": [
+        {
+          "id": "analyze-architecture",
+          "prompt": "Analyze project structure, dependencies, and architectural patterns"
+        },
+        {
+          "id": "identify-improvement-areas",
+          "prompt": "Identify areas needing refactoring, modularization, or cleanup"
+        },
+        {
+          "id": "generate-backlog-cards",
+          "prompt": "Generate finite Agent Sessions as backlog tasks for each improvement"
+        },
+        {
+          "id": "prioritize-by-impact",
+          "prompt": "Prioritize tasks by impact and dependency order"
+        },
+        {
+          "id": "monitor-and-requeue",
+          "prompt": "Continuously monitor for new architectural drift and create new tasks",
+          "loopBackTo": {
+            "stepId": "analyze-architecture",
+            "maxIterations": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-feature-engineer",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "infinite",
+      "icon": "MdBuild",
+      "iconLibrary": "react-icons/md",
+      "description": "Continuously consumes the backlog to build new features, write tests, and commit them sequentially in an infinite loop.",
+      "tags": [
+        "feature",
+        "engineering",
+        "build",
+        "architecture",
+        "loop",
+        "infinite",
+        "tdd"
+      ],
+      "steps": [
+        {
+          "id": "pull-backlog-task",
+          "prompt": "Pull the next feature task from the backlog queue"
+        },
+        {
+          "id": "design-approach",
+          "prompt": "Design the implementation approach and identify affected files"
+        },
+        {
+          "id": "implement-feature",
+          "prompt": "Write the feature code with proper type safety and error handling"
+        },
+        {
+          "id": "write-tests",
+          "prompt": "Create or update tests covering the new functionality"
+        },
+        {
+          "id": "commit-and-loop",
+          "prompt": "Commit changes and loop to the next backlog feature",
+          "loopBackTo": {
+            "stepId": "pull-backlog-task",
+            "maxIterations": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-feature-engineer-finite",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "medium",
+      "icon": "MdBuild",
+      "iconLibrary": "react-icons/md",
+      "description": "Executes a single, targeted feature implementation or architectural addition from the backlog and terminates.",
+      "tags": [
+        "feature",
+        "engineering",
+        "build",
+        "architecture",
+        "task",
+        "single-shot",
+        "finite"
+      ],
+      "usableBy": [
+        "agentic-task"
+      ],
+      "steps": [
+        {
+          "id": "read-backlog-task",
+          "prompt": "Read the assigned feature task from the backlog"
+        },
+        {
+          "id": "plan-approach",
+          "prompt": "Plan implementation approach and identify dependencies"
+        },
+        {
+          "id": "build-feature",
+          "prompt": "Build the feature with tests and documentation"
+        },
+        {
+          "id": "verify-integration",
+          "prompt": "Run the full test suite to verify integration"
+        },
+        {
+          "id": "mark-complete",
+          "prompt": "Mark the backlog item as complete and terminate"
+        }
+      ]
+    },
+    {
+      "name": "auto-optimizer",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "infinite",
+      "icon": "MdSpeed",
+      "iconLibrary": "react-icons/md",
+      "description": "Continuously profiles and upgrades algorithmic complexity and performance in an infinite loop.",
+      "tags": [
+        "performance",
+        "algorithm",
+        "big-o",
+        "math",
+        "loop",
+        "infinite"
+      ],
+      "steps": [
+        {
+          "id": "profile-hotspots",
+          "prompt": "Profile the codebase for performance hotspots and algorithmic bottlenecks"
+        },
+        {
+          "id": "identify-complexity",
+          "prompt": "Identify functions with suboptimal Big-O complexity"
+        },
+        {
+          "id": "generate-optimizations",
+          "prompt": "Generate optimized implementations with benchmarks"
+        },
+        {
+          "id": "verify-with-tests",
+          "prompt": "Run tests to verify correctness after optimization"
+        },
+        {
+          "id": "commit-and-loop",
+          "prompt": "Commit changes and loop to the next hotspot",
+          "loopBackTo": {
+            "stepId": "profile-hotspots",
+            "maxIterations": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-optimizer-finite",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "medium",
+      "cost": "medium",
+      "icon": "MdSpeed",
+      "iconLibrary": "react-icons/md",
+      "description": "Executes a single, targeted algorithmic or performance optimization task from the backlog and terminates.",
+      "tags": [
+        "performance",
+        "algorithm",
+        "big-o",
+        "math",
+        "task",
+        "single-shot",
+        "finite"
+      ],
+      "usableBy": [
+        "agentic-task"
+      ],
+      "steps": [
+        {
+          "id": "read-backlog-task",
+          "prompt": "Read the assigned optimization task from the backlog"
+        },
+        {
+          "id": "profile-target",
+          "prompt": "Profile the target code section for performance metrics"
+        },
+        {
+          "id": "implement-optimization",
+          "prompt": "Implement the optimization with benchmarks"
+        },
+        {
+          "id": "validate-with-tests",
+          "prompt": "Run tests to validate correctness"
+        },
+        {
+          "id": "mark-complete",
+          "prompt": "Mark the backlog item as complete and terminate"
+        }
+      ]
+    },
+    {
+      "name": "auto-reducer",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "infinite",
+      "icon": "MdCompress",
+      "iconLibrary": "react-icons/md",
+      "description": "Continuously refactors and simplifies the codebase to reduce complexity and remove bloat.",
+      "tags": [
+        "refactor",
+        "deduplication",
+        "dry",
+        "architecture",
+        "bloat",
+        "loop",
+        "infinite"
+      ],
+      "steps": [
+        {
+          "id": "scan-for-bloat",
+          "prompt": "Scan the codebase for dead code, duplication, and unnecessary complexity"
+        },
+        {
+          "id": "identify-simplification-target",
+          "prompt": "Identify the highest-impact simplification opportunity"
+        },
+        {
+          "id": "refactor-preserving-behavior",
+          "prompt": "Refactor the code while preserving external behavior"
+        },
+        {
+          "id": "verify-no-regressions",
+          "prompt": "Run the full test suite to verify no regressions"
+        },
+        {
+          "id": "commit-and-loop",
+          "prompt": "Commit changes and loop to the next reduction target",
+          "loopBackTo": {
+            "stepId": "scan-for-bloat",
+            "maxIterations": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-reducer-finite",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "medium",
+      "cost": "medium",
+      "icon": "MdCompress",
+      "iconLibrary": "react-icons/md",
+      "description": "Executes a single, targeted refactoring or code reduction task from the backlog and terminates.",
+      "tags": [
+        "refactor",
+        "deduplication",
+        "dry",
+        "architecture",
+        "bloat",
+        "task",
+        "single-shot",
+        "finite"
+      ],
+      "usableBy": [
+        "agentic-task"
+      ],
+      "steps": [
+        {
+          "id": "read-backlog-task",
+          "prompt": "Read the assigned reduction task from the backlog"
+        },
+        {
+          "id": "analyze-target",
+          "prompt": "Analyze the target code for safe simplification opportunities"
+        },
+        {
+          "id": "refactor-and-simplify",
+          "prompt": "Refactor and remove unnecessary complexity"
+        },
+        {
+          "id": "verify-no-regressions",
+          "prompt": "Run tests to ensure no regressions"
+        },
+        {
+          "id": "mark-complete",
+          "prompt": "Mark the backlog item as complete and terminate"
+        }
+      ]
+    },
+    {
+      "name": "auto-refiner",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "infinite",
+      "icon": "MdAutoFixHigh",
+      "iconLibrary": "react-icons/md",
+      "description": "Continuously analyzes and re-architects an existing codebase toward premium, production-grade quality through relentless functional (never cosmetic) upgrades.",
+      "tags": [
+        "refactor",
+        "evolution",
+        "features",
+        "quality",
+        "architecture",
+        "loop",
+        "infinite"
+      ],
+      "steps": [
+        {
+          "id": "analyze-features",
+          "prompt": "Analyze the project structure and inventory existing features"
+        },
+        {
+          "id": "generate-improvement-backlog",
+          "prompt": "Autonomously generate a prioritized functional improvement backlog"
+        },
+        {
+          "id": "engineer-upgrade",
+          "prompt": "Engineer real behavioral upgrades (not cosmetic) for the top item"
+        },
+        {
+          "id": "validate-and-log",
+          "prompt": "Validate the improvement and log results to results.tsv"
+        },
+        {
+          "id": "commit-and-loop",
+          "prompt": "Commit changes and loop to the next backlog item",
+          "loopBackTo": {
+            "stepId": "analyze-features",
+            "maxIterations": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-saas-cost-reducer",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "infinite",
+      "icon": "MdSavings",
+      "iconLibrary": "react-icons/md",
+      "description": "Continuously audits infrastructure-as-code, paid API usage, and deployment configs to reduce cloud/SaaS spend without degrading the user experience.",
+      "tags": [
+        "finops",
+        "cost",
+        "infrastructure",
+        "optimization",
+        "cloud",
+        "loop",
+        "infinite"
+      ],
+      "steps": [
+        {
+          "id": "analyze-cost-surface",
+          "prompt": "Analyze IaC, deployment configs, and paid API usage"
+        },
+        {
+          "id": "generate-finops-backlog",
+          "prompt": "Inventory expensive operations and generate a prioritized FinOps backlog"
+        },
+        {
+          "id": "implement-reduction",
+          "prompt": "Implement the highest-impact cost reduction without degrading UX"
+        },
+        {
+          "id": "validate-savings",
+          "prompt": "Validate savings and log to finops_results.tsv"
+        },
+        {
+          "id": "commit-and-loop",
+          "prompt": "Commit changes and loop to the next cost-saving target",
+          "loopBackTo": {
+            "stepId": "analyze-cost-surface",
+            "maxIterations": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-visual-fixer",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "high",
+      "cost": "infinite",
+      "icon": "MdFormatShapes",
+      "iconLibrary": "react-icons/md",
+      "description": "Continuously audits and fixes UI/UX accessibility and layout issues without altering brand identity.",
+      "tags": [
+        "ui",
+        "ux",
+        "a11y",
+        "accessibility",
+        "css",
+        "styling",
+        "layout",
+        "loop",
+        "infinite"
+      ],
+      "steps": [
+        {
+          "id": "audit-a11y-and-layout",
+          "prompt": "Audit the UI for accessibility violations and layout inconsistencies"
+        },
+        {
+          "id": "prioritize-by-severity",
+          "prompt": "Prioritize issues by severity (WCAG compliance first)"
+        },
+        {
+          "id": "apply-targeted-fixes",
+          "prompt": "Apply targeted CSS/component fixes without altering business logic"
+        },
+        {
+          "id": "verify-visually",
+          "prompt": "Verify fixes visually and with accessibility tooling"
+        },
+        {
+          "id": "commit-and-loop",
+          "prompt": "Commit changes and loop to the next UI issue",
+          "loopBackTo": {
+            "stepId": "audit-a11y-and-layout",
+            "maxIterations": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-visual-fixer-finite",
+      "betterOn": "anthropic/claude-opus-4.6",
+      "recommendedComplexity": "medium",
+      "cost": "medium",
+      "icon": "MdFormatShapes",
+      "iconLibrary": "react-icons/md",
+      "description": "Executes a single UI/UX accessibility or layout fix from the backlog and terminates.",
+      "tags": [
+        "ui",
+        "ux",
+        "a11y",
+        "accessibility",
+        "css",
+        "styling",
+        "layout",
+        "task",
+        "single-shot",
+        "finite"
+      ],
+      "usableBy": [
+        "agentic-task"
+      ],
+      "steps": [
+        {
+          "id": "read-backlog-task",
+          "prompt": "Read the assigned UI/UX fix from the backlog"
+        },
+        {
+          "id": "inspect-component",
+          "prompt": "Inspect the affected component for layout and accessibility issues"
+        },
+        {
+          "id": "apply-fix",
+          "prompt": "Apply the targeted fix preserving design consistency"
+        },
+        {
+          "id": "validate-fix",
+          "prompt": "Validate the fix with visual and a11y checks"
+        },
+        {
+          "id": "mark-complete",
+          "prompt": "Mark the backlog item as complete and terminate"
+        }
+      ]
+    },
+    {
+      "name": "brainstorm-cards",
+      "betterOn": "opencode/claude-sonnet-4-6",
+      "recommendedComplexity": "medium",
+      "cost": "finite",
+      "icon": "MdLightbulb",
+      "iconLibrary": "react-icons/md",
+      "description": "Interactive brainstorm-with-vitamins: turns a rough idea into one or more Agentic Cards inside .backlog/.",
+      "tags": [
+        "brainstorm",
+        "discovery",
+        "requirements",
+        "cards",
+        "finite",
+        "single-shot"
+      ]
+    },
+    {
+      "name": "rule-of-seven-vanguard",
+      "recommendedComplexity": "high",
+      "cost": "finite",
+      "icon": "MdTrendingUp",
+      "iconLibrary": "react-icons/md",
+      "description": "Turns a product's mind map and its rivals' weaknesses into a fixed-count market strategy: rival gaps, defensible capabilities, micro-sale copy, a conversion page blueprint and a red-team audit that loops back until the items pass.",
+      "tags": [
+        "strategy",
+        "positioning",
+        "landing-page",
+        "conversion",
+        "rule-of-seven",
+        "finite"
+      ],
+      "noteTypes": [
+        {
+          "id": "CoreVision",
+          "description": "The root product thesis and the target audience."
+        },
+        {
+          "id": "CompetitorWeakness",
+          "description": "Observed complaints or limits in rival tools."
+        },
+        {
+          "id": "RawFeatureIdea",
+          "description": "Unfiltered product ideas from the user's brain dump."
+        },
+        {
+          "id": "BuyerObjection",
+          "description": "Reasons a prospect hesitates to buy or switch."
+        }
+      ],
+      "steps": [
+        {
+          "id": "rival-gap-analysis",
+          "prompt": "Find the closest direct rival to the product in the core-vision note, and extract its structural weaknesses. Use the competitor-gap-extractor method: every claim cites a public source, and each gap is scored on defensibility and user pain. Use the competitive weakness notes as the primary input; use the core vision as context only. When no weakness note exists for a gap you found, research it from public sources and say so in the output. Produce a RivalGapsMatrix with exactly the gap count the rule-of-seven mod sets. For each gap, state whether the product already covers it, with evidence from its code or documents.",
+          "roleId": "competitive-intelligence-strategist",
+          "modIds": [
+            "rule-of-seven",
+            "competitor-gap-extractor",
+            "idea-map-synthesizer"
+          ],
+          "prevStepIds": [],
+          "noteBindings": [
+            {
+              "type": "CompetitorWeakness",
+              "mode": "primary-input"
+            },
+            {
+              "type": "CoreVision",
+              "mode": "read-context"
+            }
+          ]
+        },
+        {
+          "id": "product-moat-architecture",
+          "prompt": "Turn the raw product ideas and the rival gaps into product capabilities. Group the raw feature ideas into pillars with the idea-map-synthesizer method, merge duplicates with the semantic-deduplicator method, and tie each capability to one rival gap and one user outcome. Use the raw feature ideas as the primary input and the core vision as context. When no raw idea covers a gap, research the capability from public sources and say so in the output. Produce a ProductCapabilitiesSpec with exactly the capability count the rule-of-seven mod sets. For each capability, state whether the product already has it, with evidence from its code or documents, or that it does not have it.",
+          "roleId": "asymmetric-product-architect",
+          "modIds": [
+            "rule-of-seven",
+            "idea-map-synthesizer",
+            "competitor-gap-extractor",
+            "semantic-deduplicator"
+          ],
+          "prevStepIds": [
+            "rival-gap-analysis"
+          ],
+          "noteBindings": [
+            {
+              "type": "RawFeatureIdea",
+              "mode": "primary-input"
+            },
+            {
+              "type": "CoreVision",
+              "mode": "read-context"
+            }
+          ]
+        },
+        {
+          "id": "landing-micro-sales",
+          "prompt": "Write one micro-sale for each capability in the capability spec, with the micro-sale-copywriting method: a hook that names the friction, the mechanism, the asymmetric proof against the rival, and a single micro-close. Answer the buyer objections in the copy where they bite, using the buyer objection notes as the primary input and the core vision as context. Remove the duplicates with the semantic-deduplicator method. When no buyer objection note covers a capability, research the likely objection from public sources and say so in the output. Produce a MicroSalesCopyDeck with exactly the touchpoint count the rule-of-seven mod sets, one block per capability, in plain language a non-technical buyer understands in under five seconds.",
+          "roleId": "conversion-copywriter",
+          "modIds": [
+            "rule-of-seven",
+            "micro-sale-copywriting",
+            "semantic-deduplicator"
+          ],
+          "prevStepIds": [
+            "product-moat-architecture"
+          ],
+          "noteBindings": [
+            {
+              "type": "BuyerObjection",
+              "mode": "primary-input"
+            },
+            {
+              "type": "CoreVision",
+              "mode": "read-context"
+            }
+          ]
+        },
+        {
+          "id": "landing-ux-blueprint",
+          "prompt": "Design the conversion page that carries the copy deck: the order of the sections, the layout pattern of each one, the primary element of each, and the states of every interactive block. Use the progressive-disclosure method so the page moves from the value proposition to the interactive proof, alternating the layout pattern of consecutive sections. Keep the micro-sale structure of the copy deck intact. Use the core vision as context. Produce a LandingUXBlueprint with one section per touchpoint of the copy deck, each with its pattern, its job and its loading, empty, error and success states.",
+          "roleId": "conversion-ux-architect",
+          "modIds": [
+            "rule-of-seven",
+            "progressive-disclosure",
+            "micro-sale-copywriting"
+          ],
+          "prevStepIds": [
+            "product-moat-architecture",
+            "landing-micro-sales"
+          ],
+          "noteBindings": [
+            {
+              "type": "CoreVision",
+              "mode": "read-context"
+            }
+          ]
+        },
+        {
+          "id": "red-team-audit",
+          "prompt": "Audit the capability spec and the copy deck as a skeptical buyer and as a hostile competitor. Test every item against the three tests: the claim has its cited evidence; the item is not a duplicate of another item; a non-technical reader understands it in a few seconds. Use the buyer objection notes as the primary input, to check that each objection is answered, and the competitor weakness notes as read-context, to check that no claim about a rival lacks its source. Produce an AuditValidationReport with a verdict for each item. Each failing item carries a rewrite direction that the capability or copy step can follow. Do not rewrite the items yourself.",
+          "roleId": "red-team-auditor",
+          "modIds": [
+            "rule-of-seven",
+            "semantic-deduplicator",
+            "micro-sale-copywriting"
+          ],
+          "prevStepIds": [
+            "product-moat-architecture",
+            "landing-micro-sales",
+            "landing-ux-blueprint"
+          ],
+          "loopBackTo": {
+            "stepId": "product-moat-architecture",
+            "maxIterations": 2
+          },
+          "noteBindings": [
+            {
+              "type": "BuyerObjection",
+              "mode": "primary-input"
+            },
+            {
+              "type": "CompetitorWeakness",
+              "mode": "read-context"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "name": "acceptance-qa",
+      "icon": "MdTaskAlt",
+      "iconLibrary": "react-icons/md",
+      "description": "Verifies delivered work against its acceptance criteria end to end: a pass, fail or blocked verdict per criterion with evidence, the edge and failure cases around each one, chartered exploratory testing around the change, and a regression sweep of what the diff reaches. For an epic, the objective as a whole. Never passes a criterion without evidence.",
+      "tags": [
+        "board",
+        "phase-review",
+        "qa",
+        "acceptance-testing",
+        "exploratory-testing",
+        "edge-cases",
+        "regression",
+        "bdd"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "ai-engineer",
+      "icon": "MdSmartToy",
+      "iconLibrary": "react-icons/md",
+      "description": "Builds LLM-powered applications: prompts, agent loops, RAG, structured outputs, and eval-gated changes.",
+      "tags": [
+        "ai",
+        "llm",
+        "agents",
+        "rag",
+        "prompts",
+        "evals",
+        "mcp"
+      ],
+      "domains": [
+        "backend",
+        "data"
+      ],
+      "betterOn": "anthropic/claude-opus-4.6",
+      "color": "00BBF9",
+      "palette": {
+        "background": "00BBF9",
+        "text": "111111",
+        "accents": "3A405A",
+        "hover": "009FD4"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "architecture-reviewer",
+      "icon": "MdArchitecture",
+      "iconLibrary": "react-icons/md",
+      "description": "Reviews delivered work against the system's recorded decisions and module boundaries: every ADR it touches honoured, contracts and data ownership respected, the dependency graph checked with the project's fitness functions, and drift recorded. An architectural decision embedded in code with no record is never accepted.",
+      "tags": [
+        "board",
+        "phase-review",
+        "architecture",
+        "architecture-review",
+        "adr",
+        "boundaries",
+        "fitness-functions",
+        "drift"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "asymmetric-product-architect",
+      "icon": "MdAccountTree",
+      "iconLibrary": "react-icons/md",
+      "description": "Turns idea notes and rival gaps into defensible product capabilities, each tied to a concrete user outcome and to whether the product already has it.",
+      "tags": [
+        "flow",
+        "market",
+        "product-strategy",
+        "capabilities",
+        "differentiation"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "betterOn": "anthropic/claude-opus-4.6",
+      "color": "A9DFBF",
+      "palette": {
+        "background": "A9DFBF",
+        "text": "111111",
+        "accents": "1C4880",
+        "hover": "8CC9A6"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "backend-developer",
+      "icon": "MdApi",
+      "iconLibrary": "react-icons/md",
+      "description": "Implements a planned card's server-side changes: services, APIs and domain logic, with tests at the levels the plan names, the public contract in OpenAPI or AsyncAPI, errors as Problem Details and telemetry on every new path. Stays inside the card's scope and its category's behaviour rules, and leaves the schema, the architecture and the UI to their owners.",
+      "tags": [
+        "board",
+        "phase-action",
+        "backend",
+        "api",
+        "implementation",
+        "openapi",
+        "problem-details",
+        "observability"
+      ],
+      "domains": [
+        "backend"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "backend-engineer",
+      "icon": "MdStorage",
+      "iconLibrary": "react-icons/md",
+      "description": "Specialist in APIs, databases, server logic, and infrastructure architecture.",
+      "tags": [
+        "backend",
+        "api",
+        "database",
+        "server",
+        "node",
+        "python"
+      ],
+      "domains": [
+        "backend"
+      ],
+      "color": "3A405A",
+      "palette": {
+        "background": "3A405A",
+        "text": "FFFFFF",
+        "accents": "FFD166",
+        "hover": "4D5575"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "code-reviewer",
+      "icon": "MdDifference",
+      "iconLibrary": "react-icons/md",
+      "description": "Reviews a change's code for correctness, readability, maintainability and consistency with the project's conventions: every line and every test read, the checklist of each domain the diff touches (backend, frontend, data, infrastructure), the card category's rule checked, and comments labelled by severity. Ends with approve or request changes, and never blocks on what a linter owns.",
+      "tags": [
+        "board",
+        "phase-review",
+        "code-review",
+        "correctness",
+        "maintainability",
+        "conventions",
+        "conventional-comments"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "competitive-intelligence-strategist",
+      "icon": "MdManageSearch",
+      "iconLibrary": "react-icons/md",
+      "description": "Deconstructs a closest rival's pricing, UX friction and technical limits, and turns them into the structural gaps a product can exploit, each one cited to a public source.",
+      "tags": [
+        "flow",
+        "market",
+        "competitive-analysis",
+        "strategy",
+        "positioning"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "betterOn": "anthropic/claude-opus-4.6",
+      "color": "7FB3D5",
+      "palette": {
+        "background": "7FB3D5",
+        "text": "111111",
+        "accents": "1C4880",
+        "hover": "6A9DC0"
+      },
+      "toolTier": "read"
+    },
+    {
+      "name": "conversion-copywriter",
+      "icon": "MdEditNote",
+      "iconLibrary": "react-icons/md",
+      "description": "Turns product capabilities into standalone persuasive units in plain, high-impact language that a technical or a non-technical buyer can act on.",
+      "tags": [
+        "flow",
+        "market",
+        "copywriting",
+        "conversion",
+        "messaging"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "betterOn": "opencode/claude-sonnet-4-6",
+      "color": "F9E79F",
+      "palette": {
+        "background": "F9E79F",
+        "text": "111111",
+        "accents": "1C4880",
+        "hover": "E5D07F"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "conversion-ux-architect",
+      "icon": "MdViewQuilt",
+      "iconLibrary": "react-icons/md",
+      "description": "Designs a conversion page's visual hierarchy, scroll pacing, interactive states and component layout, so the reader does not tire and the path to the action stays short.",
+      "tags": [
+        "flow",
+        "market",
+        "ux",
+        "landing-page",
+        "conversion"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "betterOn": "opencode/claude-sonnet-4-6",
+      "color": "D7BDE2",
+      "palette": {
+        "background": "D7BDE2",
+        "text": "111111",
+        "accents": "1C4880",
+        "hover": "C0A0D0"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "core-implementer",
+      "icon": "MdPlaylistAddCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Implements every implementation card of an epic in one session, one checkpoint at a time: marks a card in progress, builds it to its plan under the mods the board mounts on it, runs its own checks, commits with its key and marks it completed, then moves to the next. The epic's test card runs the full suite last.",
+      "tags": [
+        "board",
+        "phase-action",
+        "implementation",
+        "epic",
+        "checkpoints",
+        "full-stack"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "data-engineer",
+      "icon": "MdStorage",
+      "iconLibrary": "react-icons/md",
+      "description": "Changes a planned card's schemas, migrations, queries and pipelines safely: migrations reversible or with a written forward-fix, expand/contract across releases for breaking changes, and query plans checked on realistic data. Stores no personal data beyond its purpose; leaves server code, architecture and the performance verdict to their owners.",
+      "tags": [
+        "board",
+        "phase-action",
+        "data",
+        "database",
+        "schema",
+        "migrations",
+        "sql",
+        "pipelines"
+      ],
+      "domains": [
+        "data",
+        "backend"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "data-scientist",
+      "icon": "MdTimeline",
+      "iconLibrary": "react-icons/md",
+      "description": "Master of Python, mathematics, data pipelines, and AI/ML frameworks.",
+      "tags": [
+        "data",
+        "ml",
+        "ai",
+        "python",
+        "statistics",
+        "pipelines"
+      ],
+      "domains": [
+        "data"
+      ],
+      "betterOn": "anthropic/claude-opus-4.6",
+      "color": "2274A5",
+      "palette": {
+        "background": "2274A5",
+        "text": "FFFFFF",
+        "accents": "F2C94C",
+        "hover": "1A5B82"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "delivery-analyst",
+      "icon": "MdFactCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Analyses work a person dropped in Ready: reconstructs what was delivered from the diff, commits and evidence, walks the category exit contract item by item, classifies a card that arrived without a category, sets the signals the evidence shows, and routes it to the Review roles the board matrix names. It never judges code quality, and never passes an incomplete exit contract without flagging it.",
+      "tags": [
+        "board",
+        "phase-ready",
+        "delivery-analysis",
+        "definition-of-done",
+        "traceability",
+        "classification",
+        "routing"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "F0C467",
+      "palette": {
+        "background": "F0C467",
+        "text": "1A1A1A",
+        "accents": "7A4E00",
+        "hover": "E2B24F"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "design-engineer",
+      "icon": "MdDesignServices",
+      "iconLibrary": "react-icons/md",
+      "description": "Hybrid expert in UX/UI, frontend architecture, and design systems. Crafts minimalist, highly functional interfaces for any product.",
+      "tags": [
+        "design",
+        "ui",
+        "ux",
+        "motion",
+        "design-system",
+        "polish"
+      ],
+      "domains": [
+        "frontend"
+      ],
+      "color": "06D6A0",
+      "palette": {
+        "background": "06D6A0",
+        "text": "111111",
+        "accents": "D90368",
+        "hover": "05B586"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "devops-engineer",
+      "icon": "MdCloud",
+      "iconLibrary": "react-icons/md",
+      "description": "Expert in CI/CD pipelines, containerization, cloud infrastructure, and automation.",
+      "tags": [
+        "devops",
+        "ci-cd",
+        "docker",
+        "kubernetes",
+        "cloud",
+        "aws"
+      ],
+      "domains": [
+        "infra"
+      ],
+      "color": "E0FF4F",
+      "palette": {
+        "background": "E0FF4F",
+        "text": "111111",
+        "accents": "D90368",
+        "hover": "C9E647"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "documentation-reviewer",
+      "icon": "MdFactCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Reviews documentation before it is accepted: every claim checked against the code and API definitions, every example run, one Diataxis type per page, links resolved and prose linted. An example nobody executed is never approved.",
+      "tags": [
+        "board",
+        "phase-review",
+        "documentation",
+        "documentation-review",
+        "diataxis",
+        "plain-language",
+        "prose-linting",
+        "openapi"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "findings-evaluator",
+      "icon": "MdBalance",
+      "iconLibrary": "react-icons/md",
+      "description": "Judges whether a spike answered its question: a verdict against the card's success criterion, the strength of the evidence behind each claim the recommendation rests on, a recommendation someone can act on, and the derived cards confirmed. A recommendation backed only by vendor material is never accepted.",
+      "tags": [
+        "board",
+        "phase-review",
+        "findings-evaluation",
+        "spike",
+        "evidence",
+        "research-review",
+        "decision-records",
+        "technology-radar"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "frontend-developer",
+      "icon": "MdWeb",
+      "iconLibrary": "react-icons/md",
+      "description": "Implements a planned card's client-side changes as designed: every state the design defines, semantic HTML before ARIA, the design system's tokens and components instead of hard-coded values, WCAG 2.2 AA and the lab fluidity invariants measured before review. Builds no state the design didn't define, and leaves the design, the server and the architecture to their owners.",
+      "tags": [
+        "board",
+        "phase-action",
+        "frontend",
+        "ui",
+        "implementation",
+        "accessibility",
+        "design-tokens",
+        "web-vitals"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "frontend-engineer",
+      "icon": "MdWeb",
+      "iconLibrary": "react-icons/md",
+      "description": "Expert in UI/UX, reactive frameworks, DOM manipulation, advanced CSS, and browser APIs.",
+      "tags": [
+        "frontend",
+        "ui",
+        "ux",
+        "react",
+        "vue",
+        "css",
+        "browser"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ],
+      "color": "D90368",
+      "palette": {
+        "background": "D90368",
+        "text": "FFFFFF",
+        "accents": "E0FF4F",
+        "hover": "B00254"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "full-stack-engineer",
+      "icon": "MdAllInclusive",
+      "iconLibrary": "react-icons/md",
+      "description": "Pragmatic end-to-end engineer who ships complete vertical slices: UI, API, and data model as one coherent feature.",
+      "tags": [
+        "full-stack",
+        "frontend",
+        "backend",
+        "api",
+        "integration",
+        "pragmatic"
+      ],
+      "domains": [
+        "frontend",
+        "backend",
+        "web"
+      ],
+      "color": "8338EC",
+      "palette": {
+        "background": "8338EC",
+        "text": "FFFFFF",
+        "accents": "E0FF4F",
+        "hover": "6C2BC4"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "incident-analyst",
+      "icon": "MdBugReport",
+      "iconLibrary": "react-icons/md",
+      "description": "Turns a defect report into an actionable card before anyone fixes it: minimal reproduction steps, expected versus actual behaviour, severity and impact, affected versions, a root-cause hypothesis backed by evidence and, for a regression, the last good and first bad version from a bisect. Works from copies of the evidence and never touches production.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "incident",
+        "debugging",
+        "reproduction",
+        "root-cause",
+        "regression",
+        "bisect"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "incident-responder",
+      "icon": "MdMonitorHeart",
+      "iconLibrary": "react-icons/md",
+      "description": "Triages live failures with log forensics, change correlation, and rollbacks; mitigate first, root-cause second, postmortem always.",
+      "tags": [
+        "sre",
+        "incident",
+        "debugging",
+        "reliability",
+        "postmortem",
+        "oncall"
+      ],
+      "domains": [
+        "infra",
+        "backend"
+      ],
+      "betterOn": "anthropic/claude-opus-4.6",
+      "color": "FF6B35",
+      "palette": {
+        "background": "FF6B35",
+        "text": "111111",
+        "accents": "FFFFFF",
+        "hover": "D95526"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "mobile-engineer",
+      "icon": "MdPhoneIphone",
+      "iconLibrary": "react-icons/md",
+      "description": "Ships native-feeling mobile apps with React Native/Expo or Flutter: offline-first, 60fps, store-ready.",
+      "tags": [
+        "mobile",
+        "react-native",
+        "expo",
+        "flutter",
+        "ios",
+        "android",
+        "offline"
+      ],
+      "domains": [
+        "frontend"
+      ],
+      "color": "FFB627",
+      "palette": {
+        "background": "FFB627",
+        "text": "111111",
+        "accents": "3A405A",
+        "hover": "DA9A1F"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "on-call-engineer",
+      "icon": "MdCrisisAlert",
+      "iconLibrary": "react-icons/md",
+      "description": "Restores production on a hotfix card with the smallest safe change: a rollback or kill switch first, a minimal diff from the revision production runs when those can't hold. One variable at a time, shipped as a patch version, the impact confirmed gone on the golden signals, and the root cause handed to a follow-up card. Never refactors or widens scope.",
+      "tags": [
+        "board",
+        "phase-action",
+        "incident",
+        "oncall",
+        "hotfix",
+        "mitigation",
+        "rollback",
+        "sre"
+      ],
+      "domains": [
+        "infra",
+        "backend"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "performance-reviewer",
+      "icon": "MdSpeed",
+      "iconLibrary": "react-icons/md",
+      "description": "Reviews delivered work for its performance: base and change measured under comparable conditions, latency, throughput, memory and front-end vitals judged against a threshold stated before the numbers, and query plans read on representative data. A performance claim with no measurement, or runs from different environments, is never accepted.",
+      "tags": [
+        "board",
+        "phase-review",
+        "performance",
+        "performance-review",
+        "benchmarking",
+        "load-testing",
+        "web-vitals",
+        "query-plans"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "platform-architect",
+      "icon": "MdLan",
+      "iconLibrary": "react-icons/md",
+      "description": "Designs the infrastructure a card needs before it enters To do: the target topology and environments, the capacity and cost impact in figures, the SLOs the change affects, a rollback plan and the infrastructure-as-code approach, so every change is reproducible from code and no manual step ships without a runbook.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "platform",
+        "infrastructure",
+        "topology",
+        "capacity",
+        "slo",
+        "finops",
+        "gitops"
+      ],
+      "domains": [
+        "infra"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "platform-engineer",
+      "icon": "MdSettingsSuggest",
+      "iconLibrary": "react-icons/md",
+      "description": "Builds a planned card's infrastructure, pipelines and environments as code, applied only through the pipeline: GitOps-reconciled state, signed build provenance, CIS-hardened configuration and the observability the change needs. Makes no manual change to an environment and keeps no secret in the repository; leaves the design, the release and security controls to their owners.",
+      "tags": [
+        "board",
+        "phase-action",
+        "infra",
+        "platform",
+        "iac",
+        "gitops",
+        "ci-cd",
+        "supply-chain"
+      ],
+      "domains": [
+        "infra"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "post-deploy-verifier",
+      "icon": "MdFactCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Confirms in the real environment that a deployed change works: first proves the revision serving is the one carrying the card's commit, then runs the smoke checks on critical paths and a confirmation check of the card's own behaviour, and attaches the evidence. Never closes a production card on staging evidence.",
+      "tags": [
+        "board",
+        "phase-deploy",
+        "testing",
+        "smoke-tests",
+        "confirmation-testing",
+        "release-verification",
+        "synthetic-monitoring",
+        "observability"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "EE9A8C",
+      "palette": {
+        "background": "EE9A8C",
+        "text": "1A1A1A",
+        "accents": "8C2418",
+        "hover": "E3857A"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "product-analyst",
+      "icon": "MdFactCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Refines a need into a card with a problem statement, the outcome it serves, verifiable acceptance criteria and explicit out-of-scope, and splits work that is too large into vertical, independently deliverable slices.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "product",
+        "requirements",
+        "acceptance-criteria",
+        "user-stories",
+        "backlog",
+        "invest"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "product-manager",
+      "icon": "MdAssignment",
+      "iconLibrary": "react-icons/md",
+      "description": "Focuses on user and business value, writing user stories, and defining success metrics.",
+      "tags": [
+        "product",
+        "business",
+        "planning",
+        "metrics",
+        "agile"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "betterOn": "opencode/claude-sonnet-4-6",
+      "color": "E58F65",
+      "palette": {
+        "background": "E58F65",
+        "text": "111111",
+        "accents": "FFFFFF",
+        "hover": "CE815A"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "production-watcher-sre",
+      "icon": "MdQueryStats",
+      "iconLibrary": "react-icons/md",
+      "description": "Watches production after a deploy: compares SLIs against SLOs and the pre-deploy baseline over a declared window, weighs error-budget burn, and records a go or rollback decision with its data.",
+      "tags": [
+        "board",
+        "phase-deploy",
+        "sre",
+        "slo",
+        "error-budget",
+        "canary",
+        "rollback",
+        "observability"
+      ],
+      "domains": [
+        "infra",
+        "backend"
+      ],
+      "color": "EE9A8C",
+      "palette": {
+        "background": "EE9A8C",
+        "text": "1A1A1A",
+        "accents": "8C2418",
+        "hover": "E3857A"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "qa-engineer",
+      "icon": "MdBugReport",
+      "iconLibrary": "react-icons/md",
+      "description": "Obsessed with edge cases, end-to-end testing, continuous integration, and TDD/BDD practices.",
+      "tags": [
+        "qa",
+        "testing",
+        "e2e",
+        "cypress",
+        "tdd",
+        "edge-cases"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "87E752",
+      "palette": {
+        "background": "87E752",
+        "text": "111111",
+        "accents": "D90368",
+        "hover": "76C947"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "qa-strategist",
+      "icon": "MdChecklist",
+      "iconLibrary": "react-icons/md",
+      "description": "Derives a card's test strategy before any code is written: a risk-based plan, the level each check belongs at (unit, integration, contract, end-to-end), the named test techniques, the test data each check needs, and traceability from every acceptance criterion to at least one planned test, never defaulting to end-to-end.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "qa",
+        "test-strategy",
+        "risk-based-testing",
+        "test-design",
+        "traceability",
+        "contract-testing"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "red-team-auditor",
+      "icon": "MdGavel",
+      "iconLibrary": "react-icons/md",
+      "description": "Stress-tests capabilities, claims and copy as a skeptical buyer and as a hostile competitor would, and rejects whatever does not survive.",
+      "tags": [
+        "flow",
+        "market",
+        "audit",
+        "red-team",
+        "claims"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "betterOn": "anthropic/claude-opus-4.6",
+      "color": "F5B7B1",
+      "palette": {
+        "background": "F5B7B1",
+        "text": "111111",
+        "accents": "1C4880",
+        "hover": "E89F98"
+      },
+      "toolTier": "read"
+    },
+    {
+      "name": "release-manager",
+      "icon": "MdNewReleases",
+      "iconLibrary": "react-icons/md",
+      "description": "Packages and releases a change safely: sets the version and changelog from the commits, releases only signed artifacts with verified provenance, chooses the rollout strategy by risk, and rehearses the rollback before the go. An unsigned artifact is never released without a recorded exception from the person who owns releases.",
+      "tags": [
+        "board",
+        "phase-deploy",
+        "release-management",
+        "semver",
+        "changelog",
+        "supply-chain",
+        "progressive-delivery",
+        "rollback"
+      ],
+      "domains": [
+        "infra"
+      ],
+      "color": "EE9A8C",
+      "palette": {
+        "background": "EE9A8C",
+        "text": "1A1A1A",
+        "accents": "8C2418",
+        "hover": "E3857A"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "routine-operator",
+      "icon": "MdEventRepeat",
+      "iconLibrary": "react-icons/md",
+      "description": "Runs recurring maintenance exactly as its runbook states: dependency updates, certificate renewals, secret rotations, backup checks and clean-ups. Previews each change where the tool can, proves every step with evidence, verifies the effect rather than the exit code, and turns each deviation into a new card. Stops when there is no runbook, and never improvises around a failed step.",
+      "tags": [
+        "board",
+        "phase-action",
+        "operations",
+        "maintenance",
+        "runbook",
+        "toil",
+        "certificates",
+        "secret-rotation",
+        "backups"
+      ],
+      "domains": [
+        "infra"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "security-architect",
+      "icon": "MdPolicy",
+      "iconLibrary": "react-icons/md",
+      "description": "Models the threats of a card before any code is written: the assets, trust boundaries, threats and mitigations, the security requirements mapped to OWASP ASVS levels, and the regulatory obligations that apply, so no design crosses a trust boundary without a documented mitigation.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "security",
+        "threat-modeling",
+        "asvs",
+        "privacy-by-design",
+        "compliance",
+        "appsec"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "security-engineer",
+      "icon": "MdGppGood",
+      "iconLibrary": "react-icons/md",
+      "description": "Closes a planned card's vulnerability or applies its security control (patch, hardening, secrets, access control, supply-chain hygiene) and proves the attack vector is no longer exploitable, with an updated SBOM when dependencies change. Keeps exploit details on the card until the fix is deployed; leaves threat modeling and review to their owners.",
+      "tags": [
+        "board",
+        "phase-action",
+        "security",
+        "appsec",
+        "remediation",
+        "supply-chain",
+        "secrets",
+        "sbom"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "security-researcher",
+      "icon": "MdSecurity",
+      "iconLibrary": "react-icons/md",
+      "description": "Paranoid focus on AppSec, cryptography, vulnerability auditing, and prevention of injections.",
+      "tags": [
+        "security",
+        "audit",
+        "owasp",
+        "crypto",
+        "appsec"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "betterOn": "anthropic/claude-opus-4.6",
+      "color": "D05353",
+      "palette": {
+        "background": "D05353",
+        "text": "FFFFFF",
+        "accents": "FFE66D",
+        "hover": "A64242"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "security-reviewer",
+      "icon": "MdVerifiedUser",
+      "iconLibrary": "react-icons/md",
+      "description": "Reviews delivered work against its security requirements: the OWASP ASVS requirements of the affected area verified one by one, known risk categories swept, every finding scored with CVSS v4.0, and on a security card the attack vector re-run to prove it closed. Never approves with an unresolved High or Critical finding.",
+      "tags": [
+        "board",
+        "phase-review",
+        "security",
+        "security-review",
+        "appsec",
+        "asvs",
+        "cvss",
+        "owasp"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "software-architect",
+      "icon": "MdAccountTree",
+      "iconLibrary": "react-icons/md",
+      "description": "Defines the structure a change must fit into: module boundaries, contracts, data ownership and the quality-attribute trade-offs at stake, at the right C4 level, with an ADR for every hard-to-reverse decision and nothing designed beyond what the card needs.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "interactive",
+        "architecture",
+        "systems",
+        "design-patterns",
+        "boundaries",
+        "adr",
+        "c4",
+        "quality-attributes"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "tech-lead",
+      "icon": "MdEngineering",
+      "iconLibrary": "react-icons/md",
+      "description": "Makes a card executable before it enters To do: a technical breakdown in mergeable steps, an ordered plan, risks with mitigations, dependencies as card links, a size that fits one card or a split under an epic, and the category's entry contract confirmed, with open uncertainty sent to a spike instead of planned around.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "tech-lead",
+        "planning",
+        "breakdown",
+        "risk",
+        "dependencies",
+        "estimation"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "technical-researcher",
+      "icon": "MdScience",
+      "iconLibrary": "react-icons/md",
+      "description": "Answers a bounded technical question inside a spike's time box with proofs of concept, benchmarks and comparisons: evaluation criteria fixed before measuring, reproducible evidence, a recommendation, and a draft decision record when the answer implies a decision. The output is knowledge: PoC code never becomes production code.",
+      "tags": [
+        "board",
+        "phase-action",
+        "spike",
+        "technical-research",
+        "proof-of-concept",
+        "benchmarking",
+        "evaluation",
+        "decision-records",
+        "technology-radar"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "technical-writer",
+      "icon": "MdMenuBook",
+      "iconLibrary": "react-icons/md",
+      "description": "Writes documentation that says what the code actually does, organised by what its reader needs: one Diataxis type per document, every claim traced to the code, every example run, plain language, and the docs shipped in the same change as the code.",
+      "tags": [
+        "board",
+        "phase-action",
+        "interactive",
+        "documentation",
+        "writing",
+        "openapi",
+        "diataxis",
+        "plain-language",
+        "docs-as-code",
+        "api",
+        "api-reference"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "test-automation-engineer",
+      "icon": "MdIntegrationInstructions",
+      "iconLibrary": "react-icons/md",
+      "description": "Writes deterministic automated tests that reproduce a card's defect or lock in its behaviour, at the lowest level that gives confidence, and keeps them green in the project's gate. On a bug or regression the test fails before the fix and passes after it; on a testing card no production code changes. Never masks a flaky test with retries.",
+      "tags": [
+        "board",
+        "phase-action",
+        "testing",
+        "test-automation",
+        "regression-tests",
+        "flaky-tests",
+        "contract-testing",
+        "property-based-testing"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "write"
+    },
+    {
+      "name": "ux-researcher",
+      "icon": "MdPersonSearch",
+      "iconLibrary": "react-icons/md",
+      "description": "Answers a bounded UX/UI question inside a spike's time box by heuristic evaluation, benchmarking, analytics review or a usability study: findings with evidence and severity, the method and its limits, and an actionable recommendation. Observed behaviour outranks stated opinion, simulated users are never evidence, and a study that needs real participants goes to a person.",
+      "tags": [
+        "board",
+        "phase-action",
+        "ux",
+        "user-research",
+        "usability",
+        "heuristic-evaluation",
+        "benchmarking",
+        "analytics",
+        "spike"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ],
+      "color": "7CC9A6",
+      "palette": {
+        "background": "7CC9A6",
+        "text": "1A1A1A",
+        "accents": "1B5E44",
+        "hover": "69B994"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "ux-ui-accessibility-reviewer",
+      "icon": "MdAccessibility",
+      "iconLibrary": "react-icons/md",
+      "description": "Reviews a built interface against its design and WCAG 2.2 AA: fidelity to the project's design contract, every defined state reached, each AA criterion with its measurement (audit, contrast per state, keyboard, zoom and forced-colors emulation, accessibility tree), and usability issues by severity. Nothing passes unmeasured; a real screen-reader pass goes to a person.",
+      "tags": [
+        "board",
+        "phase-review",
+        "ux",
+        "ui",
+        "accessibility",
+        "wcag",
+        "usability",
+        "design-review"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ],
+      "color": "8FB9EA",
+      "palette": {
+        "background": "8FB9EA",
+        "text": "1A1A1A",
+        "accents": "1C4880",
+        "hover": "7BA7DC"
+      },
+      "toolTier": "comment"
+    },
+    {
+      "name": "ux-ui-designer",
+      "icon": "MdDesignServices",
+      "iconLibrary": "react-icons/md",
+      "description": "Designs a card's interaction and interface before it enters To do: the user flow, every screen state (empty, loading, success, error, offline where relevant), wireframes built from the project's design tokens, and the accessibility requirements at WCAG 2.2 AA, so nothing is left for the implementer to improvise.",
+      "tags": [
+        "board",
+        "phase-refine",
+        "ux",
+        "ui",
+        "interaction-design",
+        "design-system",
+        "design-tokens",
+        "accessibility"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ],
+      "color": "B9A3E6",
+      "palette": {
+        "background": "B9A3E6",
+        "text": "1A1A1A",
+        "accents": "4B2F96",
+        "hover": "A88FDB"
+      },
+      "toolTier": "comment"
+    }
+  ],
+  "mods": [
+    {
+      "name": "a11y-enforcer",
+      "icon": "MdAccessibility",
+      "iconLibrary": "react-icons/md",
+      "description": "Forces all generated UI elements to include accessible names and focus management, and to meet WCAG 2.2 AA by measurement (contrast per state, target size, focus visibility); AAA thresholds apply when the project declares them.",
+      "tags": [
+        "a11y",
+        "accessibility",
+        "wcag",
+        "inclusive"
+      ],
+      "domains": [
+        "frontend"
+      ],
+      "runtime": {
+        "attachTools": [
+          "web-browser"
+        ]
+      }
+    },
+    {
+      "name": "api-contract-first",
+      "icon": "MdApi",
+      "iconLibrary": "react-icons/md",
+      "description": "The API contract (OpenAPI/schema) is written and validated before implementation; types, clients, and validation derive from it.",
+      "tags": [
+        "api",
+        "openapi",
+        "contract",
+        "schema-first"
+      ],
+      "domains": [
+        "backend"
+      ]
+    },
+    {
+      "name": "auth-guarded",
+      "icon": "MdLock",
+      "iconLibrary": "react-icons/md",
+      "description": "Requires authentication and authorization (RBAC) on every route, endpoint, and server action; default-deny access with explicit grants.",
+      "tags": [
+        "auth",
+        "authentication",
+        "authorization",
+        "rbac"
+      ],
+      "domains": [
+        "backend",
+        "web"
+      ]
+    },
+    {
+      "name": "cognitive-ux",
+      "icon": "MdPsychology",
+      "iconLibrary": "react-icons/md",
+      "description": "Enforces the interface-psychology discipline: cognitive-load budget, mandatory states, classified friction, entry/exit symmetry, and plain-language value; loads the ux-psychology skill when the session offers it.",
+      "tags": [
+        "ux",
+        "cognitive",
+        "psychology",
+        "friction",
+        "clarity",
+        "trust",
+        "value"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ]
+    },
+    {
+      "name": "competitor-gap-extractor",
+      "icon": "MdTravelExplore",
+      "iconLibrary": "react-icons/md",
+      "description": "Finds the closest direct rival, extracts the weaknesses its architecture, pricing, UX or scope cause, and scores each gap by defensibility and by user pain, citing a public source for every claim.",
+      "tags": [
+        "competitive-analysis",
+        "gaps",
+        "sources",
+        "research",
+        "flow"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "conventional-commits",
+      "icon": "MdCommit",
+      "iconLibrary": "react-icons/md",
+      "description": "Atomic commits in Conventional Commits format with why-focused bodies and clean, reviewable history.",
+      "tags": [
+        "git",
+        "commits",
+        "changelog",
+        "hygiene"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "dark-mode",
+      "icon": "MdDarkMode",
+      "iconLibrary": "react-icons/md",
+      "description": "Requires tokenized light/dark/system theming via CSS custom properties and prefers-color-scheme; forbids hardcoded colors.",
+      "tags": [
+        "theming",
+        "dark-mode",
+        "tokens",
+        "prefers-color-scheme"
+      ],
+      "domains": [
+        "frontend"
+      ]
+    },
+    {
+      "name": "db-migrations-safe",
+      "icon": "MdTableChart",
+      "iconLibrary": "react-icons/md",
+      "description": "Reversible, expand-contract schema migrations with idempotent batched backfills and zero destructive changes at deploy time.",
+      "tags": [
+        "database",
+        "migrations",
+        "schema",
+        "expand-contract",
+        "zero-downtime"
+      ],
+      "domains": [
+        "backend"
+      ]
+    },
+    {
+      "name": "deterministic-tests",
+      "icon": "MdRule",
+      "iconLibrary": "react-icons/md",
+      "description": "Tests give the same result on every run and sit at the lowest level that proves the behavior: controlled time, randomness and order, no fixed waits, retries or skips, flakiness fixed at its cause, and no production code changed on a testing card.",
+      "tags": [
+        "testing",
+        "determinism",
+        "flaky-tests",
+        "test-levels",
+        "reliability"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "docs-sync",
+      "icon": "MdHistoryEdu",
+      "iconLibrary": "react-icons/md",
+      "description": "Every change updates the README, API references, and changelog entries it invalidates — stale docs are defects.",
+      "tags": [
+        "documentation",
+        "changelog",
+        "readme",
+        "sync"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "docs-verified",
+      "icon": "MdMenuBook",
+      "iconLibrary": "react-icons/md",
+      "description": "Documentation says what the code does today: one reader and one Diataxis type per page, every factual claim traced to the code or a command's output, every example run, plain language, and what could not be verified marked as such.",
+      "tags": [
+        "documentation",
+        "diataxis",
+        "verification",
+        "plain-language",
+        "docs-as-code"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "dry-run",
+      "icon": "MdPreview",
+      "iconLibrary": "react-icons/md",
+      "description": "Prevents final code generation, outputting only pseudocode, flowcharts, and step-by-step explanations.",
+      "tags": [
+        "planning",
+        "pseudocode",
+        "explanation",
+        "no-code"
+      ],
+      "incompatibleWith": [
+        "strict-linting",
+        "test-driven",
+        "locale-en",
+        "locale-es"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "runtime": {
+        "blockTools": [
+          "write_file"
+        ]
+      }
+    },
+    {
+      "name": "ds-house",
+      "icon": "MdDiamond",
+      "iconLibrary": "react-icons/md",
+      "description": "Pins all UI to the project's own in-house design system: primitives from the house UI package (never re-implemented locally), one brand-color source, precomputed contrast-safe ink tokens, and the house visual signature over the substrate's template look.",
+      "tags": [
+        "design-system",
+        "ui",
+        "ux",
+        "tokens",
+        "brand",
+        "identity",
+        "polish"
+      ],
+      "exclusiveGroup": "design-system",
+      "domains": [
+        "frontend"
+      ]
+    },
+    {
+      "name": "ds-shadcn",
+      "icon": "MdViewQuilt",
+      "iconLibrary": "react-icons/md",
+      "description": "Pins all UI to the shadcn/ui design language and Radix primitives composed with Tailwind.",
+      "tags": [
+        "design-system",
+        "shadcn",
+        "radix",
+        "tailwind"
+      ],
+      "incompatibleWith": [
+        "zero-dependencies"
+      ],
+      "exclusiveGroup": "design-system",
+      "domains": [
+        "frontend"
+      ]
+    },
+    {
+      "name": "ds-tailwind",
+      "icon": "MdStyle",
+      "iconLibrary": "react-icons/md",
+      "description": "Pins all styling to Tailwind CSS utility classes and design tokens; no ad-hoc CSS or competing styling systems.",
+      "tags": [
+        "design-system",
+        "tailwind",
+        "utility-css",
+        "tokens"
+      ],
+      "exclusiveGroup": "design-system",
+      "domains": [
+        "frontend"
+      ]
+    },
+    {
+      "name": "edge-case-coverage",
+      "icon": "MdAccountTree",
+      "iconLibrary": "react-icons/md",
+      "description": "Forces robust handling of edge cases (nulls, boundaries, overflow, invalid types) with real general logic instead of happy-path or hardcoded answers.",
+      "tags": [
+        "edge-cases",
+        "robustness",
+        "algorithms",
+        "correctness"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "error-ux",
+      "icon": "MdErrorOutline",
+      "iconLibrary": "react-icons/md",
+      "description": "Requires explicit loading, empty, and error states with retry paths on every remote-data surface; no swallowed rejections.",
+      "tags": [
+        "error-handling",
+        "loading-states",
+        "resilience",
+        "ux"
+      ],
+      "domains": [
+        "frontend"
+      ]
+    },
+    {
+      "name": "explain-to-me",
+      "icon": "MdSchool",
+      "iconLibrary": "react-icons/md",
+      "description": "Plain-language pedagogy in the conversation: defines jargon, uses project-anchored analogies, and recaps every change for non-expert builders.",
+      "tags": [
+        "pedagogy",
+        "plain-language",
+        "learning",
+        "vibe-coding"
+      ],
+      "incompatibleWith": [
+        "output-budget"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "extreme-performance",
+      "icon": "MdBolt",
+      "iconLibrary": "react-icons/md",
+      "description": "Prioritizes raw execution speed and lowest Big-O complexity, even at the cost of readability.",
+      "tags": [
+        "performance",
+        "speed",
+        "optimization",
+        "hardcore"
+      ],
+      "incompatibleWith": [
+        "verbose-comments",
+        "legacy-compat"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "form-validation",
+      "icon": "MdPlaylistAddCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Requires accessible client and server validation with typed schemas, inline error messaging tied to inputs, and no trust in client input.",
+      "tags": [
+        "forms",
+        "validation",
+        "accessibility",
+        "zod"
+      ],
+      "domains": [
+        "frontend",
+        "backend"
+      ]
+    },
+    {
+      "name": "hotfix-discipline",
+      "icon": "MdCrisisAlert",
+      "iconLibrary": "react-icons/md",
+      "description": "Restores production with the smallest safe change: mitigation before any diff, one variable at a time, a minimal patch cut from what production runs, a UTC timeline, and the root cause handed to a linked follow-up card.",
+      "tags": [
+        "hotfix",
+        "incident",
+        "mitigation",
+        "rollback",
+        "patch-version"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "i18n-ready",
+      "icon": "MdTranslate",
+      "iconLibrary": "react-icons/md",
+      "description": "Externalizes every user-facing string, enforces ICU message format and locale-aware date, number, and currency formatting.",
+      "tags": [
+        "i18n",
+        "l10n",
+        "intl",
+        "localization"
+      ],
+      "domains": [
+        "frontend"
+      ]
+    },
+    {
+      "name": "iac-pipeline-only",
+      "icon": "MdSettingsSuggest",
+      "iconLibrary": "react-icons/md",
+      "description": "Infrastructure, pipelines and environments change only as reviewed code applied by the pipeline: plan output on the card, no manual change to an environment, pinned versions, one artifact promoted, and a named way back.",
+      "tags": [
+        "iac",
+        "gitops",
+        "ci-cd",
+        "pipeline",
+        "rollback"
+      ],
+      "domains": [
+        "infra"
+      ]
+    },
+    {
+      "name": "idea-map-synthesizer",
+      "icon": "MdHub",
+      "iconLibrary": "react-icons/md",
+      "description": "Reads the typed notes bound to a step, groups loose notes into capability pillars, and keeps the strategic intent each note carries.",
+      "tags": [
+        "mind-map",
+        "synthesis",
+        "notes",
+        "capabilities",
+        "flow"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "legacy-compat",
+      "icon": "MdHistory",
+      "iconLibrary": "react-icons/md",
+      "description": "Prioritizes safe patches and backward compatibility over massive refactors or modern syntax.",
+      "tags": [
+        "legacy",
+        "backward-compatible",
+        "safe",
+        "maintenance"
+      ],
+      "incompatibleWith": [
+        "extreme-performance"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "locale-en",
+      "icon": "MdTranslate",
+      "iconLibrary": "react-icons/md",
+      "description": "Guarantees the English source i18n catalog defines every key used via t() across the app.",
+      "tags": [
+        "i18n",
+        "l10n",
+        "catalog",
+        "source-locale"
+      ],
+      "incompatibleWith": [
+        "dry-run"
+      ],
+      "domains": [
+        "frontend"
+      ],
+      "runtime": {
+        "contract": {
+          "forbidStubMarkers": true,
+          "localeCoverage": [
+            {
+              "description": "English source catalog (src/i18n/en.ts) covers every used key",
+              "catalogPathPattern": "src/i18n/en\\.(ts|tsx)$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "locale-es",
+      "icon": "MdTranslate",
+      "iconLibrary": "react-icons/md",
+      "description": "Guarantees the Spanish catalog fully translates every key the English source defines.",
+      "tags": [
+        "i18n",
+        "l10n",
+        "catalog",
+        "spanish",
+        "translation"
+      ],
+      "incompatibleWith": [
+        "dry-run"
+      ],
+      "domains": [
+        "frontend"
+      ],
+      "runtime": {
+        "contract": {
+          "forbidStubMarkers": true,
+          "localeCoverage": [
+            {
+              "description": "Spanish catalog (src/i18n/es.ts) covers + translates every used key",
+              "catalogPathPattern": "src/i18n/es\\.(ts|tsx)$",
+              "sourcePathPattern": "src/i18n/en\\.(ts|tsx)$",
+              "requireTranslated": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "measured-performance",
+      "icon": "MdSpeed",
+      "iconLibrary": "react-icons/md",
+      "description": "A performance claim carries a before and after number from the same method, and every new or changed query carries its plan read on realistic data: no unintended full scan, bounded reads, indexes only where a plan needs one.",
+      "tags": [
+        "performance",
+        "measurement",
+        "queries",
+        "explain",
+        "indexes"
+      ],
+      "domains": [
+        "backend",
+        "data"
+      ]
+    },
+    {
+      "name": "micro-sale-copywriting",
+      "icon": "MdSell",
+      "iconLibrary": "react-icons/md",
+      "description": "Writes every feature as a self-contained micro-sale in four parts: a hook that names the friction, the mechanism that removes it, the asymmetric proof against the rival, and a single micro-close.",
+      "tags": [
+        "copywriting",
+        "conversion",
+        "landing-page",
+        "micro-sale",
+        "flow"
+      ],
+      "domains": [
+        "web"
+      ]
+    },
+    {
+      "name": "observability-ready",
+      "icon": "MdInsights",
+      "iconLibrary": "react-icons/md",
+      "description": "Enforces structured correlation-id logging, golden-signal metrics, and spans on every new endpoint; forbids console.log and unobservable code.",
+      "tags": [
+        "observability",
+        "logging",
+        "metrics",
+        "tracing",
+        "otel"
+      ],
+      "domains": [
+        "backend",
+        "infra"
+      ]
+    },
+    {
+      "name": "output-budget",
+      "icon": "MdCompress",
+      "iconLibrary": "react-icons/md",
+      "description": "Optimizes for the smallest correct artifact and fewest tokens; enforces surgical edits over full rewrites.",
+      "tags": [
+        "concise",
+        "tokens",
+        "minimal",
+        "surgical"
+      ],
+      "incompatibleWith": [
+        "explain-to-me"
+      ],
+      "exclusiveGroup": "output-verbosity",
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "privacy-guard",
+      "icon": "MdPrivacyTip",
+      "iconLibrary": "react-icons/md",
+      "description": "GDPR-grade data handling: classify fields, minimize collection, keep PII out of logs, and preserve deletion/export paths.",
+      "tags": [
+        "privacy",
+        "gdpr",
+        "pii",
+        "compliance",
+        "data-minimization"
+      ],
+      "domains": [
+        "backend",
+        "data"
+      ]
+    },
+    {
+      "name": "progressive-disclosure",
+      "icon": "MdLayers",
+      "iconLibrary": "react-icons/md",
+      "description": "Sequences a page from the value proposition to the interactive proof, starting with minimal load, and alternates the layout pattern of consecutive sections so the scroll never feels repetitive.",
+      "tags": [
+        "ux",
+        "layout",
+        "landing-page",
+        "pacing",
+        "progressive-disclosure",
+        "flow"
+      ],
+      "domains": [
+        "web",
+        "frontend"
+      ]
+    },
+    {
+      "name": "regression-sentinel",
+      "icon": "MdGppGood",
+      "iconLibrary": "react-icons/md",
+      "description": "Brownfield guard: read before write, preserve public contracts, limit blast radius, and prove prior features survive.",
+      "tags": [
+        "regression",
+        "brownfield",
+        "contracts",
+        "safe"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "resilient-backend",
+      "icon": "MdAutorenew",
+      "iconLibrary": "react-icons/md",
+      "description": "Server code that fails safely: HTTP errors as RFC 9457 Problem Details, a timeout on every outbound call, bounded retries for transient failures only, idempotent repeatable writes and transactions around what must change together.",
+      "tags": [
+        "backend",
+        "resilience",
+        "problem-details",
+        "idempotency",
+        "transactions"
+      ],
+      "domains": [
+        "backend"
+      ]
+    },
+    {
+      "name": "responsive-design",
+      "icon": "MdDevices",
+      "iconLibrary": "react-icons/md",
+      "description": "Forces mobile-first, fluid layouts with container queries and relative units; forbids fixed pixel widths that break on resize.",
+      "tags": [
+        "responsive",
+        "mobile-first",
+        "layout",
+        "container-queries"
+      ],
+      "domains": [
+        "frontend"
+      ]
+    },
+    {
+      "name": "rule-enforcer",
+      "icon": "MdGavel",
+      "iconLibrary": "react-icons/md",
+      "description": "Makes a review walk the project's written rules that apply to the change, one by one with evidence, and puts that checklist in the verdict: a violated rule is a send-back, an unchecked one is never a pass, and no checklist means no approval.",
+      "tags": [
+        "review",
+        "rules",
+        "quality",
+        "enforcement",
+        "verification"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "rule-of-seven",
+      "icon": "MdFormatListNumbered",
+      "iconLibrary": "react-icons/md",
+      "description": "Holds a market strategy to a fixed count of rival gaps, capabilities and touchpoints, each touchpoint tied to one driver, all of them building toward one conversion goal.",
+      "tags": [
+        "strategy",
+        "positioning",
+        "conversion",
+        "landing-page",
+        "rule-of-seven",
+        "flow"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "runbook-execution",
+      "icon": "MdEventRepeat",
+      "iconLibrary": "react-icons/md",
+      "description": "Recurring maintenance runs exactly as its runbook states: no runbook, no run; each step previewed where the tool can, proved in an evidence table, verified by its effect, and every deviation turned into a linked card.",
+      "tags": [
+        "operations",
+        "runbook",
+        "maintenance",
+        "evidence",
+        "toil"
+      ],
+      "domains": [
+        "infra"
+      ]
+    },
+    {
+      "name": "security-hardened",
+      "icon": "MdShield",
+      "iconLibrary": "react-icons/md",
+      "description": "Applies extreme sanitization, uses parameterized queries, and flags potential security risks.",
+      "tags": [
+        "security",
+        "sanitization",
+        "safe",
+        "hardened"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "self-review",
+      "icon": "MdRateReview",
+      "iconLibrary": "react-icons/md",
+      "description": "Runs a finalization self-review against the objective and prior team artifacts before declaring a task complete.",
+      "tags": [
+        "review",
+        "quality",
+        "self-check",
+        "verification"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "semantic-deduplicator",
+      "icon": "MdFilterAlt",
+      "iconLibrary": "react-icons/md",
+      "description": "Merges or rejects any two items that solve the same problem or rest on the same value proposition, and strips the jargon that hides the difference between them.",
+      "tags": [
+        "deduplication",
+        "semantics",
+        "clarity",
+        "quality",
+        "flow"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "seo-meta",
+      "icon": "MdTravelExplore",
+      "iconLibrary": "react-icons/md",
+      "description": "Enforces a complete semantic document head: titles, meta description, canonical URLs, Open Graph and Twitter cards, sitemap and robots awareness.",
+      "tags": [
+        "seo",
+        "meta",
+        "open-graph",
+        "discoverability"
+      ],
+      "domains": [
+        "web"
+      ],
+      "runtime": {
+        "attachTools": [
+          "web-browser"
+        ]
+      }
+    },
+    {
+      "name": "spec-adherence",
+      "icon": "MdRule",
+      "iconLibrary": "react-icons/md",
+      "description": "Treats the specification as law: extracts every rule into a checklist, implements each, and self-verifies adherence.",
+      "tags": [
+        "requirements",
+        "spec",
+        "domain",
+        "checklist"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "strict-linting",
+      "icon": "MdFactCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Enforces strict linting rules and automatically fixes all warnings.",
+      "tags": [
+        "linting",
+        "formatting",
+        "strict",
+        "quality"
+      ],
+      "incompatibleWith": [
+        "dry-run"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "structured-data",
+      "icon": "MdDataObject",
+      "iconLibrary": "react-icons/md",
+      "description": "Emits valid Schema.org JSON-LD structured data for every page type (Article, Product, FAQ, Breadcrumb, Organization).",
+      "tags": [
+        "seo",
+        "schema",
+        "json-ld",
+        "structured-data"
+      ],
+      "domains": [
+        "web"
+      ],
+      "runtime": {
+        "attachTools": [
+          "web-browser"
+        ]
+      }
+    },
+    {
+      "name": "supply-chain-integrity",
+      "icon": "MdVerifiedUser",
+      "iconLibrary": "react-icons/md",
+      "description": "Builds and dependencies stay verifiable: signed provenance checked before deploy, artifacts referenced by digest, the SBOM regenerated on every dependency change, no known exploited flaw, no secret in the repository, logs or images.",
+      "tags": [
+        "supply-chain",
+        "sbom",
+        "provenance",
+        "secrets",
+        "hardening"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "systematic-debug",
+      "icon": "MdTroubleshoot",
+      "iconLibrary": "react-icons/md",
+      "description": "Hypothesis-driven debugging: reproduce, isolate, hypothesize, and verify with an exact file:line — no blind loops.",
+      "tags": [
+        "debugging",
+        "root-cause",
+        "diagnosis",
+        "analysis"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "test-driven",
+      "icon": "MdScience",
+      "iconLibrary": "react-icons/md",
+      "description": "Requires writing and presenting unit tests before implementing any core logic.",
+      "tags": [
+        "tdd",
+        "testing",
+        "unit-tests",
+        "reliability"
+      ],
+      "incompatibleWith": [
+        "dry-run"
+      ],
+      "domains": [
+        "universal"
+      ],
+      "runtime": {
+        "contract": {
+          "mustWriteFiles": true,
+          "requiredArtifacts": [
+            {
+              "description": "At least one test file must exist for the change (TDD red before green)",
+              "pathPattern": "(\\.(test|spec)\\.[cm]?[jt]sx?$|(^|/)test_[^/]+\\.py$|_test\\.(py|go)$)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "verbose-comments",
+      "icon": "MdComment",
+      "iconLibrary": "react-icons/md",
+      "description": "Forces detailed explanatory comments for every block of logic, function, and complex variable.",
+      "tags": [
+        "comments",
+        "documentation",
+        "verbose",
+        "learning"
+      ],
+      "incompatibleWith": [
+        "extreme-performance"
+      ],
+      "exclusiveGroup": "output-verbosity",
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "vuln-remediation",
+      "icon": "MdBugReport",
+      "iconLibrary": "react-icons/md",
+      "description": "A vulnerability fix is proven and quiet: an exploit regression test red before and green after, the weakness named by CWE and ASVS id, the class fixed rather than one input, and no exploit detail outside the restricted card before deploy.",
+      "tags": [
+        "security",
+        "vulnerability",
+        "remediation",
+        "cwe",
+        "disclosure"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "web-vitals",
+      "icon": "MdSpeed",
+      "iconLibrary": "react-icons/md",
+      "description": "Holds rendering to Core Web Vitals budgets (LCP, INP, CLS) via lazy-loading, code-splitting, and layout-stable markup.",
+      "tags": [
+        "performance",
+        "core-web-vitals",
+        "lcp",
+        "cls"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ],
+      "runtime": {
+        "attachTools": [
+          "web-browser"
+        ]
+      }
+    },
+    {
+      "name": "workflow-author",
+      "icon": "MdAccountTree",
+      "iconLibrary": "react-icons/md",
+      "description": "Writes one card's workflow (the role and extra mods per phase) and nothing else, from the card and the project's catalogs.",
+      "tags": [
+        "workflow",
+        "roles",
+        "mods",
+        "refine",
+        "card"
+      ],
+      "domains": [
+        "universal"
+      ]
+    },
+    {
+      "name": "zero-dependencies",
+      "icon": "MdBlock",
+      "iconLibrary": "react-icons/md",
+      "description": "Forbids adding new third-party dependencies; solutions use native language features and standard libraries.",
+      "tags": [
+        "vanilla",
+        "native",
+        "no-deps",
+        "lightweight"
+      ],
+      "incompatibleWith": [
+        "ds-shadcn"
+      ],
+      "domains": [
+        "universal"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "name": "auth-pages",
+      "icon": "MdLogin",
+      "iconLibrary": "react-icons/md",
+      "description": "Builds the authentication UI surface (login, signup, and password-reset screens) wired to the project's auth provider.",
+      "tags": [
+        "auth",
+        "ui",
+        "forms",
+        "atomic"
+      ]
+    },
+    {
+      "name": "commit-changes",
+      "icon": "MdCommit",
+      "iconLibrary": "react-icons/md",
+      "description": "Commits one finished unit of work on the flow's own branch, staging only the paths it touched; never resets, stashes, cleans, amends or pushes.",
+      "tags": [
+        "git",
+        "commit",
+        "safety",
+        "atomic",
+        "flow"
+      ]
+    },
+    {
+      "name": "implement-to-green",
+      "icon": "MdCheckCircle",
+      "iconLibrary": "react-icons/md",
+      "description": "Writes the smallest correct implementation needed to make failing tests pass (TDD green).",
+      "tags": [
+        "tdd",
+        "implementation",
+        "green",
+        "atomic"
+      ]
+    },
+    {
+      "name": "landing-page",
+      "icon": "MdWebAsset",
+      "iconLibrary": "react-icons/md",
+      "description": "Builds a single conversion-focused landing page (hero, value props, social proof, CTA) as one artifact, matching the project's design system.",
+      "tags": [
+        "landing",
+        "marketing",
+        "ui",
+        "atomic"
+      ]
+    },
+    {
+      "name": "read-card",
+      "icon": "MdAssignment",
+      "iconLibrary": "react-icons/md",
+      "description": "Reads one task from the task source the flow was started from and extracts its id, status, target, directive and acceptance criteria; changes nothing.",
+      "tags": [
+        "task",
+        "backlog",
+        "intake",
+        "atomic",
+        "flow"
+      ]
+    },
+    {
+      "name": "refactor-safely",
+      "icon": "MdCompress",
+      "iconLibrary": "react-icons/md",
+      "description": "Improves the internal structure of existing code without changing its observable behavior.",
+      "tags": [
+        "refactor",
+        "safe",
+        "behavior-preserving",
+        "atomic"
+      ]
+    },
+    {
+      "name": "review-diff",
+      "icon": "MdRateReview",
+      "iconLibrary": "react-icons/md",
+      "description": "Reviews a change against a quality rubric and reports concrete findings without rewriting the code.",
+      "tags": [
+        "review",
+        "quality",
+        "diff",
+        "atomic"
+      ]
+    },
+    {
+      "name": "run-tests",
+      "icon": "MdFactCheck",
+      "iconLibrary": "react-icons/md",
+      "description": "Runs the project's own test suite, build, lint and type-check and reports a pass, fail or no-tests verdict with the failures; it never edits code to get a green run.",
+      "tags": [
+        "tests",
+        "verification",
+        "regression",
+        "atomic",
+        "flow"
+      ]
+    },
+    {
+      "name": "scaffold-structure",
+      "icon": "MdFolderSpecial",
+      "iconLibrary": "react-icons/md",
+      "description": "Lays down the folder and file skeleton for a feature or module, matching project conventions, before any logic is written.",
+      "tags": [
+        "scaffold",
+        "structure",
+        "skeleton",
+        "atomic"
+      ]
+    },
+    {
+      "name": "set-card-status",
+      "icon": "MdAssignmentTurnedIn",
+      "iconLibrary": "react-icons/md",
+      "description": "Writes a task's new status and a short note back to the task source the flow was started from, using only the statuses that source defines.",
+      "tags": [
+        "task",
+        "backlog",
+        "status",
+        "atomic",
+        "flow"
+      ]
+    },
+    {
+      "name": "write-failing-tests",
+      "icon": "MdScience",
+      "iconLibrary": "react-icons/md",
+      "description": "Specifies desired behavior as executable tests that fail before any implementation exists (TDD red).",
+      "tags": [
+        "tdd",
+        "tests",
+        "red",
+        "atomic"
+      ]
+    }
+  ]
+}

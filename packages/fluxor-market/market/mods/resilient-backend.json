@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schemas/mod.schema.json",
+  "id": "resilient-backend",
+  "kind": "mod",
+  "version": "1.0.0",
+  "icon": "MdAutorenew",
+  "iconLibrary": "react-icons/md",
+  "description": "Server code that fails safely: HTTP errors as RFC 9457 Problem Details, a timeout on every outbound call, bounded retries for transient failures only, idempotent repeatable writes and transactions around what must change together.",
+  "tags": [
+    "backend",
+    "resilience",
+    "problem-details",
+    "idempotency",
+    "transactions"
+  ],
+  "domains": [
+    "backend"
+  ],
+  "precedence": "correctness",
+  "enforcement": "prompt"
+}

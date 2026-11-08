@@ -1,0 +1,38 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-product-manager",
+  "kind": "skill",
+  "version": "2.0.1",
+  "packaging": "meta",
+  "description": "Interviews a product manager about prioritization, discovery, roadmaps and stakeholders, and renders the answers into their cognitive clone and a pack of agents, skills, commands and rules that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "product",
+    "roadmap",
+    "prioritization"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}

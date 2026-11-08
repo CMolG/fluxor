@@ -1,0 +1,10 @@
+Production migrations in services with millions of rows must follow expand-and-contract.
+First, add the new column without dropping the old one. Backfill in batches with checkpoints.
+Verify invariants on a shadow index. Roll forward only after dual-write has stabilized.
+Renames in place under load are unsafe because consumers cache the old column name and the unique index build can lock the table for the duration.
+Always wrap a column rename in a feature flag controlling read paths and dual-write at the model layer.
+A migration plan that omits rollback steps is incomplete: define the toggle that flips traffic back, the cleanup window, and the SLO budget you are willing to spend.
+Lock contention on a unique index over 50M rows is the most common postmortem trigger after a rename: build the index concurrently in Postgres and verify replication lag before the cutover.
+Blast radius mitigations: progressive rollout by tenant, alerts on error budget burn, and explicit fail-fast criteria tied to the on-call runbook.
+Observability over the dual-write window: write parity counters, query plans before and after, p99 latency on the index path.
+The review should call out: the implicit assumption that no other service writes to users.email during the rename, missing backfill safety nets, missing index-build strategy, missing rollback toggle, and missing SLO impact analysis.

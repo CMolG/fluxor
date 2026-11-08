@@ -1,0 +1,13 @@
+{
+  "issueKey": "PROJ-42",
+  "title": "Members can pause their subscription",
+  "description": "Members on a monthly plan want to pause billing for up to three months instead of cancelling. A paused subscription keeps the member's data and resumes on the chosen date.",
+  "labels": ["billing", "subscriptions"],
+  "epic": "PROJ-40",
+  "status": "todo",
+  "comments": [
+    {"author": "product", "body": "Annual plans stay out of this card.", "created": "2026-09-30T09:00:00Z"}
+  ],
+  "acceptanceCriteria": [],
+  "fetchedAt": "2026-09-30T09:00:00Z"
+}

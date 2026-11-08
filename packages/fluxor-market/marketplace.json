@@ -1,0 +1,18 @@
+{
+  "$schema": "schemas/marketplace.schema.json",
+  "schemaVersion": 1,
+  "namespace": "base",
+  "publisher": "CMolG",
+  "title": "Base marketplace",
+  "source": "https://github.com/CMolG/useful-skills",
+  "language": {
+    "functionalData": [
+      "market/lexicon.json",
+      "skills/ux-psychology/scripts/scan_friction.py",
+      "skills/landing-page-marketing/scripts/copy_lint.py",
+      "skills/landing-page-marketing/references/copywriting.md",
+      "skills/landing-page-marketing/evals/**",
+      "skills/product-hunt-launch-readiness/evals/**"
+    ]
+  }
+}

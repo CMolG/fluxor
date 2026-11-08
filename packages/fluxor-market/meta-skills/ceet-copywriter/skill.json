@@ -1,0 +1,37 @@
+{
+  "$schema": "../../schemas/skill.schema.json",
+  "id": "ceet-copywriter",
+  "kind": "skill",
+  "version": "2.0.0",
+  "packaging": "meta",
+  "description": "Interviews a copywriter about voice, structure, conversion and brand tone, and renders the answers into their cognitive clone and a pack of agents, skills, commands and rules that make any AI tool work their way.",
+  "tags": [
+    "ceet",
+    "cognitive-profile",
+    "copywriting",
+    "brand-voice"
+  ],
+  "domains": [
+    "universal"
+  ],
+  "requires": {
+    "capabilities": [
+      "fs.read",
+      "fs.write"
+    ],
+    "atoms": [
+      "ceet-core@2"
+    ]
+  },
+  "form": {
+    "questions": "interview/form.json",
+    "profile": "templates/cognitive-profile.md",
+    "templates": "templates"
+  },
+  "install": {
+    "exclude": [
+      "README.md",
+      "evals/**"
+    ]
+  }
+}
